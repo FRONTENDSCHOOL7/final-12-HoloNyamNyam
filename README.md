@@ -30,7 +30,7 @@
 
 ## 폴더 구조
 
-## 깃 커밋 컨벤션/Git Commit COnvention
+## 깃 커밋 컨벤션/Git Commit Convention
 
 본문이 있다면 제목과 빈줄을 두어 구분합니다.
 
