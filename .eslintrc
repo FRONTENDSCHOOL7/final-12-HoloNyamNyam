@@ -1,5 +1,5 @@
 {
-  "extends": ["react-app", "plugin:prettier/recommended"], // prettier plugin을 lint로서 따른다는 것
+  "extends": ["react-app", "prettier"], // prettier plugin을 lint로서 따른다는 것
   "rules": {
     // 정해진 규칙들 수정 가능
     "no-var": "warn", // var 금지
@@ -15,13 +15,13 @@
     "react/no-unused-state": "warn", // 사용되지 않는 state
     "react/jsx-key": "warn", // 반복문으로 생성하는 요소에 key 강제
     "react/self-closing-comp": "warn", // 셀프 클로징 태그 가능하면 적용
-    "react/jsx-curly-brace-presence": "warn", // jsx 내 불필요한 중괄호 금지
-    "prettier/prettier": [
-      "error",
-      {
-        "endOfLine": "auto"
-      }
-    ]
+    "react/jsx-curly-brace-presence": "warn" // jsx 내 불필요한 중괄호 금지
+    // "prettier/prettier": [
+    //   "error",
+    //   {
+    //     "endOfLine": "auto"
+    //   }
+    // ]
   },
   "env": {
     "browser": true, // document, window 등의 브라우저 내장 객체들 조회시 ESLint 오류 없이 작업
