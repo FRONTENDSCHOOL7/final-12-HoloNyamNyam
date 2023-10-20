@@ -1,6 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
 
-export default GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
+  ${reset}
+
  :root{
     --main-color: #036635 ;
     --sub-color:#B1D4C3;
@@ -21,3 +24,5 @@ export default GlobalStyle = createGlobalStyle`
     --font-regular: 400;;
   }
 `;
+
+export default GlobalStyle;
