@@ -66,3 +66,5 @@ export const GlobalStyle = createGlobalStyle`
       position: absolute;
   }
 `;
+
+export default GlobalStyle;
