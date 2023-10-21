@@ -1,10 +1,12 @@
-import Signup from './pages/AuthorPage/Signup';
+import { GlobalStyle } from './components/style/GlobalStyle';
+import Home from './pages/Home/Home';
 
 function App() {
   return (
-    <div className='App'>
-      <Signup />
-    </div>
+    <>
+      <GlobalStyle />
+      <Home />
+    </>
   );
 }
 
