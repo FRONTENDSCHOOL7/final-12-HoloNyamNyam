@@ -18,7 +18,7 @@ export default function SignUpForm() {
       // disabled={!abledBtn}
       onClick={clickedToggle}
     >
-      다음
+      계속하기
     </StyledButton>
   );
 }
