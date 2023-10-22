@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const NavWrapper = styled.nav`
   position: fixed;
@@ -17,6 +18,18 @@ const NavList = styled.ul`
   display: flex;
   justify-content: space-around;
   align-items: center;
+`;
+
+const NavLink = styled(Link)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #767676;
+
+  &.active {
+    color: #f26e22;
+  }
 `;
 
 const StyledNavText = styled.p`
@@ -49,9 +62,9 @@ const TopIcon = styled.img`
 export {
   NavWrapper,
   NavList,
-  ButtonContainer,
-  ScrollButton,
+  NavLink,
   StyledNavText,
+  ScrollButton,
   TopIcon,
+  ButtonContainer,
 };
-// // NavLink,
