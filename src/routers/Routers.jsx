@@ -10,7 +10,7 @@ import Home from '../pages/Home/Home';
 import Search from '../pages/Search/Search';
 import ChatList from '../pages/Chat/ChatList';
 import ErrorPage from '../pages/Error/ErrorPage';
-import ChatRoom from '../pages/Chat/ChatRoom.jsx';
+import ChatRoom from '../pages/Chat/ChatRoom';
 import MakeFeed from '../pages/Feed/MakeFeed';
 import Profile from '../pages/Profile/Profile';
 import ProfileEdit from '../pages/Profile/ProfileEdit';
