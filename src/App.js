@@ -1,12 +1,12 @@
 import { GlobalStyle } from './components/style/GlobalStyle';
-import Home from './pages/Home/Home';
+import Routers from './routers/Routers';
 import Nav from './components/common/Nav/Nav';
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <Home />
+      <Routers />
       <Nav />
     </>
   );
