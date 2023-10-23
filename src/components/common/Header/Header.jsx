@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
+import React from 'react';
 import {
   HeaderWrap,
   HeaderLayoutSection,
@@ -8,19 +9,12 @@ import {
   HeaderSearchInp,
   HeaderSpan,
   HeaderTextP,
-  // HeaderLogoBtn,
   SocialSvg,
-} from './HeaderStyle';
+} from './StyledHeader';
 import Button from '../Button/Button';
 import { useNavigate } from 'react-router-dom';
-import RandomRecommend from '../../RandomRecommend/RandomRecommend';
+import sprite from '../../../images/SpriteIcon.svg';
 // import { useRecoilState, useSetRecoilState } from 'recoil';
-// import {
-//   randomFoodState,
-//   isAnimationActiveState,
-// } from '../../../atoms/randomFoodAtom';
-import sprite from '../../../assets/images/SpriteIcon.svg';
-// import { modalState } from '../../../atoms/modalAtom';
 
 export default function Header({
   type,
@@ -47,41 +41,6 @@ export default function Header({
   function handleClick() {
     navigate('/search');
   }
-
-  const [randomShow, setRandomShow] = useState(false);
-  // const [isRandomOpening, setIsRandomOpening] = useState(false);
-  function randomClose(e) {
-    if (e.target === e.currentTarget) {
-      setRandomShow(false);
-    }
-  }
-  // const [randomFood, setRandomFood] = useRecoilState(randomFoodState);
-  // const [isAnimationActive, setIsAnimationActive] = useRecoilState(
-  //   isAnimationActiveState,
-  // );
-
-  // const handleRecommendation = () => {
-  //   setRandomFood('');
-  //   setTimeout(() => {
-  //     if (!isAnimationActive) {
-  //       setRandomFood('');
-  //       setIsAnimationActive(true);
-  //     }
-  //   }, 1200);
-  // };
-
-  // function randomOpen() {
-  //   if (!isRandomOpening) {
-  //     setIsRandomOpening(true);
-  //     setRandomShow(true);
-  //     handleRecommendation();
-  //     setTimeout(() => {
-  //       setRandomShow(false);
-  //       setIsRandomOpening(false);
-  //     }, 6800);
-  //   }
-  // }
-
   // const setModal = useSetRecoilState(modalState);
   // const modalOpen = () => {
   //   setModal({ show: true, type: 'setting' });
@@ -120,15 +79,6 @@ export default function Header({
     home: (
       <HeaderLayoutSection>
         <HeaderTitle>냠냠피드</HeaderTitle>
-        {/* <HeaderLogoBtn
-          type='button'
-          // onClick={randomOpen}
-          aria-label='추천 음식 버튼'
-        /> */}
-
-        <HeaderRightBtn type='button' aria-label='검색페이지 이동 버튼'>
-          <SocialSVG id='icon-search' onClick={handleClick} />
-        </HeaderRightBtn>
       </HeaderLayoutSection>
     ),
     search: (
@@ -137,7 +87,7 @@ export default function Header({
         {renderHeaderLeftBtn()}
         <HeaderSearchInp
           type='text'
-          placeholder='계정 검색'
+          placeholder='또 다른 혼바비언을 찾아봐요 :D'
           value={searchKeyword}
           onChange={handleSearchKeyword}
         />
@@ -153,13 +103,13 @@ export default function Header({
     followers: (
       <HeaderLayoutSection>
         <HeaderTitle className='a11y-hidden'>팔로워</HeaderTitle>
-        {renderHeaderText('Followers')}
+        {renderHeaderText('냠냠 팔로워')}
       </HeaderLayoutSection>
     ),
     followings: (
       <HeaderLayoutSection>
         <HeaderTitle className='a11y-hidden'>팔로잉</HeaderTitle>
-        {renderHeaderText('Followings')}
+        {renderHeaderText('냠냠 팔로잉')}
       </HeaderLayoutSection>
     ),
     upload: (
@@ -199,10 +149,5 @@ export default function Header({
     ),
   };
 
-  return (
-    <>
-      <HeaderWrap>{UI[type]}</HeaderWrap>
-      {randomShow && <RandomRecommend randomClose={randomClose} />}
-    </>
-  );
+  return <HeaderWrap>{UI[type]}</HeaderWrap>;
 }

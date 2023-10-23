@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 const HeaderWrap = styled.header`
   position: fixed;
-  top: 0;
   z-index: 999;
   width: 100%;
   max-width: 390px;
+  top: 0%;
 `;
 
 const HeaderLayoutSection = styled.section`

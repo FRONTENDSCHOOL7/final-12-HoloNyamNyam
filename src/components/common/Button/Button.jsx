@@ -22,43 +22,43 @@ export const ButtonStyle = styled.button`
       ? '9px 0px'
       : '13px 0px'};
   background-color: ${(props) =>
-    props.bgColor === 'active'
+    props.$bgcolor === 'active'
       ? '#FF644B'
-      : props.bgColor === 'inactive'
+      : props.$bgcolor === 'inactive'
       ? '#FFAD9F'
       : '#fffff'};
   border: ${(props) =>
     props.border === 'active' ? '1px solid #DBDBDB' : null};
   color: ${(props) => (props.color === 'active' ? '#767676' : '#ffffff')};
-`;
-
-export const Content = styled.p`
   ${(props) =>
     props.logo === true
       ? `
         position: relative;
         &::before {
           content: '';
+          position: absolute;
           display: inline-block;
           width: 20px;
           height: 20px;
-          margin-right: 60px;
           background: no-repeat center / 18px 19px url(${buttonLogo});
-          position: absolute;
           top: 50%;
-          left: 40px;
+          left: 10%;
           transform: translate(-50%, -50%);
         }
       `
       : null}
 `;
 
+// export const ButtonContent = styled.span`
+
+// `;
+
 export default function Button({
   type,
   content,
   size,
   width,
-  bgColor,
+  bgcolor,
   color,
   border,
   disabled,
@@ -70,14 +70,15 @@ export default function Button({
       type={type ? 'button' : 'submit'}
       size={size}
       width={width}
-      bgColor={bgColor}
+      bgcolor={bgcolor}
       color={color}
       border={border}
       disabled={disabled}
       onClick={onClick}
       logo={logo}
     >
-      <Content>{content}</Content>
+      {content}
+      {/* <ButtonContent logo={logo}>{content}</ButtonContent> */}
     </ButtonStyle>
   );
 }
