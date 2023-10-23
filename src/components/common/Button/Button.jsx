@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import buttonLogo from '../../../images/button-logo.png';
 
 export const ButtonStyle = styled.button`
   display: block;
@@ -31,6 +32,27 @@ export const ButtonStyle = styled.button`
   color: ${(props) => (props.color === 'active' ? '#767676' : '#ffffff')};
 `;
 
+export const Content = styled.p`
+  ${(props) =>
+    props.logo === true
+      ? `
+        position: relative;
+        &::before {
+          content: '';
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          margin-right: 60px;
+          background: no-repeat center / 18px 19px url(${buttonLogo});
+          position: absolute;
+          top: 50%;
+          left: 40px;
+          transform: translate(-50%, -50%);
+        }
+      `
+      : null}
+`;
+
 export default function Button({
   type,
   content,
@@ -41,6 +63,7 @@ export default function Button({
   border,
   disabled,
   onClick,
+  logo,
 }) {
   return (
     <ButtonStyle
@@ -52,8 +75,9 @@ export default function Button({
       border={border}
       disabled={disabled}
       onClick={onClick}
+      logo={logo}
     >
-      {content}
+      <Content>{content}</Content>
     </ButtonStyle>
   );
 }
