@@ -65,6 +65,13 @@ export const GlobalStyle = createGlobalStyle`
       padding: 0;
       position: absolute;
   }
+
+  #root{
+    width: 390px;
+    height: 100vh;
+    margin: 0 auto;
+    background-color: #fff;
+  }
 `;
 
 export default GlobalStyle;
