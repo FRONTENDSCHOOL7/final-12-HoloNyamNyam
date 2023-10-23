@@ -8,25 +8,17 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 64px;
 `;
-const Logo = styled.img`
-  display: block;
 
-  margin-bottom: 12px;
+const Greeting = styled.p`
+  color: #fff;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  text-align: center;
 `;
-const Login = styled(Link)`
-  width: 322px;
-  height: 44px;
-  color: #767676;
-  border-radius: 44px;
-  border: 1px solid #fff;
-  background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-const Join = styled(Link)`
+
+const GoFeed = styled(Link)`
   width: 322px;
   height: 44px;
   color: #fff;
@@ -37,11 +29,9 @@ const Join = styled(Link)`
   align-items: center;
   justify-content: center;
 
-  margin-bottom: 80px;
-
   &:hover {
     background-color: #ffba33;
   }
 `;
 
-export { Container, Logo, Login, Join };
+export { Container, Greeting, GoFeed };
