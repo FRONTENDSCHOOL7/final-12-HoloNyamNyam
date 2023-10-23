@@ -7,7 +7,6 @@ function App() {
     <>
       <GlobalStyle />
       <Routers />
-      <Nav />
     </>
   );
 }
