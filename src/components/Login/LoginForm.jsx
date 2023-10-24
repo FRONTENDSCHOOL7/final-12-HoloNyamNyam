@@ -14,7 +14,7 @@ export default function LoginForm() {
     register,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm({ mode: 'onChange' });
+  } = useForm({ mode: 'onSubmit' });
 
   const [hasError, setHasError] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
