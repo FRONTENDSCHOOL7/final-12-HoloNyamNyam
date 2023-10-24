@@ -19,6 +19,6 @@ export const login = async ({ email, password }) => {
     );
     return res;
   } catch (err) {
-    // alert(err);
+    console.error('API 응답에 실패하였습니다.', err);
   }
 };
