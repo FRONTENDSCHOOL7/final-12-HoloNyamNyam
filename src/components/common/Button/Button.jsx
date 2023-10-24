@@ -49,10 +49,6 @@ export const ButtonStyle = styled.button`
       : null}
 `;
 
-// export const ButtonContent = styled.span`
-
-// `;
-
 export default function Button({
   type,
   content,

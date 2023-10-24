@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {ButtonStyle} from "../common/Button/Button";
 
 const SignUpContainerStyle = styled.div`
   height: 100vh;
@@ -9,6 +10,10 @@ const SignUpContainerStyle = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+const StyledButton = styled(ButtonStyle)`
+  margin-top: 30px;
+`
 
 const FormContainerStyle = styled.form`
   margin-top: 58px;
@@ -76,6 +81,7 @@ export {
   SignUpContainerStyle,
   TitleStyle,
   FormContainerStyle,
+  StyledButton,
   LabelStyle,
   InputStyle,
   ErrorStyle,
