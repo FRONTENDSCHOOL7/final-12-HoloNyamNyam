@@ -1,15 +1,34 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { StyledButton } from '../common/StyledButton';
-
+import Button from '../common/Button/Button';
+import axios from "axios"
 import {
-  LoginModalContainer,
-  TitleText,
-  FormContainer,
-  LabelText,
-  InputText,
+  SignUpContainerStyle,
+  TitleStyle,
+  FormContainerStyle,
+  LabelStyle,
+  InputStyle,
   ErrorStyle,
 } from './SignUpStyle';
+
+const BASE_URL = "https://api.mandarin.weniv.co.kr";
+
+const EmailValid = async email => {
+  const res = await axios.post(
+    `${BASE_URL}/user/emailvalid`,
+    {
+      user: {
+        email: email,
+      },
+    },
+    {
+      headers: {
+        "Content-type": "application/json",
+      },
+    },
+  );
+  return res;
+};
 
 const SignUpForm = () => {
   const {
@@ -23,6 +42,10 @@ const SignUpForm = () => {
     },
   });
 
+  const handleSubmitData = async data => {
+    await console.log(data);
+  }
+
   const [abledBtn, setAbledBtn] = useState(true);
   const clickedToggle = () => {
     setAbledBtn((prev) => {
@@ -31,15 +54,14 @@ const SignUpForm = () => {
   };
 
   return (
-    <LoginModalContainer>
-      <TitleText>회원가입을 도와드릴게요!</TitleText>
-      <FormContainer
-        onSubmit={handleSubmit((data) => {
-          console.log(data);
-        })}
+    <SignUpContainerStyle>
+      <TitleStyle>회원가입을 도와드릴게요!</TitleStyle>
+      <FormContainerStyle
+        onSubmit={handleSubmit(handleSubmitData)}
       >
-        <LabelText>이메일</LabelText>
-        <InputText
+        <LabelStyle>이메일</LabelStyle>
+        <InputStyle
+        autoComplete='off'
           {...register('email', {
             required: '이메일은 필수 입력입니다',
             //api통신을 통해 데이터베이스에 있는 이메일과 비교하기
@@ -51,30 +73,28 @@ const SignUpForm = () => {
           placeholder='이메일을 입력해주세요'
         />
         <ErrorStyle>{errors.email?.message}</ErrorStyle>
-        <LabelText>비밀번호</LabelText>
-        <InputText
+        <LabelStyle>비밀번호</LabelStyle>
+        <InputStyle 
+        type = "password"
           {...register('password', {
             required: '비밀번호는 필수 입력입니다.',
-
             minLength: {
-              value: 4,
+              value: 6,
               message: '비밀번호는 6자 이상이여야해요 :(',
             },
           })}
           placeholder='비밀번호를 입력해주세요'
         />
         <ErrorStyle>{errors.password?.message}</ErrorStyle>
-        <StyledButton
-          type='submit'
-          className='btn-login'
-          bgColor={abledBtn ? 'active' : 'inactive'}
+        <Button
+          content = "다음"
+          className='btn-signup'
+          $bgcolor={abledBtn ? 'active' : 'inactive'}
           // disabled={!abledBtn}
           onClick={clickedToggle}
-        >
-          다음
-        </StyledButton>
-      </FormContainer>
-    </LoginModalContainer>
+        />
+      </FormContainerStyle>
+    </SignUpContainerStyle>
   );
 };
 

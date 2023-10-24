@@ -1,11 +1,11 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Splash from '../pages/Splash/Splash';
 import Welcome from '../pages/Welcome/Welcome';
 import Login from '../pages/Login/Login';
 import SignUp from '../pages/SignUp/SignUp';
-import SignUpSuccess from '../pages/SignUpSuccess';
-import ProfileSetting from '../pages/Profile/ProfileSetting';
+import SignUpSuccess from '../pages/SignUp/SignUpSuccess';
+import ProfileSetting from '../pages/ProfileSetting/ProfileSetting';
 import Home from '../pages/Home/Home';
 import Search from '../pages/Search/Search';
 import ChatList from '../pages/Chat/ChatList';

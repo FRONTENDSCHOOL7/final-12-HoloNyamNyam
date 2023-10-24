@@ -1,11 +1,12 @@
 import { GlobalStyle } from './components/style/GlobalStyle';
-import Signup from './pages/SignUp/SignUp';
+import Routers from './routers/Routers';
+import Nav from './components/common/Nav/Nav';
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <Signup />
+      <Routers />
     </>
   );
 }

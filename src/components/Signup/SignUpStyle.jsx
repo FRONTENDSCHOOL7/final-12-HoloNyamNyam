@@ -1,26 +1,26 @@
 import styled from 'styled-components';
 
-const LoginModalContainer = styled.div`
-  width: 390px;
+const SignUpContainerStyle = styled.div`
   height: 100vh;
   margin: 0 auto;
 
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
 `;
 
-const FormContainer = styled.form`
+const FormContainerStyle = styled.form`
+  margin-top: 58px;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: flex-start;
 
   gap: 12px;
 `;
 
-const TitleText = styled.h1`
+const TitleStyle = styled.h1`
   color: #000;
 
   font-family: Spoqa Han Sans Neo;
@@ -30,7 +30,7 @@ const TitleText = styled.h1`
   line-height: normal;
 `;
 
-const LabelText = styled.label`
+const LabelStyle = styled.label`
   color: var(--767676, #767676);
   font-family: Spoqa Han Sans Neo;
   font-size: 12px;
@@ -39,7 +39,7 @@ const LabelText = styled.label`
   line-height: normal;
 `;
 
-const InputText = styled.input`
+const InputStyle = styled.input`
   width: 322px;
   height: 30px;
   border-bottom: 1px solid grey;
@@ -73,10 +73,10 @@ const ErrorStyle = styled.p`
 `;
 
 export {
-  LoginModalContainer,
-  FormContainer,
-  TitleText,
-  LabelText,
-  InputText,
+  SignUpContainerStyle,
+  TitleStyle,
+  FormContainerStyle,
+  LabelStyle,
+  InputStyle,
   ErrorStyle,
 };
