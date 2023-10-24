@@ -21,7 +21,7 @@ const StyledInput = styled.input`
   margin: 0 auto 34px auto;
   outline: none;
   background: transparent;
-  animation: ${(props) => (props.$haserror ? shake : 'none')} 0.4s linear;
+  animation: ${({ $hasError }) => ($hasError ? shake : 'none')} 0.4s linear;
   &::placeholder {
     color: #dbdbdb;
   }
@@ -49,4 +49,12 @@ const shake = keyframes`
   }
 `;
 
-export { StyledLabel, StyledInput, shake };
+const StyledError = styled.p`
+  font-size: 12px;
+  color: red;
+  position: absolute;
+  bottom: -18px;
+  left: 35px;
+`;
+
+export { StyledLabel, StyledInput, shake, StyledError };
