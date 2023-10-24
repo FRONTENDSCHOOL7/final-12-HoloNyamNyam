@@ -38,9 +38,9 @@ export default function Header({
     </SocialSvg>
   );
   const navigate = useNavigate();
-  function handleClick() {
-    navigate('/search');
-  }
+  // function handleClick() {
+  //   navigate('/search');
+  // }
   // const setModal = useSetRecoilState(modalState);
   // const modalOpen = () => {
   //   setModal({ show: true, type: 'setting' });

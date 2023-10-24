@@ -58,7 +58,7 @@ export default function Button({
   content,
   size,
   width,
-  bgcolor,
+  $bgcolor,
   color,
   border,
   disabled,
@@ -70,7 +70,7 @@ export default function Button({
       type={type ? 'button' : 'submit'}
       size={size}
       width={width}
-      bgcolor={bgcolor}
+      $bgcolor={$bgcolor}
       color={color}
       border={border}
       disabled={disabled}
