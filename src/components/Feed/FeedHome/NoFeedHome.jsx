@@ -1,5 +1,5 @@
-import grayBowl from '../../images/logo_bowl_gray.svg';
-import Button from '../common/Button/Button';
+import grayBowl from '../../../images/logo_bowl_gray.svg';
+import Button from '../../common/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import { HomeWrapper, HomeImg, HomeText } from './StyledNoFeedHome';
 
