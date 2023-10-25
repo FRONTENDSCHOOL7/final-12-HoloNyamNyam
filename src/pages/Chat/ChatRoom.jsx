@@ -4,13 +4,13 @@ import Header from '../../components/common/Header/Header';
 import ChatNav from '../../components/common/Nav/ChatNav';
 import SendMessage from '../../components/Chat/SendMessage';
 import ReceiveMessage from '../../components/Chat/ReceiveMessage';
-// import Modal from '../../components/Modal/Modal/Modal';
 import { MessageWrap } from '../../components/Chat/SendMessage';
 import { MessageText } from '../../components/Chat/SendMessage';
 import { TimeStamp } from '../../components/Chat/SendMessage';
 import { useLocation } from 'react-router-dom';
-// import { useRecoilState } from 'recoil';
-// import { modalState } from '../../recoil/modalAtom';
+import Modal from '../../components/Modal/Modal/Modal';
+import { useRecoilState } from 'recoil';
+import { modalState } from '../../recoil/modalAtom';
 
 const List = styled.section`
   padding: 48px 0 60px 0;
@@ -23,7 +23,7 @@ const List = styled.section`
 
 export default function ChatRoom() {
   const location = useLocation();
-  // const [modal, setModal] = useRecoilState(modalState);
+  const [modal, setModal] = useRecoilState(modalState);
   const [inputValue, setInputValue] = useState('');
   const [chatValue, setChatValue] = useState([]);
   const yourAccountname = location?.state?.yourAccountname || '혼바비언';
@@ -55,7 +55,7 @@ export default function ChatRoom() {
           </MessageWrap>
         ))}
       </List>
-      {/* {modal.show && <Modal type={modal.type} />} */}
+      {modal.show && <Modal type='chat' />}
       <ChatNav
         inputValue={inputValue}
         handleInputChange={handleInputChange}
