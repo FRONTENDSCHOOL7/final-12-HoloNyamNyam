@@ -1,6 +1,6 @@
-import axios from "axios";
-import { BASE_URL } from "./baseUrl";
-const defaultImg = "https://api.mandarin.weniv.co.kr/1687267818879.png";
+import axios from 'axios';
+import { BASE_URL } from './baseUrl';
+const defaultImg = 'https://api.mandarin.weniv.co.kr/1687267818879.png';
 
 export const signup = async (formData, data, profileImg) => {
   try {
@@ -18,7 +18,7 @@ export const signup = async (formData, data, profileImg) => {
       },
       {
         headers: {
-          "Content-type": "application/json",
+          'Content-type': 'application/json',
         },
       },
     );
@@ -29,19 +29,31 @@ export const signup = async (formData, data, profileImg) => {
   }
 };
 
-export const EmailValid = async email => {
-    const res = await axios.post(
-      `${BASE_URL}/user/emailvalid`,
-      {
-        user: {
-          email: email,
-        },
+export const EmailValid = async (email) => {
+  const res = await axios.post(
+    `${BASE_URL}/user/emailvalid`,
+    {
+      user: {
+        email: email,
       },
-      {
-        headers: {
-          "Content-type": "application/json",
-        },
+    },
+    {
+      headers: {
+        'Content-type': 'application/json',
       },
-    );
-    return res;
-  };
+    },
+  );
+  return res;
+};
+
+export const UserIdValid = async (accountname) => {
+  const res = await axios.post(`${BASE_URL}/user/accountnamevalid`, {
+    user: {
+      accountname: accountname,
+    },
+    headers: {
+      'Content-type': 'application/json',
+    },
+  });
+  return res;
+};
