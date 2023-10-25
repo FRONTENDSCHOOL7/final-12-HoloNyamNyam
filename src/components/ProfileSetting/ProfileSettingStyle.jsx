@@ -1,5 +1,7 @@
 import { styled } from 'styled-components';
 import { ButtonStyle } from '../common/Button/Button';
+import UploadButton from '../../images/upload-file.svg'
+
 
 //GlobalStyle 적용이 왜 안되지..?
 const ProfileContainerStyle = styled.div`
@@ -53,7 +55,7 @@ const ProfileImg = styled.img`
   height: 110px;
   border-radius: 50%;
   margin: 30px 0;
-  object-fit: cover;
+  object-fit: contain;
 `;
 
 const ProfileInputImgButton = styled.button`
@@ -66,7 +68,7 @@ const ProfileInputImgButton = styled.button`
     bottom: 0;
     right: 0;
     transform: translateY(-30px);
-    background: url('../../images/upload-file.svg') no-repeat center / cover;
+    background-image: url(UploadButton) no-repeat center / cover;
   }
 `;
 

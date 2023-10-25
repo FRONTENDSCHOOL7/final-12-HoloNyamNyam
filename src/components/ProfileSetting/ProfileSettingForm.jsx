@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
-import { UserIdValid } from '../../api/signUp';
+import { UserIdValid, signup } from '../../api/signUp';
 import { imgUpload } from '../../api/imgUpload';
 import { BASE_URL } from '../../api/baseUrl';
 import DefaultProfileInput from '../../images/logo_bowl_gray.svg';
@@ -66,7 +66,7 @@ const ProfileSettingForm = () => {
     }
   };
 
-  /*   const handleImageChange = async (event) => {
+    const handleImageChange = async (event) => {
     const formData = new FormData();
     const file = event.target.files[0];
     formData.append('image', file);
@@ -74,11 +74,10 @@ const ProfileSettingForm = () => {
       const imgUrl = `${BASE_URL}/` + res.data.filename;
       setProfileImg(imgUrl);
     });
-  }; */
-
-  const handleImageUpload = () => {};
+  };
 
   const handleSubmitData = async (formData) => {
+    await signup(formData, profileImg).then(navigate("/login"));
     try {
       const isValidUserId = await checkUserIdValid(formData.userid);
       if (isValidUserId) {
@@ -90,6 +89,7 @@ const ProfileSettingForm = () => {
           },
         });
       }
+      
     } catch (errors) {
       console.log(errors);
     }
@@ -117,14 +117,16 @@ const ProfileSettingForm = () => {
             type='file'
             accept='image/jpg, image/jpeg, image/png'
             ref={inputRef}
-            onChange={handleImageUpload}
+            onChange={handleImageChange}
           />
         </label>
         <ProfileInputImgButton
           type='button'
           onClick={() => inputRef.current.click()}
         >
-          <ProfileImg />
+          <ProfileImg 
+          src={profileImg || DefaultProfileInput}
+          alt="기본 프로필"/>
         </ProfileInputImgButton>
       </ImageFormContainer>
       <ProfileFormContainer onSubmit={handleSubmit(handleSubmitData)}>
