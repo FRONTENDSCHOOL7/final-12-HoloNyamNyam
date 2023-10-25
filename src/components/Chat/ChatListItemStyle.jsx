@@ -14,19 +14,18 @@ const List = styled.li`
   &:hover {
     background-color: rgba(0, 0, 0, 0.1);
   }
+  position: relative;
 `;
 
 const ProfileImg = styled.img`
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  position: relative;
 `;
 
 const ProfileDot = styled.span`
   content: '';
   position: absolute;
-  top: 60px;
   width: 12px;
   height: 12px;
   background-color: #f26e22;
