@@ -14,7 +14,8 @@ import {
 import Button from '../Button/Button';
 import { useNavigate } from 'react-router-dom';
 import sprite from '../../../images/SpriteIcon.svg';
-// import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { modalState } from '../../../recoil/modalAtom';
 
 export default function Header({
   type,
@@ -41,10 +42,10 @@ export default function Header({
   // function handleClick() {
   //   navigate('/search');
   // }
-  // const setModal = useSetRecoilState(modalState);
-  // const modalOpen = () => {
-  //   setModal({ show: true, type: 'setting' });
-  // };
+  const setModal = useSetRecoilState(modalState);
+  const modalOpen = () => {
+    setModal({ show: true, type: 'myProfile' });
+  };
   function renderHeaderLeftBtn() {
     return (
       <HeaderLeftBtn type='button' aria-label='뒤로가기 버튼'>
@@ -67,7 +68,7 @@ export default function Header({
     return (
       <HeaderRightBtn
         type='button'
-        // onClick={modalOpen}
+        onClick={modalOpen}
         aria-label='더보기 버튼'
       >
         <SocialSVG id='icon-more-vertical' />
