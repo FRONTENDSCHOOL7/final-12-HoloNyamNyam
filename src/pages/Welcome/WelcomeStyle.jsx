@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import buttonLogo from '../../images/button-logo.png';
 
 const Container = styled.div`
   background: linear-gradient(180deg, #ff3945 0%, #ff9052 75.76%);
@@ -25,6 +26,19 @@ const Login = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: no-repeat center / 18px 19px url(${buttonLogo});
+    top: 50%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+  }
 `;
 const Join = styled(Link)`
   width: 322px;

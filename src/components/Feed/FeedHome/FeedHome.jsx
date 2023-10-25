@@ -22,10 +22,10 @@ export default function PostHome() {
   const observer = useRef();
 
   // localStorage 임시 ID/PW 저장
-  localStorage.setItem(
-    'token',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OWE0NmFjYjJjYjIwNTY2M2ZkOGM4ZSIsImV4cCI6MTcwMzI5MzYzNSwiaWF0IjoxNjk4MTA5NjM1fQ.IeIrtAf9c3yisCOq5eP22Fbus_iaCCVVt7UGZUqVU7M',
-  );
+  // localStorage.setItem(
+  //   'token',
+  //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OWE0NmFjYjJjYjIwNTY2M2ZkOGM4ZSIsImV4cCI6MTcwMzI5MzYzNSwiaWF0IjoxNjk4MTA5NjM1fQ.IeIrtAf9c3yisCOq5eP22Fbus_iaCCVVt7UGZUqVU7M',
+  // );
 
   const token = localStorage.getItem('token');
 
