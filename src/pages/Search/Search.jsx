@@ -25,7 +25,6 @@ export default function Search() {
       <List>
         <SearchList searchKeyword={searchKeyword} />
       </List>
-      <div>search</div>
       <Nav />
     </>
   );
