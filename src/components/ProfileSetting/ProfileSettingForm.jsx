@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { UserIdValid, signup } from '../../api/signUp';
 import { imgUpload } from '../../api/imgUpload';
 import { BASE_URL } from '../../api/baseUrl';
-import DefaultProfileInput from '../../images/logo_bowl_gray.svg';
+import DefaultProfileInput from '../../images/basic-profile-img.svg';
 import { useLocation, useNavigate } from 'react-router-dom';
 //import Input from '../../components/common/Input/Input';
 import {
@@ -30,12 +30,13 @@ const ProfileSettingForm = () => {
     handleSubmit,
     clearErrors,
     setError,
+    setValue,
     formState: { errors, isValid },
   } = useForm({
-    mode: 'onSubmit',
-    defaultValues: {
-      userid: null,
+    mode: 'onChange',
+    defaultValue: {
       username: null,
+      userid: null,
       userintro: null,
     },
   });
@@ -44,6 +45,17 @@ const ProfileSettingForm = () => {
   const [abledBtn, setAbledBtn] = useState(true);
   const inputRef = useRef(null);
   const navigate = useNavigate();
+  const location = useLocation();
+  const data = location.state;
+
+  useEffect(() => {
+    if (location.pathname === '/signup/profile') {
+      setValue('image', DefaultProfileInput);
+      setValue('username', null);
+      setValue('userid', null);
+      setValue('userintro', null);
+    }
+  }, [location.pathname]);
 
   const checkUserIdValid = async (userid) => {
     try {
@@ -66,7 +78,7 @@ const ProfileSettingForm = () => {
     }
   };
 
-    const handleImageChange = async (event) => {
+  const handleImageChange = async (event) => {
     const formData = new FormData();
     const file = event.target.files[0];
     formData.append('image', file);
@@ -77,19 +89,19 @@ const ProfileSettingForm = () => {
   };
 
   const handleSubmitData = async (formData) => {
-    await signup(formData, profileImg).then(navigate("/login"));
     try {
       const isValidUserId = await checkUserIdValid(formData.userid);
       if (isValidUserId) {
-        navigate('./myprofile', {
-          state: {
-            userid: formData.userid,
-            username: formData.username,
-            userintro: formData.userintro,
-          },
-        });
+        await signup(formData, data, profileImg).then(
+          navigate('/signup/signupsuccess', {
+            state: {
+              userid: formData.userid,
+              username: formData.username,
+              userintro: formData.userintro,
+            },
+          }),
+        );
       }
-      
     } catch (errors) {
       console.log(errors);
     }
@@ -110,28 +122,31 @@ const ProfileSettingForm = () => {
         </FormTitleStyle>
         <SubTitleStyle>언제라도 변경할 수 있습니다 :)</SubTitleStyle>
       </TextWrapper>
-      <ImageFormContainer>
-        <label>
-          <InputImage
-            id='profileImg'
-            type='file'
-            accept='image/jpg, image/jpeg, image/png'
-            ref={inputRef}
-            onChange={handleImageChange}
-          />
-        </label>
-        <ProfileInputImgButton
-          type='button'
-          onClick={() => inputRef.current.click()}
-        >
-          <ProfileImg 
-          src={profileImg || DefaultProfileInput}
-          alt="기본 프로필"/>
-        </ProfileInputImgButton>
-      </ImageFormContainer>
       <ProfileFormContainer onSubmit={handleSubmit(handleSubmitData)}>
+        <ImageFormContainer>
+          <label>
+            <InputImage
+              id='profileImg'
+              type='file'
+              accept='image/jpg, image/jpeg, image/png'
+              ref={inputRef}
+              onChange={handleImageChange}
+            />
+          </label>
+          <ProfileInputImgButton
+            type='button'
+            onClick={() => inputRef.current.click()}
+          >
+            <ProfileImg
+              src={profileImg || DefaultProfileInput}
+              alt='기본 프로필'
+            />
+          </ProfileInputImgButton>
+        </ImageFormContainer>
         <LabelStyle>사용자 이름</LabelStyle>
         <InputStyle
+          id='username'
+          type='text'
           autoComplete='off'
           {...register('username', {
             required: '계정이름은 필수 입력입니다',
@@ -149,6 +164,8 @@ const ProfileSettingForm = () => {
         {errors.username && <ErrorStyle>{errors.username?.message}</ErrorStyle>}
         <LabelStyle>계정 ID</LabelStyle>
         <InputStyle
+          id='userid'
+          type='text'
           autoComplete='off'
           {...register('userid', {
             required: '계정ID는 필수 입력입니다',
@@ -162,6 +179,8 @@ const ProfileSettingForm = () => {
         {errors.userid && <ErrorStyle>{errors.userid?.message}</ErrorStyle>}
         <LabelStyle>소개</LabelStyle>
         <InputStyle
+          id='userintro'
+          type='text'
           autoComplete='off'
           {...register('userintro', {
             required: '간단한 소개 부탁드릴게요!',
@@ -177,7 +196,7 @@ const ProfileSettingForm = () => {
           $bgcolor={abledBtn ? 'active' : 'inactive'}
           disabled={!abledBtn}
         >
-          다음
+          확인
         </StyledButton>
         {/*   <Input
           label='사용자 이름'

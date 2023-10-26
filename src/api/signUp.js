@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { BASE_URL } from './baseUrl';
-const defaultImg = 'https://api.mandarin.weniv.co.kr/1687267818879.png';
+const DefaultProfileImg = '../images/upload-file.svg';
 
 export const signup = async (formData, data, profileImg) => {
   try {
@@ -11,9 +11,9 @@ export const signup = async (formData, data, profileImg) => {
           username: formData.username,
           email: data.email,
           password: data.password,
-          accountname: formData.accountname,
-          intro: formData.intro,
-          image: profileImg || defaultImg,
+          accountname: formData.userid,
+          intro: formData.userintro,
+          image: profileImg || DefaultProfileImg,
         },
       },
       {
@@ -22,6 +22,7 @@ export const signup = async (formData, data, profileImg) => {
         },
       },
     );
+    alert('회원가입 성공!');
     return res;
   } catch (err) {
     alert(err.response.data.message);

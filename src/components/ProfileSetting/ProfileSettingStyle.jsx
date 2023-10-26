@@ -1,9 +1,7 @@
 import { styled } from 'styled-components';
 import { ButtonStyle } from '../common/Button/Button';
-import UploadButton from '../../images/upload-file.svg'
+import UploadButton from '../../images/upload-file.svg';
 
-
-//GlobalStyle 적용이 왜 안되지..?
 const ProfileContainerStyle = styled.div`
   height: 100vh;
   display: flex;
@@ -29,7 +27,7 @@ const LabelStyle = styled.label`
 const InputStyle = styled.input`
   width: 322px;
   height: 30px;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid #dbdbdb;
 
   &::placeholder {
     color: var(--DBDBDB, #dbdbdb);
@@ -54,8 +52,7 @@ const ProfileImg = styled.img`
   width: 110px;
   height: 110px;
   border-radius: 50%;
-  margin: 30px 0;
-  object-fit: contain;
+  object-fit: cover;
 `;
 
 const ProfileInputImgButton = styled.button`
@@ -63,12 +60,12 @@ const ProfileInputImgButton = styled.button`
   &::after {
     content: '';
     position: absolute;
+    display: inline-block;
     width: 36px;
     height: 36px;
     bottom: 0;
     right: 0;
-    transform: translateY(-30px);
-    background-image: url(UploadButton) no-repeat center / cover;
+    background: url(${UploadButton}) no-repeat center / contain;
   }
 `;
 
@@ -82,6 +79,7 @@ const FormTitleStyle = styled.h1`
   font-weight: 500;
   line-height: normal;
 `;
+
 const SubTitleStyle = styled.p`
   margin-top: 12px;
   color: var(--767676, #767676);
@@ -94,9 +92,7 @@ const SubTitleStyle = styled.p`
 `;
 
 const ImageFormContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin: 0 auto;
 `;
 
 const ProfileFormContainer = styled.form`
@@ -104,7 +100,7 @@ const ProfileFormContainer = styled.form`
   flex-direction: column;
   align-items: flex-start;
 
-  gap: 12px;
+  gap: 10px;
 `;
 
 const InputImage = styled.input`
@@ -112,7 +108,7 @@ const InputImage = styled.input`
 `;
 
 const StyledButton = styled(ButtonStyle)`
-  margin-top: 30px;
+  margin-top: 10px;
 `;
 
 const ErrorStyle = styled.p`
