@@ -20,7 +20,6 @@ export default function FeedHome() {
   const [myFeed, setMyFeed] = useState([]);
   const [page, setPage] = useState(0);
   const observer = useRef();
-
   const token = localStorage.getItem('token');
 
   const getFeed = async (options) => {
@@ -30,14 +29,14 @@ export default function FeedHome() {
   };
 
   const loadFeed = async (options) => {
-    let posts = await getFeed(options);
+    let Feeds = await getFeed(options);
     setMyFeed((prev) => {
       const prevId = prev.map((v) => v.id);
-      const postsId = posts.map((v) => v.id).filter((v) => !prevId.includes(v));
-      posts = posts.filter((v) => postsId.includes(v.id));
-      return [...prev, ...posts];
+      const FeedsId = Feeds.map((v) => v.id).filter((v) => !prevId.includes(v));
+      Feeds = Feeds.filter((v) => FeedsId.includes(v.id));
+      return [...prev, ...Feeds];
     });
-    setSkip((prev) => prev + posts.length);
+    setSkip((prev) => prev + Feeds.length);
     setLoading(false);
   };
   useEffect(() => {
