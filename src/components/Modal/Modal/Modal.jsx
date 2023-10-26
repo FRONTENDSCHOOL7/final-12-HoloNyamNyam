@@ -93,6 +93,16 @@ export default function Modal({
   }
   //~수정중
   const UI = {
+    report: (
+      <ModalWrapArticle>
+        <ModalLineSpan />
+        <ModalTextBtn onClick={() => alertOpen('report')}>
+          신고하기
+        </ModalTextBtn>
+        <ModalTextBtn>팔로우 취소</ModalTextBtn>
+        <ModalTextBtn>이 계정 정보</ModalTextBtn>
+      </ModalWrapArticle>
+    ),
     yourProfile: (
       <ModalWrapArticle>
         <ModalLineSpan />
