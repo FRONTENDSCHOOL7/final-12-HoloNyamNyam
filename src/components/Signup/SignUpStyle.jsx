@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import {ButtonStyle} from "../common/Button/Button";
+import { ButtonStyle } from '../common/Button/Button';
 
-const SignUpContainerStyle = styled.div`
+const StyledSignUpWrap = styled.div`
   height: 100vh;
   margin: 0 auto;
 
@@ -13,9 +13,9 @@ const SignUpContainerStyle = styled.div`
 
 const StyledButton = styled(ButtonStyle)`
   margin-top: 30px;
-`
+`;
 
-const FormContainerStyle = styled.form`
+const StyledFormWrap = styled.form`
   margin-top: 58px;
   display: flex;
   flex-direction: column;
@@ -25,7 +25,7 @@ const FormContainerStyle = styled.form`
   gap: 12px;
 `;
 
-const TitleStyle = styled.h1`
+const StyledTitle = styled.h1`
   color: #000;
 
   font-family: Spoqa Han Sans Neo;
@@ -35,7 +35,7 @@ const TitleStyle = styled.h1`
   line-height: normal;
 `;
 
-const LabelStyle = styled.label`
+const StyledLabel = styled.label`
   color: var(--767676, #767676);
   font-family: Spoqa Han Sans Neo;
   font-size: 12px;
@@ -44,7 +44,7 @@ const LabelStyle = styled.label`
   line-height: normal;
 `;
 
-const InputStyle = styled.input`
+const StyledInput = styled.input`
   width: 322px;
   height: 30px;
   border-bottom: 1px solid grey;
@@ -68,7 +68,7 @@ const InputStyle = styled.input`
   }
 `;
 
-const ErrorStyle = styled.p`
+const StyledError = styled.p`
   color: var(--Red, #eb5757);
   font-family: Spoqa Han Sans Neo;
   font-size: 12px;
@@ -78,11 +78,11 @@ const ErrorStyle = styled.p`
 `;
 
 export {
-  SignUpContainerStyle,
-  TitleStyle,
-  FormContainerStyle,
+  StyledSignUpWrap,
+  StyledTitle,
+  StyledFormWrap,
   StyledButton,
-  LabelStyle,
-  InputStyle,
-  ErrorStyle,
+  StyledLabel,
+  StyledInput,
+  StyledError,
 };

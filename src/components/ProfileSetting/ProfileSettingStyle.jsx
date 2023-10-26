@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 import { ButtonStyle } from '../common/Button/Button';
 import UploadButton from '../../images/upload-file.svg';
 
-const ProfileContainerStyle = styled.div`
+const StyledProfileWrap = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -10,12 +10,7 @@ const ProfileContainerStyle = styled.div`
   align-items: center;
 `;
 
-const TextWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const LabelStyle = styled.label`
+const StyledLabel = styled.label`
   color: var(--767676, #767676);
   font-family: Spoqa Han Sans Neo;
   font-size: 12px;
@@ -24,7 +19,7 @@ const LabelStyle = styled.label`
   line-height: normal;
 `;
 
-const InputStyle = styled.input`
+const StyledInput = styled.input`
   width: 322px;
   height: 30px;
   border-bottom: 1px solid #dbdbdb;
@@ -48,7 +43,7 @@ const InputStyle = styled.input`
   }
 `;
 
-const ProfileImg = styled.img`
+const StyledProfileImg = styled.img`
   width: 110px;
   height: 110px;
   border-radius: 50%;
@@ -69,7 +64,7 @@ const ProfileInputImgButton = styled.button`
   }
 `;
 
-const FormTitleStyle = styled.h1`
+const StyledFormTitle = styled.h1`
   color: #000;
 
   text-align: center;
@@ -80,7 +75,7 @@ const FormTitleStyle = styled.h1`
   line-height: normal;
 `;
 
-const SubTitleStyle = styled.p`
+const StyledSubText = styled.p`
   margin-top: 12px;
   color: var(--767676, #767676);
   text-align: center;
@@ -111,7 +106,7 @@ const StyledButton = styled(ButtonStyle)`
   margin-top: 10px;
 `;
 
-const ErrorStyle = styled.p`
+const StyledError = styled.p`
   color: var(--Red, #eb5757);
   font-family: Spoqa Han Sans Neo;
   font-size: 12px;
@@ -121,17 +116,16 @@ const ErrorStyle = styled.p`
 `;
 
 export {
-  ProfileContainerStyle,
-  TextWrapper,
-  FormTitleStyle,
+  StyledProfileWrap,
+  StyledFormTitle,
   StyledButton,
-  SubTitleStyle,
+  StyledSubText,
   ImageFormContainer,
   ProfileFormContainer,
   InputImage,
-  ErrorStyle,
-  LabelStyle,
-  InputStyle,
-  ProfileImg,
+  StyledError,
+  StyledLabel,
+  StyledInput,
+  StyledProfileImg,
   ProfileInputImgButton,
 };

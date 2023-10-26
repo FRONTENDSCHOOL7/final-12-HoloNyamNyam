@@ -4,13 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { EmailValid } from '../../api/signUp';
 //import Input from '../common/Input/Input';
 import {
-  SignUpContainerStyle,
-  TitleStyle,
-  FormContainerStyle,
-  InputStyle,
-  LabelStyle,
-  ErrorStyle,
+  StyledSignUpWrap,
+  StyledTitle,
+  StyledFormWrap,
   StyledButton,
+  StyledLabel,
+  StyledInput,
+  StyledError,
 } from './SignUpStyle';
 
 const SignUpForm = () => {
@@ -70,9 +70,9 @@ const SignUpForm = () => {
   }, [isValid, setAbledBtn]);
 
   return (
-    <SignUpContainerStyle>
-      <TitleStyle>회원가입을 도와드릴게요!</TitleStyle>
-      <FormContainerStyle onSubmit={handleSubmit(handleSubmitData)}>
+    <StyledSignUpWrap>
+      <StyledTitle>회원가입을 도와드릴게요!</StyledTitle>
+      <StyledFormWrap onSubmit={handleSubmit(handleSubmitData)}>
         {/* <Input
           label='이메일'
           id='email'
@@ -107,8 +107,8 @@ const SignUpForm = () => {
           }}
         />
         <ErrorStyle>{errors.password?.message}</ErrorStyle> */}
-        <LabelStyle>이메일</LabelStyle>
-        <InputStyle
+        <StyledLabel>이메일</StyledLabel>
+        <StyledInput
           autoComplete='off'
           {...register('email', {
             required: '이메일은 필수 입력입니다',
@@ -120,9 +120,9 @@ const SignUpForm = () => {
           })}
           placeholder='이메일을 입력해주세요'
         />
-        {errors.email && <ErrorStyle>{errors.email?.message}</ErrorStyle>}
-        <LabelStyle>비밀번호</LabelStyle>
-        <InputStyle
+        {errors.email && <StyledError>{errors.email?.message}</StyledError>}
+        <StyledLabel>비밀번호</StyledLabel>
+        <StyledInput
           type='password'
           {...register('password', {
             required: '비밀번호는 필수 입력입니다.',
@@ -133,7 +133,7 @@ const SignUpForm = () => {
           })}
           placeholder='비밀번호를 입력해주세요'
         />
-        <ErrorStyle>{errors.password?.message}</ErrorStyle>
+        <StyledError>{errors.password?.message}</StyledError>
         <StyledButton
           type='submit'
           className='btn-signup'
@@ -142,8 +142,8 @@ const SignUpForm = () => {
         >
           다음
         </StyledButton>
-      </FormContainerStyle>
-    </SignUpContainerStyle>
+      </StyledFormWrap>
+    </StyledSignUpWrap>
   );
 };
 

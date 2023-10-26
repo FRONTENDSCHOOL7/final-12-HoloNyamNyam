@@ -22,7 +22,6 @@ export const signup = async (formData, data, profileImg) => {
         },
       },
     );
-    alert('회원가입 성공!');
     return res;
   } catch (err) {
     alert(err.response.data.message);
