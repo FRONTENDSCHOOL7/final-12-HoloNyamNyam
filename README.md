@@ -1,13 +1,11 @@
-# final-12-HoloNyamNyam
-
-홀로냠냠
-멋사 프론트엔드스쿨 7기 프로젝트 12조
+# HoloNyamNyam / 홀로냠냠
+프로 혼밥러들을 위한 아름다운 플랫폼
 
 ## 목차
 
 ## 프로젝트 소개
 
-홀로냠냠은 혼밥러들을 위한 커뮤니티, 위치 공유 앱입니다.
+홀로냠냠은 혼밥러들을 위한 커뮤니티 및 위치 공유 앱입니다. 
 
 ## 팀 소개
 
@@ -26,7 +24,8 @@
 
 ## 개발 기간
 
-## 개발 환경
+## 개발 스택
+<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=white">  <img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white">  <img src="https://img.shields.io/badge/eslint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white">  <img src="https://img.shields.io/badge/prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=white">  <img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">  <img src="https://img.shields.io/badge/KakaoAPI-FFCD00?style=for-the-badge&logo=kakao&logoColor=white">  <img src="https://img.shields.io/badge/reacthookform-EC5990?style=for-the-badge&logo=reacthookform&logoColor=white">  <img src="https://img.shields.io/badge/recoil-3578E5?style=for-the-badge&logo=react&logoColor=white">
 
 ## 폴더 구조
 
