@@ -169,6 +169,9 @@ export default function Modal({
     chat: (
       <ModalWrapArticle>
         <ModalLineSpan />
+        <ModalTextBtn onClick={() => alertOpen('report')}>
+          신고하기
+        </ModalTextBtn>
         <ModalTextBtn onClick={() => navigate(-1)}>채팅방 나가기</ModalTextBtn>
       </ModalWrapArticle>
     ),
