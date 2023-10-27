@@ -28,7 +28,7 @@ export const ButtonStyle = styled.button`
       ? '#FFAD9F'
       : '#fffff'};
   border: ${(props) =>
-    props.border === 'active' ? '1px solid #DBDBDB' : null};
+    props.$border === 'active' ? '1px solid #DBDBDB' : null};
   color: ${(props) => (props.color === 'active' ? '#767676' : '#ffffff')};
   ${(props) =>
     props.logo === true
