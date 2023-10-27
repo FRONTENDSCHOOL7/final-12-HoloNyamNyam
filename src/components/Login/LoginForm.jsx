@@ -5,8 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import { StyledButton, StyledInputWrap } from './StyledLoginForm';
 import { login } from '../../api/login';
 
-//테스트용 email: fuzip@gmail.com
-
 export default function LoginForm() {
   const {
     register,

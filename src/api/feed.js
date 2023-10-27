@@ -116,3 +116,17 @@ export const userFeedListApi = async (accountname, token, limit, skip) => {
   );
   return res;
 };
+
+export const userFeedCntApi = async (accountname, token) => {
+  try {
+    const res = await axios.get(`${BASE_URL}/post/${accountname}/userpost`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-type': 'application/json',
+      },
+    });
+    return res;
+  } catch (err) {
+    console.error('API 응답에 실패하였습니다.', err);
+  }
+};
