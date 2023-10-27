@@ -39,6 +39,11 @@ const Login = styled(Link)`
     left: 10%;
     transform: translate(-50%, -50%);
   }
+  &:hover {
+    background-color: #ffba33;
+    color: #fff;
+    transition: 0.2s;
+  }
 `;
 const Join = styled(Link)`
   width: 322px;
@@ -55,6 +60,7 @@ const Join = styled(Link)`
 
   &:hover {
     background-color: #ffba33;
+    transition: 0.2s;
   }
 `;
 
