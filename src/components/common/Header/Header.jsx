@@ -17,12 +17,12 @@ import {
 import Button from '../Button/Button';
 import { useNavigate } from 'react-router-dom';
 import sprite from '../../../images/SpriteIcon.svg';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { modalState } from '../../../recoil/modalAtom';
 import StarImg from '../../../images/Star.svg';
 
 export default function Header({
-  type, 
+  type,
   uploadHandler,
   searchKeyword,
   handleSearchKeyword,
@@ -43,9 +43,6 @@ export default function Header({
     </SocialSvg>
   );
   const navigate = useNavigate();
-  // function handleClick() {
-  //   navigate('/search');
-  // }
   const setModal = useSetRecoilState(modalState);
   const modalOpen = () => {
     setModal({ show: true, type: 'myProfile' });

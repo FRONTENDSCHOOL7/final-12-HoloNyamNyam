@@ -12,7 +12,7 @@ import {
 } from './StyledComment';
 import { useRecoilState } from 'recoil';
 import { modalState } from '../../recoil/modalAtom';
-export default function Comment({ commentList, postId }) {
+export default function Comment({ commentList, feedId }) {
   const where = localStorage.getItem('accountname');
   const navigate = useNavigate();
 
@@ -72,7 +72,7 @@ export default function Comment({ commentList, postId }) {
       show: true,
       type,
       commentId: id,
-      postId: postId,
+      feedId: feedId,
     });
   };
 
@@ -102,8 +102,8 @@ export default function Comment({ commentList, postId }) {
                 onClick={() =>
                   modalOpen(
                     where === comment.author.accountname
-                      ? 'myFeedComment'
-                      : 'yourFeedComment',
+                      ? 'myComment'
+                      : 'yourComment',
                     comment.id,
                   )
                 }

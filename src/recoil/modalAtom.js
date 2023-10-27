@@ -8,6 +8,6 @@ const { persistAtom } = recoilPersist();
 // default는 초기값
 export const modalState = atom({
   key: 'modalState',
-  default: { show: false, type: 'myProfile', commentId: null, postId: null },
+  default: { show: false, type: 'myProfile', commentId: null, feedId: null },
   effects_UNSTABLE: [persistAtom],
 });

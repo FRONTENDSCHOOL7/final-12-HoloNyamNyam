@@ -159,7 +159,7 @@ export default function FeedItem({
                 moveDetail(infoToIterate.id);
               }}
             >
-              <SocialSVG id='icon-message-circle-1' />
+              <SocialSVG id='icon-message-circle-2' />
               {commentCnt}
             </BtnComment>
           </FeedBtnBox>
