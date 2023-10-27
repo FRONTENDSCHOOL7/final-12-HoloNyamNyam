@@ -17,13 +17,13 @@ import {
   SocialSvg,
   MoreBtn,
 } from './StyledFeedItem';
-import { FeedLikeApi, FeedUnlikeApi } from '../../../api/feed';
+import { feedLikeApi, feedUnlikeApi } from '../../../api/feed';
 import sprite from '../../../images/SpriteIcon.svg';
 import Carousel from '../../Carousels/Carousel';
 
 export default function FeedItem({
   modalOpen,
-  FeedInfo,
+  feedInfo,
   otherInfo,
   getUserInfo,
   commentCnt,
@@ -43,7 +43,7 @@ export default function FeedItem({
     </SocialSvg>
   );
 
-  const infoToIterate = FeedInfo || otherInfo;
+  const infoToIterate = feedInfo || otherInfo;
   const navigate = useNavigate();
   const [isHearted, setIsHearted] = useState(infoToIterate.hearted);
   const [heartCnt, setHeartCnt] = useState(infoToIterate.heartCount);
@@ -56,15 +56,15 @@ export default function FeedItem({
       },
     });
   }
-  const FeedLike = async () => {
+  const feedLike = async () => {
     const token = localStorage.getItem('token');
     try {
       if (isHearted) {
-        await FeedUnlikeApi(infoToIterate.id, token);
+        await feedUnlikeApi(infoToIterate.id, token);
         setIsHearted(!isHearted);
         setHeartCnt(heartCnt - 1);
       } else {
-        await FeedLikeApi(infoToIterate.id, token);
+        await feedLikeApi(infoToIterate.id, token);
         setIsHearted(!isHearted);
         setHeartCnt(heartCnt + 1);
       }
@@ -105,7 +105,7 @@ export default function FeedItem({
       setHeartCnt(infoToIterate.heartCount);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [FeedInfo]);
+  }, [feedInfo]);
 
   return (
     <Container>
@@ -145,7 +145,7 @@ export default function FeedItem({
         )}
         <FeedInfoBox>
           <FeedBtnBox>
-            <BtnLike onClick={() => FeedLike(infoToIterate.id)}>
+            <BtnLike onClick={() => feedLike(infoToIterate.id)}>
               {isHearted ? (
                 <SocialSVG id='icon-heart' color='red' strokeColor='red' />
               ) : (

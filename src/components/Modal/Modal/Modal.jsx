@@ -123,7 +123,7 @@ export default function Modal({
         </ModalTextBtn>
       </ModalWrapArticle>
     ),
-    yourPostComment: (
+    yourFeedComment: (
       <ModalWrapArticle>
         <ModalLineSpan />
         <ModalTextBtn onClick={() => alertOpen('report')}>
@@ -131,7 +131,7 @@ export default function Modal({
         </ModalTextBtn>
       </ModalWrapArticle>
     ),
-    myPostComment: (
+    myFeedComment: (
       <ModalWrapArticle>
         <ModalLineSpan />
         <ModalTextBtn
