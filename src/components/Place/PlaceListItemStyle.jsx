@@ -1,14 +1,7 @@
 import styled from 'styled-components';
 
-const PlaceWrap = styled.ul`
-  padding: 20px 20px 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-`;
-
 const PlaceItem = styled.li`
-  width: 165px;
+  min-width: 165px;
   height: 190px;
   border-radius: 8px;
   border: 1px solid #e0e0e0;
@@ -60,13 +53,4 @@ const Star = styled.img`
   height: 14px;
 `;
 
-export {
-  PlaceWrap,
-  PlaceItem,
-  PlaceImg,
-  PlaceInfo,
-  PlaceName,
-  StarWrap,
-  Star,
-  Rate,
-};
+export { PlaceItem, PlaceImg, PlaceInfo, PlaceName, StarWrap, Star, Rate };

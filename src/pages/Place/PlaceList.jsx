@@ -12,6 +12,13 @@ const List = styled.section`
   height: calc(100vh - 108px);
 `;
 
+const PlaceWrap = styled.ul`
+  padding: 20px 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+`;
+
 export default function PlaceList() {
   const [selectedId, setSelectedId] = useState(null);
   const [cardClosed, setCardClosed] = useState(false);
@@ -37,8 +44,10 @@ export default function PlaceList() {
     <>
       <Header type='matzip' />
       <List>
-        <PlaceListItem cardOpen={cardOpen} cardClosed={cardClosed} />
-        {cardShow && <PlaceCard cardClose={cardClose} id={selectedId} />}
+        <PlaceWrap>
+          <PlaceListItem cardOpen={cardOpen} cardClosed={cardClosed} />
+          {cardShow && <PlaceCard cardClose={cardClose} id={selectedId} />}
+        </PlaceWrap>
       </List>
       <Nav />
     </>
