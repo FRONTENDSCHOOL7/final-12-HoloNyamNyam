@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
+import { useNavigate } from 'react-router-dom';
 import FeedItem from '../FeedItem/FeedItem';
 import { feed } from '../../../api/feed';
 import Loading from '../../Loading/Loading';
@@ -20,7 +21,9 @@ export default function FeedHome() {
   const [myFeed, setMyFeed] = useState([]);
   const [page, setPage] = useState(0);
   const observer = useRef();
+  const navigate = useNavigate();
   const token = localStorage.getItem('token');
+  const where = localStorage.getItem('accountname');
 
   const getFeed = async (options) => {
     const res = await feed(options);
@@ -57,11 +60,30 @@ export default function FeedHome() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
-  const modalOpen = (id) => {
+  const modalOpen = (type, item) => {
+    // window.console.log(name);
     setModal({
       show: true,
-      postId: id,
+      type,
+      feedId: item.id,
+      accountname: item.author.accountname,
+      item: item,
     });
+  };
+
+  const openYourProfile = (accountname) => {
+    window.console.log(accountname);
+    navigate(`/profile/${accountname}`);
+  };
+
+  const moveDetail = (item) => {
+    navigate('/detailfeed', {
+      state: {
+        id: item.id,
+        infoToIterate: item,
+      },
+    });
+    setModal({ show: false });
   };
 
   return (
@@ -75,9 +97,14 @@ export default function FeedHome() {
             {myFeed.map((item) => (
               <li key={item.id}>
                 <FeedItem
-                  modalOpen={modalOpen}
-                  otherInfo={item}
-                  commentCnt={item.commentCount}
+                  modalOpen={() =>
+                    modalOpen(
+                      where === item.author.accountname ? 'myFeed' : 'yourFeed',
+                      item,
+                    )
+                  }
+                  feedInfo={where === item.author.accountname ? item : false}
+                  otherInfo={where === item.author.accountname ? false : item}
                   // getFeed={getFeed}
                   // skip={skip}
                 />
@@ -85,7 +112,13 @@ export default function FeedHome() {
             ))}
           </List>
           <div ref={observer} />
-          {modal.show && <Modal type='report' />}
+          {modal.show && (
+            <Modal
+              type={modal.type}
+              handlerYourProfile={() => openYourProfile(modal.accountname)}
+              handlerDetailFeed={() => moveDetail(modal.item)}
+            />
+          )}
         </main>
       ) : (
         <NoFeedHome />

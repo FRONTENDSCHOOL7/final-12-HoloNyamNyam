@@ -9,13 +9,13 @@ import {
   AlertMainBtn,
   AlertLineSpan,
 } from './AlertStyle';
-// import { postDeleteApi, postReportApi } from '../../../api/post';
-// import { recommendDeleteApi } from '../../../api/recommend';
-// import { commentDeleteApi, commentReportApi } from '../../../api/comment';
-// import { userInfoApi } from '../../../api/user';
+import { feedDeleteApi, feedReportApi } from '../../../api/feed';
+import { recommendDeleteApi } from '../../../api/recommend';
+import { commentDeleteApi, commentReportApi } from '../../../api/comments';
+import { userInfoApi } from '../../../api/user';
 import { useRecoilState } from 'recoil';
 import { modalState } from '../../../recoil/modalAtom';
-// import { cardShowState } from '../../../recoil/modalAtom';
+import { cardShowState } from '../../../recoil/cardShowAtom';
 
 export default function Alert({
   type,
@@ -26,7 +26,8 @@ export default function Alert({
 }) {
   const navigate = useNavigate();
   const [modal, setModal] = useRecoilState(modalState);
-  // const [cardShow, setCardShow] = useRecoilState(cardShowState);
+  // eslint-disable-next-line no-unused-vars
+  const [cardShow, setCardShow] = useRecoilState(cardShowState);
   const onClickLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('accountname');
@@ -35,73 +36,79 @@ export default function Alert({
     navigate('/welcome');
     setModal((prevModal) => ({ ...prevModal, show: false }));
   };
-  // const handleDeletePost = async () => {
-  //   const token = localStorage.getItem('token');
-  //   try {
-  //     await postDeleteApi(modal.postId, token);
-  //     alertClose('post');
-  //     navigate('/myprofile');
-  //     modalClose('modification');
-  //     try {
-  //       await userInfoApi(token);
-  //     } catch (error) {
-  //       console.error('Failed to fetch post info:', error);
-  //     }
-  //   } catch (error) {
-  //     console.error('Delete request failed', error);
-  //     navigate('/error');
-  //   }
-  // };
+  const handleDeleteFeed = async () => {
+    const token = localStorage.getItem('token');
+    try {
+      await feedDeleteApi(modal.feedId, token);
+      alertClose('feed');
+      navigate('/myprofile');
+      modalClose('modification');
+      try {
+        await userInfoApi(token);
+      } catch (error) {
+        console.error('Failed to fetch post info:', error);
+      }
+    } catch (error) {
+      console.error('Delete request failed', error);
+      navigate('/error');
+    }
+  };
 
-  // const handleDeleteProduct = async () => {
-  //   const token = localStorage.getItem('token');
-  //   try {
-  //     await recommendDeleteApi(productId, token);
-  //     alertClose('product');
-  //     modalClose('product');
-  //     navigate('/myprofile');
-  //     setCardShow(false);
-  //   } catch (error) {
-  //     console.error('Delete request failed', error);
-  //     navigate('/error');
-  //   }
-  // };
+  const handleDeletePlace = async () => {
+    const token = localStorage.getItem('token');
+    try {
+      await recommendDeleteApi(productId, token);
+      alertClose('place');
+      modalClose('myPlace');
+      navigate('/myprofile');
+      setCardShow(false);
+    } catch (error) {
+      console.error('Delete request failed', error);
+      navigate('/error');
+    }
+  };
 
-  // const handleDeleteComment = async () => {
-  //   const token = localStorage.getItem('token');
-  //   try {
-  //     await commentDeleteApi(modal.postId, modal.commentId, token);
-  //     alertClose('comment');
-  //     modalClose('delete');
-  //     handleCommentDelete(modal.commentId);
-  //   } catch (error) {
-  //     console.error('Delete request failed', error);
-  //   }
-  // };
+  const handleDeleteComment = async () => {
+    const token = localStorage.getItem('token');
+    try {
+      await commentDeleteApi(modal.feedId, modal.commentId, token);
+      alertClose('comment');
+      modalClose('myFeedComment');
+      handleCommentDelete(modal.commentId);
+    } catch (error) {
+      console.error('Delete request failed', error);
+    }
+  };
 
-  // const handleReportComment = async () => {
-  //   const token = localStorage.getItem('token');
-  //   try {
-  //     await commentReportApi(modal.postId, modal.commentId, token);
-  //     alertClose('report');
-  //     modalClose('report');
-  //     alert('해당 댓글을 신고하였습니다.');
-  //   } catch (error) {
-  //     console.error('Delete request failed', error);
-  //   }
-  // };
+  const handleReportComment = async () => {
+    const token = localStorage.getItem('token');
+    try {
+      await commentReportApi(modal.feedId, modal.commentId, token);
+      alertClose('reportComment');
+      modalClose('yourComment');
+      alert('해당 댓글을 신고하였습니다.');
+    } catch (error) {
+      console.error('Delete request failed', error);
+    }
+  };
 
-  // const handleReportPost = async () => {
-  //   const token = localStorage.getItem('token');
-  //   try {
-  //     await postReportApi(modal.postId, token);
-  //     alertClose('report');
-  //     modalClose('report');
-  //     alert('해당 게시글을 신고하였습니다.');
-  //   } catch (error) {
-  //     console.error('Delete request failed', error);
-  //   }
-  // };
+  const handleReportFeed = async () => {
+    const token = localStorage.getItem('token');
+    try {
+      await feedReportApi(modal.feedId, token);
+      alertClose('reportFeed');
+      modalClose('yourFeed');
+      alert('해당 게시글을 신고하였습니다.');
+    } catch (error) {
+      console.error('Delete request failed', error);
+    }
+  };
+
+  const handleReportUser = async () => {
+    alertClose('reportUser');
+    modalClose('yourProfile');
+    alert('해당 혼바비언을 신고하였습니다.');
+  };
 
   const UI = {
     logout: (
@@ -114,25 +121,23 @@ export default function Alert({
         </AlertBottomSection>
       </AlertWrapArticle>
     ),
-    post: (
+    feed: (
       <AlertWrapArticle>
         <AlertTextP>게시글을 삭제할까요?</AlertTextP>
         <AlertBottomSection>
           <AlertCancelBtn onClick={alertClose}>취소</AlertCancelBtn>
           <AlertLineSpan />
-          <AlertMainBtn>삭제</AlertMainBtn>
-          {/* onClick={handleDeletePost} */}
+          <AlertMainBtn onClick={handleDeleteFeed}>삭제</AlertMainBtn>
         </AlertBottomSection>
       </AlertWrapArticle>
     ),
-    bobzip: (
+    place: (
       <AlertWrapArticle>
-        <AlertTextP>맛집을 삭제할까요?</AlertTextP>
+        <AlertTextP>냠냠평가를 삭제할까요?</AlertTextP>
         <AlertBottomSection>
           <AlertCancelBtn onClick={alertClose}>취소</AlertCancelBtn>
           <AlertLineSpan />
-          <AlertMainBtn>삭제</AlertMainBtn>
-          {/* onClick={handleDeleteProduct} */}
+          <AlertMainBtn onClick={handleDeletePlace}>삭제</AlertMainBtn>
         </AlertBottomSection>
       </AlertWrapArticle>
     ),
@@ -142,19 +147,37 @@ export default function Alert({
         <AlertBottomSection>
           <AlertCancelBtn onClick={alertClose}>취소</AlertCancelBtn>
           <AlertLineSpan />
-          <AlertMainBtn>삭제</AlertMainBtn>
-          {/* onClick={handleDeleteComment} */}
+          <AlertMainBtn onClick={handleDeleteComment}>삭제</AlertMainBtn>
         </AlertBottomSection>
       </AlertWrapArticle>
     ),
-    report: (
+    reportUser: (
       <AlertWrapArticle>
         <AlertTextP>정말 신고하시겠어요? :&#40;</AlertTextP>
         <AlertBottomSection>
           <AlertCancelBtn onClick={alertClose}>취소</AlertCancelBtn>
           <AlertLineSpan />
-          <AlertMainBtn>확인</AlertMainBtn>
-          {/* onClick={handleReportPost} */}
+          <AlertMainBtn onClick={handleReportUser}>확인</AlertMainBtn>
+        </AlertBottomSection>
+      </AlertWrapArticle>
+    ),
+    reportFeed: (
+      <AlertWrapArticle>
+        <AlertTextP>정말 신고하시겠어요? :&#40;</AlertTextP>
+        <AlertBottomSection>
+          <AlertCancelBtn onClick={alertClose}>취소</AlertCancelBtn>
+          <AlertLineSpan />
+          <AlertMainBtn onClick={handleReportFeed}>확인</AlertMainBtn>
+        </AlertBottomSection>
+      </AlertWrapArticle>
+    ),
+    reportComment: (
+      <AlertWrapArticle>
+        <AlertTextP>정말 신고하시겠어요? :&#40;</AlertTextP>
+        <AlertBottomSection>
+          <AlertCancelBtn onClick={alertClose}>취소</AlertCancelBtn>
+          <AlertLineSpan />
+          <AlertMainBtn onClick={handleReportComment}>확인</AlertMainBtn>
         </AlertBottomSection>
       </AlertWrapArticle>
     ),

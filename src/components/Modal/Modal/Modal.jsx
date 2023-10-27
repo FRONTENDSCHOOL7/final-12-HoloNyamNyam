@@ -9,22 +9,28 @@ import {
 } from './ModalStyle';
 import { useRecoilState } from 'recoil';
 import { modalState } from '../../../recoil/modalAtom';
-// import { cardShowState } from '../../../recoil/modalAtom';
+import { cardShowState } from '../../../recoil/cardShowAtom';
 
 export default function Modal({
   type,
   productId,
-  restaurantName,
-  handlerPostEdit,
+  placeName,
+  handlerYourProfile,
+  handlerMyProfile,
+  handlerFeedEdit,
+  handlerCommentEdit,
   handlerRecommendEdit,
   handleCommentDelete,
+  handlerDetailFeed,
   recommendInfo,
 }) {
   const navigate = useNavigate();
   const [alertShow, setAlertShow] = useState(false);
   const [alertType, setAlertType] = useState('logout');
+  // eslint-disable-next-line no-unused-vars
   const [modal, setModal] = useRecoilState(modalState);
-  // const [cardShow, setCardShow] = useRecoilState(cardShowState);
+  // eslint-disable-next-line no-unused-vars
+  const [cardShow, setCardShow] = useRecoilState(cardShowState);
 
   function modalClose(e) {
     if (e.target === e.currentTarget) {
@@ -44,11 +50,11 @@ export default function Modal({
   function handlerOpenMap() {
     navigate('/map', {
       state: {
-        restaurantname: restaurantName,
+        placeName: placeName,
       },
     });
     setModal((prevModal) => ({ ...prevModal, show: false }));
-    // setCardShow(false);
+    setCardShow(false);
   }
   const initializeKakao = () => {
     if (window.Kakao && !window.Kakao.isInitialized()) {
@@ -93,56 +99,61 @@ export default function Modal({
   }
   //~수정중
   const UI = {
-    report: (
-      <ModalWrapArticle>
-        <ModalLineSpan />
-        <ModalTextBtn onClick={() => alertOpen('report')}>
-          신고하기
-        </ModalTextBtn>
-        <ModalTextBtn>팔로우 취소</ModalTextBtn>
-        <ModalTextBtn>이 계정 정보</ModalTextBtn>
-      </ModalWrapArticle>
-    ),
     yourProfile: (
       <ModalWrapArticle>
         <ModalLineSpan />
-        <ModalTextBtn onClick={() => alertOpen('report')}>
-          신고하기
-        </ModalTextBtn>
         <ModalTextBtn>차단</ModalTextBtn>
         <ModalTextBtn>이 계정 정보</ModalTextBtn>
         <ModalTextBtn>이 프로필 공유하기</ModalTextBtn>
+        <ModalTextBtn onClick={() => alertOpen('reportUser')}>
+          신고하기
+        </ModalTextBtn>
       </ModalWrapArticle>
     ),
     myProfile: (
       <ModalWrapArticle>
         <ModalLineSpan />
-        <ModalTextBtn>설정 및 개인정보</ModalTextBtn>
+        <ModalTextBtn onClick={handlerMyProfile}>설정 및 개인정보</ModalTextBtn>
         <ModalTextBtn onClick={() => alertOpen('logout')}>
           로그아웃
         </ModalTextBtn>
       </ModalWrapArticle>
     ),
-    yourFeedComment: (
+    yourFeed: (
       <ModalWrapArticle>
         <ModalLineSpan />
-        <ModalTextBtn onClick={() => alertOpen('report')}>
+        <ModalTextBtn onClick={handlerDetailFeed}>상세보기</ModalTextBtn>
+        <ModalTextBtn onClick={handlerYourProfile}>이 계정 정보</ModalTextBtn>
+        <ModalTextBtn onClick={() => alertOpen('reportFeed')}>
           신고하기
         </ModalTextBtn>
       </ModalWrapArticle>
     ),
-    myFeedComment: (
+    myFeed: (
       <ModalWrapArticle>
         <ModalLineSpan />
-        <ModalTextBtn
-          onClick={() => alertOpen(modal.commentId ? 'post' : 'comment')}
-        >
-          삭제
-        </ModalTextBtn>
-        <ModalTextBtn onClick={handlerPostEdit}>수정</ModalTextBtn>
+        <ModalTextBtn onClick={handlerDetailFeed}>상세보기</ModalTextBtn>
+        <ModalTextBtn onClick={() => alertOpen('feed')}>삭제</ModalTextBtn>
+        <ModalTextBtn onClick={handlerFeedEdit}>수정</ModalTextBtn>
       </ModalWrapArticle>
     ),
-    yourBobzip: (
+    yourComment: (
+      <ModalWrapArticle>
+        <ModalLineSpan />
+        <ModalTextBtn>이 계정 정보</ModalTextBtn>
+        <ModalTextBtn onClick={() => alertOpen('reportComment')}>
+          신고하기
+        </ModalTextBtn>
+      </ModalWrapArticle>
+    ),
+    myComment: (
+      <ModalWrapArticle>
+        <ModalLineSpan />
+        <ModalTextBtn onClick={() => alertOpen('comment')}>삭제</ModalTextBtn>
+        <ModalTextBtn onClick={handlerCommentEdit}>수정</ModalTextBtn>
+      </ModalWrapArticle>
+    ),
+    yourPlace: (
       <ModalWrapArticle>
         <ModalLineSpan />
         <ModalTextBtn onClick={handlerOpenMap}>
@@ -153,10 +164,10 @@ export default function Modal({
         </ModalTextBtn>
       </ModalWrapArticle>
     ),
-    myBobzip: (
+    myPlace: (
       <ModalWrapArticle>
         <ModalLineSpan />
-        <ModalTextBtn onClick={() => alertOpen('bobzip')}>삭제</ModalTextBtn>
+        <ModalTextBtn onClick={() => alertOpen('place')}>삭제</ModalTextBtn>
         <ModalTextBtn onClick={handlerRecommendEdit}>수정</ModalTextBtn>
         <ModalTextBtn onClick={handlerOpenMap}>
           카카오맵으로 이동하기
@@ -169,7 +180,7 @@ export default function Modal({
     chat: (
       <ModalWrapArticle>
         <ModalLineSpan />
-        <ModalTextBtn onClick={() => alertOpen('report')}>
+        <ModalTextBtn onClick={() => alertOpen('reportUser')}>
           신고하기
         </ModalTextBtn>
         <ModalTextBtn onClick={() => navigate(-1)}>채팅방 나가기</ModalTextBtn>
