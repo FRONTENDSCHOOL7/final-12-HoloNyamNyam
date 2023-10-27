@@ -10,12 +10,16 @@ import {
   HeaderSpan,
   HeaderTextP,
   SocialSvg,
+  ButtonWrap,
+  SortButton,
+  Star,
 } from './StyledHeader';
 import Button from '../Button/Button';
 import { useNavigate } from 'react-router-dom';
 import sprite from '../../../images/SpriteIcon.svg';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { modalState } from '../../../recoil/modalAtom';
+import StarImg from '../../../images/Star.svg';
 
 export default function Header({
   type, 
@@ -146,6 +150,18 @@ export default function Header({
       <HeaderLayoutSection>
         <HeaderTitle className='a11y-hidden'>프로필 수정</HeaderTitle>
         {renderHeaderText()}
+      </HeaderLayoutSection>
+    ),
+    matzip: (
+      <HeaderLayoutSection>
+        <HeaderTitle className='a11y-hidden'>냠냠평가</HeaderTitle>
+        {renderHeaderText('냠냠평가')}
+        <ButtonWrap>
+          <SortButton>
+            <Star src={StarImg} />
+            &nbsp;별점순으로 보기&nbsp;
+          </SortButton>
+        </ButtonWrap>
       </HeaderLayoutSection>
     ),
   };

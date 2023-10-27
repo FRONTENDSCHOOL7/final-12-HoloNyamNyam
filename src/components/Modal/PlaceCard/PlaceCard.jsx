@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
-  RecommendDim,
-  RecommendCardArticle,
-  RecommendListImg,
-  RecommendTextSection,
-  RecommendName,
-  RecommendScoreSpan,
-  RecommendLocationP,
-  RecommendMoreBtn,
-  RecommendCloseBtn,
+  PlaceDim,
+  PlaceCardArticle,
+  PlaceListImg,
+  PlaceTextSection,
+  PlaceName,
+  PlaceScoreSpan,
+  PlaceLocationP,
+  PlaceMoreBtn,
+  PlaceCloseBtn,
   TitleWrapper,
-} from './RecommendCardStyle';
-import { getRecommendInfoApi } from '../../../api/recommend';
+} from './PlaceCardStyle';
+import { getPlaceInfoApi } from '../../../api/place';
 import sprite from '../../../images/SpriteIcon.svg';
 import { useRecoilState } from 'recoil';
 import Modal from '../Modal/Modal';
 import { modalState } from '../../../recoil/modalAtom';
 
-export default function RecommendCard({ cardClose, id }) {
+export default function PlaceCard({ cardClose, id }) {
   const SocialSVG = ({ id, color = 'white', size = 22 }) => (
     <svg fill={color} width={size} height={size}>
       <use href={`${sprite}#${id}`} />
@@ -26,7 +26,7 @@ export default function RecommendCard({ cardClose, id }) {
   );
   const location = useLocation();
   const { accountname } = location.state || {};
-  const [recommendInfo, setRecommendInfo] = useState({
+  const [placeInfo, setPlaceInfo] = useState({
     postimage: '',
     restaurantname: '',
     price: '',
@@ -46,9 +46,9 @@ export default function RecommendCard({ cardClose, id }) {
   const getUserInfo = async () => {
     const token = localStorage.getItem('token');
     try {
-      await getRecommendInfoApi(id, token).then((res) => {
+      await getPlaceInfoApi(id, token).then((res) => {
         const { itemImage, itemName, link, price } = res.data.product;
-        setRecommendInfo({
+        setPlaceInfo({
           itemImage,
           itemName,
           link,
@@ -69,31 +69,31 @@ export default function RecommendCard({ cardClose, id }) {
   }, [shouldFetchProductInfo]);
 
   return (
-    <RecommendDim onClick={cardClose}>
-      <RecommendCardArticle>
+    <PlaceDim onClick={cardClose}>
+      <PlaceCardArticle>
         <h3 className='a11y-hidden'>냠냠 평가 카드</h3>
-        <RecommendListImg src={recommendInfo.itemImage} alt='' />
-        <RecommendTextSection>
+        <PlaceListImg src={placeInfo.itemImage} alt='' />
+        <PlaceTextSection>
           <TitleWrapper>
-            <RecommendName>{recommendInfo.itemName}</RecommendName>
+            <PlaceName>{placeInfo.itemName}</PlaceName>
             <SocialSVG id='star' size='16px' />
-            <RecommendScoreSpan>{recommendInfo.price}.0</RecommendScoreSpan>
+            <PlaceScoreSpan>{placeInfo.price}.0</PlaceScoreSpan>
           </TitleWrapper>
-          <RecommendLocationP>{recommendInfo.link}</RecommendLocationP>
-          <RecommendMoreBtn type='button' onClick={modalOpen}>
+          <PlaceLocationP>{placeInfo.link}</PlaceLocationP>
+          <PlaceMoreBtn type='button' onClick={modalOpen}>
             <SocialSVG id='icon-more-vertical' />
-          </RecommendMoreBtn>
-          <RecommendCloseBtn type='button' onClick={cardClose} />
-        </RecommendTextSection>
-      </RecommendCardArticle>
+          </PlaceMoreBtn>
+          <PlaceCloseBtn type='button' onClick={cardClose} />
+        </PlaceTextSection>
+      </PlaceCardArticle>
       {modal.show && (
         <Modal
           type='myBobzip'
           productId={id}
-          restaurantName={recommendInfo.itemName}
-          recommendInfo={recommendInfo}
+          restaurantName={placeInfo.itemName}
+          placeInfo={placeInfo}
         />
       )}
-    </RecommendDim>
+    </PlaceDim>
   );
 }

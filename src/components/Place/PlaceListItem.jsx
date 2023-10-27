@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   PlaceWrap,
-  ButtonWrap,
   PlaceItem,
-  SortButton,
   PlaceImg,
   PlaceInfo,
   PlaceName,
@@ -13,10 +11,10 @@ import {
   Rate,
 } from './PlaceListItemStyle';
 import StarImg from '../../images/Star.svg';
-import { recommendListApi } from '../../api/recommend';
+import { placeListApi } from '../../api/place';
 
 export default function PlaceListItem({ cardOpen, cardClose, cardClosed }) {
-  const [recommendInfo, setRecommendInfo] = useState([]);
+  const [placeInfo, setPlaceInfo] = useState([]);
   const location = useLocation();
   const navigate = useNavigate();
   const [uploadList, setUploadList] = useState(cardClosed);
@@ -31,11 +29,11 @@ export default function PlaceListItem({ cardOpen, cardClose, cardClosed }) {
     const { accountname } = location.state || {};
     const token = localStorage.getItem('token');
     try {
-      const res = await recommendListApi(
+      const res = await placeListApi(
         accountname || localStorage.getItem('accountname'),
         token,
       );
-      setRecommendInfo(res.data.product);
+      setPlaceInfo(res.data.product);
       setUploadList(!cardClosed);
     } catch (error) {
       console.log('error');
@@ -43,35 +41,24 @@ export default function PlaceListItem({ cardOpen, cardClose, cardClosed }) {
     }
   };
 
-  if (recommendInfo.length === 0) {
+  if (placeInfo.length === 0) {
     return null;
   }
 
   return (
-    <>
-      <ButtonWrap>
-        <SortButton>
-          <Star src={StarImg} />
-          &nbsp;별점순으로 보기&nbsp;
-        </SortButton>
-      </ButtonWrap>
-      <PlaceWrap>
-        {recommendInfo.map((recommendation) => (
-          <PlaceItem
-            key={recommendation.id}
-            onClick={() => cardOpen(recommendation.id)}
-          >
-            <PlaceImg src={recommendation.itemImage} alt='냠냠평가 사진' />
-            <PlaceInfo>
-              <PlaceName>{recommendation.itemName}</PlaceName>
-              <StarWrap>
-                <Star src={StarImg} />
-                <Rate>{recommendation.price}.0</Rate>
-              </StarWrap>
-            </PlaceInfo>
-          </PlaceItem>
-        ))}
-      </PlaceWrap>
-    </>
+    <PlaceWrap>
+      {placeInfo.map((place) => (
+        <PlaceItem key={place.id} onClick={() => cardOpen(place.id)}>
+          <PlaceImg src={place.itemImage} alt='냠냠평가 사진' />
+          <PlaceInfo>
+            <PlaceName>{place.itemName}</PlaceName>
+            <StarWrap>
+              <Star src={StarImg} />
+              <Rate>{place.price}.0</Rate>
+            </StarWrap>
+          </PlaceInfo>
+        </PlaceItem>
+      ))}
+    </PlaceWrap>
   );
 }
