@@ -35,72 +35,45 @@ const Flexbox = styled.div`
 `;
 
 const opaque = keyframes`
-  0% {
-    opacity: 0.1;
-  }
-  40% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 0.1;
-  }
-  100% {
-    opacity: 0.1;
-  }
+    0%,                      
+    100% {
+      opacity: 0;           
+      transform: scale(0.5); 
+    }
+    50% {
+      opacity: 1;             
+      transform: scale(1.2);
+    }
 `;
 
-const CircleLoader = styled.div`
-  position: relative;
-  width: auto;
-  height: auto;
+const LoadingSpan = styled.span`
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: gray;
+  border-radius: 50%;
+  animation: ${opaque} 1s 0s linear infinite;
+`;
 
-  div {
-    height: 10px;
-    width: 10px;
-    background-color: #545454;
-    border-radius: 50%;
-    position: absolute;
-    animation: ${opaque} 0.8s ease-in-out infinite both;
+const LoadingDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 
-    &:nth-child(1) {
-      top: -25px;
-      left: 0;
-    }
-    &:nth-child(2) {
-      top: -17px;
-      left: 17px;
-      animation-delay: 0.1s;
-    }
-    &:nth-child(3) {
-      top: 0;
-      left: 25px;
-      animation-delay: 0.2s;
-    }
-    &:nth-child(4) {
-      top: 17px;
-      left: 17px;
-      animation-delay: 0.3s;
-    }
-    &:nth-child(5) {
-      top: 25px;
-      left: 0;
-      animation-delay: 0.4s;
-    }
-    &:nth-child(6) {
-      top: 17px;
-      left: -17px;
-      animation-delay: 0.5s;
-    }
-    &:nth-child(7) {
-      top: 0;
-      left: -25px;
-      animation-delay: 0.6s;
-    }
-    &:nth-child(8) {
-      top: -17px;
-      left: -17px;
-      animation-delay: 0.7s;
-    }
+  & span:nth-child(1) {
+    animation-delay: 0s;
+    background-color: #ff3945;
+  }
+
+  & span:nth-child(2) {
+    animation-delay: 0.2s;
+    background-color: #ff644b;
+  }
+
+  & span:nth-child(3) {
+    animation-delay: 0.4s;
+    background-color: #ff9052;
   }
 `;
 
@@ -108,16 +81,11 @@ export default function Loading() {
   return (
     <Flexbox>
       <div>
-        <CircleLoader>
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-        </CircleLoader>
+        <LoadingDiv>
+          <LoadingSpan />
+          <LoadingSpan />
+          <LoadingSpan />
+        </LoadingDiv>
       </div>
     </Flexbox>
   );
