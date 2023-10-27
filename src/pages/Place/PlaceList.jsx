@@ -18,7 +18,7 @@ export default function PlaceList() {
   const [selectedId, setSelectedId] = useState(null);
   const [cardClosed, setCardClosed] = useState(false);
 
-  const [cardShow, setCardShow] = useRecoilState(cardShowState);
+  const [cardShow, setCardShow] = useState(false);
   function cardClose(e) {
     if (e.target === e.currentTarget) {
       setCardShow(false);
