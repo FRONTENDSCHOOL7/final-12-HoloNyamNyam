@@ -45,13 +45,6 @@ export default function DetailFeed() {
     setInputValue(event.target.value);
   };
   const [modal, setModal] = useRecoilState(modalState);
-  const modalOpen = (type, id) => {
-    setModal({
-      show: true,
-      type,
-      feedId: id,
-    });
-  };
   const fetchFeedInfo = async () => {
     try {
       const res = await feedInfoApi(id, token);
@@ -155,6 +148,14 @@ export default function DetailFeed() {
     setCommentList(updatedCommentList);
     setCommentCnt((prev) => prev - 1);
   };
+  const modalOpen = (type, id, name) => {
+    setModal({
+      show: true,
+      type,
+      feedId: id,
+      accountname: name,
+    });
+  };
 
   return (
     <>
@@ -167,6 +168,7 @@ export default function DetailFeed() {
                   ? 'myFeed'
                   : 'yourFeed',
                 myFeedInfo.id,
+                infoToIterate.author.accountname,
               )
             }
             feedInfo={myFeedInfo}
@@ -214,6 +216,8 @@ export default function DetailFeed() {
           handlerFeedEdit={openFeedEditModal}
           handleCommentDelete={handleCommentDelete}
           handlerMyProfile={() => navigate(`/myprofile`)}
+          detail={true}
+          handlerYourProfile={() => navigate(`/profile/${modal.accountname}`)}
         />
       )}
       {feedEditModalOpen && (
