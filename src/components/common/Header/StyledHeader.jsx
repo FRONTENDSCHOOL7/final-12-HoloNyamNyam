@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ButtonStyle } from '../Button/Button';
 
 const HeaderWrap = styled.header`
   position: fixed;
@@ -69,6 +70,31 @@ const SocialSvg = styled.div`
   height: 24px;
 `;
 
+const ButtonWrap = styled.div`
+  display: flex;
+`;
+
+const SortButton = styled(ButtonStyle)`
+  width: 140px;
+  height: 34px;
+  border: 1px solid var(--DBDBDB, #dbdbdb);
+  margin: 15px 0 15px auto;
+  color: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    background-color: #ff644b;
+    color: #fff;
+    transition: 0.2s;
+  }
+`;
+
+const Star = styled.img`
+  width: 14px;
+  height: 14px;
+`;
+
 export {
   HeaderWrap,
   HeaderLayoutSection,
@@ -79,4 +105,7 @@ export {
   HeaderSpan,
   HeaderTextP,
   SocialSvg,
+  ButtonWrap,
+  SortButton,
+  Star,
 };

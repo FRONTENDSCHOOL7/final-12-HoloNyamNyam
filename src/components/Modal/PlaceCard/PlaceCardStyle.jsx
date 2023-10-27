@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const RecommendDim = styled.div`
+const PlaceDim = styled.div`
   position: fixed;
   bottom: 0;
   left: 50%;
@@ -12,7 +12,7 @@ const RecommendDim = styled.div`
   max-width: 390px;
 `;
 
-const RecommendCardArticle = styled.article`
+const PlaceCardArticle = styled.article`
   width: 304px;
   background-color: white;
   border-radius: 10px;
@@ -26,7 +26,7 @@ const RecommendCardArticle = styled.article`
     rgba(0, 0, 0, 0.22) 0px 10px 10px;
 `;
 
-const RecommendListImg = styled.img`
+const PlaceListImg = styled.img`
   display: block;
   width: 100%;
   height: 180px;
@@ -34,19 +34,19 @@ const RecommendListImg = styled.img`
   border-radius: 8px 8px 0 0;
 `;
 
-const RecommendTextSection = styled.section`
+const PlaceTextSection = styled.section`
   padding: 18px 16px 23px;
   position: relative;
 `;
 
-const RecommendName = styled.h4`
+const PlaceName = styled.h4`
   font-size: 20px;
   line-height: 20px;
   font-weight: 400;
   display: inline-block;
 `;
 
-const RecommendScoreSpan = styled.span`
+const PlaceScoreSpan = styled.span`
   display: inline-block;
   color: #000;
   font-size: 14px;
@@ -54,19 +54,19 @@ const RecommendScoreSpan = styled.span`
   line-height: 14px;
 `;
 
-const RecommendLocationP = styled.p`
+const PlaceLocationP = styled.p`
   margin-top: 13px;
   font-size: 14px;
   line-height: 17px;
 `;
 
-const RecommendMoreBtn = styled.button`
+const PlaceMoreBtn = styled.button`
   position: absolute;
   top: 16px;
   right: 5px;
 `;
 
-const RecommendCloseBtn = styled.button`
+const PlaceCloseBtn = styled.button`
   position: absolute;
   width: 16px;
   height: 16px;
@@ -81,14 +81,14 @@ const TitleWrapper = styled.article`
 `;
 
 export {
-  RecommendDim,
-  RecommendCardArticle,
-  RecommendListImg,
-  RecommendTextSection,
-  RecommendName,
-  RecommendScoreSpan,
-  RecommendLocationP,
-  RecommendMoreBtn,
-  RecommendCloseBtn,
+  PlaceDim,
+  PlaceCardArticle,
+  PlaceListImg,
+  PlaceTextSection,
+  PlaceName,
+  PlaceScoreSpan,
+  PlaceLocationP,
+  PlaceMoreBtn,
+  PlaceCloseBtn,
   TitleWrapper,
 };

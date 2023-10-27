@@ -1,29 +1,7 @@
 import styled from 'styled-components';
-import { ButtonStyle } from '../common/Button/Button';
-
-const ButtonWrap = styled.div`
-  padding: 0 22px;
-  display: flex;
-`;
-
-const SortButton = styled(ButtonStyle)`
-  width: 140px;
-  height: 34px;
-  border: 1px solid var(--DBDBDB, #dbdbdb);
-  margin: 15px 0 15px auto;
-  color: #000000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  &:hover {
-    background-color: #ff644b;
-    color: #fff;
-    transition: 0.2s;
-  }
-`;
 
 const PlaceWrap = styled.ul`
-  padding: 0 20px;
+  padding: 20px 20px 0;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -84,9 +62,7 @@ const Star = styled.img`
 
 export {
   PlaceWrap,
-  ButtonWrap,
   PlaceItem,
-  SortButton,
   PlaceImg,
   PlaceInfo,
   PlaceName,

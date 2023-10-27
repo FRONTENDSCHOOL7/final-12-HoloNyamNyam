@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { BASE_URL } from './baseUrl';
 
-export const recommendListApi = async (accountname, token) => {
+export const placeListApi = async (accountname, token) => {
   const res = await axios.get(`${BASE_URL}/product/${accountname}`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -11,7 +11,7 @@ export const recommendListApi = async (accountname, token) => {
   return res;
 };
 
-export const recommendUploadApi = async (
+export const placeUploadApi = async (
   restaurantname,
   rating,
   selectedAddress,
@@ -37,7 +37,7 @@ export const recommendUploadApi = async (
   );
 };
 
-export const getRecommendInfoApi = async (productId, token) => {
+export const getPlaceInfoApi = async (productId, token) => {
   const res = await axios.get(`${BASE_URL}/product/detail/${productId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -47,7 +47,7 @@ export const getRecommendInfoApi = async (productId, token) => {
   return res;
 };
 
-export const recommendEditApi = async (productId, token, productInfo) => {
+export const placeEditApi = async (productId, token, productInfo) => {
   const res = await axios.put(
     `${BASE_URL}/product/${productId}`,
     {
@@ -68,7 +68,7 @@ export const recommendEditApi = async (productId, token, productInfo) => {
   return res;
 };
 
-export const recommendDeleteApi = async (productId, token) => {
+export const placeDeleteApi = async (productId, token) => {
   await axios.delete(`${BASE_URL}/product/${productId}`, {
     headers: {
       Authorization: `Bearer ${token}`,

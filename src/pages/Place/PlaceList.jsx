@@ -4,7 +4,7 @@ import Header from '../../components/common/Header/Header';
 import PlaceListItem from '../../components/Place/PlaceListItem';
 import Nav from '../../components/common/Nav/Nav';
 import styled from 'styled-components';
-import RecommendCard from '../../components/Modal/RecommendCard/RecommendCard';
+import PlaceCard from '../../components/Modal/PlaceCard/PlaceCard';
 import { useRecoilState } from 'recoil';
 import { cardShowState } from '../../recoil/cardShowAtom';
 
@@ -37,10 +37,10 @@ export default function PlaceList() {
   }, [cardClosed]);
   return (
     <>
-      <Header type='default' />
+      <Header type='matzip' />
       <List>
         <PlaceListItem cardOpen={cardOpen} cardClosed={cardClosed} />
-        {cardShow && <RecommendCard cardClose={cardClose} id={selectedId} />}
+        {cardShow && <PlaceCard cardClose={cardClose} id={selectedId} />}
       </List>
       <Nav />
     </>
