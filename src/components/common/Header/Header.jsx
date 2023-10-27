@@ -18,7 +18,7 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 import { modalState } from '../../../recoil/modalAtom';
 
 export default function Header({
-  type,
+  type, 
   uploadHandler,
   searchKeyword,
   handleSearchKeyword,
