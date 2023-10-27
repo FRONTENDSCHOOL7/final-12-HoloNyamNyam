@@ -38,20 +38,21 @@ const StyledNavText = styled.p`
 `;
 const ButtonContainer = styled.div`
   position: absolute;
-  top: -58px;
-  right: 0;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 const ScrollButton = styled.button`
   position: sticky;
-  top: 88%;
-  left: 85%;
-  background-color: #629678;
-  border: none;
-  padding: 10px;
-  border-radius: 50%;
+  padding: 10px 10px 0 10px;
+  opacity: 0.5;
+  transition: opacity 0.3s;
   cursor: pointer;
   z-index: 999;
-  margin-right: 12px;
+  margin: auto;
+  &:hover {
+    opacity: 1;
+  }
 `;
 
 const TopIcon = styled.img`

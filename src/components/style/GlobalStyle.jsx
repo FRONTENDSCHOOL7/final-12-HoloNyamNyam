@@ -30,6 +30,11 @@ export const GlobalStyle = createGlobalStyle`
 
   :root {
     font-family: 'SpoqaHanSansNeo-Regular', sans-serif;
+    -ms-overflow-style: none; /* IE scroll disable*/
+    scrollbar-width: none;  /* 파이어폭스 scroll disable*/
+    ::-webkit-scrollbar {
+      display: none; /* 크롬, 사파리, 오페라, 엣지 scroll disable*/
+    }
   }
 
   li{

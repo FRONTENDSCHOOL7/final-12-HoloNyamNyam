@@ -1,68 +1,46 @@
 import styled from 'styled-components';
-const ChatWrapper = styled.ul`
-  padding: 0;
+
+const SearchWrapper = styled.ul`
+  padding: 0 0 60px 0;
 `;
 
 const List = styled.li`
   list-style: none;
   display: flex;
+  background-color: white;
   padding: 8px 16px;
   gap: 12px;
+  align-items: center;
   cursor: pointer;
   transition: background-color 0.3s ease;
   background-color: white;
   &:hover {
     background-color: rgba(0, 0, 0, 0.1);
   }
-  position: relative;
 `;
 
 const ProfileImg = styled.img`
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-`;
-
-const ProfileDot = styled.span`
-  content: '';
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  background-color: #f26e22;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
 `;
 
 const TextWrap = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: flex-start;
-  gap: 5px;
+  gap: 6px;
 `;
 
 const UserName = styled.strong`
   font-size: 14px;
+  font-weight: 600;
 `;
 
-const ChatContent = styled.p`
+const UserID = styled.p`
   margin: 0;
   font-size: 12px;
   color: #767676;
 `;
 
-const Date = styled.p`
-  font-size: 10px;
-  color: #dbdbdb;
-  margin-left: auto;
-  margin-top: auto;
-`;
-export {
-  ChatWrapper,
-  List,
-  ProfileImg,
-  ProfileDot,
-  TextWrap,
-  UserName,
-  ChatContent,
-  Date,
-};
+export { SearchWrapper, List, ProfileImg, TextWrap, UserName, UserID };

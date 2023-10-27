@@ -1,32 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-// import { useRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import FeedItem from '../FeedItem/FeedItem';
 import { feed } from '../../../api/feed';
 import Loading from '../../Loading/Loading';
 import NoFeedHome from './NoFeedHome';
-// import { modalState } from '../../../recoil/modalAtom';
-// import Modal from '../Modal/Modal/Modal';
+import { modalState } from '../../../recoil/modalAtom';
+import Modal from '../../Modal/Modal/Modal';
 
 const List = styled.ul`
   background-color: white;
   padding: 57px 24px 69px 24px;
 `;
 
-export default function PostHome() {
-  // const [modal, setModal] = useRecoilState(modalState);
+export default function FeedHome() {
+  const [modal, setModal] = useRecoilState(modalState);
   const [loading, setLoading] = useState(true);
   const [skip, setSkip] = useState(0);
   const [myFeed, setMyFeed] = useState([]);
   const [page, setPage] = useState(0);
   const observer = useRef();
-
-  // localStorage 임시 ID/PW 저장
-  // localStorage.setItem(
-  //   'token',
-  //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OWE0NmFjYjJjYjIwNTY2M2ZkOGM4ZSIsImV4cCI6MTcwMzI5MzYzNSwiaWF0IjoxNjk4MTA5NjM1fQ.IeIrtAf9c3yisCOq5eP22Fbus_iaCCVVt7UGZUqVU7M',
-  // );
-
   const token = localStorage.getItem('token');
 
   const getFeed = async (options) => {
@@ -36,9 +29,14 @@ export default function PostHome() {
   };
 
   const loadFeed = async (options) => {
-    const posts = await getFeed(options);
-    setMyFeed((prev) => [...prev, ...posts]);
-    setSkip((prev) => prev + posts.length);
+    let Feeds = await getFeed(options);
+    setMyFeed((prev) => {
+      const prevId = prev.map((v) => v.id);
+      const FeedsId = Feeds.map((v) => v.id).filter((v) => !prevId.includes(v));
+      Feeds = Feeds.filter((v) => FeedsId.includes(v.id));
+      return [...prev, ...Feeds];
+    });
+    setSkip((prev) => prev + Feeds.length);
     setLoading(false);
   };
   useEffect(() => {
@@ -59,12 +57,12 @@ export default function PostHome() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
-  // const modalOpen = (id) => {
-  //   setModal({
-  //     show: true,
-  //     postId: id,
-  //   });
-  // };
+  const modalOpen = (id) => {
+    setModal({
+      show: true,
+      postId: id,
+    });
+  };
 
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
@@ -77,17 +75,17 @@ export default function PostHome() {
             {myFeed.map((item) => (
               <li key={item.id}>
                 <FeedItem
-                  // modalOpen={modalOpen}
+                  modalOpen={modalOpen}
                   otherInfo={item}
-                  getFeed={getFeed}
                   commentCnt={item.commentCount}
-                  skip={skip}
+                  // getFeed={getFeed}
+                  // skip={skip}
                 />
               </li>
             ))}
           </List>
           <div ref={observer} />
-          {/* {modal.show && <Modal type='report' />} */}
+          {modal.show && <Modal type='report' />}
         </main>
       ) : (
         <NoFeedHome />

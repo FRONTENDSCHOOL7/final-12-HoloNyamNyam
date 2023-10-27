@@ -22,8 +22,8 @@ import sprite from '../../../images/SpriteIcon.svg';
 import Carousel from '../../Carousels/Carousel';
 
 export default function FeedItem({
+  modalOpen,
   FeedInfo,
-  // modalOpen,
   otherInfo,
   getUserInfo,
   commentCnt,
@@ -33,13 +33,10 @@ export default function FeedItem({
     color = 'white',
     size = 20,
     strokeColor = '#767676',
-    // onClick,
+    onClick,
     margin = '0',
   }) => (
-    <SocialSvg
-      // onClick={onClick}
-      style={{ margin: margin }}
-    >
+    <SocialSvg onClick={onClick} style={{ margin: margin }}>
       <svg fill={color} width={size} height={size} stroke={strokeColor}>
         <use href={`${sprite}#${id}`} style={{ stroke: 'strokeColor' }} />
       </svg>
@@ -130,7 +127,7 @@ export default function FeedItem({
               id='icon-more-vertical'
               strokeColor='#c4c4c4'
               margin='0 0 0 0 auto'
-              // onClick={() => modalOpen(infoToIterate.id)}
+              onClick={() => modalOpen(infoToIterate.id)}
             />
           </MoreBtn>
         </FeedUser>
