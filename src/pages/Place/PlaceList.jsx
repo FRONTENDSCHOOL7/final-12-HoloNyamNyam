@@ -5,8 +5,6 @@ import PlaceListItem from '../../components/Place/PlaceListItem';
 import Nav from '../../components/common/Nav/Nav';
 import styled from 'styled-components';
 import PlaceCard from '../../components/Modal/PlaceCard/PlaceCard';
-import { useRecoilState } from 'recoil';
-import { cardShowState } from '../../recoil/cardShowAtom';
 
 const List = styled.section`
   padding: 48px 0 60px 0;
