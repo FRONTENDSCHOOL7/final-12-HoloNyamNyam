@@ -12,7 +12,7 @@ export const feed = async ({ token, limit = 10, skip = 0 }) => {
   return res;
 };
 
-export const FeedUploadApi = async (content, image, token) => {
+export const feedUploadApi = async (content, image, token) => {
   await axios.post(
     `${BASE_URL}/post`,
     {
@@ -30,7 +30,7 @@ export const FeedUploadApi = async (content, image, token) => {
   );
 };
 
-export const FeedInfoApi = async (feedId, token) => {
+export const feedInfoApi = async (feedId, token) => {
   const res = await axios.get(`${BASE_URL}/post/${feedId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -40,7 +40,7 @@ export const FeedInfoApi = async (feedId, token) => {
   return res;
 };
 
-export const FeedEditApi = async (feedId, token, content, image) => {
+export const feedEditApi = async (feedId, token, content, image) => {
   const res = await axios.put(
     `${BASE_URL}/post/${feedId}`,
     {
@@ -59,7 +59,7 @@ export const FeedEditApi = async (feedId, token, content, image) => {
   return res;
 };
 
-export const FeedDeleteApi = async (feedId, token) => {
+export const feedDeleteApi = async (feedId, token) => {
   await axios.delete(`${BASE_URL}/post/${feedId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -68,7 +68,7 @@ export const FeedDeleteApi = async (feedId, token) => {
   });
 };
 
-export const FeedReportApi = async (feedId, token) => {
+export const feedReportApi = async (feedId, token) => {
   await axios.post(
     `${BASE_URL}/post/${feedId}/report`,
     {},
@@ -81,7 +81,7 @@ export const FeedReportApi = async (feedId, token) => {
   );
 };
 
-export const FeedLikeApi = async (feedId, token) => {
+export const feedLikeApi = async (feedId, token) => {
   await axios.post(
     `${BASE_URL}/post/${feedId}/heart`,
     {},
@@ -94,7 +94,7 @@ export const FeedLikeApi = async (feedId, token) => {
   );
 };
 
-export const FeedUnlikeApi = async (feedId, token) => {
+export const feedUnlikeApi = async (feedId, token) => {
   await axios.delete(`${BASE_URL}/post/${feedId}/unheart`, {
     headers: {
       Authorization: `Bearer ${token}`,
