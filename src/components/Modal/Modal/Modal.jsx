@@ -23,6 +23,7 @@ export default function Modal({
   handleCommentDelete,
   handlerDetailFeed,
   recommendInfo,
+  detail,
 }) {
   const navigate = useNavigate();
   const [alertShow, setAlertShow] = useState(false);
@@ -113,7 +114,11 @@ export default function Modal({
     myProfile: (
       <ModalWrapArticle>
         <ModalLineSpan />
-        <ModalTextBtn onClick={handlerMyProfile}>설정 및 개인정보</ModalTextBtn>
+        {detail || (
+          <ModalTextBtn onClick={handlerMyProfile}>
+            설정 및 개인정보
+          </ModalTextBtn>
+        )}
         <ModalTextBtn onClick={() => alertOpen('logout')}>
           로그아웃
         </ModalTextBtn>
@@ -122,7 +127,9 @@ export default function Modal({
     yourFeed: (
       <ModalWrapArticle>
         <ModalLineSpan />
-        <ModalTextBtn onClick={handlerDetailFeed}>상세보기</ModalTextBtn>
+        {detail || (
+          <ModalTextBtn onClick={handlerDetailFeed}>상세보기</ModalTextBtn>
+        )}
         <ModalTextBtn onClick={handlerYourProfile}>이 계정 정보</ModalTextBtn>
         <ModalTextBtn onClick={() => alertOpen('reportFeed')}>
           신고하기
@@ -140,7 +147,7 @@ export default function Modal({
     yourComment: (
       <ModalWrapArticle>
         <ModalLineSpan />
-        <ModalTextBtn>이 계정 정보</ModalTextBtn>
+        <ModalTextBtn onClick={handlerYourProfile}>이 계정 정보</ModalTextBtn>
         <ModalTextBtn onClick={() => alertOpen('reportComment')}>
           신고하기
         </ModalTextBtn>

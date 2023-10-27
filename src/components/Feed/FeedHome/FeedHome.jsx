@@ -72,7 +72,6 @@ export default function FeedHome() {
   };
 
   const openYourProfile = (accountname) => {
-    window.console.log(accountname);
     navigate(`/profile/${accountname}`);
   };
 
