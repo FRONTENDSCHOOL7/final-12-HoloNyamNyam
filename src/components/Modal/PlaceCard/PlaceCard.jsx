@@ -57,8 +57,8 @@ export default function PlaceCard({ cardClose, id }) {
         setShouldFetchProductInfo(false);
       });
     } catch (err) {
-      console.log('에러!');
-      // navigation('/error');
+      console.log('error');
+      navigation('/error');
     }
   };
 

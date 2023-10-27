@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
-  PlaceWrap,
   PlaceItem,
   PlaceImg,
   PlaceInfo,
@@ -46,7 +45,7 @@ export default function PlaceListItem({ cardOpen, cardClose, cardClosed }) {
   }
 
   return (
-    <PlaceWrap>
+    <>
       {placeInfo.map((place) => (
         <PlaceItem key={place.id} onClick={() => cardOpen(place.id)}>
           <PlaceImg src={place.itemImage} alt='냠냠평가 사진' />
@@ -59,6 +58,6 @@ export default function PlaceListItem({ cardOpen, cardClose, cardClosed }) {
           </PlaceInfo>
         </PlaceItem>
       ))}
-    </PlaceWrap>
+    </>
   );
 }
