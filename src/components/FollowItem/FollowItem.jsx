@@ -61,7 +61,7 @@ export default function FollowItem({
       {accountname !== myaccountname && (
         <Button
           type='button'
-          content={follow ? '취소' : '팔로우'}
+          content={follow ? '팔로잉' : '팔로우'}
           width='s'
           size='s'
           $bgcolor={!follow ? 'active' : '#FF644B'}
