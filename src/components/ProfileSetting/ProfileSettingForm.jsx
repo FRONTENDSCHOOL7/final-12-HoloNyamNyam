@@ -7,7 +7,7 @@ import DefaultProfileInput from '../../images/basic-profile-img.svg';
 import { useLocation, useNavigate } from 'react-router-dom';
 //import Input from '../../components/common/Input/Input';
 import {
-  StyledButton,
+  StyledStartButton,
   ImageFormContainer,
   ProfileFormContainer,
   InputImage,
@@ -16,6 +16,7 @@ import {
   StyledInput,
   ProfileInputImgButton,
   StyledProfileImg,
+  StyledSaveButton,
 } from './ProfileSettingStyle';
 
 //테스트용 유저ID = fz_stitch
@@ -176,13 +177,25 @@ const ProfileSettingForm = () => {
       {errors.userintro && (
         <StyledError>{errors.userintro?.message}</StyledError>
       )}
-      <StyledButton
-        className='btn-signup'
-        $bgcolor={abledBtn ? 'active' : 'inactive'}
-        disabled={!abledBtn}
-      >
-        확인
-      </StyledButton>
+
+      {location.pathname === '/signup/profile' ? (
+        <StyledStartButton
+          className='btn-signup'
+          $bgcolor={abledBtn ? 'active' : 'inactive'}
+          disabled={!abledBtn}
+        >
+          확인
+        </StyledStartButton>
+      ) : (
+        <StyledSaveButton
+          className='btn-profile-edit'
+          $bgcolor={abledBtn ? 'active' : 'inactive'}
+          disabled={!abledBtn}
+        >
+          저장
+        </StyledSaveButton>
+      )}
+
       {/*   <Input
           label='사용자 이름'
           id='username'

@@ -1,5 +1,5 @@
 import React from 'react';
-import Place from '../Place/Place';
+//import Place from '../Place/Place';
 import {
   RateWrap,
   RateTitleWrap,
@@ -18,7 +18,7 @@ export default function RatePlace({ name }) {
         </MoreViewBtn>
       </RateTitleWrap>
       <PlaceList>
-        <li>
+        {/* <li>
           <Place />
         </li>
         <li>
@@ -26,7 +26,7 @@ export default function RatePlace({ name }) {
         </li>
         <li>
           <Place />
-        </li>
+        </li> */}
       </PlaceList>
     </RateWrap>
   );
