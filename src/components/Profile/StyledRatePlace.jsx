@@ -42,7 +42,7 @@ const PlaceList = styled.ul`
   display: flex;
   gap: 8px;
   & :last-child {
-    padding-right: 8px;
+    margin-right: 8px;
   }
 `;
 
