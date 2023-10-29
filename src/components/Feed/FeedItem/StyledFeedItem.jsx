@@ -14,8 +14,8 @@ const FeedUserImg = styled.img`
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  cursor: pointer;
   object-fit: cover;
+  cursor: pointer;
 `;
 const FeedUserBox = styled.div`
   align-self: center;
@@ -35,6 +35,7 @@ const FeedContent = styled.div`
   font-size: 14px;
   line-height: 17px;
   word-break: break-all;
+  cursor: pointer;
 `;
 const FeedText = styled.p`
   margin-bottom: 17px;

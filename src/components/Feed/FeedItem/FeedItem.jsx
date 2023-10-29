@@ -27,6 +27,7 @@ export default function FeedItem({
   otherInfo,
   getUserInfo,
   commentCnt,
+  detail,
 }) {
   const SocialSVG = ({
     id,
@@ -132,15 +133,15 @@ export default function FeedItem({
           </MoreBtn>
         </FeedUser>
       )}
-      <FeedContent>
+      <FeedContent
+        onClick={detail === true ? null : () => moveDetail(infoToIterate.id)}
+        style={{ cursor: detail === true ? 'default' : 'pointer' }}
+      >
         <FeedText>{infoToIterate.content}</FeedText>
         {infoToIterate.image && infoToIterate.author && (
           <Carousel
             images={infoToIterate.image}
             userInfo={infoToIterate.author.username}
-            onImageClick={() => {
-              moveDetail(infoToIterate.id);
-            }}
           />
         )}
         <FeedInfoBox>
