@@ -56,7 +56,7 @@ export default function Button({
   width,
   $bgcolor,
   color,
-  border,
+  $border,
   disabled,
   onClick,
   logo,
@@ -68,7 +68,7 @@ export default function Button({
       width={width}
       $bgcolor={$bgcolor}
       color={color}
-      border={border}
+      $border={$border}
       disabled={disabled}
       onClick={onClick}
       logo={logo}

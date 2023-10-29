@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import PlaceListItem from '../Place/PlaceListItem';
+import Place from '../Place/PlaceListItem';
 import {
   RateWrap,
   RateTitleWrap,
