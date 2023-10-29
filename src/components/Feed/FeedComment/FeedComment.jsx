@@ -61,7 +61,7 @@ export default function DetailFeed() {
       const res = await commentUploadApi(id, inputValue, token);
       setInputValue('');
       loadCommentList();
-      setCommentList((prev) => [...prev, res.data.comment]);
+      setCommentList((prev) => [res.data.comment, ...prev]);
       setComment(res.data.comment);
       setCommentCnt((prev) => prev + 1);
       setInputValue('');
@@ -175,6 +175,7 @@ export default function DetailFeed() {
             getUserInfo={fetchFeedInfo}
             setCommentCnt={setCommentCnt}
             commentCnt={commentCnt}
+            detail={true}
           />
         </FeedItemSection>
         <CommentSection>
