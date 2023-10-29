@@ -88,7 +88,7 @@ export default function PlaceCard({ cardClose, id }) {
       </PlaceCardArticle>
       {modal.show && (
         <Modal
-          type='myBobzip'
+          type='myPlace'
           productId={id}
           restaurantName={placeInfo.itemName}
           placeInfo={placeInfo}
