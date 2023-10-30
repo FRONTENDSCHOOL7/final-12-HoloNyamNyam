@@ -103,7 +103,7 @@ export default function BtnProfile({ type, id, setFollow, follow }) {
           color='active'
           onClick={moveMakePlace}
         >
-          맛집 등록
+          냠냠평가 등록
         </MyBtn>
         <MyBtn
           type='button'

@@ -35,3 +35,31 @@ export const unfollowApi = async (accountname, token) => {
     console.error('API 응답에 실패하였습니다.', err);
   }
 };
+
+export const followerListApi = async (accountname, token, limit, skip) => {
+  const query = `?limit=${limit}&skip=${skip}`;
+  const res = await axios.get(
+    `${BASE_URL}/profile/${accountname}/follower/${query}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    },
+  );
+  return res;
+};
+
+export const followingListApi = async (accountname, token, limit, skip) => {
+  const query = `?limit=${limit}&skip=${skip}`;
+  const res = await axios.get(
+    `${BASE_URL}/profile/${accountname}/following${query}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    },
+  );
+  return res;
+};

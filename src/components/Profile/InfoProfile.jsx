@@ -15,14 +15,14 @@ import {
 import { userInfoApi } from '../../api/user';
 import { ProfileApi } from '../../api/profile';
 import { userFeedCntApi } from '../../api/feed';
-import RatePlace from '../../components/Profile/RatePlace';
+import Loading from '../Loading/Loading';
 
 export default function InfoProfile({ type }) {
   const [userInfo, setUserInfo] = useState({});
   const [postCnt, setPostCnt] = useState(0);
   const [follow, setFollow] = useState(true);
   const [followerInfo, setFollowerInfo] = useState([]);
-
+  const [loading, setLoading] = useState(true);
   const location = useLocation();
   const token = localStorage.getItem('token');
   const myId = localStorage.getItem('_id');
@@ -30,6 +30,7 @@ export default function InfoProfile({ type }) {
   useEffect(() => {
     const getUserInfo = async () => {
       const yourAccountname = location.state;
+      setLoading(true);
 
       if (type === 'my') {
         const res = await userInfoApi(token);
@@ -53,6 +54,11 @@ export default function InfoProfile({ type }) {
           isfollow,
           intro,
         });
+        if (accountname) {
+          const res = await userFeedCntApi(accountname, token);
+          const cnt = res.data.post.length;
+          setPostCnt(cnt);
+        }
       } else if (type === 'your' && yourAccountname) {
         const res = await ProfileApi(yourAccountname.accountname, token);
         setFollowerInfo(res.data.profile.follower);
@@ -75,34 +81,31 @@ export default function InfoProfile({ type }) {
           isfollow,
           intro,
         });
+        if (accountname) {
+          const res = await userFeedCntApi(accountname, token);
+          const cnt = res.data.post.length;
+          setPostCnt(cnt);
+        }
       }
+      setLoading(false);
     };
     getUserInfo();
-  }, [location]);
-
-  useEffect(() => {
-    const getPostCnt = async () => {
-      if (userInfo.accountname) {
-        const res = await userFeedCntApi(userInfo.accountname, token);
-        const cnt = res.data.post.length;
-        setPostCnt(cnt);
-      }
-    };
-    getPostCnt();
-  }, [userInfo.accountname]);
+  }, [location, type, token]);
 
   useEffect(() => {
     const following = followerInfo.some((x) => x === myId);
     setFollow(!following);
     localStorage.setItem('follow', !following ? 'false' : 'true');
-  }, [followerInfo]);
+  }, [followerInfo, myId]);
 
   useEffect(() => {
     const savedFollow = localStorage.getItem('follow');
     setFollow(savedFollow === 'false');
   }, []);
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <>
       <InfoTopWrap>
         <ProfileImg src={userInfo.image} alt='프로필 이미지' />
@@ -142,7 +145,6 @@ export default function InfoProfile({ type }) {
         setFollow={setFollow}
         follow={follow}
       />
-      <RatePlace name={userInfo.username} />
     </>
   );
 }

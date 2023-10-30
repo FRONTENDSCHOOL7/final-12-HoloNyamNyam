@@ -104,6 +104,7 @@ export default function FeedHome() {
                   }
                   feedInfo={where === item.author.accountname ? item : false}
                   otherInfo={where === item.author.accountname ? false : item}
+                  commentCnt={item.commentCount}
                   // getFeed={getFeed}
                   // skip={skip}
                 />

@@ -245,7 +245,7 @@ export default function FeedEdit({ closeModal, feedId }) {
               content='저장'
               size='ms'
               width='ms'
-              bgColor='active'
+              $bgcolor='active'
               onClick={handleUpload}
             />
           </HeaderLayoutDiv>
@@ -293,9 +293,7 @@ export default function FeedEdit({ closeModal, feedId }) {
           </EditImgWrapper>
           <FeedContent
             rows='10'
-            columns='60'
             value={feedInfo.content}
-            hasImage={feedInfo.image !== ''}
             onChange={(e) =>
               setFeedInfo({ ...feedInfo, content: e.target.value })
             }

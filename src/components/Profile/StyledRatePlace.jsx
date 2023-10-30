@@ -42,8 +42,23 @@ const PlaceList = styled.ul`
   display: flex;
   gap: 8px;
   & :last-child {
-    padding-right: 8px;
+    margin-right: 8px;
   }
 `;
 
-export { RateWrap, RateTitleWrap, RateTitle, MoreViewBtn, PlaceList };
+const NoListDiv = styled.div`
+  overflow: hidden;
+  text-align: center;
+  font-size: 14px;
+  color: #767676;
+  margin: 20px 0 20px;
+`;
+
+export {
+  RateWrap,
+  RateTitleWrap,
+  RateTitle,
+  MoreViewBtn,
+  PlaceList,
+  NoListDiv,
+};

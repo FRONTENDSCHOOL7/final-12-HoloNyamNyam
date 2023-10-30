@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
   AlertDiv,
   AlertWrapArticle,
@@ -25,6 +25,7 @@ export default function Alert({
   handleCommentDelete,
 }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const [modal, setModal] = useRecoilState(modalState);
   // eslint-disable-next-line no-unused-vars
   const [cardShow, setCardShow] = useRecoilState(cardShowState);
@@ -60,7 +61,12 @@ export default function Alert({
       await recommendDeleteApi(productId, token);
       alertClose('place');
       modalClose('myPlace');
-      navigate('/myprofile');
+      if (location.pathname === '/placelist') {
+        navigate('/placelist');
+      } else {
+        navigate('/myprofile');
+      }
+
       setCardShow(false);
     } catch (error) {
       console.error('Delete request failed', error);
