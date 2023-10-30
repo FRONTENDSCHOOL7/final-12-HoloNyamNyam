@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import FeedItem from '../FeedItem/FeedItem';
 import sprite from '../../../images/SpriteIcon.svg';
 import Stack from '../../../images/stack.svg';
+import feedListSvg from '../../../images/feedList-logo.svg';
 import Modal from '../../Modal/Modal/Modal';
 import FeedEdit from '../FeedEdit/FeedEdit';
 import {
@@ -17,11 +18,15 @@ import {
   Icon,
   Likes,
   Comments,
+  NoFeedImg,
+  NoFeedWrap,
+  NoFeedP,
 } from './StyledFeedList';
 import { userFeedListApi } from '../../../api/feed';
 import { useRecoilState } from 'recoil';
 import { modalState } from '../../../recoil/modalAtom';
 import { useRef } from 'react';
+import Loading from '../../Loading/Loading';
 
 export default function FeedList() {
   const ViewSVG = ({ id, color = 'white', size = 26 }) => (
@@ -41,6 +46,7 @@ export default function FeedList() {
   const [skip, setSkip] = useState(0);
   const [page, setPage] = useState(0);
   const limit = 10;
+  const [loading, setLoading] = useState(true);
 
   const { accountname } = location.state || {};
   const handleViewModeChange = (mode) => {
@@ -49,6 +55,7 @@ export default function FeedList() {
 
   const getUserInfo = useCallback(async () => {
     const token = localStorage.getItem('token');
+    setLoading(true);
     try {
       const res = await userFeedListApi(
         accountname || localStorage.getItem('accountname'),
@@ -57,23 +64,25 @@ export default function FeedList() {
         skip,
       );
       const posts = res.data.post;
-      setSkip((prev) => prev + posts.length);
-      if (posts.length === 0 && page === 0) {
-        setHasFeeds(false);
-      } else {
+      if (posts.length > 0) {
         setHasFeeds(true);
         setFeedInfo((prev) => [...prev, ...posts]);
       }
+      setSkip((prev) => prev + posts.length);
+      setLoading(false);
     } catch (error) {
       console.error('error');
       navigate('/error');
     }
-  }, [accountname, limit, skip, page, navigate]);
+  }, [accountname, limit, skip, navigate]);
 
   useEffect(() => {
-    if (page === 0) return;
-    getUserInfo();
+    if (page === 1) getUserInfo();
   }, [page, getUserInfo]);
+
+  useEffect(() => {
+    setPage(1);
+  }, []);
 
   function moveDetail(item) {
     navigate(`/detailfeed`, {
@@ -116,9 +125,10 @@ export default function FeedList() {
       io.observe(observer.current);
     }
     return () => io && io.disconnect();
-  }, [observer]);
+  }, []);
 
   useEffect(() => {
+    setHasFeeds(false);
     setSkip(0);
     setPage(0);
     setFeedInfo([]);
@@ -126,7 +136,9 @@ export default function FeedList() {
 
   return (
     <>
-      {hasFeeds && (
+      {loading ? (
+        <Loading />
+      ) : hasFeeds ? (
         <>
           <FeedListBtnWrap>
             <button type='button' onClick={() => handleViewModeChange('list')}>
@@ -207,6 +219,11 @@ export default function FeedList() {
             </GridItemWrap>
           )}
         </>
+      ) : (
+        <NoFeedWrap>
+          <NoFeedImg src={feedListSvg} />
+          <NoFeedP>등록된 게시글이 없어요</NoFeedP>
+        </NoFeedWrap>
       )}
       <div ref={observer} />
       {modal.show && (

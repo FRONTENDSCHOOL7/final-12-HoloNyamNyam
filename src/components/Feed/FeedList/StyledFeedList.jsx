@@ -125,6 +125,22 @@ const Comments = styled.div`
   align-items: center;
 `;
 
+const NoFeedWrap = styled.section`
+  height: 270px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #767676;
+  padding-bottom: 61px;
+  justify-content: center;
+  gap: 20px;
+`;
+
+const NoFeedImg = styled.img``;
+const NoFeedP = styled.p`
+  font-size: 14px;
+`;
+
 export {
   FeedListBtnWrap,
   ImgInfo,
@@ -137,4 +153,7 @@ export {
   Icon,
   Likes,
   Comments,
+  NoFeedImg,
+  NoFeedWrap,
+  NoFeedP,
 };

@@ -6,55 +6,75 @@ import {
   RateTitle,
   MoreViewBtn,
   PlaceList,
+  NoListDiv,
 } from './StyledRatePlace';
-import { useNavigate } from 'react-router-dom';
-import PlaceCard from '../../components/Modal/PlaceCard/PlaceCard';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { placeListApi } from '../../api/place';
+import { userSearch } from '../../api/search';
 
-export default function RatePlace({ name }) {
+export default function RatePlace({ cardOpen, cardClosed }) {
   const navigate = useNavigate();
   function movePlaceList() {
     navigate('/placelist');
   }
-  const [selectedId, setSelectedId] = useState(null);
-  const [cardClosed, setCardClosed] = useState(false);
 
-  const [cardShow, setCardShow] = useState(false);
-  function cardClose(e) {
-    if (e.target === e.currentTarget) {
-      setCardShow(false);
-    }
-    setCardClosed(true);
-  }
+  const [name, setName] = useState([]);
+  const location = useLocation();
+  const [rateList, setRateList] = useState(false);
 
-  function cardOpen(id) {
-    setSelectedId(id);
-    setCardShow(true);
-  }
   useEffect(() => {
-    if (cardClosed) {
-      setCardClosed(false);
-    }
-  }, [cardClosed]);
+    const getUserInfo = async () => {
+      const { accountname } = location.state || {};
+      const token = localStorage.getItem('token');
+      try {
+        const res = await placeListApi(
+          accountname || localStorage.getItem('accountname'),
+          token,
+        );
+        const resName = await userSearch(
+          accountname || localStorage.getItem('accountname'),
+          token,
+        );
+        if (res.data.product.length > 0) {
+          setRateList(true);
+        } else {
+          setRateList(false);
+        }
+        setName(resName.data[0].username);
+      } catch (error) {
+        console.error('error');
+        navigate('/error');
+      }
+    };
+    getUserInfo();
+  }, [location, navigate]);
 
   return (
     <>
       <RateTitleWrap>
         <RateTitle>{name}님의 냠냠평가</RateTitle>
-        <MoreViewBtn
-          type='button'
-          size='ms'
-          $border='active'
-          color='active'
-          onClick={movePlaceList}
-        >
-          더보기
-        </MoreViewBtn>
+        {rateList && (
+          <MoreViewBtn
+            type='button'
+            size='ms'
+            $border='active'
+            color='active'
+            onClick={movePlaceList}
+          >
+            더보기
+          </MoreViewBtn>
+        )}
       </RateTitleWrap>
       <RateWrap>
-        <PlaceList>
-          <PlaceListItem cardOpen={cardOpen} cardClosed={cardClosed} />
-          {cardShow && <PlaceCard cardClose={cardClose} id={selectedId} />}
-        </PlaceList>
+        {rateList ? (
+          <PlaceList>
+            <PlaceListItem cardOpen={cardOpen} cardClosed={cardClosed} />
+          </PlaceList>
+        ) : (
+          <NoListDiv>
+            <p>등록된 냠냠평가가 없어요</p>
+          </NoListDiv>
+        )}
       </RateWrap>
     </>
   );
