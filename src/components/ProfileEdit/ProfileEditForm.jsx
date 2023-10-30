@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
-import { UserIdValid, signup } from '../../api/signUp';
+import { UserIdValid } from '../../api/signUp';
 import { imgUpload } from '../../api/imgUpload';
 import { BASE_URL } from '../../api/baseUrl';
+import { profileEdit } from '../../api/profile';
 import DefaultProfileInput from '../../images/basic-profile-img.svg';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../common/Header/Header';
@@ -17,12 +18,10 @@ import {
   StyledInput,
   ProfileInputImgButton,
   StyledProfileImg,
-  StyledSaveButton,
+  StyledSaveButton
 } from './ProfileEditFormStyle';
 
-//테스트용 유저ID = fz_stitch
-
-const ProfileEditForm = () => {
+const ProfileEditForm = ({ userInfo, setUserInfo }) => {
   const {
     register,
     handleSubmit,
@@ -32,13 +31,9 @@ const ProfileEditForm = () => {
     formState: { errors, isValid },
   } = useForm({
     mode: 'onChange',
-    defaultValue: {
-      username: null,
-      userid: null,
-      userintro: null,
-    },
   });
 
+  const token = localStorage.getItem("token");
   const [profileImg, setProfileImg] = useState(null);
   const [abledBtn, setAbledBtn] = useState(true);
   const inputRef = useRef(null);
@@ -47,21 +42,21 @@ const ProfileEditForm = () => {
   const data = location.state;
 
   useEffect(() => {
-    if (location.pathname === '/signup/profile') {
-      setValue('image', DefaultProfileInput);
-      setValue('username', null);
-      setValue('userid', null);
-      setValue('userintro', null);
+    if (location.pathname === '/myprofile/edit') {
+      setValue("image", userInfo?.image || DefaultProfileInput);
+      setValue("username", userInfo?.username || null);
+      setValue("accountname", userInfo?.accountname || null);
+      setValue("intro", userInfo?.intro || null);
     }
-  }, [location.pathname]);
+  }, [location.pathname, userInfo]);
 
-  const checkUserIdValid = async (userid) => {
+  const checkUserIdValid = async (accountname) => {
     try {
-      const res = await UserIdValid(userid);
+      const res = await UserIdValid(accountname);
       const reqMsg = res.data.message;
-      clearErrors('userid');
+      clearErrors('accountname');
       if (reqMsg === '이미 가입된 계정ID 입니다.') {
-        setError('userid', {
+        setError('accountname', {
           type: 'manual',
           message: '*이미 사용 중인 ID예요 :(',
         });
@@ -87,32 +82,32 @@ const ProfileEditForm = () => {
 
   const handleSubmitData = async (formData) => {
     try {
-      const isValidUserId = await checkUserIdValid(formData.userid);
+      const isValidUserId = await checkUserIdValid(formData.accountname);
       if (isValidUserId) {
-        await signup(formData, data, profileImg).then(
-          navigate('/signup/signupsuccess', {
-            state: {
-              userid: formData.userid,
-              username: formData.username,
-              userintro: formData.userintro,
-            },
-          }),
-        );
+        setProfileImg(userInfo?.image || DefaultProfileInput);
+        const image = profileImg || userInfo?.image;
+        const res = await profileEdit(formData, image, token);
+        localStorage.setItem("_id", res.data.user._id);
+        localStorage.setItem("accountname", formData.accountname);
+        navigate("/myprofile");
       }
     } catch (errors) {
       console.log(errors);
     }
   };
 
-  //isValid와 setAbledBtn에 변화가 있을때만 리렌더링
   useEffect(() => {
     setAbledBtn(isValid);
   }, [isValid, setAbledBtn]);
 
   return (
     <StyledProfileWrap>
-      <Header type='editprofile' />
-      <ProfileFormContainer onSubmit={handleSubmit(handleSubmitData)}>
+      <Header 
+      type='editprofile'
+      handleUpdateProfileBtn={isValid}
+      uploadHandler={handleSubmit(handleSubmitData)}
+       />
+      <ProfileFormContainer>
         <ImageFormContainer>
           <label>
             <InputImage
@@ -128,7 +123,7 @@ const ProfileEditForm = () => {
             onClick={() => inputRef.current.click()}
           >
             <StyledProfileImg
-              src={profileImg || DefaultProfileInput}
+              src={profileImg || userInfo?.image || DefaultProfileInput}
               alt='기본 프로필'
             />
           </ProfileInputImgButton>
@@ -138,6 +133,7 @@ const ProfileEditForm = () => {
           id='username'
           type='text'
           autoComplete='off'
+          defaultValue={userInfo?.username || ""}
           {...register('username', {
             required: '계정이름은 필수 입력입니다',
             minLength: {
@@ -156,10 +152,11 @@ const ProfileEditForm = () => {
         )}
         <StyledLabel>계정 ID</StyledLabel>
         <StyledInput
-          id='userid'
+          id='accountname'
           type='text'
           autoComplete='off'
-          {...register('userid', {
+          defaultValue={userInfo?.accountname || ""}
+          {...register('accountname', {
             required: '계정ID는 필수 입력입니다',
             pattern: {
               value: /^[0-9a-zA-Z._]+$/,
@@ -171,24 +168,25 @@ const ProfileEditForm = () => {
         {errors.userid && <StyledError>{errors.userid?.message}</StyledError>}
         <StyledLabel>소개</StyledLabel>
         <StyledInput
-          id='userintro'
+          id='intro'
           type='text'
+          defaultValue={userInfo?.intro || ""}
           autoComplete='off'
-          {...register('userintro', {
+          {...register('intro', {
             required: '간단한 소개 부탁드릴게요!',
           })}
           placeholder='자신을 나타낼 수 있는 소개 부탁드릴게요.'
         />
         {errors.userintro && (
-          <StyledError>{errors.userintro?.message}</StyledError>
+          <StyledError>{errors.intro?.message}</StyledError>
         )}
-        <StyledSaveButton
+{/*         <StyledSaveButton
           className='btn-profile-edit'
           $bgcolor={abledBtn ? 'active' : 'inactive'}
           disabled={!abledBtn}
         >
           저장
-        </StyledSaveButton>
+        </StyledSaveButton> */}
 
         {/*   <Input
           label='사용자 이름'

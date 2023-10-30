@@ -6,8 +6,9 @@ const StyledProfileWrap = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+  gap: 50px;
 `;
 
 const StyledLabel = styled.label`
@@ -88,6 +89,7 @@ const StyledSubText = styled.p`
 
 const ImageFormContainer = styled.div`
   margin: 0 auto;
+  margin-bottom: 70px;
 `;
 
 const ProfileFormContainer = styled.form`
@@ -95,7 +97,7 @@ const ProfileFormContainer = styled.form`
   flex-direction: column;
   align-items: flex-start;
 
-  gap: 10px;
+  gap: 12px;
 `;
 
 const InputImage = styled.input`

@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { userInfoApi } from "../../api/user";
 import Header from '../../components/common/Header/Header';
 import ProfileEditForm from '../../components/ProfileEdit/ProfileEditForm';
 //import ProfileSettingForm from '../../components/ProfileSetting/ProfileSettingForm';
@@ -25,9 +27,34 @@ z-index가 먹히지 않음 (position을 바꾸면 header 아래의 줄이 사�
 /* - ui 수정 안하면 안될까여.... */
 
 export default function ProfileEdit() {
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
+  const [userInfo, setUserInfo] = useState({
+    image: "",
+    username: "",
+    accountname: "",
+    intro: "",
+  });
+
+  
+  useEffect(() => {
+    prevUserInfo();
+  }, []);
+
+  const prevUserInfo = async () => {
+    try {
+      const res = await userInfoApi(token);
+      const { image, username, accountname, intro } = res.data.user;
+      setUserInfo({ image, username, accountname, intro });
+    } catch (error) {
+      console.error(error);
+      navigate("/error");
+    }
+  };
+
   return (
     <>
-      <ProfileEditForm />
+      <ProfileEditForm userInfo={userInfo} setUserInfo={setUserInfo}/>
       {/* <ProfileSettingForm /> */}
     </>
   );
