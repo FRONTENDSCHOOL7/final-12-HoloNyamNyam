@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const PlaceItem = styled.li`
+  max-width: 165px;
   min-width: 165px;
   height: 190px;
   border-radius: 8px;

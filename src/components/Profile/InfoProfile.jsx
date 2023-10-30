@@ -15,7 +15,6 @@ import {
 import { userInfoApi } from '../../api/user';
 import { ProfileApi } from '../../api/profile';
 import { userFeedCntApi } from '../../api/feed';
-import RatePlace from '../../components/Profile/RatePlace';
 import Loading from '../Loading/Loading';
 
 export default function InfoProfile({ type }) {
@@ -24,8 +23,6 @@ export default function InfoProfile({ type }) {
   const [follow, setFollow] = useState(true);
   const [followerInfo, setFollowerInfo] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [rateList, setRateList] = useState(false);
-
   const location = useLocation();
   const token = localStorage.getItem('token');
   const myId = localStorage.getItem('_id');
@@ -106,14 +103,6 @@ export default function InfoProfile({ type }) {
     setFollow(savedFollow === 'false');
   }, []);
 
-  useEffect(() => {
-    if (postCnt > 0) {
-      setRateList(true);
-    } else {
-      setRateList(false);
-    }
-  }, [postCnt]);
-
   return loading ? (
     <Loading />
   ) : (
@@ -156,7 +145,6 @@ export default function InfoProfile({ type }) {
         setFollow={setFollow}
         follow={follow}
       />
-      {rateList && <RatePlace name={userInfo.username} />}
     </>
   );
 }
