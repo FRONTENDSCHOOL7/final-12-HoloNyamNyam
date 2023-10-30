@@ -59,6 +59,7 @@ export default function FollowerList({ type, followType }) {
     type === 'followers'
       ? getFollowerList(limit, skip)
       : getFollowingList(limit, skip);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
   const followTypeUI = {

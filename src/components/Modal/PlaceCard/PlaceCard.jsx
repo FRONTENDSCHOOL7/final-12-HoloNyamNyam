@@ -39,10 +39,6 @@ export default function PlaceCard({ cardClose, id }) {
     setModal({ show: true, type: !accountname ? 'product' : 'yourproduct' });
   };
 
-  useEffect(() => {
-    getUserInfo();
-  }, [id]);
-
   const getUserInfo = async () => {
     const token = localStorage.getItem('token');
     try {
@@ -57,15 +53,21 @@ export default function PlaceCard({ cardClose, id }) {
         setShouldFetchProductInfo(false);
       });
     } catch (err) {
-      console.log('error');
+      console.error('error');
       navigation('/error');
     }
   };
 
   useEffect(() => {
+    getUserInfo();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
+
+  useEffect(() => {
     if (shouldFetchProductInfo) {
       getUserInfo();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [shouldFetchProductInfo]);
 
   return (

@@ -161,6 +161,21 @@ export default function Header({
         </ButtonWrap>
       </HeaderLayoutSection>
     ),
+    placeupload: (
+      <HeaderLayoutSection>
+        <HeaderTitle className='a11y-hidden'>냠냠평가 등록</HeaderTitle>
+        {renderHeaderLeftBtn()}
+        <Button
+          type='button'
+          content='저장'
+          size='s'
+          width='m'
+          $bgcolor={handleUploadBtn ? 'active' : 'inactive'}
+          // disabled={!handleUploadBtn}
+          onClick={uploadHandler}
+        />
+      </HeaderLayoutSection>
+    ),
   };
 
   return <HeaderWrap>{UI[type]}</HeaderWrap>;
