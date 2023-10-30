@@ -6,8 +6,9 @@ const StyledProfileWrap = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+  gap: 50px;
 `;
 
 const StyledLabel = styled.label`
@@ -88,6 +89,7 @@ const StyledSubText = styled.p`
 
 const ImageFormContainer = styled.div`
   margin: 0 auto;
+  margin-bottom: 70px;
 `;
 
 const ProfileFormContainer = styled.form`
@@ -95,15 +97,27 @@ const ProfileFormContainer = styled.form`
   flex-direction: column;
   align-items: flex-start;
 
-  gap: 10px;
+  gap: 12px;
 `;
 
 const InputImage = styled.input`
   display: none;
 `;
 
-const StyledButton = styled(ButtonStyle)`
+const StyledStartButton = styled(ButtonStyle)`
   margin-top: 10px;
+`;
+
+const StyledSaveButton = styled(ButtonStyle)`
+  width: 90px;
+  height: 32px;
+  position: relative;
+  top: -390px;
+  right: -250px;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const StyledError = styled.p`
@@ -112,13 +126,13 @@ const StyledError = styled.p`
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
-  line-height: 14px; /* 116.667% */
+  line-height: 14px;
 `;
 
 export {
   StyledProfileWrap,
   StyledFormTitle,
-  StyledButton,
+  StyledStartButton,
   StyledSubText,
   ImageFormContainer,
   ProfileFormContainer,
@@ -128,4 +142,5 @@ export {
   StyledInput,
   StyledProfileImg,
   ProfileInputImgButton,
+  StyledSaveButton,
 };

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { BASE_URL } from './baseUrl';
 
-export const ProfileApi = async (accountname, token) => {
+export const userProfileApi = async (accountname, token) => {
   try {
     const res = await axios.get(`${BASE_URL}/profile/${accountname}`, {
       headers: {
@@ -30,12 +30,12 @@ export const profileEdit = async (formData, image, token) => {
       {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-type": "application/json",
+          'Content-type': 'application/json',
         },
       },
     );
     return res;
   } catch (err) {
-    console.error("프로필 수정 오류 발생 : ", err);
+    console.error('프로필 수정 오류 발생 : ', err);
   }
 };

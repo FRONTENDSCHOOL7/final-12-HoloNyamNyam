@@ -27,6 +27,7 @@ export default function Header({
   searchKeyword,
   handleSearchKeyword,
   handleUploadBtn,
+  handleUpdateProfileBtn,
   yourAccountname,
 }) {
   const SocialSVG = ({
@@ -123,9 +124,24 @@ export default function Header({
           content='업로드'
           size='ms'
           width='ms'
-          bgColor={handleUploadBtn ? 'active' : 'inactive'}
+          $bgcolor={handleUploadBtn ? 'active' : 'inactive'}
           disabled={!handleUploadBtn}
           onClick={uploadHandler}
+        />
+      </HeaderLayoutSection>
+    ),
+    editprofile: (
+      <HeaderLayoutSection>
+        <HeaderTitle className='a11y-hidden'>프로필 수정</HeaderTitle>
+        {renderHeaderText("프로필 수정")}
+        <Button
+          type='button'
+          content='저장'
+          size='ms'
+          width='ms'
+          $bgcolor={handleUpdateProfileBtn ? 'active' : 'inactive'}
+          disabled={!handleUpdateProfileBtn}
+          onClick = {uploadHandler}
         />
       </HeaderLayoutSection>
     ),
