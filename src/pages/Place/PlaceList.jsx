@@ -5,6 +5,8 @@ import PlaceListItem from '../../components/Place/PlaceListItem';
 import Nav from '../../components/common/Nav/Nav';
 import styled from 'styled-components';
 import PlaceCard from '../../components/Modal/PlaceCard/PlaceCard';
+import { useRecoilState } from 'recoil';
+import { cardShowState } from '../../recoil/cardShowAtom';
 
 const List = styled.section`
   padding: 48px 0 60px 0;
@@ -23,7 +25,7 @@ export default function PlaceList() {
   const [selectedId, setSelectedId] = useState(null);
   const [cardClosed, setCardClosed] = useState(false);
 
-  const [cardShow, setCardShow] = useState(false);
+  const [cardShow, setCardShow] = useRecoilState(cardShowState);
   function cardClose(e) {
     if (e.target === e.currentTarget) {
       setCardShow(false);
@@ -46,7 +48,9 @@ export default function PlaceList() {
       <List>
         <PlaceWrap>
           <PlaceListItem cardOpen={cardOpen} cardClosed={cardClosed} />
-          {cardShow && <PlaceCard cardClose={cardClose} id={selectedId} />}
+          {cardShow && selectedId && (
+            <PlaceCard cardClose={cardClose} id={selectedId} />
+          )}
         </PlaceWrap>
       </List>
       <Nav />
