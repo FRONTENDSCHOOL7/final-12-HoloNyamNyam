@@ -40,6 +40,7 @@ const PlaceTextSection = styled.section`
 `;
 
 const PlaceName = styled.h4`
+  max-width: 202px;
   font-size: 20px;
   line-height: 20px;
   font-weight: 400;

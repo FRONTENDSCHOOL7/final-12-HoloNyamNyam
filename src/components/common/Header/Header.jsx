@@ -1,4 +1,3 @@
-// import React, { useState } from 'react';
 import React from 'react';
 import {
   HeaderWrap,
@@ -20,6 +19,8 @@ import sprite from '../../../images/SpriteIcon.svg';
 import { useSetRecoilState } from 'recoil';
 import { modalState } from '../../../recoil/modalAtom';
 import StarImg from '../../../images/Star.svg';
+import { useRecoilState } from 'recoil';
+import { viewBtnState } from '../../../recoil/viewBtnAtom';
 
 export default function Header({
   type,
@@ -28,6 +29,7 @@ export default function Header({
   handleSearchKeyword,
   handleUploadBtn,
   yourAccountname,
+  name,
 }) {
   const SocialSVG = ({
     id,
@@ -47,6 +49,8 @@ export default function Header({
   const modalOpen = () => {
     setModal({ show: true, type: 'myProfile' });
   };
+  const [viewMode, setViewMode] = useRecoilState(viewBtnState);
+
   function renderHeaderLeftBtn() {
     return (
       <HeaderLeftBtn type='button' aria-label='뒤로가기 버튼'>
@@ -60,7 +64,7 @@ export default function Header({
         <HeaderLeftBtn type='button' aria-label='뒤로가기 버튼'>
           <SocialSVG id='icon-arrow-left' onClick={() => navigate(-1)} />
         </HeaderLeftBtn>
-        <HeaderTextP>{text}</HeaderTextP>
+        <HeaderTextP title={text}>{text}</HeaderTextP>
       </HeaderSpan>
     );
   }
@@ -76,6 +80,13 @@ export default function Header({
       </HeaderRightBtn>
     );
   }
+
+  const handleViewModeChange = (mode) => {
+    if (viewMode === '최신순') {
+      mode = '별점순';
+    }
+    setViewMode(mode);
+  };
 
   const UI = {
     home: (
@@ -151,12 +162,12 @@ export default function Header({
     ),
     matzip: (
       <HeaderLayoutSection>
-        <HeaderTitle className='a11y-hidden'>냠냠평가</HeaderTitle>
-        {renderHeaderText('냠냠평가')}
+        <HeaderTitle className='a11y-hidden'>{name}님의 냠냠평가</HeaderTitle>
+        {renderHeaderText(`${name}님의 냠냠평가`)}
         <ButtonWrap>
-          <SortButton>
+          <SortButton onClick={() => handleViewModeChange('최신순')}>
             <Star src={StarImg} />
-            &nbsp;별점순으로 보기&nbsp;
+            &nbsp;{viewMode}으로 보기&nbsp;
           </SortButton>
         </ButtonWrap>
       </HeaderLayoutSection>
