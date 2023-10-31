@@ -39,7 +39,6 @@ const StyledLabel = styled.label`
   color: var(--767676, #767676);
   font-family: Spoqa Han Sans Neo;
   font-size: 12px;
-  font-style: normal;
   font-weight: 500;
   line-height: normal;
 `;

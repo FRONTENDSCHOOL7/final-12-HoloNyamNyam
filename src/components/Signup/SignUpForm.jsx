@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from 'react';
+import Input from "../../components/common/Input/Input";
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { EmailValid } from '../../api/signUp';
-//import Input from '../common/Input/Input';
+import { StyledLabel, StyledInput } from '../common/Input/StyledInput';
 import {
   StyledSignUpWrap,
   StyledTitle,
   StyledFormWrap,
   StyledButton,
-  StyledLabel,
-  StyledInput,
+  //StyledLabel,
+  //StyledInput,
   StyledError,
-} from './SignUpStyle';
+} from './StyledSignUp';
 
 const SignUpForm = () => {
   const {
     register,
     handleSubmit,
     clearErrors,
-    setError,
     formState: { errors, isValid },
   } = useForm({
     mode: 'onSubmit',
@@ -28,6 +28,7 @@ const SignUpForm = () => {
     },
   });
 
+  const [hasError, setHasError] = useState(false);
   const navigate = useNavigate();
   const [abledBtn, setAbledBtn] = useState(true);
 
@@ -39,7 +40,7 @@ const SignUpForm = () => {
       const reqMsg = res.data.message;
       clearErrors('email');
       if (reqMsg === '이미 가입된 이메일 주소 입니다.') {
-        setError('email', {
+        setHasError('email', {
           type: 'manual',
           message: '이미 가입된 이메일 주소 입니다.',
         });
@@ -73,11 +74,29 @@ const SignUpForm = () => {
     <StyledSignUpWrap>
       <StyledTitle>회원가입을 도와드릴게요!</StyledTitle>
       <StyledFormWrap onSubmit={handleSubmit(handleSubmitData)}>
-        {/* <Input
+        <StyledLabel>이메일</StyledLabel>
+        <StyledInput 
+        id='email'
+        type='email'
+        placeholder='이메일을 입력해주세요.'
+        onChange = {handleSubmitData}
+        hasError={hasError}
+        registerOptions={{
+          ...register('email', {
+            required: '이메일은 필수 입력입니다.',
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              message: '유효하지 않은 이메일 포맷이에요 :(',
+            },
+          }),
+          errors
+        }}/>
+          <Input
           label='이메일'
           id='email'
           type='email'
           placeholder='이메일을 입력해주세요.'
+          onChange = {handleSubmitData}
           hasError={hasError}
           registerOptions={{
             ...register('email', {
@@ -87,14 +106,16 @@ const SignUpForm = () => {
                 message: '유효하지 않은 이메일 포맷이에요 :(',
               },
             }),
+            errors
           }}
         />
-        {errors.email && <ErrorStyle>{errors.email?.message}</ErrorStyle>}
+        {/* {errors.email && <StyledError>{errors.email?.message}</StyledError>} */} 
 
-        <Input
+     {/*    <Input
           label='비밀번호'
           type='passwordID'
           placeholder='비밀번호를 입력해주세요'
+          onChange = {handleSubmitData}
           hasError={hasError}
           registerOptions={{
             ...register('password', {
@@ -104,9 +125,10 @@ const SignUpForm = () => {
                 message: '비밀번호는 6자 이상이여야해요 :(',
               },
             }),
+            errors
           }}
         />
-        <ErrorStyle>{errors.password?.message}</ErrorStyle> */}
+        <StyledError>{errors.password?.message}</StyledError>
         <StyledLabel>이메일</StyledLabel>
         <StyledInput
           autoComplete='off'
@@ -133,7 +155,7 @@ const SignUpForm = () => {
           })}
           placeholder='비밀번호를 입력해주세요'
         />
-        <StyledError>{errors.password?.message}</StyledError>
+        <StyledError>{errors.password?.message}</StyledError> */}
         <StyledButton
           type='submit'
           className='btn-signup'
@@ -141,7 +163,7 @@ const SignUpForm = () => {
           disabled={!abledBtn}
         >
           다음
-        </StyledButton>
+        </StyledButton> 
       </StyledFormWrap>
     </StyledSignUpWrap>
   );

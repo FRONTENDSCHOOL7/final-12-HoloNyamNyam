@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+//import Input from '../../components/common/Input/Input'
 import { useForm } from 'react-hook-form';
 import { UserIdValid, signup } from '../../api/signUp';
 import { imgUpload } from '../../api/imgUpload';
@@ -130,6 +131,19 @@ const ProfileSettingForm = () => {
           />
         </ProfileInputImgButton>
       </ImageFormContainer>
+{/*       <Input
+          label='사용자 이름'
+          id='username'
+          type='text'
+          placeholder='2~10자 이내로 작성 부탁드릴게요.'
+          onChange={handleFieldChange}
+          hasError={hasError}
+          registerOptions={{
+            ...register('username', {
+              requried: '사용자 이름은 필수입니다',
+            }),
+          }}
+        /> */}
       <StyledLabel>사용자 이름</StyledLabel>
       <StyledInput
         id='username'
@@ -195,35 +209,6 @@ const ProfileSettingForm = () => {
           저장
         </StyledSaveButton>
       )}
-
-      {/*   <Input
-          label='사용자 이름'
-          id='username'
-          type='text'
-          placeholder='2~10자 이내로 작성 부탁드릴게요.'
-          onChange={handleFieldChange}
-          hasError={hasError}
-          registerOptions={{
-            ...register('username', {
-              requried: '사용자 이름은 필수입니다',
-            }),
-          }}
-        />
-        <ErrorStyle>{errors.userName?.message}</ErrorStyle>
-        <Input
-          label='계정 ID'
-          id='user-id'
-          type='text'
-          placeholder='영문, 숫자, 특수문자(.),(_)만 사용 가능해요.'
-          hasError='true'
-        />
-        <ErrorStyle>{errors.userID?.message}</ErrorStyle>
-        <Input
-          label='소개'
-          id='user-desc'
-          type='text'
-          placeholder='자신과 판매할 상품에 대해 소개해 주세요!'
-          h */}
     </ProfileFormContainer>
   );
 };

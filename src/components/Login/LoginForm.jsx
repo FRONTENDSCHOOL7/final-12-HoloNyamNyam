@@ -64,6 +64,7 @@ export default function LoginForm() {
       <StyledInputWrap>
         <Input
           label='이메일'
+          padding = "login"
           id='email'
           type='email'
           onChange={handleFieldChange}

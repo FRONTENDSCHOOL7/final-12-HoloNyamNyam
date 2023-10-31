@@ -3,6 +3,7 @@ import { StyledLabel, StyledInput, StyledError } from './StyledInput';
 
 const Input = ({
   label,
+  padding,
   id,
   type,
   placeholder,
@@ -24,7 +25,9 @@ const Input = ({
 
   return (
     <>
-      <StyledLabel>{label}</StyledLabel>
+      <StyledLabel
+      padding = {padding}
+      >{label}</StyledLabel>
       <StyledInput
         id={id}
         type={type}

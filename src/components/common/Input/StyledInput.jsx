@@ -3,7 +3,12 @@ import styled, { keyframes } from 'styled-components';
 const StyledLabel = styled.label`
   display: block;
   text-align: left;
-  padding: 0 34px;
+  padding: ${(props) => 
+    props.$padding === "login"
+    ? '0 34px'
+    : props.$padding ===  "signup"
+    ? '0px'
+    : null};
   font-size: 12px;
   color: #767676;
   pointer-events: none;
@@ -26,7 +31,6 @@ const StyledInput = styled.input`
     color: #dbdbdb;
   }
   &:focus {
-    /* outline: none; */
     border-bottom: 1px solid #ff644b;
   }
 `;
