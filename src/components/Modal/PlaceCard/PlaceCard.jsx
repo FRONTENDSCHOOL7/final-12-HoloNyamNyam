@@ -39,10 +39,6 @@ export default function PlaceCard({ cardClose, id }) {
     setModal({ show: true, type: !accountname ? 'product' : 'yourproduct' });
   };
 
-  useEffect(() => {
-    getUserInfo();
-  }, [id]);
-
   const getUserInfo = async () => {
     const token = localStorage.getItem('token');
     try {
@@ -63,9 +59,15 @@ export default function PlaceCard({ cardClose, id }) {
   };
 
   useEffect(() => {
+    getUserInfo();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
+
+  useEffect(() => {
     if (shouldFetchProductInfo) {
       getUserInfo();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [shouldFetchProductInfo]);
 
   return (
