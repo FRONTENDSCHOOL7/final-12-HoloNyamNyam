@@ -7,6 +7,7 @@ const PlaceItem = styled.li`
   border-radius: 8px;
   border: 1px solid #e0e0e0;
   box-sizing: border-box;
+  cursor: pointer;
   &:hover {
     background-color: rgba(0, 0, 0, 0.03);
     /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px; */

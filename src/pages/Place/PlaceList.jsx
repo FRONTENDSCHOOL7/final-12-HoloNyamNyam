@@ -25,8 +25,18 @@ const PlaceWrap = styled.ul`
 export default function PlaceList() {
   const [selectedId, setSelectedId] = useState(null);
   const [cardClosed, setCardClosed] = useState(false);
+  const [name, setName] = useState('');
   const location = useLocation();
-  const { nickname } = location.state;
+  const { nickname } = location.state || {};
+
+  useEffect(() => {
+    if (nickname) {
+      setName(nickname.name);
+      localStorage.setItem('nickname', nickname.name);
+    } else {
+      setName(localStorage.getItem('nickname'));
+    }
+  }, [nickname]);
 
   const [cardShow, setCardShow] = useRecoilState(cardShowState);
   function cardClose(e) {
@@ -47,7 +57,7 @@ export default function PlaceList() {
   }, [cardClosed]);
   return (
     <>
-      <Header type='matzip' name={nickname.name} />
+      <Header type='matzip' name={name} />
       <List>
         <PlaceWrap>
           <PlaceListItem cardOpen={cardOpen} cardClosed={cardClosed} />
