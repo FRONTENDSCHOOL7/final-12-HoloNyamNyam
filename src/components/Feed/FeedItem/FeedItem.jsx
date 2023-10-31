@@ -50,7 +50,7 @@ export default function FeedItem({
   const [heartCnt, setHeartCnt] = useState(infoToIterate.heartCount);
 
   function moveDetail(id) {
-    navigate('/detailfeed', {
+    navigate('/feeddetail', {
       state: {
         id: id,
         infoToIterate: infoToIterate,
@@ -133,15 +133,21 @@ export default function FeedItem({
           </MoreBtn>
         </FeedUser>
       )}
-      <FeedContent
-        onClick={detail === true ? null : () => moveDetail(infoToIterate.id)}
-        style={{ cursor: detail === true ? 'default' : 'pointer' }}
-      >
-        <FeedText>{infoToIterate.content}</FeedText>
+      <FeedContent>
+        <FeedText
+          onClick={detail === true ? null : () => moveDetail(infoToIterate.id)}
+          style={{ cursor: detail === true ? 'default' : 'pointer' }}
+        >
+          {infoToIterate.content}
+        </FeedText>
         {infoToIterate.image && infoToIterate.author && (
           <Carousel
             images={infoToIterate.image}
             userInfo={infoToIterate.author.username}
+            onImageClick={
+              detail === true ? null : () => moveDetail(infoToIterate.id)
+            }
+            detail={detail}
           />
         )}
         <FeedInfoBox>

@@ -85,7 +85,7 @@ export default function Nav() {
           </NavLink>
         </li>
         <li>
-          <NavLink to='/makefeed'>
+          <NavLink to='/feedupload'>
             <NavSVG id='icon-edit' />
             <StyledNavText>게시물 작성</StyledNavText>
           </NavLink>

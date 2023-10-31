@@ -16,7 +16,7 @@ export const feedUploadApi = async (content, image, token) => {
   await axios.post(
     `${BASE_URL}/post`,
     {
-      Feed: {
+      post: {
         content: content,
         image: image,
       },

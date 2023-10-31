@@ -39,6 +39,7 @@ const FeedContent = styled.div`
 `;
 const FeedText = styled.p`
   margin-bottom: 17px;
+  white-space: pre-wrap;
 `;
 const FeedImg = styled.img`
   display: block;

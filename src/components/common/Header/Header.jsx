@@ -129,7 +129,8 @@ export default function Header({
     upload: (
       <HeaderLayoutSection>
         <HeaderTitle className='a11y-hidden'>게시물 작성</HeaderTitle>
-        {renderHeaderLeftBtn()}
+        {/* {renderHeaderLeftBtn()} */}
+        {renderHeaderText('냠냠피드 작성')}
         <Button
           type='button'
           content='업로드'
