@@ -33,8 +33,11 @@ const PlaceInfo = styled.div`
 `;
 
 const PlaceName = styled.p`
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 14px;
   font-weight: 400;
+  white-space: nowrap;
   margin-bottom: 5px;
 `;
 

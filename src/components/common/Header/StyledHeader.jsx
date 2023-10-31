@@ -61,8 +61,12 @@ const HeaderSpan = styled.span`
 `;
 
 const HeaderTextP = styled.p`
+  text-overflow: ellipsis;
+  width: 180px;
+  white-space: nowrap;
   display: inline-block;
   font-size: 14px;
+  overflow: hidden;
   font-weight: 600;
 `;
 

@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import PlaceCard from '../../components/Modal/PlaceCard/PlaceCard';
 import { useRecoilState } from 'recoil';
 import { cardShowState } from '../../recoil/cardShowAtom';
+import { useLocation } from 'react-router-dom';
 
 const List = styled.section`
   padding: 48px 0 60px 0;
@@ -24,6 +25,8 @@ const PlaceWrap = styled.ul`
 export default function PlaceList() {
   const [selectedId, setSelectedId] = useState(null);
   const [cardClosed, setCardClosed] = useState(false);
+  const location = useLocation();
+  const { nickname } = location.state;
 
   const [cardShow, setCardShow] = useRecoilState(cardShowState);
   function cardClose(e) {
@@ -44,7 +47,7 @@ export default function PlaceList() {
   }, [cardClosed]);
   return (
     <>
-      <Header type='matzip' />
+      <Header type='matzip' name={nickname.name} />
       <List>
         <PlaceWrap>
           <PlaceListItem cardOpen={cardOpen} cardClosed={cardClosed} />

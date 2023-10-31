@@ -14,17 +14,20 @@ import { userSearch } from '../../api/search';
 
 export default function RatePlace({ cardOpen, cardClosed }) {
   const navigate = useNavigate();
-  function movePlaceList() {
-    navigate('/placelist');
+
+  function movePlaceList(id) {
+    navigate('/placelist', {
+      state: { accountname: id, nickname: { name } },
+    });
   }
 
   const [name, setName] = useState([]);
   const location = useLocation();
   const [rateList, setRateList] = useState(false);
 
+  const { accountname } = location.state || {};
   useEffect(() => {
     const getUserInfo = async () => {
-      const { accountname } = location.state || {};
       const token = localStorage.getItem('token');
       try {
         const res = await placeListApi(
@@ -47,7 +50,7 @@ export default function RatePlace({ cardOpen, cardClosed }) {
       }
     };
     getUserInfo();
-  }, [location, navigate]);
+  }, [location, navigate, accountname]);
 
   return (
     <>
@@ -59,7 +62,9 @@ export default function RatePlace({ cardOpen, cardClosed }) {
             size='ms'
             $border='active'
             color='active'
-            onClick={movePlaceList}
+            onClick={() =>
+              movePlaceList(accountname || localStorage.getItem('accountname'))
+            }
           >
             더보기
           </MoreViewBtn>
