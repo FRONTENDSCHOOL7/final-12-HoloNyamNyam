@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const ChatNavBar = styled.nav`
   position: fixed;
-  max-width: 356px;
+  max-width: 390px;
   margin: 0 auto;
   left: 0;
   right: 0;
@@ -12,6 +12,7 @@ const ChatNavBar = styled.nav`
   align-items: center;
   padding: 13px 16px;
   background-color: white;
+  box-sizing: border-box;
 `;
 
 const ImageIcon = styled.img`

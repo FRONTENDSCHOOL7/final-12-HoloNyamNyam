@@ -116,11 +116,7 @@ export default function Modal({
     myProfile: (
       <ModalWrapArticle>
         <ModalLineSpan />
-        {detail || (
-          <ModalTextBtn onClick={handlerMyProfile}>
-            설정 및 개인정보
-          </ModalTextBtn>
-        )}
+        <ModalTextBtn onClick={handlerMyProfile}>설정 및 개인정보</ModalTextBtn>
         <ModalTextBtn onClick={() => alertOpen('logout')}>
           로그아웃
         </ModalTextBtn>
@@ -187,7 +183,7 @@ export default function Modal({
       </ModalWrapArticle>
     ),
     chat: (
-      <ModalWrapArticle>
+      <ModalWrapArticle style={{ borderBottom: '1px solid #dbdbdb' }}>
         <ModalLineSpan />
         <ModalTextBtn onClick={() => alertOpen('reportUser')}>
           신고하기

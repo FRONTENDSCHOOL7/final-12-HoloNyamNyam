@@ -3,7 +3,8 @@ import sprite from '../../../images/SpriteIcon.svg';
 
 const StyledContainer = styled.section`
   width: 100%;
-  height: calc(100vh - 48px);
+  /* height: calc(100vh - 48px); */
+  height: 100vh;
   padding-top: 48px;
   overflow: hidden;
   background: #fff;

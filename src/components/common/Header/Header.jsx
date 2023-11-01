@@ -31,6 +31,7 @@ export default function Header({
   handleUpdateProfileBtn,
   yourAccountname,
   name,
+  own,
 }) {
   const SocialSVG = ({
     id,
@@ -115,7 +116,7 @@ export default function Header({
     profile: (
       <HeaderLayoutSection>
         <HeaderTitle className='a11y-hidden'>프로필</HeaderTitle>
-        {renderHeaderLeftBtn()}
+        {own === 'my' ? renderHeaderText('나의 프로필') : renderHeaderLeftBtn()}
         {renderHeaderRightBtn()}
       </HeaderLayoutSection>
     ),

@@ -47,6 +47,7 @@ export default function FeedList() {
   const [page, setPage] = useState(0);
   const limit = 10;
   const [loading, setLoading] = useState(true);
+  const where = localStorage.getItem('accountname');
 
   const { accountname } = location.state || {};
   const handleViewModeChange = (mode) => {
@@ -85,7 +86,7 @@ export default function FeedList() {
   }, []);
 
   function moveDetail(item) {
-    navigate(`/detailfeed`, {
+    navigate(`/feeddetail`, {
       state: {
         id: item.id,
         infoToIterate: item,
@@ -168,7 +169,12 @@ export default function FeedList() {
                 <FeedListItem key={item.id}>
                   <FeedItem
                     modalOpen={() =>
-                      modalOpen(!accountname ? 'myFeed' : 'yourFeed', item)
+                      modalOpen(
+                        where === item.author.accountname
+                          ? 'myFeed'
+                          : 'yourFeed',
+                        item,
+                      )
                     }
                     feedInfo={item}
                     getUserInfo={getUserInfo}
