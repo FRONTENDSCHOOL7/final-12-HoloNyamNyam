@@ -13,6 +13,7 @@ import {
   TitleWrapper,
 } from './PlaceCardStyle';
 import { getPlaceInfoApi } from '../../../api/place';
+import PlaceEdit from '../../Place/PlaceEdit';
 import sprite from '../../../images/SpriteIcon.svg';
 import { useRecoilState } from 'recoil';
 import Modal from '../Modal/Modal';
@@ -33,6 +34,7 @@ export default function PlaceCard({ cardClose, id }) {
     address: '',
   });
   const navigation = useNavigate();
+  const [placeEditModalOpen, setPlaceEditModalOpen] = useState(false);
   const [shouldFetchProductInfo, setShouldFetchProductInfo] = useState(false);
   const [modal, setModal] = useRecoilState(modalState);
   const modalOpen = () => {
@@ -62,6 +64,16 @@ export default function PlaceCard({ cardClose, id }) {
     getUserInfo();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
+
+  const openPlaceEditModal = () => {
+    setPlaceEditModalOpen(true);
+  };
+  const closePlaceEditModal = () => {
+    setPlaceEditModalOpen(false);
+    setShouldFetchProductInfo(true);
+    setModal((prevModal) => ({ ...prevModal, show: false }));
+    getUserInfo();
+  };
 
   useEffect(() => {
     if (shouldFetchProductInfo) {
@@ -93,8 +105,12 @@ export default function PlaceCard({ cardClose, id }) {
           type='myPlace'
           productId={id}
           restaurantName={placeInfo.itemName}
+          handlerPlaceEdit={openPlaceEditModal}
           placeInfo={placeInfo}
         />
+      )}
+      {placeEditModalOpen && (
+        <PlaceEdit closeModal={closePlaceEditModal} productId={id} />
       )}
     </PlaceDim>
   );
