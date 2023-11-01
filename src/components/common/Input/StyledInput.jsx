@@ -3,12 +3,12 @@ import styled, { keyframes } from 'styled-components';
 const StyledLabel = styled.label`
   display: block;
   text-align: left;
-  padding: ${(props) => 
-    props.$padding === "login"
-    ? '0 34px'
-    : props.$padding ===  "signup"
-    ? '0px'
-    : null};
+  padding: ${(props) =>
+    props.padding === 'login'
+      ? '0 34px'
+      : props.padding === 'signup'
+      ? '0px'
+      : null};
   font-size: 12px;
   color: #767676;
   pointer-events: none;
@@ -57,7 +57,14 @@ const StyledError = styled.p`
   font-size: 12px;
   color: red;
   position: absolute;
-  bottom: -18px;
+  bottom: ${(props) =>
+    props.$bottom === 'login'
+      ? '-18px'
+      : props.$bottom === 'signup-email'
+      ? '0px'
+      : props.$bottom === 'signup-pw'
+      ? '0px'
+      : null}
   left: 35px;
 `;
 

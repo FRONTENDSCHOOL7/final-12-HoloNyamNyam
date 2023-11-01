@@ -25,9 +25,7 @@ const Input = ({
 
   return (
     <>
-      <StyledLabel
-      padding = {padding}
-      >{label}</StyledLabel>
+      <StyledLabel padding={padding}>{label}</StyledLabel>
       <StyledInput
         id={id}
         type={type}
@@ -38,7 +36,7 @@ const Input = ({
         $hasError={hasError}
         {...restRegisterOptions}
       />
-      {errors[id] && <StyledError>{errors[id].message}</StyledError>}
+      {/* {errors[id] && <StyledError>{errors[id].message}</StyledError>} */}
     </>
   );
 };

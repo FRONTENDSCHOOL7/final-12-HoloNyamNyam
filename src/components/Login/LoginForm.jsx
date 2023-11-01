@@ -64,7 +64,7 @@ export default function LoginForm() {
       <StyledInputWrap>
         <Input
           label='이메일'
-          padding = "login"
+          padding='login'
           id='email'
           type='email'
           onChange={handleFieldChange}
@@ -87,6 +87,7 @@ export default function LoginForm() {
         <Input
           label='비밀번호'
           id='password'
+          padding='login'
           type='password'
           onChange={handleFieldChange}
           placeholder='비밀번호를 입력해 주세요.'

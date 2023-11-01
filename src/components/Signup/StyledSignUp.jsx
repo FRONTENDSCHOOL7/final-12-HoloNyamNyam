@@ -73,7 +73,14 @@ const StyledError = styled.p`
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
-  line-height: 14px; /* 116.667% */
+  line-height: 14px;
+  position: absolute;
+  bottom: ${(props) =>
+    props.bottom === 'email'
+      ? '340px'
+      : props.bottom === 'pw'
+      ? '220px'
+      : null};
 `;
 
 export {
