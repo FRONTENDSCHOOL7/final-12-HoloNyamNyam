@@ -1,5 +1,5 @@
 import React from 'react';
-import UserProfile from '../../images/user_profile.png';
+import UserProfile from '../../images/basic-profile-img.svg';
 import {
   MessageWrap,
   ProfileImg,
