@@ -11,6 +11,7 @@ const NavWrapper = styled.nav`
   bottom: 0;
   background-color: #ffffff;
   border-top: 1px solid #dbdbdb;
+  box-shadow: 0px 3px 7px #c4c4c4;
 `;
 
 const NavList = styled.ul`

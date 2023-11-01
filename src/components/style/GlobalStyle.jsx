@@ -76,6 +76,7 @@ export const GlobalStyle = createGlobalStyle`
     min-height: 100vh;
     margin: 0 auto;
     background-color: #fff;
+    box-shadow: 0px 0px 7px #c4c4c4;
   }
 `;
 

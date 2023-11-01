@@ -9,6 +9,8 @@ const ModalDim = styled.div`
   background-color: rgba(0, 0, 0, 0.3);
   width: 100%;
   max-width: 390px;
+  box-sizing: border-box;
+  z-index: 101;
 `;
 
 const slideUp = keyframes`
@@ -26,7 +28,7 @@ const ModalWrapArticle = styled.article`
   background-color: white;
   box-sizing: border-box;
   position: absolute;
-  bottom: 0;
+  bottom: 0px;
   width: 100%;
   animation: ${slideUp} 0.5s ease;
 `;

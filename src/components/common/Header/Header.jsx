@@ -31,6 +31,7 @@ export default function Header({
   handleUpdateProfileBtn,
   yourAccountname,
   name,
+  own,
 }) {
   const SocialSVG = ({
     id,
@@ -110,7 +111,7 @@ export default function Header({
     profile: (
       <HeaderLayoutSection>
         <HeaderTitle className='a11y-hidden'>프로필</HeaderTitle>
-        {renderHeaderLeftBtn()}
+        {own === 'my' ? renderHeaderText('나의 프로필') : renderHeaderLeftBtn()}
         {renderHeaderRightBtn()}
       </HeaderLayoutSection>
     ),
@@ -145,7 +146,7 @@ export default function Header({
     editprofile: (
       <HeaderLayoutSection>
         <HeaderTitle className='a11y-hidden'>프로필 수정</HeaderTitle>
-        {renderHeaderText("프로필 수정")}
+        {renderHeaderText('프로필 수정')}
         <Button
           type='button'
           content='저장'
@@ -153,7 +154,7 @@ export default function Header({
           width='ms'
           $bgcolor={handleUpdateProfileBtn ? 'active' : 'inactive'}
           disabled={!handleUpdateProfileBtn}
-          onClick = {uploadHandler}
+          onClick={uploadHandler}
         />
       </HeaderLayoutSection>
     ),
