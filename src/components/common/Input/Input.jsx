@@ -36,7 +36,7 @@ const Input = ({
         $hasError={hasError}
         {...restRegisterOptions}
       />
-      {/* {errors[id] && <StyledError>{errors[id].message}</StyledError>} */}
+      {errors[id] && <StyledError>{errors[id].message}</StyledError>}
     </>
   );
 };

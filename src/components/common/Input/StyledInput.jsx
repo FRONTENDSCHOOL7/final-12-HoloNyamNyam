@@ -3,12 +3,7 @@ import styled, { keyframes } from 'styled-components';
 const StyledLabel = styled.label`
   display: block;
   text-align: left;
-  padding: ${(props) =>
-    props.padding === 'login'
-      ? '0 34px'
-      : props.padding === 'signup'
-      ? '0px'
-      : null};
+  padding: 0 34px;
   font-size: 12px;
   color: #767676;
   pointer-events: none;
@@ -16,6 +11,7 @@ const StyledLabel = styled.label`
 `;
 
 const StyledInput = styled.input`
+  padding: 0;
   display: block;
   width: 322px;
   border: none;

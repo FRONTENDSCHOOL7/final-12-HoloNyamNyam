@@ -1,19 +1,13 @@
-import React, { useState, useEffect } from 'react';
-//import { StyledError } from '../../components/common/Input/StyledInput';
+import React, { useState } from 'react';
 import Input from '../../components/common/Input/Input';
-import {
-  StyledLabel,
-  StyledInput,
-} from '../../components/common/Input/StyledInput';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { EmailValid } from '../../api/signUp';
 import {
   StyledSignUpWrap,
+  StyledInputWrap,
   StyledTitle,
-  StyledFormWrap,
   StyledButton,
-  StyledError,
 } from './StyledSignUp';
 
 const SignUpForm = () => {
@@ -38,8 +32,7 @@ const SignUpForm = () => {
       clearErrors('email');
       if (reqMsg === '이미 가입된 이메일 주소 입니다.') {
         setError('email', {
-          type: 'manual',
-          message: '이미 가입된 이메일 주소 입니다.',
+          message: '*이미 사용 중인 이메일 주소예요. ',
         });
         setHasError(true);
         return false;
@@ -65,7 +58,7 @@ const SignUpForm = () => {
         });
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -76,54 +69,54 @@ const SignUpForm = () => {
   return (
     <StyledSignUpWrap>
       <StyledTitle>회원가입을 도와드릴게요!</StyledTitle>
-      <StyledFormWrap
+      <form
         onSubmit={handleSubmit((data) => {
           setHasError(false);
           handleSubmitData(data);
         })}
       >
-        <Input
-          label='이메일'
-          padding='signup'
-          id='email'
-          type='email'
-          placeholder='이메일을 입력해주세요.'
-          onChange={handleFieldChange}
-          hasError={hasError}
-          registerOptions={{
-            ...register('email', {
-              required: '이메일은 필수 입력입니다.',
-              pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: '유효하지 않은 이메일 포맷이에요 :(',
-              },
-            }),
-          }}
-        />
-        {errors.email && (
-          <StyledError bottom='email'>{errors.email?.message}</StyledError>
-        )}
-        <Input
-          label='비밀번호'
-          padding='signup'
-          id='password'
-          type='password'
-          placeholder='비밀번호를 입력해주세요.'
-          onChange={handleFieldChange}
-          hasError={hasError}
-          registerOptions={{
-            ...register('password', {
-              required: '비밀번호는 필수 입력입니다.',
-              minLength: {
-                value: 6,
-                message: '비밀번호는 6자 이상이여야해요 :(',
-              },
-            }),
-          }}
-        />
-        {errors.password && (
-          <StyledError bottom='pw'>{errors.password?.message}</StyledError>
-        )}
+        <StyledInputWrap>
+          <Input
+            label='이메일'
+            padding='signup'
+            id='email'
+            type='email'
+            placeholder='id@example.com'
+            onChange={handleFieldChange}
+            hasError={hasError}
+            registerOptions={{
+              ...register('email', {
+                required: '*이메일은 필수 입력 값이에요.',
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: '*유효하지 않은 이메일 포맷이에요.',
+                },
+              }),
+              errors: errors.email ? { email: errors.email } : error,
+            }}
+          />
+        </StyledInputWrap>
+        <StyledInputWrap>
+          <Input
+            label='비밀번호'
+            padding='signup'
+            id='password'
+            type='password'
+            placeholder='6자 이상, 문자/숫자/기호사용 가능해요.'
+            onChange={handleFieldChange}
+            hasError={hasError}
+            registerOptions={{
+              ...register('password', {
+                required: '*비밀번호는 필수 입력 값이에요.',
+                minLength: {
+                  value: 6,
+                  message: '*비밀번호는 최소 6자 이상 입력해야 해요.',
+                },
+              }),
+              errors,
+            }}
+          />
+        </StyledInputWrap>
         <StyledButton
           type='submit'
           className='btn-signup'
@@ -132,7 +125,7 @@ const SignUpForm = () => {
         >
           다음
         </StyledButton>
-      </StyledFormWrap>
+      </form>
     </StyledSignUpWrap>
   );
 };
