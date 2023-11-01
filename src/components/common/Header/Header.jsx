@@ -144,7 +144,7 @@ export default function Header({
     editprofile: (
       <HeaderLayoutSection>
         <HeaderTitle className='a11y-hidden'>프로필 수정</HeaderTitle>
-        {renderHeaderText("프로필 수정")}
+        {renderHeaderText('프로필 수정')}
         <Button
           type='button'
           content='저장'
@@ -152,7 +152,7 @@ export default function Header({
           width='ms'
           $bgcolor={handleUpdateProfileBtn ? 'active' : 'inactive'}
           disabled={!handleUpdateProfileBtn}
-          onClick = {uploadHandler}
+          onClick={uploadHandler}
         />
       </HeaderLayoutSection>
     ),

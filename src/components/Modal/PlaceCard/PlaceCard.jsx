@@ -90,7 +90,8 @@ export default function PlaceCard({ cardClose, id }) {
         <Modal
           type='myPlace'
           productId={id}
-          restaurantName={placeInfo.itemName}
+          placeName={placeInfo.itemName}
+          placeLink={placeInfo.link}
           placeInfo={placeInfo}
         />
       )}
