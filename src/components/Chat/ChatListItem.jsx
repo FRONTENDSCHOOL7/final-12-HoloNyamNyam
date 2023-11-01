@@ -10,7 +10,7 @@ import {
   ChatContent,
   Date,
 } from './ChatListItemStyle';
-import userProfile from '../../images/user_profile.png';
+import userProfile from '../../images/basic-profile-img.svg';
 
 export default function ChatListItem() {
   const chatListData = [

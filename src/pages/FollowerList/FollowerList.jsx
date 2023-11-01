@@ -3,8 +3,15 @@ import FollowItem from '../../components/FollowItem/FollowItem';
 import Header from '../../components/common/Header/Header';
 import Nav from '../../components/common/Nav/Nav';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { FollowList, FollowListItem } from './FollowerListStyle';
+import {
+  FollowList,
+  FollowListItem,
+  NoFollowCryImg,
+  ImgWrap,
+  NoFollowP,
+} from './FollowerListStyle';
 import { followerListApi, followingListApi } from '../../api/follow';
+import FeedlistImg from '../../images/feedList-logo.svg';
 
 export default function FollowerList({ type, followType }) {
   const token = localStorage.getItem('token');
@@ -80,6 +87,12 @@ export default function FollowerList({ type, followType }) {
               </FollowListItem>
             );
           })}
+          {followerList.length === 0 && (
+            <ImgWrap>
+              <NoFollowCryImg src={FeedlistImg} alt='이미지 설명' />
+              <NoFollowP>아무도 없어요</NoFollowP>
+            </ImgWrap>
+          )}
           <div ref={observer} />
         </FollowList>
         <Nav />
@@ -105,6 +118,12 @@ export default function FollowerList({ type, followType }) {
               </FollowListItem>
             );
           })}
+          {followingList.length === 0 && (
+            <ImgWrap>
+              <NoFollowCryImg src={FeedlistImg} alt='이미지 설명' />
+              <NoFollowP>아무도 없어요</NoFollowP>
+            </ImgWrap>
+          )}
           <div ref={observer} />
         </FollowList>
         <Nav />

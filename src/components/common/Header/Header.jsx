@@ -91,7 +91,12 @@ export default function Header({
 
   const UI = {
     home: (
-      <HeaderLayoutSection>
+      <HeaderLayoutSection
+        style={{
+          backgroundImage: 'linear-gradient(-45deg, #ff3945 0%, #ff9052 100%)',
+          color: '#fff',
+        }}
+      >
         <HeaderTitle>냠냠피드</HeaderTitle>
       </HeaderLayoutSection>
     ),
@@ -145,7 +150,7 @@ export default function Header({
     editprofile: (
       <HeaderLayoutSection>
         <HeaderTitle className='a11y-hidden'>프로필 수정</HeaderTitle>
-        {renderHeaderText("프로필 수정")}
+        {renderHeaderText('프로필 수정')}
         <Button
           type='button'
           content='저장'
@@ -153,7 +158,7 @@ export default function Header({
           width='ms'
           $bgcolor={handleUpdateProfileBtn ? 'active' : 'inactive'}
           disabled={!handleUpdateProfileBtn}
-          onClick = {uploadHandler}
+          onClick={uploadHandler}
         />
       </HeaderLayoutSection>
     ),
