@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 //import { StyledError } from '../../components/common/Input/StyledInput';
 import Input from '../../components/common/Input/Input';
+import {
+  StyledLabel,
+  StyledInput,
+} from '../../components/common/Input/StyledInput';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { EmailValid } from '../../api/signUp';

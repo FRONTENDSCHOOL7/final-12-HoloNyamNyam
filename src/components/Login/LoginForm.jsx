@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Input from '../common/Input/Input';
+import { StyledError } from '../common/Input/StyledInput';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { StyledButton, StyledInputWrap } from './StyledLoginForm';
@@ -9,6 +10,8 @@ export default function LoginForm() {
   const {
     register,
     handleSubmit,
+    setError,
+    clearErrors,
     formState: { errors, isValid },
   } = useForm({ mode: 'onChange' });
 
@@ -31,10 +34,9 @@ export default function LoginForm() {
       setLoginSuccess(true);
     } catch (err) {
       if (loginData.data.status === 422) {
-        setErrors({
-          password: {
-            message: '*이메일 또는 비밀번호를 다시 확인해 주세요. :(',
-          },
+        setError('password', {
+          type: 'manual',
+          message: '*이메일 또는 비밀번호를 확인해주세요',
         });
       }
       setHasError(true);
@@ -79,9 +81,11 @@ export default function LoginForm() {
                 message: '올바른 이메일을 입력해 주세요.',
               },
             }),
-            errors,
           }}
         />
+        {errors.email && (
+          <StyledError bottom='login'>{errors.email?.message}</StyledError>
+        )}
       </StyledInputWrap>
       <StyledInputWrap>
         <Input
@@ -100,9 +104,11 @@ export default function LoginForm() {
                 message: '비밀번호는 최소6자 이상입력해야 해요.',
               },
             }),
-            errors: errors.password ? { password: errors.password } : error,
           }}
         />
+        {errors.password && (
+          <StyledError>{errors.password?.message}</StyledError>
+        )}
       </StyledInputWrap>
 
       <StyledButton type='submit' $bgcolor={isValid ? 'active' : 'inactive'}>

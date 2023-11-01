@@ -57,15 +57,8 @@ const StyledError = styled.p`
   font-size: 12px;
   color: red;
   position: absolute;
-  bottom: ${(props) =>
-    props.$bottom === 'login'
-      ? '-18px'
-      : props.$bottom === 'signup-email'
-      ? '0px'
-      : props.$bottom === 'signup-pw'
-      ? '0px'
-      : null}
   left: 35px;
+  bottom: -18px;
 `;
 
 export { StyledLabel, StyledInput, shake, StyledError };
