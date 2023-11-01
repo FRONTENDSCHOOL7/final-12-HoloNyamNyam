@@ -15,6 +15,7 @@ export default function Modal({
   type,
   productId,
   placeName,
+  placeLink,
   handlerYourProfile,
   handlerMyProfile,
   handlerFeedEdit,
@@ -47,11 +48,12 @@ export default function Modal({
     setAlertShow(true);
     setAlertType(type);
   }
-  //수정중~
+
   function handlerOpenMap() {
     navigate('/map', {
       state: {
         placeName: placeName,
+        placeLink: placeLink,
       },
     });
     setModal((prevModal) => ({ ...prevModal, show: false }));
