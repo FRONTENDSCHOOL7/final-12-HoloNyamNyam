@@ -1,23 +1,21 @@
 import styled from 'styled-components';
-import closeBtn from '../../../assets/images/close-btn.svg';
+import closeBtn from '../../../images/close-btn.svg';
 
 const UploadContainer = styled.form`
   width: 100%;
-  padding: 20px 16px;
+  padding: 15px 15px;
   overflow: auto;
   box-sizing: border-box;
   background-color: white;
   display: flex;
-  border-bottom: 1px solid #c4c4c4;
 `;
 
 const UploadImgWrapper = styled.label`
   display: inline-block;
   width: 90px;
-  height: 90px;
+  height: 80px;
   flex-shrink: 0;
   cursor: pointer;
-  margin-right: 10px;
 `;
 
 const UploadImgInput = styled.input`
@@ -26,10 +24,11 @@ const UploadImgInput = styled.input`
 
 const UploadImgDiv = styled.div`
   position: relative;
+  margin-right: 10px;
 `;
 const UploadImg = styled.img`
-  max-width: 90px;
-  max-height: 90px;
+  max-width: 80px;
+  max-height: 80px;
   object-fit: contain;
   border-radius: 10px;
   border: 1px solid #eee;

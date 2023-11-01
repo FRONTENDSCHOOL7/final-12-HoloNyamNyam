@@ -13,6 +13,7 @@ import {
   TitleWrapper,
 } from './PlaceCardStyle';
 import { getPlaceInfoApi } from '../../../api/place';
+import PlaceEdit from '../../Place/PlaceEdit';
 import sprite from '../../../images/SpriteIcon.svg';
 import { useRecoilState } from 'recoil';
 import Modal from '../Modal/Modal';
@@ -33,15 +34,12 @@ export default function PlaceCard({ cardClose, id }) {
     address: '',
   });
   const navigation = useNavigate();
+  const [placeEditModalOpen, setPlaceEditModalOpen] = useState(false);
   const [shouldFetchProductInfo, setShouldFetchProductInfo] = useState(false);
   const [modal, setModal] = useRecoilState(modalState);
   const modalOpen = () => {
     setModal({ show: true, type: !accountname ? 'product' : 'yourproduct' });
   };
-
-  useEffect(() => {
-    getUserInfo();
-  }, [id]);
 
   const getUserInfo = async () => {
     const token = localStorage.getItem('token');
@@ -63,9 +61,25 @@ export default function PlaceCard({ cardClose, id }) {
   };
 
   useEffect(() => {
+    getUserInfo();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
+
+  const openPlaceEditModal = () => {
+    setPlaceEditModalOpen(true);
+  };
+  const closePlaceEditModal = () => {
+    setPlaceEditModalOpen(false);
+    setShouldFetchProductInfo(true);
+    setModal((prevModal) => ({ ...prevModal, show: false }));
+    getUserInfo();
+  };
+
+  useEffect(() => {
     if (shouldFetchProductInfo) {
       getUserInfo();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [shouldFetchProductInfo]);
 
   return (
@@ -94,6 +108,9 @@ export default function PlaceCard({ cardClose, id }) {
           placeLink={placeInfo.link}
           placeInfo={placeInfo}
         />
+      )}
+      {placeEditModalOpen && (
+        <PlaceEdit closeModal={closePlaceEditModal} productId={id} />
       )}
     </PlaceDim>
   );

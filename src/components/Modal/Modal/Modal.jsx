@@ -20,7 +20,7 @@ export default function Modal({
   handlerMyProfile,
   handlerFeedEdit,
   handlerCommentEdit,
-  handlerRecommendEdit,
+  handlerPlaceEdit,
   handleCommentDelete,
   handlerDetailFeed,
   recommendInfo,
@@ -177,7 +177,7 @@ export default function Modal({
       <ModalWrapArticle>
         <ModalLineSpan />
         <ModalTextBtn onClick={() => alertOpen('place')}>삭제</ModalTextBtn>
-        <ModalTextBtn onClick={handlerRecommendEdit}>수정</ModalTextBtn>
+        <ModalTextBtn onClick={handlerPlaceEdit}>수정</ModalTextBtn>
         <ModalTextBtn onClick={handlerOpenMap}>
           카카오맵으로 이동하기
         </ModalTextBtn>

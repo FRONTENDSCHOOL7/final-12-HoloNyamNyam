@@ -6,7 +6,6 @@ const ModalDim = styled.div`
   left: 50%;
   transform: translateX(-50%);
   height: 100%;
-  z-index: 999;
   background-color: rgba(0, 0, 0, 0.3);
   width: 100%;
   max-width: 390px;

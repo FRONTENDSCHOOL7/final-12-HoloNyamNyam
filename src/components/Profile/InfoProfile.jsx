@@ -11,6 +11,8 @@ import {
   UserName,
   UserId,
   UserText,
+  GradientBg,
+  CtnTap,
 } from './StyledInfoProfile';
 import { userInfoApi } from '../../api/user';
 import { ProfileApi } from '../../api/profile';
@@ -103,25 +105,36 @@ export default function InfoProfile({ type }) {
     setFollow(savedFollow === 'false');
   }, []);
 
+  const scrollToBottom = () => {
+    const windowHeight = window.innerHeight;
+    window.scrollTo({
+      top: 0.7 * windowHeight,
+      behavior: 'smooth',
+    });
+  };
+
   return loading ? (
     <Loading />
   ) : (
     <>
+      <GradientBg />
       <InfoTopWrap>
         <ProfileImg src={userInfo.image} alt='프로필 이미지' />
         <CntWrap>
-          <div>
+          <CtnTap onClick={scrollToBottom}>
             <CntSpan>{postCnt}</CntSpan>
             <CntP>posts</CntP>
-          </div>
+          </CtnTap>
           <Link
             to='/followerlist'
             state={{
               accountname: userInfo.accountname,
             }}
           >
-            <CntSpan>{userInfo.followerCount}</CntSpan>
-            <CntP>followers</CntP>
+            <CtnTap>
+              <CntSpan>{userInfo.followerCount}</CntSpan>
+              <CntP>followers</CntP>
+            </CtnTap>
           </Link>
           <Link
             to='/followinglist'
@@ -129,8 +142,10 @@ export default function InfoProfile({ type }) {
               accountname: userInfo.accountname,
             }}
           >
-            <CntSpan>{userInfo.followingCount}</CntSpan>
-            <CntP>followings</CntP>
+            <CtnTap>
+              <CntSpan>{userInfo.followingCount}</CntSpan>
+              <CntP>followings</CntP>
+            </CtnTap>
           </Link>
         </CntWrap>
       </InfoTopWrap>

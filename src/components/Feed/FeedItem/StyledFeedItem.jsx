@@ -4,6 +4,10 @@ const Container = styled.article`
   position: relative;
   width: 100%;
   margin-bottom: 20px;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  transition: background-color 0.2s ease;
 `;
 const FeedUser = styled.div`
   display: flex;
@@ -39,6 +43,7 @@ const FeedContent = styled.div`
 `;
 const FeedText = styled.p`
   margin-bottom: 17px;
+  white-space: pre-wrap;
 `;
 const FeedImg = styled.img`
   display: block;

@@ -18,6 +18,11 @@ const ProfileBtnSection = styled.section`
 const FollowBtn = styled(ButtonStyle)`
   font-size: 14px;
   font-weight: 500;
+
+  transition: filter 0.2s ease;
+  &:hover {
+    filter: brightness(0.8);
+  }
 `;
 
 const CircleBtn = styled.button`
@@ -28,6 +33,14 @@ const CircleBtn = styled.button`
   background-color: transparent;
   border-radius: 50%;
   box-sizing: border-box;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: #fff;
+  }
 `;
 
 const CircleBtnWrap = styled.section`
@@ -47,6 +60,13 @@ const MyBtn = styled(ButtonStyle)`
   font-size: 14px;
   font-weight: 500;
   width: 159px;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+  &:hover {
+    background-color: #ff644b;
+    color: #fff;
+  }
 `;
 
 export {

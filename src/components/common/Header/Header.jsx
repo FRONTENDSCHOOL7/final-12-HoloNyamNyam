@@ -91,7 +91,12 @@ export default function Header({
 
   const UI = {
     home: (
-      <HeaderLayoutSection>
+      <HeaderLayoutSection
+        style={{
+          backgroundImage: 'linear-gradient(-45deg, #ff3945 0%, #ff9052 100%)',
+          color: '#fff',
+        }}
+      >
         <HeaderTitle>냠냠피드</HeaderTitle>
       </HeaderLayoutSection>
     ),
@@ -129,7 +134,8 @@ export default function Header({
     upload: (
       <HeaderLayoutSection>
         <HeaderTitle className='a11y-hidden'>게시물 작성</HeaderTitle>
-        {renderHeaderLeftBtn()}
+        {/* {renderHeaderLeftBtn()} */}
+        {renderHeaderText('냠냠피드 작성')}
         <Button
           type='button'
           content='업로드'
@@ -186,6 +192,21 @@ export default function Header({
             &nbsp;{viewMode}으로 보기&nbsp;
           </SortButton>
         </ButtonWrap>
+      </HeaderLayoutSection>
+    ),
+    placeupload: (
+      <HeaderLayoutSection>
+        <HeaderTitle className='a11y-hidden'>냠냠평가 등록</HeaderTitle>
+        {renderHeaderLeftBtn()}
+        <Button
+          type='button'
+          content='저장'
+          size='s'
+          width='m'
+          $bgcolor={handleUploadBtn ? 'active' : 'inactive'}
+          // disabled={!handleUploadBtn}
+          onClick={uploadHandler}
+        />
       </HeaderLayoutSection>
     ),
   };

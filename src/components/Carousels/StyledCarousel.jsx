@@ -7,7 +7,7 @@ const CarouselWrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  margin: 0 auto 22px auto;
+  margin: 0 auto 22px;
 `;
 
 const CarouselImages = styled.div`
@@ -46,6 +46,7 @@ const LeftButton = styled(CarouselControlButton)`
   & img {
     translate: -0.5px -0.1px;
   }
+  padding: 10px;
 `;
 
 const RightButton = styled(CarouselControlButton)`
@@ -53,6 +54,7 @@ const RightButton = styled(CarouselControlButton)`
   & img {
     translate: -2px;
   }
+  padding: 10px;
 `;
 
 const CarouselIndicator = styled.div`
@@ -73,6 +75,7 @@ const Dot = styled.div`
     background-color: rgba(255, 255, 255, 1);
   }
 `;
+
 export {
   CarouselWrapper,
   CarouselImages,

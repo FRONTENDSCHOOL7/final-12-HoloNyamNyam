@@ -35,6 +35,14 @@ const MoreViewBtn = styled(ButtonStyle)`
   font-size: 14px;
   font-weight: 500;
   width: 75px;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+  &:hover {
+    background-color: #ff644b;
+    color: #fff;
+  }
 `;
 
 const PlaceList = styled.ul`
