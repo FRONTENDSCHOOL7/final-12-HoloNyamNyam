@@ -17,7 +17,6 @@ export default function Profile({ type }) {
   // eslint-disable-next-line no-unused-vars
   const [modal, setModal] = useRecoilState(modalState);
   const accountname = localStorage.getItem('accountname');
-  window.console.log(modal);
 
   const [cardShow, setCardShow] = useRecoilState(cardShowState);
   function cardClose(e) {

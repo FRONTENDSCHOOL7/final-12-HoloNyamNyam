@@ -10,9 +10,9 @@ import { cardShowState } from '../../recoil/cardShowAtom';
 import { useLocation } from 'react-router-dom';
 
 const List = styled.section`
-  padding: 48px 0 60px 0;
+  padding: 48px 0 81px 0;
   background-color: white;
-  height: calc(100vh - 108px);
+  height: 100%;
 `;
 
 const PlaceWrap = styled.ul`
