@@ -3,7 +3,9 @@ import styled from 'styled-components';
 const Container = styled.article`
   position: relative;
   width: 100%;
-  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  box-sizing: border-box;
   &:hover {
     background-color: rgba(0, 0, 0, 0.05);
   }
@@ -39,7 +41,6 @@ const FeedContent = styled.div`
   font-size: 14px;
   line-height: 17px;
   word-break: break-all;
-  cursor: pointer;
 `;
 const FeedText = styled.p`
   margin-bottom: 17px;

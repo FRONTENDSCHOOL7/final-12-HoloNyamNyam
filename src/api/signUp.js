@@ -25,7 +25,7 @@ export const signup = async (formData, data, profileImg) => {
     return res;
   } catch (err) {
     alert(err.response.data.message);
-    console.log(err.response.data.message);
+    console.error(err.response.data.message);
   }
 };
 
