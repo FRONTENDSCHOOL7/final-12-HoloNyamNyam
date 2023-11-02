@@ -7,16 +7,10 @@ import RatePlace from '../../components/Profile/RatePlace';
 import PlaceCard from '../../components/Modal/PlaceCard/PlaceCard';
 import { useRecoilState } from 'recoil';
 import { cardShowState } from '../../recoil/cardShowAtom';
-import { modalState } from '../../recoil/modalAtom';
-import { Navigate } from 'react-router-dom';
-import Modal from '../../components/Modal/Modal/Modal';
 
 export default function Profile({ type }) {
   const [selectedId, setSelectedId] = useState(null);
   const [cardClosed, setCardClosed] = useState(false);
-  // eslint-disable-next-line no-unused-vars
-  const [modal, setModal] = useRecoilState(modalState);
-  const accountname = localStorage.getItem('accountname');
 
   const [cardShow, setCardShow] = useRecoilState(cardShowState);
   function cardClose(e) {
@@ -36,10 +30,6 @@ export default function Profile({ type }) {
     }
   }, [cardClosed]);
 
-  const moveProfileEdit = (accountname) => {
-    Navigate(`/profile/${accountname}`);
-  };
-
   return (
     <>
       <Header type='profile' own={type} />
@@ -48,12 +38,6 @@ export default function Profile({ type }) {
       <FeedList />
       {cardShow && selectedId && (
         <PlaceCard cardClose={cardClose} id={selectedId} />
-      )}
-      {modal.show && (
-        <Modal
-          type={modal.type}
-          handlerMyProfile={() => moveProfileEdit(accountname)}
-        />
       )}
       <Nav />
     </>
