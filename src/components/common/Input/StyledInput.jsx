@@ -11,6 +11,7 @@ const StyledLabel = styled.label`
 `;
 
 const StyledInput = styled.input`
+  padding: 0;
   display: block;
   width: 322px;
   border: none;
@@ -26,7 +27,6 @@ const StyledInput = styled.input`
     color: #dbdbdb;
   }
   &:focus {
-    /* outline: none; */
     border-bottom: 1px solid #ff644b;
   }
 `;
@@ -53,8 +53,8 @@ const StyledError = styled.p`
   font-size: 12px;
   color: red;
   position: absolute;
-  bottom: -18px;
   left: 35px;
+  bottom: -18px;
 `;
 
 export { StyledLabel, StyledInput, shake, StyledError };
