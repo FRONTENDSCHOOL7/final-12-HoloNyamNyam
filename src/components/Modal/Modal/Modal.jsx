@@ -65,6 +65,10 @@ export default function Modal({
     }
   };
 
+  function moveProfileEdit() {
+    navigate('/myprofile/edit');
+  }
+
   function kakaoButton(recommendInfo) {
     initializeKakao();
     if (!window.Kakao) {
@@ -116,7 +120,7 @@ export default function Modal({
     myProfile: (
       <ModalWrapArticle>
         <ModalLineSpan />
-        <ModalTextBtn onClick={handlerMyProfile}>설정 및 개인정보</ModalTextBtn>
+        <ModalTextBtn onClick={moveProfileEdit}>설정 및 개인정보</ModalTextBtn>
         <ModalTextBtn onClick={() => alertOpen('logout')}>
           로그아웃
         </ModalTextBtn>

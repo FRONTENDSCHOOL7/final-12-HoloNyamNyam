@@ -14,7 +14,7 @@ import {
   Star,
 } from './StyledHeader';
 import Button from '../Button/Button';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import sprite from '../../../images/SpriteIcon.svg';
 import { useSetRecoilState } from 'recoil';
 import { modalState } from '../../../recoil/modalAtom';
@@ -46,6 +46,10 @@ export default function Header({
       </svg>
     </SocialSvg>
   );
+
+  const location = useLocation();
+  const { accountname } = location.state || {};
+  const userName = accountname || { name };
   const navigate = useNavigate();
   const setModal = useSetRecoilState(modalState);
   const modalOpen = () => {
@@ -116,7 +120,9 @@ export default function Header({
     profile: (
       <HeaderLayoutSection>
         <HeaderTitle className='a11y-hidden'>프로필</HeaderTitle>
-        {own === 'my' ? renderHeaderText('나의 프로필') : renderHeaderLeftBtn()}
+        {own === 'my'
+          ? renderHeaderText('나의 프로필')
+          : renderHeaderText(`${userName}`)}
         {renderHeaderRightBtn()}
       </HeaderLayoutSection>
     ),
@@ -174,7 +180,6 @@ export default function Header({
       <HeaderLayoutSection>
         <HeaderTitle className='a11y-hidden'>카카오맵</HeaderTitle>
         {renderHeaderText('카카오맵')}
-        {renderHeaderRightBtn()}
       </HeaderLayoutSection>
     ),
     default: (
