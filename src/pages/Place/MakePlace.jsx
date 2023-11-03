@@ -18,7 +18,7 @@ const PlaceWrapper = styled.section`
 export const PlaceLabel = styled.label`
   display: inline-block;
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 500;
   color: #767676;
 `;
 const PlaceInfo = styled.input`
@@ -32,7 +32,7 @@ const PlaceInfo = styled.input`
   margin: 0 auto 30px auto;
   outline: none;
   background: transparent;
-  padding: 6px 0 0;
+  padding: 6px 70px 0 0;
   &:focus {
     border-bottom: 1px solid #ff644b;
   }

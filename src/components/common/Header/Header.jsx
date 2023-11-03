@@ -208,14 +208,17 @@ export default function Header({
     placeupload: (
       <HeaderLayoutSection>
         <HeaderTitle className='a11y-hidden'>냠냠평가 등록</HeaderTitle>
-        {renderHeaderLeftBtn()}
+        {/* {renderHeaderLeftBtn()} */}
+        {edit
+          ? renderHeaderText('냠냠평가 수정')
+          : renderHeaderText('냠냠평가 작성')}
         <Button
           type='button'
           content='저장'
-          size='s'
-          width='m'
+          size='ms'
+          width='ms'
           $bgcolor={handleUploadBtn ? 'active' : 'inactive'}
-          // disabled={!handleUploadBtn}
+          disabled={!handleUploadBtn}
           onClick={uploadHandler}
         />
       </HeaderLayoutSection>
