@@ -7,12 +7,11 @@ const PlaceItem = styled.li`
   border-radius: 8px;
   border: 1px solid #e0e0e0;
   box-sizing: border-box;
+  cursor: pointer;
   &:hover {
     background-color: rgba(0, 0, 0, 0.03);
-    /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px; */
-    /* rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; */
-    transition: 0.2s;
   }
+  transition: background-color 0.2s ease;
 `;
 
 const PlaceImg = styled.img`
@@ -33,8 +32,11 @@ const PlaceInfo = styled.div`
 `;
 
 const PlaceName = styled.p`
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 14px;
   font-weight: 400;
+  white-space: nowrap;
   margin-bottom: 5px;
 `;
 

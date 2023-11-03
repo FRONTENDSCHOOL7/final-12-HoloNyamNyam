@@ -13,6 +13,10 @@
         <rect width="18" height="18" x="3" y="3" stroke="#767676" stroke-width="2" rx="3" />
         <path stroke="#767676" stroke-linecap="round" stroke-width="2" d="M12 8v8m-4-4h8" />
     </symbol>
+    <symbol id="icon-edit-fill" viewBox="0 0 24 24">
+        <rect width="18" height="18" x="3" y="3" stroke="#FF644B" stroke-width="2" rx="3" fill="#FF644B" />
+        <path stroke="#FFFFFF" stroke-linecap="round" stroke-width="2" d="M12 8v8m-4-4h8" />
+    </symbol>
     <symbol id="icon-user" viewBox="0 0 24 24">
         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 22v-3a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v3" />
         <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M4 22h16" />
@@ -34,6 +38,12 @@
     </symbol>
     <symbol id="img-button" viewBox="0 0 36 36">
         <circle cx="18" cy="18" r="18" fill="#C4C4C4" />
+        <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M24.417 9.75H11.583c-1.012 0-1.833.82-1.833 1.833v12.834c0 1.012.82 1.833 1.833 1.833h12.834c1.012 0 1.833-.82 1.833-1.833V11.583c0-1.012-.82-1.833-1.833-1.833z" />
+        <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.792 16.166a1.375 1.375 0 1 0 0-2.75 1.375 1.375 0 0 0 0 2.75zM26.25 20.75l-4.583-4.584L11.583 26.25" />
+    </symbol>
+    
+    <symbol id="img-button-1" viewBox="0 0 36 36">
+        <circle cx="18" cy="18" r="18" fill="#FF644B" />
         <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M24.417 9.75H11.583c-1.012 0-1.833.82-1.833 1.833v12.834c0 1.012.82 1.833 1.833 1.833h12.834c1.012 0 1.833-.82 1.833-1.833V11.583c0-1.012-.82-1.833-1.833-1.833z" />
         <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.792 16.166a1.375 1.375 0 1 0 0-2.75 1.375 1.375 0 0 0 0 2.75zM26.25 20.75l-4.583-4.584L11.583 26.25" />
     </symbol>
@@ -73,6 +83,17 @@
         <rect width="100" height="100" fill="#DBDBDB" rx="10" />
         <path stroke="#fff" stroke-width="3" d="M39 50.5h21M49.5 40v21" />
     </symbol>
+
+
+    <symbol id="camera-btn-1" viewBox="0 0 35 35">
+        <path d="M17.5002 22.1668C20.0775 22.1668 22.1668 20.0775 22.1668 17.5002C22.1668 14.9228 20.0775 12.8335 17.5002 12.8335C14.9228 12.8335 12.8335 14.9228 12.8335 17.5002C12.8335 20.0775 14.9228 22.1668 17.5002 22.1668Z" fill="white"/>
+        <path d="M13.1248 2.9165L10.4561 5.83317H5.83317C4.229 5.83317 2.9165 7.14567 2.9165 8.74984V26.2498C2.9165 27.854 4.229 29.1665 5.83317 29.1665H29.1665C30.7707 29.1665 32.0832 27.854 32.0832 26.2498V8.74984C32.0832 7.14567 30.7707 5.83317 29.1665 5.83317H24.5436L21.8748 2.9165H13.1248ZM17.4998 24.7915C13.4748 24.7915 10.2082 21.5248 10.2082 17.4998C10.2082 13.4748 13.4748 10.2082 17.4998 10.2082C21.5248 10.2082 24.7915 13.4748 24.7915 17.4998C24.7915 21.5248 21.5248 24.7915 17.4998 24.7915Z" fill="white"/>
+    </symbol>
+
+
+
+
+
     <symbol id="star" viewBox="0 0 48 46">
         <path fill="#FFC700" d="M24 0l5.613 17.275h18.163L33.082 27.95l5.613 17.274L24 34.55 9.305 45.225l5.613-17.274L.224 17.275h18.163L24 0z" />
     </symbol>

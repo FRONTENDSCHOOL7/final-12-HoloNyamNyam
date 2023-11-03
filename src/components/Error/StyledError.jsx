@@ -5,15 +5,14 @@ const ErrorWrapper = styled.section`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
   background-color: #fff;
 `;
 const ErrorImg = styled.img`
-  margin: -70px 0 -10px 0;
-  width: 150px;
+  margin: -70px 0 10px 0;
+  width: 103px;
 `;
 const ErrorText = styled.h2`
-  margin: 0px;
   font-weight: 400;
   font-size: 14px;
   color: #767676;

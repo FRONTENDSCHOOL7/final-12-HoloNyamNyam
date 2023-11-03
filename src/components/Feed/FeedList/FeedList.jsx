@@ -25,6 +25,7 @@ import {
 import { userFeedListApi } from '../../../api/feed';
 import { useRecoilState } from 'recoil';
 import { modalState } from '../../../recoil/modalAtom';
+import { feedState } from '../../../recoil/feedEditAtom';
 import { useRef } from 'react';
 import Loading from '../../Loading/Loading';
 
@@ -42,11 +43,13 @@ export default function FeedList() {
   const [hasFeeds, setHasFeeds] = useState(false);
   const [feedEditModalOpen, setFeedEditModalOpen] = useState(false);
   const [modal, setModal] = useRecoilState(modalState);
+  const [feed, setFeed] = useRecoilState(feedState);
   const observer = useRef();
   const [skip, setSkip] = useState(0);
   const [page, setPage] = useState(0);
   const limit = 10;
   const [loading, setLoading] = useState(true);
+  const where = localStorage.getItem('accountname');
 
   const { accountname } = location.state || {};
   const handleViewModeChange = (mode) => {
@@ -85,7 +88,7 @@ export default function FeedList() {
   }, []);
 
   function moveDetail(item) {
-    navigate(`/detailfeed`, {
+    navigate('/feeddetail', {
       state: {
         id: item.id,
         infoToIterate: item,
@@ -94,10 +97,21 @@ export default function FeedList() {
     setModal({ show: false });
   }
 
+  function moveUpload(item) {
+    navigate('/feedUpload');
+    setModal({ show: false });
+    setFeed({
+      type: 'edit',
+      id: item.id,
+      images: item.image.split(','),
+      text: item.content,
+    });
+  }
+
   const modalOpen = (type, item) => {
     setModal({
       show: true,
-      type,
+      type: type,
       feedId: item.id,
       accountname: item.author.accountname,
       item: item,
@@ -168,7 +182,12 @@ export default function FeedList() {
                 <FeedListItem key={item.id}>
                   <FeedItem
                     modalOpen={() =>
-                      modalOpen(!accountname ? 'myFeed' : 'yourFeed', item)
+                      modalOpen(
+                        where === item.author.accountname
+                          ? 'myFeed'
+                          : 'yourFeed',
+                        item,
+                      )
                     }
                     feedInfo={item}
                     getUserInfo={getUserInfo}
@@ -230,7 +249,8 @@ export default function FeedList() {
         <Modal
           type={modal.type}
           handlerFeedEdit={openFeedEditModal}
-          handlerDetailFeed={() => moveDetail(modal.item)}
+          handlerFeedDetail={() => moveDetail(modal.item)}
+          handlerFeedEdit2={() => moveUpload(modal.item)}
         />
       )}
       {feedEditModalOpen && (

@@ -21,7 +21,7 @@ import {
 import { useRecoilState } from 'recoil';
 import { modalState } from '../../../recoil/modalAtom';
 
-export default function DetailFeed() {
+export default function FeedComment() {
   const [inputValue, setInputValue] = useState('');
   // const [selectedId, setSelectedId] = useState(null);
   const [commentList, setCommentList] = useState([]);

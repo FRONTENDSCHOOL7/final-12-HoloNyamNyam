@@ -29,7 +29,7 @@ const FeedItemList = styled.ul`
   flex-direction: column;
   align-items: center;
   background-color: white;
-  margin: 16px 20px 60px;
+  margin: 16px 10px 60px;
 
   &::-webkit-scrollbar {
     width: 10px;

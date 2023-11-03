@@ -45,7 +45,7 @@ const NameAnimation = keyframes`
 
 const LogoName = styled.img`
   animation: ${NameAnimation} 2s ease;
-
+  margin-left: 6px;
   display: block;
   filter: drop-shadow(3px 3px 3px rgba(0, 0, 0, 0.25));
 `;

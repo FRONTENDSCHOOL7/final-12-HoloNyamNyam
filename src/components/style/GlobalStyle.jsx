@@ -76,6 +76,15 @@ export const GlobalStyle = createGlobalStyle`
     min-height: 100vh;
     margin: 0 auto;
     background-color: #fff;
+    overflow: auto;
+    box-shadow: rgba(255, 172, 147, 0.308) 0px 7px 29px 0px;
+    box-shadow: rgba(255, 60, 0, 0.25) 0px 13px 27px -5px, rgba(255, 0, 0, 0.3) 0px 8px 16px -8px;
+  }
+
+  :root {
+    background: rgb(255,247,229);
+background: linear-gradient(90deg, rgba(255,247,229,1) 12%, rgba(255,219,198,1) 100%);
+
   }
 `;
 

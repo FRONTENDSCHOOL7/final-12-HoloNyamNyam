@@ -6,7 +6,7 @@ const PlaceDim = styled.div`
   left: 50%;
   transform: translateX(-50%);
   height: 100%;
-  z-index: 999;
+  z-index: 900;
   background-color: rgba(0, 0, 0, 0.3);
   width: 100%;
   max-width: 390px;
@@ -40,6 +40,7 @@ const PlaceTextSection = styled.section`
 `;
 
 const PlaceName = styled.h4`
+  max-width: 202px;
   font-size: 20px;
   line-height: 20px;
   font-weight: 400;

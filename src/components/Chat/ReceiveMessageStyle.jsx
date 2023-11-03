@@ -11,6 +11,7 @@ const MessageWrap = styled.li`
 const ProfileImg = styled.img`
   width: 42px;
   border-radius: 50%;
+  background-color: #fff;
 `;
 
 const MessageText = styled.article`

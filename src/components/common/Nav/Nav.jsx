@@ -85,8 +85,14 @@ export default function Nav() {
           </NavLink>
         </li>
         <li>
-          <NavLink to='/makefeed'>
-            <NavSVG id='icon-edit' />
+          <NavLink to='/feedupload'>
+            <NavSVG
+              id={
+                location.pathname === '/feedupload'
+                  ? 'icon-edit-fill'
+                  : 'icon-edit'
+              }
+            />
             <StyledNavText>게시물 작성</StyledNavText>
           </NavLink>
         </li>

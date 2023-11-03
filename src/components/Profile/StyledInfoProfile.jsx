@@ -5,8 +5,10 @@ const InfoTopWrap = styled.section`
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding-top: 78px;
-  gap: 37px;
+  gap: 20px;
+  position: absolute;
+  top: 110px;
+  margin-left: 25px;
 `;
 
 const CntWrap = styled.section`
@@ -14,7 +16,7 @@ const CntWrap = styled.section`
   justify-content: center;
   align-items: center;
   text-align: center;
-  gap: 35px;
+  gap: 15px;
 `;
 
 const ProfileImg = styled.img`
@@ -24,6 +26,7 @@ const ProfileImg = styled.img`
   border-radius: 50%;
   border: 1px solid #dbdbdb;
   object-fit: cover;
+  background-color: #fff;
 `;
 
 const CntSpan = styled.span`
@@ -36,11 +39,11 @@ const CntP = styled.p`
   font-size: 10px;
   font-weight: 400;
   color: #767676;
-  margin-top: 6px;
+  margin-top: 10px;
 `;
 
 const InfoBottomSection = styled.section`
-  margin: 23px 33px 23px 33px;
+  margin: 70px 33px 23px 33px;
 `;
 
 const UserName = styled.p`
@@ -59,6 +62,26 @@ const UserText = styled.p`
   color: #767676;
 `;
 
+const GradientBg = styled.div`
+  background: linear-gradient(-45deg, #ff3945 0%, #ff9052 100%);
+
+  position: relative;
+  width: 100%;
+  height: 170px;
+`;
+
+const CtnTap = styled.div`
+  background-color: #fff;
+  width: 60px;
+  height: 40px;
+  border-radius: 10px;
+  padding: 10px 0;
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: translateY(-5px);
+  }
+`;
+
 export {
   InfoTopWrap,
   ProfileImg,
@@ -69,4 +92,6 @@ export {
   UserName,
   UserId,
   UserText,
+  GradientBg,
+  CtnTap,
 };

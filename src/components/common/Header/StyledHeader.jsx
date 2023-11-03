@@ -27,16 +27,23 @@ const HeaderTitle = styled.h1`
 
 const HeaderLeftBtn = styled.button`
   border: 0;
-  padding: 10px;
-  padding-left: 0;
   background-color: transparent;
+  padding: 10px 10px 10px 0;
+  &:hover {
+    transform: scale(1.2) translateX(-10%);
+  }
+  transition: transform 0.2s ease;
+  transform: scale(1);
 `;
 
 const HeaderRightBtn = styled.button`
   border: 0;
-  padding: 10px;
-  padding-right: 0;
   background-color: transparent;
+  &:hover {
+    transform: scale(1.2) rotate(270deg);
+  }
+  transition: transform 0.2s ease;
+  transform: scale(1) rotate(0deg);
 `;
 
 const HeaderSearchInp = styled.input`
@@ -61,8 +68,12 @@ const HeaderSpan = styled.span`
 `;
 
 const HeaderTextP = styled.p`
+  text-overflow: ellipsis;
+  width: 180px;
+  white-space: nowrap;
   display: inline-block;
   font-size: 14px;
+  overflow: hidden;
   font-weight: 600;
 `;
 
@@ -83,10 +94,12 @@ const SortButton = styled(ButtonStyle)`
   display: flex;
   justify-content: center;
   align-items: center;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
   &:hover {
     background-color: #ff644b;
     color: #fff;
-    transition: 0.2s;
   }
 `;
 
