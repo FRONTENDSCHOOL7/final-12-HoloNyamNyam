@@ -88,7 +88,7 @@ const StyledSubText = styled.p`
 `;
 
 const ImageFormContainer = styled.div`
-  margin: 0 auto;
+  margin: 0px auto;
   margin-bottom: 70px;
 `;
 

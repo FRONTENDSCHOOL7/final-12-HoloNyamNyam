@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { ButtonStyle } from '../common/Button/Button';
 
 const StyledSignUpWrap = styled.div`
-  padding-top: 252px;
+  padding-top: 170px;
   margin: auto;
   text-align: center;
   background: #fff;
