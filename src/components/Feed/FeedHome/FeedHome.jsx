@@ -71,19 +71,33 @@ export default function FeedHome() {
     });
   };
 
-  const openYourProfile = (accountname) => {
-    navigate(`/profile/${accountname}`);
-  };
+  function moveProfile(accountname) {
+    const where = localStorage.getItem('accountname');
+    if (accountname === where) {
+      navigate('/myprofile', {
+        state: {
+          accountname: accountname,
+        },
+      });
+    } else {
+      navigate(`/profile/${accountname}`, {
+        state: {
+          accountname: accountname,
+        },
+      });
+    }
+    setModal((prevModal) => ({ ...prevModal, show: false }));
+  }
 
-  const moveDetail = (item) => {
-    navigate('/detailfeed', {
+  function moveDetail(item) {
+    navigate('/feeddetail', {
       state: {
         id: item.id,
         infoToIterate: item,
       },
     });
     setModal({ show: false });
-  };
+  }
 
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
@@ -102,8 +116,7 @@ export default function FeedHome() {
                       item,
                     )
                   }
-                  feedInfo={where === item.author.accountname ? item : false}
-                  otherInfo={where === item.author.accountname ? false : item}
+                  feedInfo={item}
                   commentCnt={item.commentCount}
                   // getFeed={getFeed}
                   // skip={skip}
@@ -115,8 +128,8 @@ export default function FeedHome() {
           {modal.show && (
             <Modal
               type={modal.type}
-              handlerYourProfile={() => openYourProfile(modal.accountname)}
-              handlerDetailFeed={() => moveDetail(modal.item)}
+              handlerProfile={() => moveProfile(modal.accountname)}
+              handlerFeedDetail={() => moveDetail(modal.item)}
             />
           )}
         </main>

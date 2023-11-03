@@ -32,7 +32,7 @@ export default function Profile({ type }) {
 
   return (
     <>
-      <Header type='profile' />
+      <Header type='profile' own={type} />
       <InfoProfile type={type} />
       <RatePlace cardOpen={cardOpen} cardClosed={cardClosed} />
       <FeedList />

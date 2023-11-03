@@ -16,7 +16,7 @@ const ImgWrap = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 20px;
-  height: calc(100vh - 108px);
+  height: calc(100vh - 130px);
 `;
 
 const NoFollowCryImg = styled.img`

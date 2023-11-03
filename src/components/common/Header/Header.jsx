@@ -16,11 +16,11 @@ import {
 import Button from '../Button/Button';
 import { useNavigate } from 'react-router-dom';
 import sprite from '../../../images/SpriteIcon.svg';
-import { useSetRecoilState } from 'recoil';
+import { useSetRecoilState, useRecoilState } from 'recoil';
 import { modalState } from '../../../recoil/modalAtom';
 import StarImg from '../../../images/Star.svg';
-import { useRecoilState } from 'recoil';
 import { viewBtnState } from '../../../recoil/viewBtnAtom';
+import { feedState } from '../../../recoil/feedEditAtom';
 
 export default function Header({
   type,
@@ -31,6 +31,8 @@ export default function Header({
   handleUpdateProfileBtn,
   yourAccountname,
   name,
+  own,
+  edit,
 }) {
   const SocialSVG = ({
     id,
@@ -51,6 +53,7 @@ export default function Header({
     setModal({ show: true, type: 'myProfile' });
   };
   const [viewMode, setViewMode] = useRecoilState(viewBtnState);
+  const setFeed = useSetRecoilState(feedState);
 
   function renderHeaderLeftBtn() {
     return (
@@ -63,7 +66,13 @@ export default function Header({
     return (
       <HeaderSpan>
         <HeaderLeftBtn type='button' aria-label='뒤로가기 버튼'>
-          <SocialSVG id='icon-arrow-left' onClick={() => navigate(-1)} />
+          <SocialSVG
+            id='icon-arrow-left'
+            onClick={() => {
+              edit && setFeed({ type: 'new', id: null, images: [], text: '' });
+              return navigate(-1);
+            }}
+          />
         </HeaderLeftBtn>
         <HeaderTextP title={text}>{text}</HeaderTextP>
       </HeaderSpan>
@@ -115,7 +124,7 @@ export default function Header({
     profile: (
       <HeaderLayoutSection>
         <HeaderTitle className='a11y-hidden'>프로필</HeaderTitle>
-        {renderHeaderLeftBtn()}
+        {own === 'my' ? renderHeaderText('나의 프로필') : renderHeaderLeftBtn()}
         {renderHeaderRightBtn()}
       </HeaderLayoutSection>
     ),
@@ -135,10 +144,12 @@ export default function Header({
       <HeaderLayoutSection>
         <HeaderTitle className='a11y-hidden'>게시물 작성</HeaderTitle>
         {/* {renderHeaderLeftBtn()} */}
-        {renderHeaderText('냠냠피드 작성')}
+        {edit
+          ? renderHeaderText('냠냠피드 수정')
+          : renderHeaderText('냠냠피드 작성')}
         <Button
           type='button'
-          content='업로드'
+          content={edit ? '수정하기' : '업로드'}
           size='ms'
           width='ms'
           $bgcolor={handleUploadBtn ? 'active' : 'inactive'}

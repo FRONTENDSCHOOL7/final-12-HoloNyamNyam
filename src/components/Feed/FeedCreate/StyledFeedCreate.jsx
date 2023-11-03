@@ -3,21 +3,28 @@ import sprite from '../../../images/SpriteIcon.svg';
 
 const StyledContainer = styled.section`
   width: 100%;
-  height: calc(100vh - 48px);
+  /* height: calc(100vh - 48px); */
+  height: 100vh;
   padding-top: 48px;
   overflow: hidden;
   background: #fff;
 `;
 
+const TextContainer = styled.form`
+  width: 100%;
+  display: flex;
+`;
+
 const StyledFeed = styled.textarea`
+  display: block;
   margin: 15px;
   padding: 15px;
-  width: 90%;
-  height: 50%;
+  width: 100%;
+  height: fit-content;
   box-sizing: border-box;
   border: 0.5px solid #c4c4c4;
   border-radius: 10px;
-  font-size: 15px;
+  font-size: 14px;
   font-family: 'SpoqaHanSansNeo-Regular', sans-serif;
   resize: none;
   &:focus {
@@ -54,9 +61,10 @@ const SocialSVG = ({ id, color = '#FFFFFF', size = 35, previews }) => (
 const H3 = styled.h3`
   width: 342px;
   font-family: 'SpoqaHanSansNeo-Regular', sans-serif;
-  font-size: 15px;
+  font-size: 12px;
+  font-weight: 500;
   color: #767676;
   margin: 0 auto 15px;
 `;
 
-export { StyledContainer, StyledFeed, SocialSVG, H3 };
+export { StyledContainer, StyledFeed, SocialSVG, H3, TextContainer };
