@@ -18,7 +18,6 @@ import {
   StyledInput,
   ProfileInputImgButton,
   StyledProfileImg,
-  StyledSaveButton
 } from './ProfileEditFormStyle';
 
 const ProfileEditForm = ({ userInfo, setUserInfo }) => {
@@ -33,21 +32,20 @@ const ProfileEditForm = ({ userInfo, setUserInfo }) => {
     mode: 'onChange',
   });
 
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
   const [profileImg, setProfileImg] = useState(null);
   const [abledBtn, setAbledBtn] = useState(true);
   const inputRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
+  const [isImageChanged, setImageChanged] = useState(false);
   const data = location.state;
 
   useEffect(() => {
-    if (location.pathname === '/myprofile/edit') {
-      setValue("image", userInfo?.image || DefaultProfileInput);
-      setValue("username", userInfo?.username || null);
-      setValue("accountname", userInfo?.accountname || null);
-      setValue("intro", userInfo?.intro || null);
-    }
+    setValue('image', userInfo?.image || DefaultProfileInput);
+    setValue('username', userInfo?.username || null);
+    setValue('accountname', userInfo?.accountname || null);
+    setValue('intro', userInfo?.intro || null);
   }, [location.pathname, userInfo]);
 
   const checkUserIdValid = async (accountname) => {
@@ -77,6 +75,7 @@ const ProfileEditForm = ({ userInfo, setUserInfo }) => {
     await imgUpload(formData).then((res) => {
       const imgUrl = `${BASE_URL}/` + res.data.filename;
       setProfileImg(imgUrl);
+      setImageChanged(true);
     });
   };
 
@@ -85,28 +84,28 @@ const ProfileEditForm = ({ userInfo, setUserInfo }) => {
       const isValidUserId = await checkUserIdValid(formData.accountname);
       if (isValidUserId) {
         setProfileImg(userInfo?.image || DefaultProfileInput);
-        const image = profileImg || userInfo?.image;
+        const image = profileImg || userInfo?.image || DefaultProfileInput;
         const res = await profileEdit(formData, image, token);
-        localStorage.setItem("_id", res.data.user._id);
-        localStorage.setItem("accountname", formData.accountname);
-        navigate("/myprofile");
+        localStorage.setItem('_id', res.data.user._id);
+        localStorage.setItem('accountname', formData.accountname);
+        navigate('/myprofile');
       }
     } catch (errors) {
-      console.log(errors);
+      console.error(errors);
     }
   };
 
   useEffect(() => {
-    setAbledBtn(isValid);
+    setAbledBtn(isValid || setImageChanged);
   }, [isValid, setAbledBtn]);
 
   return (
     <StyledProfileWrap>
-      <Header 
-      type='editprofile'
-      handleUpdateProfileBtn={isValid}
-      uploadHandler={handleSubmit(handleSubmitData)}
-       />
+      <Header
+        type='editprofile'
+        handleUpdateProfileBtn={isValid || isImageChanged}
+        uploadHandler={handleSubmit(handleSubmitData)}
+      />
       <ProfileFormContainer>
         <ImageFormContainer>
           <label>
@@ -133,7 +132,7 @@ const ProfileEditForm = ({ userInfo, setUserInfo }) => {
           id='username'
           type='text'
           autoComplete='off'
-          defaultValue={userInfo?.username || ""}
+          defaultValue={userInfo?.username || ''}
           {...register('username', {
             required: '계정이름은 필수 입력입니다',
             minLength: {
@@ -155,7 +154,7 @@ const ProfileEditForm = ({ userInfo, setUserInfo }) => {
           id='accountname'
           type='text'
           autoComplete='off'
-          defaultValue={userInfo?.accountname || ""}
+          defaultValue={userInfo?.accountname || ''}
           {...register('accountname', {
             required: '계정ID는 필수 입력입니다',
             pattern: {
@@ -170,52 +169,14 @@ const ProfileEditForm = ({ userInfo, setUserInfo }) => {
         <StyledInput
           id='intro'
           type='text'
-          defaultValue={userInfo?.intro || ""}
+          defaultValue={userInfo?.intro || ''}
           autoComplete='off'
           {...register('intro', {
             required: '간단한 소개 부탁드릴게요!',
           })}
           placeholder='자신을 나타낼 수 있는 소개 부탁드릴게요.'
         />
-        {errors.userintro && (
-          <StyledError>{errors.intro?.message}</StyledError>
-        )}
-{/*         <StyledSaveButton
-          className='btn-profile-edit'
-          $bgcolor={abledBtn ? 'active' : 'inactive'}
-          disabled={!abledBtn}
-        >
-          저장
-        </StyledSaveButton> */}
-
-        {/*   <Input
-          label='사용자 이름'
-          id='username'
-          type='text'
-          placeholder='2~10자 이내로 작성 부탁드릴게요.'
-          onChange={handleFieldChange}
-          hasError={hasError}
-          registerOptions={{
-            ...register('username', {
-              requried: '사용자 이름은 필수입니다',
-            }),
-          }}
-        />
-        <ErrorStyle>{errors.userName?.message}</ErrorStyle>
-        <Input
-          label='계정 ID'
-          id='user-id'
-          type='text'
-          placeholder='영문, 숫자, 특수문자(.),(_)만 사용 가능해요.'
-          hasError='true'
-        />
-        <ErrorStyle>{errors.userID?.message}</ErrorStyle>
-        <Input
-          label='소개'
-          id='user-desc'
-          type='text'
-          placeholder='자신과 판매할 상품에 대해 소개해 주세요!'
-          h */}
+        {errors.userintro && <StyledError>{errors.intro?.message}</StyledError>}
       </ProfileFormContainer>
     </StyledProfileWrap>
   );

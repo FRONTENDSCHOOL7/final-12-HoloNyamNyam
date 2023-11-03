@@ -91,7 +91,6 @@ const ImageFormContainer = styled.div`
 `;
 
 const ProfileFormContainer = styled.form`
-  margin-bottom: 320px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

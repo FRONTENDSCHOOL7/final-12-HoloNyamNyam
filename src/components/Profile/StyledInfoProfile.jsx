@@ -76,10 +76,9 @@ const CtnTap = styled.div`
   height: 40px;
   border-radius: 10px;
   padding: 10px 0;
-
-  transition: padding 0.3s ease;
+  transition: transform 0.3s ease;
   &:hover {
-    padding: 15px 0;
+    transform: translateY(-5px);
   }
 `;
 

@@ -10,7 +10,7 @@ import {
   Close,
 } from './StyledPlaceMap';
 import { useLocation } from 'react-router-dom';
-import Modal from '../../components/Modal/Modal/Modal';
+import Modal from '../Modal/Modal/Modal';
 import { useRecoilState } from 'recoil';
 import { modalState } from '../../recoil/modalAtom';
 import './CssPlaceMap.css';

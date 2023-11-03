@@ -3,6 +3,10 @@ import Header from '../../common/Header/Header';
 import { useNavigate } from 'react-router-dom';
 import imageCompression from 'browser-image-compression';
 import axios from 'axios';
+import { imgUpload } from '../../../api/image';
+import { feedEditApi } from '../../../api/feed';
+import { useRecoilState } from 'recoil';
+import { feedState } from '../../../recoil/feedEditAtom';
 import {
   UploadContainer,
   UploadImg,
@@ -11,23 +15,50 @@ import {
   UploadImgWrapper,
   CloseImgBtn,
 } from '../../Feed/ImgPrev/StyledFeedImgPrev';
-import { StyledContainer, StyledFeed, SocialSVG, H3 } from './StyledFeedCreate';
+import {
+  StyledContainer,
+  StyledFeed,
+  SocialSVG,
+  H3,
+  TextContainer,
+} from './StyledFeedCreate';
 import Carousel from '../../Carousels/Carousel';
 
 export default function FeedCreate() {
   // eslint-disable-next-line no-unused-vars
   const [imgFile, setImgFile] = useState([]);
   const [imgUrl, setImgUrl] = useState([]);
-  const [content, setContent] = useState('');
   const [isValid, setIsValid] = useState(false);
+  const [feed, setFeed] = useRecoilState(feedState);
+  const [uploadPreview, setUploadPreview] = useState(
+    feed.type === 'edit' ? feed.images : [],
+  );
+  const [content, setContent] = useState(feed.type === 'edit' ? feed.text : '');
   const token = localStorage.getItem('token');
   const username = localStorage.getItem('accountname');
-  const [uploadPreview, setUploadPreview] = useState([]);
   const dragItem = useRef(); // 드래그할 아이템의 인덱스
   const dragOverItem = useRef();
   const fileInputRef = useRef(null);
   const maxSize = 10 * 1024 * 1024;
   const navigate = useNavigate();
+
+  function moveProfile(accountname) {
+    setFeed({ type: 'new', id: null, images: [], text: '' });
+    const where = localStorage.getItem('accountname');
+    if (accountname === where) {
+      navigate('/myprofile', {
+        state: {
+          accountname: accountname,
+        },
+      });
+    } else {
+      navigate(`/profile/${accountname}`, {
+        state: {
+          accountname: accountname,
+        },
+      });
+    }
+  }
 
   const uploadFeed = async (url, content) => {
     try {
@@ -35,15 +66,16 @@ export default function FeedCreate() {
       for (const image of imgUrl) {
         const formData = new FormData();
         formData.append('image', image);
-        const uploadResponse = await axios.post(
-          'https://api.mandarin.weniv.co.kr/image/uploadfile',
-          formData,
-          {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          },
-        );
+        const uploadResponse = await imgUpload(formData);
+        // axios.post(
+        //   'https://api.mandarin.weniv.co.kr/image/uploadfile',
+        //   formData,
+        //   {
+        //     headers: {
+        //       'Content-Type': 'multipart/form-data',
+        //     },
+        //   },
+        // );
         let imageUrl = '';
         if (uploadResponse.data.filename) {
           imageUrl =
@@ -70,6 +102,7 @@ export default function FeedCreate() {
       navigate('/myprofile');
     } catch (error) {}
   };
+
   const handleUpload = () => {
     if (isValid) {
       uploadFeed(imgUrl, content);
@@ -77,6 +110,48 @@ export default function FeedCreate() {
       alert('게시글이 작성되지 않았습니다.');
     }
   };
+
+  const feedEditUpload = async () => {
+    try {
+      const newUploadPreview = [...uploadPreview];
+      if (imgUrl) {
+        const uploadedImageUrls = [];
+        for (const image of imgUrl) {
+          const formData = new FormData();
+          formData.append('image', image);
+          const uploadResponse = await imgUpload(formData);
+
+          let imageUrl = '';
+          if (uploadResponse.data.filename) {
+            imageUrl =
+              'https://api.mandarin.weniv.co.kr/' +
+              uploadResponse.data.filename;
+          }
+          uploadedImageUrls.push(imageUrl);
+
+          newUploadPreview.push(imageUrl);
+        }
+      }
+
+      setUploadPreview(newUploadPreview);
+      await feedEditApi(feed.id, token, content, newUploadPreview.join(', '));
+      // const updatedFeed = res.data.post;
+      moveProfile(username);
+    } catch (error) {
+      console.error(error);
+      navigate('/error');
+      return false;
+    }
+  };
+
+  const handleEdit = () => {
+    if (isValid) {
+      feedEditUpload();
+    } else {
+      alert('게시글이 수정되지 않았습니다.');
+    }
+  };
+
   const checkContent = () => {
     if (
       (!content || content.trim().length === 0) &&
@@ -229,15 +304,14 @@ export default function FeedCreate() {
     setImgUrl(newUrlList); // 변경된 순서의 imgUrl을 설정합니다.
   };
 
-  // window.console.log(uploadPreview);
-
   return (
     <>
       <Header
         // type='followings'
         type='upload'
         handleUploadBtn={isValid}
-        uploadHandler={handleUpload}
+        uploadHandler={feed.type === 'edit' ? handleEdit : handleUpload}
+        edit={feed.type === 'edit' ? true : false}
       />
       <StyledContainer>
         <UploadContainer>
@@ -273,14 +347,14 @@ export default function FeedCreate() {
             </UploadImgDiv>
           ))}
         </UploadContainer>
-        <form>
+        <TextContainer>
           <StyledFeed
-            rows='20'
+            rows='10'
             placeholder='사진과 함께 게시글 입력을 해볼까요?'
             value={content}
             onChange={onChangeInput}
           />
-        </form>
+        </TextContainer>
         <H3>이미지 미리보기</H3>
         <Carousel previews={uploadPreview} userInfo={username} />
       </StyledContainer>

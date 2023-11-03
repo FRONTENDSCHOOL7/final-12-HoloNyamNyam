@@ -16,13 +16,13 @@ export default function Modal({
   productId,
   placeName,
   placeLink,
-  handlerYourProfile,
-  handlerMyProfile,
+  handlerProfile,
   handlerFeedEdit,
+  handlerFeedEdit2,
   handlerCommentEdit,
   handlerPlaceEdit,
   handleCommentDelete,
-  handlerDetailFeed,
+  handlerFeedDetail,
   recommendInfo,
   detail,
 }) {
@@ -104,7 +104,6 @@ export default function Modal({
     });
     setModal((prevModal) => ({ ...prevModal, show: false }));
   }
-  //~수정중
   const UI = {
     yourProfile: (
       <ModalWrapArticle>
@@ -120,7 +119,8 @@ export default function Modal({
     myProfile: (
       <ModalWrapArticle>
         <ModalLineSpan />
-        <ModalTextBtn onClick={moveProfileEdit}>설정 및 개인정보</ModalTextBtn>
+        <ModalTextBtn onClick={moveProfileEdit}>프로필 수정</ModalTextBtn>
+        <ModalTextBtn>내 프로필 공유하기</ModalTextBtn>
         <ModalTextBtn onClick={() => alertOpen('logout')}>
           로그아웃
         </ModalTextBtn>
@@ -130,9 +130,9 @@ export default function Modal({
       <ModalWrapArticle>
         <ModalLineSpan />
         {detail || (
-          <ModalTextBtn onClick={handlerDetailFeed}>상세보기</ModalTextBtn>
+          <ModalTextBtn onClick={handlerFeedDetail}>상세보기</ModalTextBtn>
         )}
-        <ModalTextBtn onClick={handlerYourProfile}>이 계정 정보</ModalTextBtn>
+        <ModalTextBtn onClick={handlerProfile}>이 계정 정보</ModalTextBtn>
         <ModalTextBtn onClick={() => alertOpen('reportFeed')}>
           신고하기
         </ModalTextBtn>
@@ -141,15 +141,16 @@ export default function Modal({
     myFeed: (
       <ModalWrapArticle>
         <ModalLineSpan />
-        <ModalTextBtn onClick={handlerDetailFeed}>상세보기</ModalTextBtn>
+        <ModalTextBtn onClick={handlerFeedDetail}>상세보기</ModalTextBtn>
         <ModalTextBtn onClick={() => alertOpen('feed')}>삭제</ModalTextBtn>
-        <ModalTextBtn onClick={handlerFeedEdit}>수정</ModalTextBtn>
+        {/* <ModalTextBtn onClick={handlerFeedEdit}>수정</ModalTextBtn> */}
+        <ModalTextBtn onClick={handlerFeedEdit2}>수정</ModalTextBtn>
       </ModalWrapArticle>
     ),
     yourComment: (
       <ModalWrapArticle>
         <ModalLineSpan />
-        <ModalTextBtn onClick={handlerYourProfile}>이 계정 정보</ModalTextBtn>
+        <ModalTextBtn onClick={handlerProfile}>이 계정 정보</ModalTextBtn>
         <ModalTextBtn onClick={() => alertOpen('reportComment')}>
           신고하기
         </ModalTextBtn>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+//import Input from '../../components/common/Input/Input'
 import { useForm } from 'react-hook-form';
 import { UserIdValid, signup } from '../../api/signUp';
 import { imgUpload } from '../../api/imgUpload';
@@ -18,8 +19,6 @@ import {
   StyledProfileImg,
   StyledSaveButton,
 } from './ProfileSettingStyle';
-
-//테스트용 유저ID = fz_stitch
 
 const ProfileSettingForm = () => {
   const {
@@ -99,7 +98,7 @@ const ProfileSettingForm = () => {
         );
       }
     } catch (errors) {
-      console.log(errors);
+      console.error(errors);
     }
   };
 
@@ -136,14 +135,14 @@ const ProfileSettingForm = () => {
         type='text'
         autoComplete='off'
         {...register('username', {
-          required: '계정이름은 필수 입력입니다',
+          required: '*계정이름은 필수 입력입니다',
           minLength: {
             value: 2,
-            message: '사용자 이름은 최소 2자 이상이어야 합니다.',
+            message: '*사용자 이름은 최소 2자 이상이어야 합니다.',
           },
           maxLength: {
             value: 10,
-            message: '사용자 이름은 최대 10자까지 허용됩니다.',
+            message: '*사용자 이름은 최대 10자까지 허용됩니다.',
           },
         })}
         placeholder='2~10자 이내로 작성 부탁드릴게요.'
@@ -155,10 +154,10 @@ const ProfileSettingForm = () => {
         type='text'
         autoComplete='off'
         {...register('userid', {
-          required: '계정ID는 필수 입력입니다',
+          required: '*계정ID는 필수 입력입니다',
           pattern: {
             value: /^[0-9a-zA-Z._]+$/,
-            message: '*영문, 숫자, 밑줄 및 마침표만 사용할 수 있답니다  :(',
+            message: '*영문, 숫자, 밑줄 및 마침표만 사용할 수 있습니다.',
           },
         })}
         placeholder='영문, 숫자, 특수문자(.),(_)만 사용 가능해요.'
@@ -170,7 +169,7 @@ const ProfileSettingForm = () => {
         type='text'
         autoComplete='off'
         {...register('userintro', {
-          required: '간단한 소개 부탁드릴게요!',
+          required: '*간단한 소개 부탁드릴게요!',
         })}
         placeholder='자신을 나타낼 수 있는 소개 부탁드릴게요.'
       />
@@ -195,35 +194,6 @@ const ProfileSettingForm = () => {
           저장
         </StyledSaveButton>
       )}
-
-      {/*   <Input
-          label='사용자 이름'
-          id='username'
-          type='text'
-          placeholder='2~10자 이내로 작성 부탁드릴게요.'
-          onChange={handleFieldChange}
-          hasError={hasError}
-          registerOptions={{
-            ...register('username', {
-              requried: '사용자 이름은 필수입니다',
-            }),
-          }}
-        />
-        <ErrorStyle>{errors.userName?.message}</ErrorStyle>
-        <Input
-          label='계정 ID'
-          id='user-id'
-          type='text'
-          placeholder='영문, 숫자, 특수문자(.),(_)만 사용 가능해요.'
-          hasError='true'
-        />
-        <ErrorStyle>{errors.userID?.message}</ErrorStyle>
-        <Input
-          label='소개'
-          id='user-desc'
-          type='text'
-          placeholder='자신과 판매할 상품에 대해 소개해 주세요!'
-          h */}
     </ProfileFormContainer>
   );
 };
