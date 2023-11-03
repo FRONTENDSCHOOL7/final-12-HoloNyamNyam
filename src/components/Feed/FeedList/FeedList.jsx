@@ -43,7 +43,7 @@ export default function FeedList() {
   const [hasFeeds, setHasFeeds] = useState(false);
   const [feedEditModalOpen, setFeedEditModalOpen] = useState(false);
   const [modal, setModal] = useRecoilState(modalState);
-  const [feed, setFeed] = useRecoilState(feedState);
+  const [, setFeed] = useRecoilState(feedState);
   const observer = useRef();
   const [skip, setSkip] = useState(0);
   const [page, setPage] = useState(0);
@@ -146,7 +146,7 @@ export default function FeedList() {
     setSkip(0);
     setPage(0);
     setFeedInfo([]);
-  }, [location]);
+  }, []);
 
   return (
     <>
