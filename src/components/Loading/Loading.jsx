@@ -3,13 +3,13 @@ import styled, { keyframes } from 'styled-components';
 
 const Flexbox = styled.div`
   > div {
-    width: 100%;
+    width: 390px;
     height: 100vh;
     top: 0;
-    left: 0;
+    /* left: 0; */
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-sizing: border-box;
-    margin: 0;
+    margin: 0 auto;
     position: fixed;
     display: flex;
     justify-content: center;
