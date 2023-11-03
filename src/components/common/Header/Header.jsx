@@ -14,7 +14,7 @@ import {
   Star,
 } from './StyledHeader';
 import Button from '../Button/Button';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import sprite from '../../../images/SpriteIcon.svg';
 import { useSetRecoilState, useRecoilState } from 'recoil';
 import { modalState } from '../../../recoil/modalAtom';
@@ -47,10 +47,32 @@ export default function Header({
       </svg>
     </SocialSvg>
   );
+
+  const location = useLocation();
+  const { accountname } = location.state || {};
+  let userName = accountname || { name };
+  if (
+    !userName.name &&
+    location.state &&
+    location.state.infoToIterate &&
+    location.state.infoToIterate.author &&
+    location.state.infoToIterate.author.accountname
+  ) {
+    userName = location.state.infoToIterate.author.accountname;
+    if (userName === localStorage.accountname) {
+      userName = '나의 게시글';
+    }
+  }
   const navigate = useNavigate();
   const setModal = useSetRecoilState(modalState);
   const modalOpen = () => {
-    setModal({ show: true, type: 'myProfile' });
+    setModal({
+      show: true,
+      type:
+        own === 'my' || userName === '나의 게시글'
+          ? 'myProfile'
+          : 'yourProfile',
+    });
   };
   const [viewMode, setViewMode] = useRecoilState(viewBtnState);
   const setFeed = useSetRecoilState(feedState);
@@ -124,7 +146,9 @@ export default function Header({
     profile: (
       <HeaderLayoutSection>
         <HeaderTitle className='a11y-hidden'>프로필</HeaderTitle>
-        {own === 'my' ? renderHeaderText('나의 프로필') : renderHeaderLeftBtn()}
+        {own === 'my'
+          ? renderHeaderText('나의 프로필')
+          : renderHeaderText(`${userName}`)}
         {renderHeaderRightBtn()}
       </HeaderLayoutSection>
     ),
@@ -184,7 +208,6 @@ export default function Header({
       <HeaderLayoutSection>
         <HeaderTitle className='a11y-hidden'>카카오맵</HeaderTitle>
         {renderHeaderText('카카오맵')}
-        {renderHeaderRightBtn()}
       </HeaderLayoutSection>
     ),
     default: (
@@ -208,14 +231,17 @@ export default function Header({
     placeupload: (
       <HeaderLayoutSection>
         <HeaderTitle className='a11y-hidden'>냠냠평가 등록</HeaderTitle>
-        {renderHeaderLeftBtn()}
+        {/* {renderHeaderLeftBtn()} */}
+        {edit
+          ? renderHeaderText('냠냠평가 수정')
+          : renderHeaderText('냠냠평가 작성')}
         <Button
           type='button'
           content='저장'
-          size='s'
-          width='m'
+          size='ms'
+          width='ms'
           $bgcolor={handleUploadBtn ? 'active' : 'inactive'}
-          // disabled={!handleUploadBtn}
+          disabled={!handleUploadBtn}
           onClick={uploadHandler}
         />
       </HeaderLayoutSection>

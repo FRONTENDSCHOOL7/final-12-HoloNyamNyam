@@ -46,7 +46,10 @@ const defaultIconStyle = `
 const PlaceImgIcon = styled.img`
   object-fit: contain;
   border-radius: 10px;
-  ${(props) => props.iconStyle || defaultIconStyle}
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+  /* ${(props) => props.iconStyle || defaultIconStyle} */
 `;
 
 export {
