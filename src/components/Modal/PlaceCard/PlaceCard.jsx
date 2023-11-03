@@ -65,9 +65,10 @@ export default function PlaceCard({ cardClose, id }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  const openPlaceEditModal = () => {
-    setPlaceEditModalOpen(true);
-  };
+  // const openPlaceEditModal = () => {
+  //   setPlaceEditModalOpen(true);
+  // };
+
   const closePlaceEditModal = () => {
     setPlaceEditModalOpen(false);
     setShouldFetchProductInfo(true);
@@ -102,7 +103,7 @@ export default function PlaceCard({ cardClose, id }) {
       </PlaceCardArticle>
       {modal.show && (
         <Modal
-          type='myPlace'
+          type={accountname ? 'yourPlace' : 'myPlace'}
           productId={id}
           placeName={placeInfo.itemName}
           placeLink={placeInfo.link}
