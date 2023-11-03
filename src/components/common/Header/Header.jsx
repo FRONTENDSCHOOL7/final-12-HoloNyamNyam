@@ -163,7 +163,7 @@ export default function Header({
         <HeaderTitle className='a11y-hidden'>프로필 수정</HeaderTitle>
         {renderHeaderText('프로필 수정')}
         <Button
-          type='button'
+          type='submit'
           content='저장'
           size='ms'
           width='ms'

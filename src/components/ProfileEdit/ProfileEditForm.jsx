@@ -48,17 +48,16 @@ const ProfileEditForm = ({ userInfo, setUserInfo }) => {
     setValue('intro', userInfo?.intro || null);
   }, [location.pathname, userInfo]);
 
-  const checkUserIdValid = async (accountname) => {
+  const checkUserIdValid = async (newAccount, oldAccount) => {
+    if (newAccount === oldAccount) {
+      return true;
+    }
     try {
-      const res = await UserIdValid(accountname);
+      const res = await UserIdValid(newAccount);
       const reqMsg = res.data.message;
       clearErrors('accountname');
       if (reqMsg === '이미 가입된 계정ID 입니다.') {
-        setError('accountname', {
-          type: 'manual',
-          message: '*이미 사용 중인 ID예요 :(',
-        });
-        return false;
+        return '*이미 사용 중인 ID입니다.';
       } else {
         clearErrors('userid');
         return true;
@@ -81,15 +80,12 @@ const ProfileEditForm = ({ userInfo, setUserInfo }) => {
 
   const handleSubmitData = async (formData) => {
     try {
-      const isValidUserId = await checkUserIdValid(formData.accountname);
-      if (isValidUserId) {
-        setProfileImg(userInfo?.image || DefaultProfileInput);
-        const image = profileImg || userInfo?.image || DefaultProfileInput;
-        const res = await profileEdit(formData, image, token);
-        localStorage.setItem('_id', res.data.user._id);
-        localStorage.setItem('accountname', formData.accountname);
-        navigate('/myprofile');
-      }
+      setProfileImg(userInfo?.image || DefaultProfileInput);
+      const image = profileImg || userInfo?.image || DefaultProfileInput;
+      const res = await profileEdit(formData, image, token);
+      localStorage.setItem('_id', res.data.user._id);
+      localStorage.setItem('accountname', formData.accountname);
+      navigate('/myprofile');
     } catch (errors) {
       console.error(errors);
     }
@@ -161,10 +157,21 @@ const ProfileEditForm = ({ userInfo, setUserInfo }) => {
               value: /^[0-9a-zA-Z._]+$/,
               message: '*영문, 숫자, 밑줄 및 마침표만 사용할 수 있답니다  :(',
             },
+            validate: {
+              uniqueAccount: async (value) => {
+                const result = await checkUserIdValid(
+                  value,
+                  userInfo?.accountname,
+                );
+                return result === true || result;
+              },
+            },
           })}
           placeholder='영문, 숫자, 특수문자(.),(_)만 사용 가능해요.'
         />
-        {errors.userid && <StyledError>{errors.userid?.message}</StyledError>}
+        {errors.accountname && (
+          <StyledError>{errors.accountname?.message}</StyledError>
+        )}
         <StyledLabel>소개</StyledLabel>
         <StyledInput
           id='intro'
