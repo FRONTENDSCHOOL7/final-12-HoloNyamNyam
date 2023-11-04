@@ -11,7 +11,7 @@ import Modal from '../../Modal/Modal/Modal';
 
 const List = styled.ul`
   background-color: white;
-  padding: 57px 24px 69px 24px;
+  padding: 57px 20px 69px;
 `;
 
 export default function FeedHome() {

@@ -23,7 +23,7 @@ import {
   NoFeedP,
 } from './StyledFeedList';
 import { userFeedListApi } from '../../../api/feed';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { modalState } from '../../../recoil/modalAtom';
 import { feedState } from '../../../recoil/feedEditAtom';
 import { useRef } from 'react';
@@ -43,7 +43,7 @@ export default function FeedList() {
   const [hasFeeds, setHasFeeds] = useState(false);
   const [feedEditModalOpen, setFeedEditModalOpen] = useState(false);
   const [modal, setModal] = useRecoilState(modalState);
-  const [feed, setFeed] = useRecoilState(feedState);
+  const setFeed = useSetRecoilState(feedState);
   const observer = useRef();
   const [skip, setSkip] = useState(0);
   const [page, setPage] = useState(0);
@@ -116,16 +116,6 @@ export default function FeedList() {
       accountname: item.author.accountname,
       item: item,
     });
-  };
-
-  const openFeedEditModal = () => {
-    setFeedEditModalOpen(true);
-  };
-
-  const closeFeedEditModal = () => {
-    setFeedEditModalOpen(false);
-    setModal((prevModal) => ({ ...prevModal, show: false }));
-    window.location.reload();
   };
 
   useEffect(() => {
@@ -248,13 +238,9 @@ export default function FeedList() {
       {modal.show && (
         <Modal
           type={modal.type}
-          handlerFeedEdit={openFeedEditModal}
           handlerFeedDetail={() => moveDetail(modal.item)}
-          handlerFeedEdit2={() => moveUpload(modal.item)}
+          handlerFeedEdit={() => moveUpload(modal.item)}
         />
-      )}
-      {feedEditModalOpen && (
-        <FeedEdit closeModal={closeFeedEditModal} feedId={modal.feedId} />
       )}
     </>
   );

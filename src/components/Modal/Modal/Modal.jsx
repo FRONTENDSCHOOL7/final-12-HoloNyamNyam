@@ -18,7 +18,6 @@ export default function Modal({
   placeLink,
   handlerProfile,
   handlerFeedEdit,
-  handlerFeedEdit2,
   handlerCommentEdit,
   handlerPlaceEdit,
   handleCommentDelete,
@@ -143,8 +142,7 @@ export default function Modal({
         <ModalLineSpan />
         <ModalTextBtn onClick={handlerFeedDetail}>상세보기</ModalTextBtn>
         <ModalTextBtn onClick={() => alertOpen('feed')}>삭제</ModalTextBtn>
-        {/* <ModalTextBtn onClick={handlerFeedEdit}>수정</ModalTextBtn> */}
-        <ModalTextBtn onClick={handlerFeedEdit2}>수정</ModalTextBtn>
+        <ModalTextBtn onClick={handlerFeedEdit}>수정</ModalTextBtn>
       </ModalWrapArticle>
     ),
     yourComment: (

@@ -67,4 +67,15 @@ const H3 = styled.h3`
   margin: 0 auto 15px;
 `;
 
-export { StyledContainer, StyledFeed, SocialSVG, H3, TextContainer };
+const ImagesWrapper = styled.div`
+  padding: 0 15px;
+`;
+
+export {
+  StyledContainer,
+  StyledFeed,
+  SocialSVG,
+  H3,
+  TextContainer,
+  ImagesWrapper,
+};

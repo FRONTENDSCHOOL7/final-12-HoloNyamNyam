@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const CarouselWrapper = styled.div`
-  width: 342px;
+  /* width: 342px; */
   height: 228px;
   border-radius: 8px;
   position: relative;
