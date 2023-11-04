@@ -9,13 +9,13 @@ import {
   TopIcon,
   ButtonContainer,
 } from './StyledNav';
-import sprite from '../../../images/navigationIcon.svg';
+import sprite from '../../../images/sprite-nav.svg';
 import topIcon from '../../../images/arrow_top.svg';
 
 export default function Nav() {
   const [showButton, setShowButton] = useState(false);
   const location = useLocation();
-  const NavSVG = ({ id, color = 'white', size = 24 }) => (
+  const NavSVG = ({ id, color, size = 24 }) => (
     <svg fill={color} width={size} height={size}>
       <use href={`${sprite}#${id}`} />
     </svg>
@@ -85,7 +85,12 @@ export default function Nav() {
           </NavLink>
         </li>
         <li>
-          <NavLink to='/feedupload'>
+          <NavLink
+            to='/feedupload'
+            className={`nav-link ${
+              location.pathname === '/feedupload' ? 'active' : ''
+            }`}
+          >
             <NavSVG
               id={
                 location.pathname === '/feedupload'
@@ -104,8 +109,11 @@ export default function Nav() {
             }`}
           >
             <NavSVG
-              id='icon-message-circle'
-              color={location.pathname === '/chat' ? '#f26e22' : 'white'}
+              id={
+                location.pathname === '/chat'
+                  ? 'icon-message-fill'
+                  : 'icon-message'
+              }
             />
             <StyledNavText>채팅</StyledNavText>
           </NavLink>
