@@ -8,6 +8,7 @@ import {
   ScrollButton,
   TopIcon,
   ButtonContainer,
+  SvgDiv,
 } from './StyledNav';
 import sprite from '../../../images/sprite-nav.svg';
 import topIcon from '../../../images/arrow_top.svg';
@@ -59,11 +60,13 @@ export default function Nav() {
               location.pathname === '/home' ? 'active' : ''
             }`}
           >
-            <NavSVG
-              id={
-                location.pathname === '/home' ? 'icon-home-fill' : 'icon-home'
-              }
-            />
+            <SvgDiv scale={location.pathname === '/home' ? 1.2 : 1}>
+              <NavSVG
+                id={
+                  location.pathname === '/home' ? 'icon-home-fill' : 'icon-home'
+                }
+              />
+            </SvgDiv>
             <StyledNavText>홈</StyledNavText>
           </NavLink>
         </li>
@@ -74,13 +77,15 @@ export default function Nav() {
               location.pathname === '/search' ? 'active' : ''
             }`}
           >
-            <NavSVG
-              id={
-                location.pathname === '/search'
-                  ? 'icon-search-fill'
-                  : 'icon-search'
-              }
-            />
+            <SvgDiv scale={location.pathname === '/search' ? 1.2 : 1}>
+              <NavSVG
+                id={
+                  location.pathname === '/search'
+                    ? 'icon-search-fill'
+                    : 'icon-search'
+                }
+              />
+            </SvgDiv>
             <StyledNavText>검색</StyledNavText>
           </NavLink>
         </li>
@@ -91,13 +96,15 @@ export default function Nav() {
               location.pathname === '/feedupload' ? 'active' : ''
             }`}
           >
-            <NavSVG
-              id={
-                location.pathname === '/feedupload'
-                  ? 'icon-edit-fill'
-                  : 'icon-edit'
-              }
-            />
+            <SvgDiv scale={location.pathname === '/feedupload' ? 1.2 : 1}>
+              <NavSVG
+                id={
+                  location.pathname === '/feedupload'
+                    ? 'icon-edit-fill'
+                    : 'icon-edit'
+                }
+              />
+            </SvgDiv>
             <StyledNavText>게시물 작성</StyledNavText>
           </NavLink>
         </li>
@@ -108,13 +115,15 @@ export default function Nav() {
               location.pathname === '/chat' ? 'active' : ''
             }`}
           >
-            <NavSVG
-              id={
-                location.pathname === '/chat'
-                  ? 'icon-message-fill'
-                  : 'icon-message'
-              }
-            />
+            <SvgDiv scale={location.pathname === '/chat' ? 1.2 : 1}>
+              <NavSVG
+                id={
+                  location.pathname === '/chat'
+                    ? 'icon-message-fill'
+                    : 'icon-message'
+                }
+              />
+            </SvgDiv>
             <StyledNavText>채팅</StyledNavText>
           </NavLink>
         </li>
@@ -125,13 +134,15 @@ export default function Nav() {
               location.pathname === '/myprofile' ? 'active' : ''
             }`}
           >
-            <NavSVG
-              id={
-                location.pathname === '/myprofile'
-                  ? 'icon-user-fill'
-                  : 'icon-user'
-              }
-            />
+            <SvgDiv scale={location.pathname === '/myprofile' ? 1.2 : 1}>
+              <NavSVG
+                id={
+                  location.pathname === '/myprofile'
+                    ? 'icon-user-fill'
+                    : 'icon-user'
+                }
+              />
+            </SvgDiv>
             <StyledNavText>프로필</StyledNavText>
           </NavLink>
         </li>

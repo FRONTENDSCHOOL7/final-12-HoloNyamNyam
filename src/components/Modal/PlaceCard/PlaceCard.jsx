@@ -18,6 +18,8 @@ import sprite from '../../../images/SpriteIcon.svg';
 import { useRecoilState } from 'recoil';
 import Modal from '../Modal/Modal';
 import { modalState } from '../../../recoil/modalAtom';
+import close from '../../../images/close-btn.svg';
+import StarImg from '../../../images/Star.svg';
 
 export default function PlaceCard({ cardClose, id }) {
   const SocialSVG = ({ id, color = 'white', size = 22 }) => (
@@ -26,7 +28,14 @@ export default function PlaceCard({ cardClose, id }) {
     </svg>
   );
   const location = useLocation();
-  const { accountname } = location.state || {};
+  let { accountname } = location.state || {};
+
+  if (location.pathname === '/placelist') {
+    if (accountname === localStorage.getItem('accountname')) {
+      accountname = '';
+    }
+  }
+
   const [placeInfo, setPlaceInfo] = useState({
     postimage: '',
     restaurantname: '',
@@ -91,14 +100,16 @@ export default function PlaceCard({ cardClose, id }) {
         <PlaceTextSection>
           <TitleWrapper>
             <PlaceName>{placeInfo.itemName}</PlaceName>
-            <SocialSVG id='star' size='16px' />
+            <img src={StarImg} alt='평점 아이콘' />
             <PlaceScoreSpan>{placeInfo.price}.0</PlaceScoreSpan>
           </TitleWrapper>
           <PlaceLocationP>{placeInfo.link}</PlaceLocationP>
-          <PlaceMoreBtn type='button' onClick={modalOpen}>
+          <PlaceMoreBtn type='button' onClick={modalOpen} title='더보기 버튼'>
             <SocialSVG id='icon-more-vertical' />
           </PlaceMoreBtn>
-          <PlaceCloseBtn type='button' onClick={cardClose} />
+          <PlaceCloseBtn type='button'>
+            <img src={close} alt='닫기 버튼' onClick={cardClose} />
+          </PlaceCloseBtn>
         </PlaceTextSection>
       </PlaceCardArticle>
       {modal.show && (
