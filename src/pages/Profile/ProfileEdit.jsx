@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { userInfoApi } from '../../api/user';
-import Header from '../../components/common/Header/Header';
 import ProfileEditForm from '../../components/ProfileEdit/ProfileEditForm';
-import { StyledProfileEditWrap } from '../../components/ProfileEdit/ProfileEditFormStyle';
 
 export default function ProfileEdit() {
   const token = localStorage.getItem('token');
@@ -17,6 +15,7 @@ export default function ProfileEdit() {
 
   useEffect(() => {
     prevUserInfo();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const prevUserInfo = async () => {
@@ -30,10 +29,5 @@ export default function ProfileEdit() {
     }
   };
 
-  return (
-    <>
-      <ProfileEditForm userInfo={userInfo} setUserInfo={setUserInfo} />
-      {/* <ProfileSettingForm /> */}
-    </>
-  );
+  return <ProfileEditForm userInfo={userInfo} setUserInfo={setUserInfo} />;
 }
