@@ -167,7 +167,6 @@ export default function Header({
     upload: (
       <HeaderLayoutSection>
         <HeaderTitle className='a11y-hidden'>게시물 작성</HeaderTitle>
-        {/* {renderHeaderLeftBtn()} */}
         {edit
           ? renderHeaderText('냠냠피드 수정')
           : renderHeaderText('냠냠피드 작성')}

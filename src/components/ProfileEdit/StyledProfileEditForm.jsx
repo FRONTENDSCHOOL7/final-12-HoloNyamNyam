@@ -5,7 +5,6 @@ import UploadButton from '../../images/upload-file.svg';
 const StyledSignUpWrap = styled.div`
   padding-top: 100px;
   margin: auto;
-  text-align: center;
   background: #fff;
 `;
 
@@ -55,6 +54,7 @@ const ProfileInputImgButton = styled.button`
 
 const ImageFormContainer = styled.div`
   margin: 0px auto;
+  text-align: center;
   padding-bottom: 20px;
 `;
 
