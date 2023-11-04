@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import {
+  PlaceWrapper,
+  PlaceLabel,
+  PlaceInfo,
+  Restaurant,
+  SearchAddressButton,
+  StyledSelect,
+} from './PlaceStyle';
 import PlaceImgPrev from '../../components/Place/PlaceImgPrev';
 import StarRating from '../../components/Place/StarRating';
 import Header from '../../components/common/Header/Header';
@@ -7,68 +14,6 @@ import { useNavigate } from 'react-router-dom';
 import { imgUpload } from '../../api/imgUpload';
 import { placeUploadApi } from '../../api/place';
 
-const PlaceWrapper = styled.section`
-  padding: 78px 36px;
-  background: #fff;
-  height: 100vh;
-  overflow: hidden;
-  box-sizing: border-box;
-`;
-
-export const PlaceLabel = styled.label`
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 500;
-  color: #767676;
-`;
-const PlaceInfo = styled.input`
-  display: block;
-  width: 318px;
-  box-sizing: border-box;
-  border: none;
-  box-shadow: 0 1px 0 0 #dedede;
-  height: 42px;
-  font-size: 14px;
-  margin: 0 auto 30px auto;
-  outline: none;
-  background: transparent;
-  padding: 6px 70px 0 0;
-  &:focus {
-    border-bottom: 1px solid #ff644b;
-  }
-`;
-const Restaurant = styled.div`
-  position: relative;
-`;
-const SearchAddressButton = styled.button`
-  position: absolute;
-  right: 0%;
-  bottom: 5px;
-  display: inline-block;
-  margin-left: 5px;
-  background-color: #ff644b;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 8px 16px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-`;
-const StyledSelect = styled.select`
-  display: block;
-  width: 318px;
-  box-sizing: border-box;
-  border: none;
-  box-shadow: 0 1px 0 0 #dedede;
-  height: 42px;
-  font-size: 14px;
-  margin: 0 auto 30px auto;
-  outline: none;
-  background: transparent;
-  padding: 6px 0 0;
-  cursor: pointer;
-`;
 const { kakao } = window;
 export default function MakePlace() {
   const [imgFile, setImgFile] = useState(null);
@@ -121,7 +66,12 @@ export default function MakePlace() {
   };
 
   const checkContent = () => {
-    if (restaurantname.trim().length === 0 || !imgFile) {
+    if (
+      restaurantname.trim().length === 0 ||
+      !imgFile ||
+      rating === 0 ||
+      selectedAddress === ''
+    ) {
       setIsValid(false);
     } else {
       setIsValid(true);
@@ -129,6 +79,7 @@ export default function MakePlace() {
   };
   useEffect(() => {
     checkContent();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [restaurantname, rating, selectedAddress, imgFile]);
 
   const onChangeName = (event) => {
