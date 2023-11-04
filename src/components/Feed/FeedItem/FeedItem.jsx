@@ -16,6 +16,8 @@ import {
   Container,
   SocialSvg,
   MoreBtn,
+  LikeAnimaiton,
+  CommentAnimaiton,
 } from './StyledFeedItem';
 import { feedLikeApi, feedUnlikeApi } from '../../../api/feed';
 import sprite from '../../../images/SpriteIcon.svg';
@@ -153,11 +155,13 @@ export default function FeedItem({
         <FeedInfoBox>
           <FeedBtnBox>
             <BtnLike onClick={() => feedLike(infoToIterate.id)}>
-              {isHearted ? (
-                <SocialSVG id='icon-heart' color='red' strokeColor='red' />
-              ) : (
-                <SocialSVG id='icon-heart' />
-              )}
+              <LikeAnimaiton>
+                {isHearted ? (
+                  <SocialSVG id='icon-heart' color='red' strokeColor='red' />
+                ) : (
+                  <SocialSVG id='icon-heart' />
+                )}
+              </LikeAnimaiton>
               {heartCnt}
             </BtnLike>
 
@@ -166,7 +170,9 @@ export default function FeedItem({
                 moveDetail(infoToIterate.id);
               }}
             >
-              <SocialSVG id='icon-message-circle-2' />
+              <CommentAnimaiton>
+                <SocialSVG id='icon-message-circle-2' />
+              </CommentAnimaiton>
               {commentCnt}
             </BtnComment>
           </FeedBtnBox>

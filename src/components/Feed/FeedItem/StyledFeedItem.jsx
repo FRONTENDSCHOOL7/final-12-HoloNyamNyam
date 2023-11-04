@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 const Container = styled.article`
   position: relative;
@@ -67,20 +67,58 @@ const FeedDate = styled.p`
   font-size: 10px;
   color: #767676;
 `;
+
+const heart = keyframes`
+	0% {transform: scale(1.2);}
+	10% {transform: scale(0.9);}
+	20% {transform: scale(1.2);}
+	30% {transform: scale(0.9);}
+	40% {transform: scale(1.2);}
+	50% {transform: scale(0.9);}
+	60% {transform: scale(1.2);}
+	70% {transform: scale(0.9);}
+	80% {transform: scale(1.2);}
+	90% {transform: scale(0.9);}
+	100% {transform: scale(1.2);}
+`;
+
 const BtnLike = styled.button`
   height: 20px;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   color: #767676;
 `;
+
+const LikeAnimaiton = styled.div`
+  &:hover {
+    animation-duration: 2s;
+    animation-name: ${heart};
+    animation-iteration-count: infinite;
+  }
+`;
+
 const BtnComment = styled.button`
   width: 50px;
   height: 20px;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   color: #767676;
+`;
+
+const comment = keyframes`
+	0%, 50% {transform: rotate(0deg);}
+	5%, 15%, 25%, 35%, 45%  {transform: rotate(13deg);}
+	10%, 20%, 30%, 40% {transform: rotate(-13deg);}
+`;
+
+const CommentAnimaiton = styled.div`
+  &:hover {
+    animation-duration: 2s;
+    animation-name: ${comment};
+    animation-iteration-count: infinite;
+  }
 `;
 
 const SocialSvg = styled.div`
@@ -107,4 +145,6 @@ export {
   Container,
   SocialSvg,
   MoreBtn,
+  LikeAnimaiton,
+  CommentAnimaiton,
 };
