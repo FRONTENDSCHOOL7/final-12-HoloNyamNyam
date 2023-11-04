@@ -13,13 +13,13 @@ import {
   TitleWrapper,
 } from './PlaceCardStyle';
 import { getPlaceInfoApi } from '../../../api/place';
-import PlaceEdit from '../../Place/PlaceEdit';
 import sprite from '../../../images/SpriteIcon.svg';
 import { useRecoilState } from 'recoil';
 import Modal from '../Modal/Modal';
 import { modalState } from '../../../recoil/modalAtom';
 import close from '../../../images/close-btn.svg';
 import StarImg from '../../../images/Star.svg';
+import { placeState } from '../../../recoil/placeEditAtom';
 
 export default function PlaceCard({ cardClose, id }) {
   const SocialSVG = ({ id, color = 'white', size = 22 }) => (
@@ -46,6 +46,7 @@ export default function PlaceCard({ cardClose, id }) {
   const [placeEditModalOpen, setPlaceEditModalOpen] = useState(false);
   const [shouldFetchProductInfo, setShouldFetchProductInfo] = useState(false);
   const [modal, setModal] = useRecoilState(modalState);
+  const [place, setPlace] = useRecoilState(placeState);
   const modalOpen = () => {
     setModal({ show: true, type: !accountname ? 'product' : 'yourproduct' });
   };
@@ -74,9 +75,9 @@ export default function PlaceCard({ cardClose, id }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  // const openPlaceEditModal = () => {
-  //   setPlaceEditModalOpen(true);
-  // };
+  const openPlaceEditModal = () => {
+    setPlaceEditModalOpen(true);
+  };
 
   const closePlaceEditModal = () => {
     setPlaceEditModalOpen(false);
@@ -91,6 +92,19 @@ export default function PlaceCard({ cardClose, id }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [shouldFetchProductInfo]);
+
+  const moveUpload = (item, id) => {
+    navigation('/EditPlace');
+    setModal({ show: false });
+    setPlace({
+      type: 'edit',
+      id: id,
+      itemName: item.itemName,
+      itemImage: item.itemImage,
+      link: item.link,
+      price: item.price,
+    });
+  };
 
   return (
     <PlaceDim onClick={cardClose}>
@@ -119,10 +133,9 @@ export default function PlaceCard({ cardClose, id }) {
           placeName={placeInfo.itemName}
           placeLink={placeInfo.link}
           placeInfo={placeInfo}
+          // handlerPlaceEdit={openPlaceEditModal}
+          handlerPlaceEdit={() => moveUpload(placeInfo, id)}
         />
-      )}
-      {placeEditModalOpen && (
-        <PlaceEdit closeModal={closePlaceEditModal} productId={id} />
       )}
     </PlaceDim>
   );

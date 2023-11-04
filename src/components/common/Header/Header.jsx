@@ -167,7 +167,6 @@ export default function Header({
     upload: (
       <HeaderLayoutSection>
         <HeaderTitle className='a11y-hidden'>게시물 작성</HeaderTitle>
-        {/* {renderHeaderLeftBtn()} */}
         {edit
           ? renderHeaderText('냠냠피드 수정')
           : renderHeaderText('냠냠피드 작성')}
@@ -187,7 +186,7 @@ export default function Header({
         <HeaderTitle className='a11y-hidden'>프로필 수정</HeaderTitle>
         {renderHeaderText('프로필 수정')}
         <Button
-          type='button'
+          type='submit'
           content='저장'
           size='ms'
           width='ms'
@@ -234,7 +233,7 @@ export default function Header({
         {/* {renderHeaderLeftBtn()} */}
         {edit
           ? renderHeaderText('냠냠평가 수정')
-          : renderHeaderText('냠냠평가 작성')}
+          : renderHeaderText('냠냠평가 등록')}
         <Button
           type='button'
           content='저장'

@@ -78,7 +78,6 @@ const SignUpForm = () => {
         <StyledInputWrap>
           <Input
             label='이메일'
-            padding='signup'
             id='email'
             type='email'
             placeholder='id@example.com'
@@ -99,7 +98,6 @@ const SignUpForm = () => {
         <StyledInputWrap>
           <Input
             label='비밀번호'
-            padding='signup'
             id='password'
             type='password'
             placeholder='6자 이상, 문자/숫자/기호사용 가능해요.'
@@ -119,7 +117,6 @@ const SignUpForm = () => {
         </StyledInputWrap>
         <StyledButton
           type='submit'
-          className='btn-signup'
           $bgcolor={isValid ? 'active' : 'inactive'}
           disabled={!isValid}
         >

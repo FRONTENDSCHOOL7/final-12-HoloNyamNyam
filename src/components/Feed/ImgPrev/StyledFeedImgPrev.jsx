@@ -29,6 +29,7 @@ const UploadImgDiv = styled.div`
 const UploadImg = styled.img`
   max-width: 80px;
   max-height: 80px;
+  height: 80px;
   object-fit: contain;
   border-radius: 10px;
   border: 1px solid #eee;
