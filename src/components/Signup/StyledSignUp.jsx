@@ -15,6 +15,13 @@ const StyledTitle = styled.h1`
   font-weight: 500;
 `;
 
+const StyledSubTitle = styled.div`
+  font-size: 14px;
+  color: black;
+  padding-bottom: 58px;
+  font-weight: 400;
+`;
+
 const StyledInputWrap = styled.div`
   position: relative;
 `;
@@ -24,4 +31,10 @@ const StyledButton = styled(ButtonStyle)`
   font-weight: 500;
 `;
 
-export { StyledSignUpWrap, StyledInputWrap, StyledTitle, StyledButton };
+export {
+  StyledSignUpWrap,
+  StyledInputWrap,
+  StyledTitle,
+  StyledButton,
+  StyledSubTitle,
+};
