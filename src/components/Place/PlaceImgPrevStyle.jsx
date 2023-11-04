@@ -37,7 +37,9 @@ const PlaceIconWrapper = styled.label`
   display: inline-block;
   cursor: pointer;
   position: absolute;
-  ${(props) => props.wrapperStyle || defaultIconPosition}
+  width: 100%;
+  height: 85%;
+  /* ${(props) => props.wrapperStyle || defaultIconPosition} */
 `;
 const defaultIconStyle = `
   width: 75%;
@@ -49,6 +51,9 @@ const PlaceImgIcon = styled.img`
   width: 40px;
   height: 40px;
   margin-right: 20px;
+  position: absolute;
+  bottom: 20px;
+  right: 0;
   /* ${(props) => props.iconStyle || defaultIconStyle} */
 `;
 

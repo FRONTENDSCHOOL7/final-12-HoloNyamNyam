@@ -83,7 +83,7 @@ export const GlobalStyle = createGlobalStyle`
 
   :root {
     background: rgb(255,247,229);
-background: linear-gradient(90deg, rgba(255,247,229,1) 12%, rgba(255,219,198,1) 100%);
+background: linear-gradient(105deg, rgba(255,247,229,1) 12%, rgba(255,219,198,1) 100%);
 
   }
 `;

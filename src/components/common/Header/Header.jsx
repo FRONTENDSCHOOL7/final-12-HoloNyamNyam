@@ -216,7 +216,7 @@ export default function Header({
         {/* {renderHeaderLeftBtn()} */}
         {edit
           ? renderHeaderText('냠냠평가 수정')
-          : renderHeaderText('냠냠평가 작성')}
+          : renderHeaderText('냠냠평가 등록')}
         <Button
           type='button'
           content='저장'
