@@ -40,7 +40,7 @@ export const feedInfoApi = async (feedId, token) => {
   return res;
 };
 
-export const feedEditApi = async (feedId, token, content, image) => {
+export const feedEditApi = async ({ feedId, token, content, image }) => {
   const res = await axios.put(
     `${BASE_URL}/post/${feedId}`,
     {
