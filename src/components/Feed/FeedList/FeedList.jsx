@@ -5,7 +5,6 @@ import sprite from '../../../images/SpriteIcon.svg';
 import Stack from '../../../images/stack.svg';
 import feedListSvg from '../../../images/feedList-logo.svg';
 import Modal from '../../Modal/Modal/Modal';
-import FeedEdit from '../FeedEdit/FeedEdit';
 import {
   FeedListBtnWrap,
   ImgInfo,
@@ -41,7 +40,6 @@ export default function FeedList() {
   const navigate = useNavigate();
   const [feedInfo, setFeedInfo] = useState([]);
   const [hasFeeds, setHasFeeds] = useState(false);
-  const [feedEditModalOpen, setFeedEditModalOpen] = useState(false);
   const [modal, setModal] = useRecoilState(modalState);
   const setFeed = useSetRecoilState(feedState);
   const observer = useRef();
