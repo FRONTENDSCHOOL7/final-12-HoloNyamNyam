@@ -92,7 +92,7 @@ export default function InfoProfile({ type }) {
       setLoading(false);
     };
     getUserInfo();
-  }, [location, type, token]);
+  }, [type, token, location.state]);
 
   useEffect(() => {
     const following = followerInfo.some((x) => x === myId);

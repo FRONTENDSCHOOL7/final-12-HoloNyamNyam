@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Alert from '../Alert/Alert';
 import {
   ModalDim,
@@ -32,6 +32,7 @@ export default function Modal({
   const [modal, setModal] = useRecoilState(modalState);
   // eslint-disable-next-line no-unused-vars
   const [cardShow, setCardShow] = useRecoilState(cardShowState);
+  const location = useLocation();
 
   function modalClose(e) {
     if (e.target === e.currentTarget) {
@@ -107,11 +108,14 @@ export default function Modal({
     yourProfile: (
       <ModalWrapArticle>
         <ModalLineSpan />
-        <ModalTextBtn>차단</ModalTextBtn>
-        <ModalTextBtn>이 계정 정보</ModalTextBtn>
-        <ModalTextBtn>이 프로필 공유하기</ModalTextBtn>
+        {location.pathname !== '/feeddetail' && (
+          <ModalTextBtn>프로필 공유하기</ModalTextBtn>
+        )}
         <ModalTextBtn onClick={() => alertOpen('reportUser')}>
           신고하기
+        </ModalTextBtn>
+        <ModalTextBtn onClick={() => alertOpen('logout')}>
+          로그아웃
         </ModalTextBtn>
       </ModalWrapArticle>
     ),
@@ -119,7 +123,9 @@ export default function Modal({
       <ModalWrapArticle>
         <ModalLineSpan />
         <ModalTextBtn onClick={moveProfileEdit}>프로필 수정</ModalTextBtn>
-        <ModalTextBtn>내 프로필 공유하기</ModalTextBtn>
+        {location.pathname !== '/feeddetail' && (
+          <ModalTextBtn>프로필 공유하기</ModalTextBtn>
+        )}
         <ModalTextBtn onClick={() => alertOpen('logout')}>
           로그아웃
         </ModalTextBtn>

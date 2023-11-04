@@ -136,7 +136,7 @@ export default function FeedList() {
     setSkip(0);
     setPage(0);
     setFeedInfo([]);
-  }, [location]);
+  }, []);
 
   return (
     <>

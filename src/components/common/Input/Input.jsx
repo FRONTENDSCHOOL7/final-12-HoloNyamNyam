@@ -27,6 +27,7 @@ const Input = ({
     <>
       <StyledLabel padding={padding}>{label}</StyledLabel>
       <StyledInput
+        autoFocus={id === 'email'}
         id={id}
         type={type}
         placeholder={placeholder}

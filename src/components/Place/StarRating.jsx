@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Rating } from 'react-simple-star-rating';
 
@@ -11,8 +11,15 @@ const RatingP = styled.p`
   font-weight: 500;
   color: #767676;
 `;
-export default function StarRating({ onRatingChange }) {
-  const [rating, setRating] = useState(0);
+export default function StarRating({ onRatingChange, initialValue }) {
+  const [rating, setRating] = useState(initialValue || 0);
+
+  useEffect(() => {
+    if (initialValue !== undefined) {
+      setRating(initialValue);
+    }
+  }, [initialValue]);
+
   const handleRating = (rate) => {
     setRating(rate);
     onRatingChange(rate);
@@ -20,7 +27,11 @@ export default function StarRating({ onRatingChange }) {
   return (
     <RatingWrapper>
       <RatingP>평점</RatingP>
-      <Rating onClick={handleRating} ratingValue={rating} />
+      <Rating
+        onClick={handleRating}
+        ratingValue={rating}
+        initialValue={rating}
+      />
     </RatingWrapper>
   );
 }

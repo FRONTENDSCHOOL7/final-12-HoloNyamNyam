@@ -20,7 +20,7 @@ export default function PlaceImgPrev({
 }) {
   const fileInputRef = useRef(null);
   const [boardImage, setBoardImage] = useState(null);
-  const [uploadPreview, setUploadPreview] = useState([]);
+  const [uploadPreview, setUploadPreview] = useState(initialImage || []);
 
   const maxSize = 10 * 1024 * 1024;
 

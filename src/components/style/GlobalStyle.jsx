@@ -12,7 +12,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   :root{
-    --main-color: #036635 ;
+    --main-color: #EB5757 ;
     --sub-color:#B1D4C3;
     --font-color: #000000;
     --sub-font-color: #767676;;

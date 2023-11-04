@@ -50,11 +50,29 @@ export default function Header({
 
   const location = useLocation();
   const { accountname } = location.state || {};
-  const userName = accountname || { name };
+  let userName = accountname || { name };
+  if (
+    !userName.name &&
+    location.state &&
+    location.state.infoToIterate &&
+    location.state.infoToIterate.author &&
+    location.state.infoToIterate.author.accountname
+  ) {
+    userName = location.state.infoToIterate.author.accountname;
+    if (userName === localStorage.accountname) {
+      userName = '나의 게시글';
+    }
+  }
   const navigate = useNavigate();
   const setModal = useSetRecoilState(modalState);
   const modalOpen = () => {
-    setModal({ show: true, type: 'myProfile' });
+    setModal({
+      show: true,
+      type:
+        own === 'my' || userName === '나의 게시글'
+          ? 'myProfile'
+          : 'yourProfile',
+    });
   };
   const [viewMode, setViewMode] = useRecoilState(viewBtnState);
   const setFeed = useSetRecoilState(feedState);
@@ -216,7 +234,7 @@ export default function Header({
         {/* {renderHeaderLeftBtn()} */}
         {edit
           ? renderHeaderText('냠냠평가 수정')
-          : renderHeaderText('냠냠평가 작성')}
+          : renderHeaderText('냠냠평가 등록')}
         <Button
           type='button'
           content='저장'
