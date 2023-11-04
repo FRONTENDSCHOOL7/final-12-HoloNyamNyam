@@ -46,7 +46,7 @@ export default function Search() {
         ) : (
           <SearchWrap>
             <SearchImg src={searchLogo} />
-            <SearchP>또 누가 있을까?</SearchP>
+            <SearchP>또 누가 있을까요?</SearchP>
           </SearchWrap>
         )}
       </List>

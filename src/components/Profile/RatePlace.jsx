@@ -11,9 +11,12 @@ import {
 import { useLocation, useNavigate } from 'react-router-dom';
 import { placeListApi } from '../../api/place';
 import { userSearch } from '../../api/search';
+import { useRecoilState } from 'recoil';
+import { viewBtnState } from '../../recoil/viewBtnAtom';
 
 export default function RatePlace({ cardOpen, cardClosed }) {
   const navigate = useNavigate();
+  const [, setViewMode] = useRecoilState(viewBtnState);
 
   function movePlaceList(id) {
     navigate('/placelist', {
@@ -27,6 +30,7 @@ export default function RatePlace({ cardOpen, cardClosed }) {
 
   const { accountname } = location.state || {};
   useEffect(() => {
+    setViewMode('별점순');
     const getUserInfo = async () => {
       const token = localStorage.getItem('token');
       try {
@@ -50,7 +54,7 @@ export default function RatePlace({ cardOpen, cardClosed }) {
       }
     };
     getUserInfo();
-  }, [location, navigate, accountname]);
+  }, [location, navigate, accountname, setViewMode]);
 
   return (
     <>

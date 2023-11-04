@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import buttonLogo from '../../images/button-logo.png';
+import buttonLogo from '../../images/button-logo.svg';
+import buttonLogoHover from '../../images/button-logo-white.svg';
 
 const Container = styled.div`
   background: linear-gradient(180deg, #ff3945 0%, #ff9052 75.76%);
@@ -13,7 +14,6 @@ const Container = styled.div`
 `;
 const Logo = styled.img`
   display: block;
-
   margin-bottom: 12px;
 `;
 const Login = styled(Link)`
@@ -32,9 +32,9 @@ const Login = styled(Link)`
     content: '';
     position: absolute;
     display: inline-block;
-    width: 20px;
-    height: 20px;
-    background: no-repeat center / 18px 19px url(${buttonLogo});
+    width: 22px;
+    height: 22px;
+    background: no-repeat center / 22px 22px url(${buttonLogo});
     top: 50%;
     left: 10%;
     transform: translate(-50%, -50%);
@@ -43,6 +43,9 @@ const Login = styled(Link)`
     background-color: #ffba33;
     color: #fff;
     transition: 0.2s;
+    &::before {
+      background: no-repeat center / 22px 22px url(${buttonLogoHover});
+    }
   }
 `;
 const Join = styled(Link)`
