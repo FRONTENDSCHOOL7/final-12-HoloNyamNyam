@@ -11,22 +11,26 @@ import { useLocation } from 'react-router-dom';
 import Modal from '../../components/Modal/Modal/Modal';
 import { useRecoilState } from 'recoil';
 import { modalState } from '../../recoil/modalAtom';
+import { chatState } from '../../recoil/chatAtom';
 
 const List = styled.section`
-  padding: 48px 0 60px 0;
-  height: calc(100vh - 108px);
-  background-color: #f2f2f2;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(180deg, #ffffff 0%, #ffe9e7 30%);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  box-sizing: border-box;
+  width: 390px;
+  height: 100vh;
+  padding: 48px 0 70px 0;
 `;
 
 export default function ChatRoom() {
+  const [chat, setChat] = useRecoilState(chatState);
   const location = useLocation();
   const [modal, setModal] = useRecoilState(modalState);
   const [inputValue, setInputValue] = useState('');
   const [chatValue, setChatValue] = useState([]);
-  const yourAccountname = location?.state?.yourAccountname || '혼바비언';
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -34,23 +38,33 @@ export default function ChatRoom() {
 
   const handleButtonClicked = () => {
     const newChatValue = [...chatValue];
-    newChatValue.push(inputValue);
-    setChatValue(newChatValue);
-    setInputValue('');
+    if (inputValue.trim().length !== 0) {
+      newChatValue.push(inputValue);
+      setChatValue(newChatValue);
+      setInputValue('');
+    }
   };
+
+  function formatTime() {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0'); // 0~23 시간을 2자리로 표시
+    const minutes = now.getMinutes().toString().padStart(2, '0'); // 0~59 분을 2자리로 표시
+    return `${hours}:${minutes}`;
+  }
 
   return (
     <>
       <h1 className='a11y-hidden'>채팅방 페이지</h1>
-      <Header type='chat' yourAccountname={yourAccountname} />
+      <Header type='chat' yourAccountname={chat.id} />
+
       <List>
         <ReceiveMessage />
-        <SendMessage />
+        {chat.reply && <SendMessage />}
         {chatValue.map((item, index) => (
           <MessageWrap key={index}>
             <MessageText>
               {chatValue[index]}
-              <TimeStamp>14:10</TimeStamp>
+              <TimeStamp>{formatTime()}</TimeStamp>
             </MessageText>
           </MessageWrap>
         ))}
@@ -60,6 +74,7 @@ export default function ChatRoom() {
         inputValue={inputValue}
         handleInputChange={handleInputChange}
         handleButtonClicked={handleButtonClicked}
+        handleEnterPress={handleButtonClicked}
       />
     </>
   );
