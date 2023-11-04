@@ -18,7 +18,8 @@ import {
   DetailFeedWrapper,
   CommentWrapper,
 } from './StyledFeedComment';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { feedState } from '../../../recoil/feedEditAtom';
 import { modalState } from '../../../recoil/modalAtom';
 
 export default function FeedComment() {
@@ -40,11 +41,13 @@ export default function FeedComment() {
   const [skip, setSkip] = useState(0);
   const [page, setPage] = useState(0);
   const observer = useRef();
+  const [modal, setModal] = useRecoilState(modalState);
+  const setFeed = useSetRecoilState(feedState);
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
-  const [modal, setModal] = useRecoilState(modalState);
+
   const fetchFeedInfo = async () => {
     try {
       const res = await feedInfoApi(id, token);
@@ -95,15 +98,7 @@ export default function FeedComment() {
       navigate('/error');
     }
   };
-  const openFeedEditModal = () => {
-    setFeedEditModalOpen(true);
-  };
 
-  const closeFeedEditModal = () => {
-    setFeedEditModalOpen(false);
-    setShouldFetchFeedInfo(true);
-    setModal((prevModal) => ({ ...prevModal, show: false }));
-  };
   useEffect(() => {
     loadCommentList();
     if (shouldFetchFeedInfo) {
@@ -156,6 +151,17 @@ export default function FeedComment() {
       accountname: name,
     });
   };
+
+  function moveUpload(item) {
+    navigate('/feedUpload');
+    setModal({ show: false });
+    setFeed({
+      type: 'edit',
+      id: item.id,
+      images: item.image.split(','),
+      text: item.content,
+    });
+  }
 
   return (
     <>
@@ -214,15 +220,12 @@ export default function FeedComment() {
       {modal.show && (
         <Modal
           type={modal.type}
-          handlerFeedEdit={openFeedEditModal}
+          handlerFeedEdit={() => moveUpload(infoToIterate)}
           handleCommentDelete={handleCommentDelete}
           handlerMyProfile={() => navigate(`/myprofile`)}
           detail={true}
           handlerYourProfile={() => navigate(`/profile/${modal.accountname}`)}
         />
-      )}
-      {feedEditModalOpen && (
-        <FeedEdit closeModal={closeFeedEditModal} feedId={modal.feedId} />
       )}
     </>
   );
