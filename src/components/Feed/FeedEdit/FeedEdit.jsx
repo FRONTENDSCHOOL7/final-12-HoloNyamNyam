@@ -160,6 +160,7 @@ export default function FeedEdit({ closeModal, feedId }) {
             .map((image) => image.trim())
             .filter((image) => image !== '');
           setSplitResult(splitImages); //기존 게시물
+          window.console.log(splitImages); // ['https://api.mandarin.weniv.co.kr/1699031887854.jpg', 'https://api.mandarin.weniv.co.kr/1699037011671.jpg', 'https://api.mandarin.weniv.co.kr/1699037138128.jpg']
         } else {
           console.error('feed.image is not a string');
         }

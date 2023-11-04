@@ -49,14 +49,6 @@ export default function FeedItem({
   const [isHearted, setIsHearted] = useState(infoToIterate.hearted);
   const [heartCnt, setHeartCnt] = useState(infoToIterate.heartCount);
 
-  function moveDetail(id) {
-    navigate('/feeddetail', {
-      state: {
-        id: id,
-        infoToIterate: infoToIterate,
-      },
-    });
-  }
   const feedLike = async () => {
     const token = localStorage.getItem('token');
     try {
@@ -69,13 +61,23 @@ export default function FeedItem({
         setIsHearted(!isHearted);
         setHeartCnt(heartCnt + 1);
       }
-      if (getUserInfo) {
-        getUserInfo();
-      }
+      // if (getUserInfo) {
+      //   getUserInfo();
+      // }
     } catch (error) {
       return false;
     }
   };
+
+  function moveDetail(id) {
+    navigate('/feeddetail', {
+      state: {
+        id: id,
+        infoToIterate: infoToIterate,
+      },
+    });
+  }
+
   function moveProfile(accountname) {
     const where = localStorage.getItem('accountname');
     if (accountname === where) {
@@ -92,6 +94,7 @@ export default function FeedItem({
       });
     }
   }
+
   function formatDate(dateString) {
     const dateObj = new Date(dateString);
     const year = dateObj.getFullYear();

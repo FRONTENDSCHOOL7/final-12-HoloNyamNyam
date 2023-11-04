@@ -18,6 +18,7 @@ import FeedDetail from '../pages/Feed/FeedDetail';
 import FollowerList from '../pages/FollowerList/FollowerList';
 import PlaceList from '../pages/Place/PlaceList';
 import MakePlace from '../pages/Place/MakePlace';
+import EditPlace from '../pages/Place/EditPlace';
 import Map from '../pages/Place/Map';
 
 export default function Routers() {
@@ -55,6 +56,7 @@ export default function Routers() {
       />
       <Route path='/placelist' element={<PlaceList />} />
       <Route path='/makeplace' element={<MakePlace />} />
+      <Route path='/editplace' element={<EditPlace />} />
       <Route path='/map' element={<Map />} />
     </Routes>
   );
