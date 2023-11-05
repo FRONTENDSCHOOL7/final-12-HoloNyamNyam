@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useRef, useState, useEffect } from 'react';
 import uploadPhoto from '../../images/upload-file.svg';
 import imageCompression from 'browser-image-compression';

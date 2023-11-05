@@ -130,5 +130,6 @@ export default function FollowerList({ type, followType }) {
       </>
     ),
   };
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   return <>{followTypeUI[followType]}</>;
 }

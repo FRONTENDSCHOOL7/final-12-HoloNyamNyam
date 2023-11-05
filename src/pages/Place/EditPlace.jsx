@@ -20,6 +20,7 @@ const { kakao } = window;
 
 export default function EditPlace() {
   const [place, setPlace] = useRecoilState(placeState);
+  // eslint-disable-next-line no-unused-vars
   const [imgFile, setImgFile] = useState(null);
   const [imgUrl, setImgUrl] = useState(place ? place.itemImage || '' : '');
   const token = localStorage.getItem('token');
