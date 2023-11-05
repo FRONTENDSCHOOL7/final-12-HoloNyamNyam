@@ -108,14 +108,19 @@ export default function FeedCreate() {
         // window.console.log(newUploadPreview);
       }
 
-      await feedEditApi({
+      const res = await feedEditApi({
         feedId: feed.id,
         token: token,
         content: content,
         image: newUploadPreview.join(', '),
       });
 
-      setFeed({ type: 'new', id: null, images: [], text: '' });
+      setFeed({
+        type: 'edit',
+        id: res.data.post.id,
+        images: res.data.post.image.split(','),
+        text: res.data.post.content,
+      });
       navigate(-1);
     } catch (error) {
       console.error(error);
