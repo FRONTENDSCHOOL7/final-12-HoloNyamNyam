@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/static/css/main.fd5175a6.css",
+    "main.js": "/static/js/main.fd2da6c2.js",
+    "static/media/MarkerImageSrc.svg": "/static/media/MarkerImageSrc.a990056336b3497ede6bc10f651a380b.svg",
+    "static/media/sprite-nav.svg": "/static/media/sprite-nav.4d2dc7b7fb5c78317daa81cac4f8d9cb.svg",
+    "static/media/Logo_white.svg": "/static/media/Logo_white.2b0c61c27ee700058676ffbd0fea82ed.svg",
+    "static/media/logo_name.svg": "/static/media/logo_name.48751cc3925fc6595ade192a0a7a3bf4.svg",
+    "static/media/Star.svg": "/static/media/Star.e5767e46f7df9aba46577723b826ea2c.svg",
+    "static/media/SpriteIcon.svg": "/static/media/SpriteIcon.88c9622da840d762869a4bb474b8078e.svg",
+    "index.html": "/index.html",
+    "static/media/button-logo.svg": "/static/media/button-logo.3ec851052654ef9563022787a3c76e84.svg",
+    "static/media/logo_bowl.svg": "/static/media/logo_bowl.24ef2461690f7464749a227747b84cc7.svg",
+    "static/media/search-logo.svg": "/static/media/search-logo.87a470dcd47a3a2bf9a66aefc7187bd0.svg",
+    "static/media/error-404.svg": "/static/media/error-404.76ef13ff7224246684b9c892a3734ce0.svg",
+    "static/media/feedList-logo.svg": "/static/media/feedList-logo.3e3fa8dcd66bae7ad6119231f62e432b.svg",
+    "static/media/basic-profile-img.svg": "/static/media/basic-profile-img.708d33c958765ffd83bf7b71e5fd0cd9.svg",
+    "static/media/logo_bowl_gray.svg": "/static/media/logo_bowl_gray.079c3b5d6275da20f3b363488cfa2a04.svg",
+    "static/media/button-logo-white.svg": "/static/media/button-logo-white.cfc13e297e6ed25d6c08c0ab2d5a2086.svg",
+    "static/media/upload-file.svg": "/static/media/upload-file.ce99651bc8ef89d0644c3facdd06535a.svg",
+    "static/media/arrow_top.svg": "/static/media/arrow_top.7d8ba5b93f2effc11efe22402569aad9.svg",
+    "static/media/stack.svg": "/static/media/stack.1f75142e45f9199bfdc5744a92377eae.svg",
+    "static/media/chevron-left.svg": "/static/media/chevron-left.ddb5767a2a8aad3ac9b155379a8b4c91.svg",
+    "static/media/chevron-right.svg": "/static/media/chevron-right.d7d8e75cfe03eb15543571e0588aaeee.svg",
+    "static/media/close-btn.svg": "/static/media/close-btn.4f6b3b25d226948ad3e30909f8dc511b.svg",
+    "main.fd5175a6.css.map": "/static/css/main.fd5175a6.css.map",
+    "main.fd2da6c2.js.map": "/static/js/main.fd2da6c2.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fd5175a6.css",
+    "static/js/main.fd2da6c2.js"
+  ]
+}
