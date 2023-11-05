@@ -24,7 +24,6 @@ const ProfileSettingForm = () => {
     register,
     handleSubmit,
     clearErrors,
-    setError,
     setValue,
     formState: { errors, isValid },
   } = useForm({
@@ -36,6 +35,7 @@ const ProfileSettingForm = () => {
     },
   });
 
+  const token = localStorage.getItem('token');
   const [error, setErrors] = useState({});
   const [hasError, setHasError] = useState(false);
   const [profileImg, setProfileImg] = useState(null);
@@ -50,7 +50,8 @@ const ProfileSettingForm = () => {
     setValue('username', null);
     setValue('accountname', null);
     setValue('intro', null);
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.pathname]);
 
   const checkUserIdValid = async (accountname) => {
     try {
@@ -58,12 +59,8 @@ const ProfileSettingForm = () => {
       const reqMsg = res.data.message;
       clearErrors('accountname');
       if (reqMsg === '이미 가입된 계정ID 입니다.') {
-        setError('accountname', {
-          type: 'manual',
-          message: '*이미 사용 중인 ID예요 :(',
-        });
         setHasError(true);
-        return false;
+        return '*이미 사용 중인 ID입니다.';
       } else {
         setHasError(false);
         clearErrors('accountname');
@@ -89,13 +86,7 @@ const ProfileSettingForm = () => {
       const isValidUserId = await checkUserIdValid(formData.accountname);
       if (isValidUserId) {
         await signup(formData, data, profileImg).then(
-          navigate('/signup/signupsuccess', {
-            state: {
-              username: formData.username,
-              accountname: formData.accountname,
-              intro: formData.intro,
-            },
-          }),
+          navigate('/signup/signupsuccess'),
         );
       }
     } catch (errors) {
@@ -210,6 +201,7 @@ const ProfileSettingForm = () => {
         />
 
         <StyledButton
+          type='submit'
           className='btn-signup'
           $bgcolor={abledBtn ? 'active' : 'inactive'}
           disabled={!abledBtn}

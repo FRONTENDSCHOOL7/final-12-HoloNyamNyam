@@ -14,7 +14,6 @@ import { modalState } from '../../recoil/modalAtom';
 
 export default function Comment({ commentList, feedId, moveProfile }) {
   const where = localStorage.getItem('accountname');
-
   const SocialSVG = ({
     id,
     color = 'white',

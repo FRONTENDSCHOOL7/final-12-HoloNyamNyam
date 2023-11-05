@@ -24,11 +24,11 @@ export default function PlaceListItem({ cardOpen, cardClose, cardClosed }) {
   useEffect(() => {
     const getUserInfo = async () => {
       const { accountname } = location.state || {};
-      const token = localStorage.getItem('token');
+      const token = sessionStorage.getItem('token');
 
       try {
         const res = await placeListApi(
-          accountname || localStorage.getItem('accountname'),
+          accountname || sessionStorage.getItem('accountname'),
           token,
         );
         setPlaceInfo(res.data.product);

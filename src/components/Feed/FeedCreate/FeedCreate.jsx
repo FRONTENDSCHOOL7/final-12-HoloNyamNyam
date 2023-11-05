@@ -34,8 +34,8 @@ export default function FeedCreate() {
   const [content, setContent] = useState(feed.type === 'edit' ? feed.text : '');
   // const [imgUrl, setImgUrl] = useState(feed.type === 'edit' ? feed.images : []);
   const [imgFile, setImgFile] = useState([]);
-  const token = localStorage.getItem('token');
-  const username = localStorage.getItem('accountname');
+  const token = sessionStorage.getItem('token');
+  const username = sessionStorage.getItem('accountname');
   const dragItem = useRef(); // 드래그할 아이템의 인덱스
   const dragOverItem = useRef();
   const fileInputRef = useRef(null);

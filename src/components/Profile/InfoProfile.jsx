@@ -18,16 +18,18 @@ import { userInfoApi } from '../../api/user';
 import { ProfileApi } from '../../api/profile';
 import { userFeedCntApi } from '../../api/feed';
 import Loading from '../Loading/Loading';
+import { useRecoilState } from 'recoil';
+import { userInfoState } from '../../recoil/userInfoAtom';
 
 export default function InfoProfile({ type }) {
-  const [userInfo, setUserInfo] = useState({});
+  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
   const [postCnt, setPostCnt] = useState(0);
   const [follow, setFollow] = useState(true);
   const [followerInfo, setFollowerInfo] = useState([]);
   const [loading, setLoading] = useState(true);
   const location = useLocation();
-  const token = localStorage.getItem('token');
-  const myId = localStorage.getItem('_id');
+  const token = sessionStorage.getItem('token');
+  const myId = sessionStorage.getItem('_id');
 
   useEffect(() => {
     const getUserInfo = async () => {
@@ -92,16 +94,16 @@ export default function InfoProfile({ type }) {
       setLoading(false);
     };
     getUserInfo();
-  }, [type, token, location.state]);
+  }, [type, token, location.state, setUserInfo]);
 
   useEffect(() => {
     const following = followerInfo.some((x) => x === myId);
     setFollow(!following);
-    localStorage.setItem('follow', !following ? 'false' : 'true');
+    sessionStorage.setItem('follow', !following ? 'false' : 'true');
   }, [followerInfo, myId]);
 
   useEffect(() => {
-    const savedFollow = localStorage.getItem('follow');
+    const savedFollow = sessionStorage.getItem('follow');
     setFollow(savedFollow === 'false');
   }, []);
 

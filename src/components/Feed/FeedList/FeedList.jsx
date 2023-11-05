@@ -47,7 +47,7 @@ export default function FeedList() {
   const [page, setPage] = useState(0);
   const limit = 10;
   const [loading, setLoading] = useState(true);
-  const where = localStorage.getItem('accountname');
+  const where = sessionStorage.getItem('accountname');
 
   const { accountname } = location.state || {};
   const handleViewModeChange = (mode) => {
@@ -55,11 +55,11 @@ export default function FeedList() {
   };
 
   const getUserInfo = useCallback(async () => {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     setLoading(true);
     try {
       const res = await userFeedListApi(
-        accountname || localStorage.getItem('accountname'),
+        accountname || sessionStorage.getItem('accountname'),
         token,
         limit,
         skip,
