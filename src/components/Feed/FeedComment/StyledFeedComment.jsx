@@ -34,7 +34,7 @@ const WriteComment = styled.input`
 `;
 
 const BtnDisplay = styled.button`
-  color: ${({ $hastext }) => ($hastext ? '#286140' : '#C4C4C4')};
+  color: ${({ $hastext }) => ($hastext ? '#F26E22' : '#C4C4C4')};
 `;
 
 const FeedUserImg = styled.img`

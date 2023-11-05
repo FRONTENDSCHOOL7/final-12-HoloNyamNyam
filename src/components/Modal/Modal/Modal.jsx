@@ -62,6 +62,7 @@ export default function Modal({
 
   function moveProfileEdit() {
     navigate('/myprofile/edit');
+    setModal((prevModal) => ({ ...prevModal, show: false }));
   }
 
   function kakaoButton(placeInfo) {
