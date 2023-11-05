@@ -142,16 +142,17 @@ export default function FeedComment() {
     });
   };
 
-  function moveUpload(item) {
-    navigate('/feedUpload');
-    setModal({ show: false });
+  const moveUpload = async (item) => {
+    const res = await feedInfoApi(item.id, token);
     setFeed({
       type: 'edit',
-      id: item.id,
-      images: item.image === '' ? [] : item.image.split(','),
-      text: item.content,
+      id: res.data.post.id,
+      images: res.data.post.image === '' ? [] : res.data.post.image.split(','),
+      text: res.data.post.content,
     });
-  }
+    navigate('/feedupload');
+    setModal({ show: false });
+  };
 
   // 댓글 삭제
   const handleCommentDelete = (deletedCommentId) => {

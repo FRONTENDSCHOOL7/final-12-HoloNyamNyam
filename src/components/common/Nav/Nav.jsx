@@ -12,10 +12,14 @@ import {
 } from './StyledNav';
 import sprite from '../../../images/sprite-nav.svg';
 import topIcon from '../../../images/arrow_top.svg';
+import { useSetRecoilState } from 'recoil';
+import { feedState } from '../../../recoil/feedEditAtom';
 
 export default function Nav() {
   const [showButton, setShowButton] = useState(false);
   const location = useLocation();
+  const setFeed = useSetRecoilState(feedState);
+
   const NavSVG = ({ id, color, size = 24 }) => (
     <svg fill={color} width={size} height={size}>
       <use href={`${sprite}#${id}`} />
@@ -42,6 +46,11 @@ export default function Nav() {
       window.removeEventListener('scroll', showButtonClick);
     };
   }, []);
+
+  function newFeed() {
+    setFeed({ type: 'new', id: null, images: [], text: '' });
+    window.location.reload();
+  }
 
   return (
     <NavWrapper>
@@ -89,7 +98,7 @@ export default function Nav() {
             <StyledNavText>검색</StyledNavText>
           </NavLink>
         </li>
-        <li>
+        <li onClick={() => newFeed()}>
           <NavLink
             to='/feedupload'
             className={`nav-link ${
