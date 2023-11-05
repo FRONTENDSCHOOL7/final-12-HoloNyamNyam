@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import FeedItem from '../FeedItem/FeedItem';
 import Comment from '../../Comment/Comment';
 import Modal from '../../Modal/Modal/Modal';
-import FeedEdit from '../FeedEdit/FeedEdit';
 import BasicProfile from '../../../images/logo_bowl_gray.svg';
 import { feedInfoApi } from '../../../api/feed';
 import { commentListApi, commentUploadApi } from '../../../api/comments';
@@ -26,7 +25,6 @@ export default function FeedComment() {
   const [inputValue, setInputValue] = useState('');
   // const [selectedId, setSelectedId] = useState(null);
   const [commentList, setCommentList] = useState([]);
-  const [feedEditModalOpen, setFeedEditModalOpen] = useState(false);
   const location = useLocation();
   const [comment, setComment] = useState([]);
   const data = location.state;
@@ -158,7 +156,7 @@ export default function FeedComment() {
     setFeed({
       type: 'edit',
       id: item.id,
-      images: item.image.split(','),
+      images: item.image === '' ? [] : item.image.split(','),
       text: item.content,
     });
   }

@@ -114,7 +114,7 @@ export default function FeedItem({
   }, [feedInfo]);
 
   return (
-    <Container>
+    <Container $dim={detail === true ? null : true}>
       {infoToIterate && infoToIterate.author && (
         <FeedUser>
           <FeedUserImg

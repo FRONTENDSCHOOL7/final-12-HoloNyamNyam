@@ -13,7 +13,7 @@ import { feedDeleteApi, feedReportApi } from '../../../api/feed';
 import { recommendDeleteApi } from '../../../api/recommend';
 import { commentDeleteApi, commentReportApi } from '../../../api/comments';
 import { userInfoApi } from '../../../api/user';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { modalState } from '../../../recoil/modalAtom';
 import { cardShowState } from '../../../recoil/cardShowAtom';
 
@@ -27,8 +27,7 @@ export default function Alert({
   const navigate = useNavigate();
   const location = useLocation();
   const [modal, setModal] = useRecoilState(modalState);
-  // eslint-disable-next-line no-unused-vars
-  const [cardShow, setCardShow] = useRecoilState(cardShowState);
+  const setCardShow = useSetRecoilState(cardShowState);
   const onClickLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('accountname');
@@ -42,8 +41,12 @@ export default function Alert({
     try {
       await feedDeleteApi(modal.feedId, token);
       alertClose('feed');
-      navigate('/myprofile');
-      modalClose('modification');
+      modalClose('myFeed');
+      navigate('/myprofile', {
+        state: {
+          accountname: localStorage.getItem('accountname'),
+        },
+      });
       try {
         await userInfoApi(token);
       } catch (error) {

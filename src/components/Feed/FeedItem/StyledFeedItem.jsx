@@ -6,10 +6,13 @@ const Container = styled.article`
   padding: 10px;
   border-radius: 10px;
   box-sizing: border-box;
-  &:hover {
+  ${(props) =>
+    props.$dim === true
+      ? `&:hover {
     background-color: rgba(0, 0, 0, 0.05);
   }
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease;`
+      : null}
 `;
 const FeedUser = styled.div`
   display: flex;
@@ -128,6 +131,7 @@ const SocialSvg = styled.div`
 const MoreBtn = styled.button`
   margin-left: auto;
 `;
+
 export {
   BtnComment,
   BtnLike,

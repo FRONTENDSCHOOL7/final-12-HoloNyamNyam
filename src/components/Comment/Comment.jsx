@@ -55,7 +55,11 @@ export default function Comment({ commentList, feedId }) {
 
   function moveProfile(accountname) {
     if (accountname === where) {
-      navigate('/myprofile');
+      navigate('/myprofile', {
+        state: {
+          accountname: accountname,
+        },
+      });
     } else {
       navigate(`/profile/${accountname}`, {
         state: {
