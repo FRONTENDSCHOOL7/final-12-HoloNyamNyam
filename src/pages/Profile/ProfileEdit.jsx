@@ -4,8 +4,15 @@ import { userInfoApi } from '../../api/user';
 import ProfileEditForm from '../../components/ProfileEdit/ProfileEditForm';
 
 export default function ProfileEdit() {
-  const token = sessionStorage.getItem('token');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!sessionStorage.getItem('_id')) {
+      navigate('/');
+    }
+  }, [navigate]);
+
+  const token = sessionStorage.getItem('token');
   const [userInfo, setUserInfo] = useState({
     image: '',
     username: '',
@@ -17,6 +24,10 @@ export default function ProfileEdit() {
     prevUserInfo();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (!sessionStorage.getItem('_id')) {
+    return null;
+  }
 
   const prevUserInfo = async () => {
     try {
