@@ -60,7 +60,7 @@ const ProfileEditForm = ({ userInfo, setUserInfo }) => {
         return '*이미 사용 중인 ID입니다.';
       } else {
         setHasError(false);
-        clearErrors('userid');
+        clearErrors('accountname');
         return true;
       }
     } catch (errors) {
