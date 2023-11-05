@@ -22,7 +22,7 @@ export default function EditPlace() {
   const [place, setPlace] = useRecoilState(placeState);
   const [imgFile, setImgFile] = useState(null);
   const [imgUrl, setImgUrl] = useState(place ? place.itemImage || '' : '');
-  const token = localStorage.getItem('token');
+  const token = sessionStorage.getItem('token');
   const [isValid, setIsValid] = useState(false);
   const [addressList, setAddressList] = useState([]);
   const navigate = useNavigate();

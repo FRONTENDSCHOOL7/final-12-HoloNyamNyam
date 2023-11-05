@@ -14,7 +14,7 @@ import { followerListApi, followingListApi } from '../../api/follow';
 import FeedlistImg from '../../images/feedList-logo.svg';
 
 export default function FollowerList({ type, followType }) {
-  const token = localStorage.getItem('token');
+  const token = sessionStorage.getItem('token');
   const location = useLocation();
   const navigate = useNavigate();
   const accountname = location.state.accountname;

@@ -30,7 +30,7 @@ const ProfileEditForm = ({ userInfo, setUserInfo }) => {
 
   const [error, setErrors] = useState({});
   const [hasError, setHasError] = useState(false);
-  const token = localStorage.getItem('token');
+  const token = sessionStorage.getItem('token');
   const [profileImg, setProfileImg] = useState(null);
   const [abledBtn, setAbledBtn] = useState(true);
   const inputRef = useRef(null);
@@ -84,8 +84,8 @@ const ProfileEditForm = ({ userInfo, setUserInfo }) => {
       setProfileImg(userInfo?.image || DefaultProfileInput);
       const image = profileImg || userInfo?.image || DefaultProfileInput;
       const res = await profileEdit(formData, image, token);
-      localStorage.setItem('_id', res.data.user._id);
-      localStorage.setItem('accountname', formData.accountname);
+      sessionStorage.setItem('_id', res.data.user._id);
+      sessionStorage.setItem('accountname', formData.accountname);
       navigate('/myprofile');
     } catch (errors) {
       console.error(errors);
