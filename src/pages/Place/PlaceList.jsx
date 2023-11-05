@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../../components/common/Header/Header';
 import PlaceListItem from '../../components/Place/PlaceListItem';
 import Nav from '../../components/common/Nav/Nav';
@@ -7,7 +6,7 @@ import styled from 'styled-components';
 import PlaceCard from '../../components/Modal/PlaceCard/PlaceCard';
 import { useRecoilState } from 'recoil';
 import { cardShowState } from '../../recoil/cardShowAtom';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const List = styled.section`
   padding: 48px 0 81px 0;
@@ -23,6 +22,14 @@ const PlaceWrap = styled.ul`
 `;
 
 export default function PlaceList() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!sessionStorage.getItem('_id')) {
+      navigate('/');
+    }
+  }, [navigate]);
+
   const [selectedId, setSelectedId] = useState(null);
   const [cardClosed, setCardClosed] = useState(false);
   const [name, setName] = useState('');
@@ -55,6 +62,10 @@ export default function PlaceList() {
       setCardClosed(false);
     }
   }, [cardClosed]);
+
+  if (!sessionStorage.getItem('_id')) {
+    return null;
+  }
   return (
     <>
       <Header type='matzip' name={name} />
