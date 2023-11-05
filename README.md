@@ -8,7 +8,7 @@
 
 홀로냠냠은 혼밥러들을 위한 커뮤니티 및 위치 공유 앱입니다.
 
-**배포 사이트:** https://holonyam.netlify.app/
+**배포 사이트:**
 - 테스트 계정:  holo_nyam@gmail.com
 - 비밀번호:  holo_nyam
 
