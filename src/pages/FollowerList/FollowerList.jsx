@@ -17,7 +17,11 @@ export default function FollowerList({ type, followType }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!sessionStorage.getItem('_id')) {
+    if (
+      !sessionStorage.getItem('_id') ||
+      !sessionStorage.getItem('accountname') ||
+      !sessionStorage.getItem('token')
+    ) {
       navigate('/');
     }
   }, [navigate]);
@@ -76,7 +80,11 @@ export default function FollowerList({ type, followType }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
-  if (!sessionStorage.getItem('_id')) {
+  if (
+    !sessionStorage.getItem('_id') ||
+    !sessionStorage.getItem('accountname') ||
+    !sessionStorage.getItem('token')
+  ) {
     return null;
   }
 

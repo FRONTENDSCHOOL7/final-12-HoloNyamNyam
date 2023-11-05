@@ -22,7 +22,11 @@ export default function EditPlace() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!sessionStorage.getItem('_id')) {
+    if (
+      !sessionStorage.getItem('_id') ||
+      !sessionStorage.getItem('accountname') ||
+      !sessionStorage.getItem('token')
+    ) {
       navigate('/');
     }
   }, [navigate]);
@@ -122,7 +126,11 @@ export default function EditPlace() {
     placeEditUpload();
   }
 
-  if (!sessionStorage.getItem('_id')) {
+  if (
+    !sessionStorage.getItem('_id') ||
+    !sessionStorage.getItem('accountname') ||
+    !sessionStorage.getItem('token')
+  ) {
     return null;
   }
 

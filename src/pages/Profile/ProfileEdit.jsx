@@ -7,7 +7,11 @@ export default function ProfileEdit() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!sessionStorage.getItem('_id')) {
+    if (
+      !sessionStorage.getItem('_id') ||
+      !sessionStorage.getItem('accountname') ||
+      !sessionStorage.getItem('token')
+    ) {
       navigate('/');
     }
   }, [navigate]);
@@ -25,7 +29,11 @@ export default function ProfileEdit() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!sessionStorage.getItem('_id')) {
+  if (
+    !sessionStorage.getItem('_id') ||
+    !sessionStorage.getItem('accountname') ||
+    !sessionStorage.getItem('token')
+  ) {
     return null;
   }
 
