@@ -133,14 +133,6 @@ export default function FeedComment() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
-  // 댓글 삭제
-  const handleCommentDelete = (deletedCommentId) => {
-    const updatedCommentList = commentList.filter(
-      (comment) => comment.id !== deletedCommentId,
-    );
-    setCommentList(updatedCommentList);
-    setCommentCnt((prev) => prev - 1);
-  };
   const modalOpen = (type, id, name) => {
     setModal({
       show: true,
@@ -159,6 +151,33 @@ export default function FeedComment() {
       images: item.image === '' ? [] : item.image.split(','),
       text: item.content,
     });
+  }
+
+  // 댓글 삭제
+  const handleCommentDelete = (deletedCommentId) => {
+    const updatedCommentList = commentList.filter(
+      (comment) => comment.id !== deletedCommentId,
+    );
+    setCommentList(updatedCommentList);
+    setCommentCnt((prev) => prev - 1);
+  };
+
+  function moveProfile(accountname) {
+    const where = localStorage.getItem('accountname');
+    if (accountname === where) {
+      navigate('/myprofile', {
+        state: {
+          accountname: accountname,
+        },
+      });
+    } else {
+      navigate(`/profile/${accountname}`, {
+        state: {
+          accountname: accountname,
+        },
+      });
+    }
+    setModal((prevModal) => ({ ...prevModal, show: false }));
   }
 
   return (
@@ -188,6 +207,7 @@ export default function FeedComment() {
               commentList={commentList}
               feedId={id}
               loadCommentList={loadCommentList}
+              moveProfile={moveProfile}
             />
           </CommentWrapper>
           <div ref={observer} />
@@ -219,10 +239,9 @@ export default function FeedComment() {
         <Modal
           type={modal.type}
           handlerFeedEdit={() => moveUpload(infoToIterate)}
+          handlerProfile={() => moveProfile(modal.accountname)}
           handleCommentDelete={handleCommentDelete}
-          handlerMyProfile={() => navigate(`/myprofile`)}
           detail={true}
-          handlerYourProfile={() => navigate(`/profile/${modal.accountname}`)}
         />
       )}
     </>
