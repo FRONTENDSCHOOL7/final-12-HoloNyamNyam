@@ -1,9 +1,15 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Header from '../../components/common/Header/Header';
 import FeedComment from '../../components/Feed/FeedComment/FeedComment';
 
 export default function FeedDetail() {
+  const location = useLocation();
+  window.console.log(location.state.infoToIterate.author.accountname);
+  const accountname = location.state.infoToIterate.author.accountname;
+  const where = localStorage.getItem('accountname');
+  let own = where === accountname ? 'my' : 'other';
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,7 +32,7 @@ export default function FeedDetail() {
   return (
     <>
       <h1 className='a11y-hidden'>게시물 상세 페이지</h1>
-      <Header type='profile' />
+      <Header type='feed' own={own} />
       <FeedComment />
     </>
   );
