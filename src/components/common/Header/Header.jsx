@@ -63,6 +63,7 @@ export default function Header({
       userName = '나의 게시글';
     }
   }
+
   const navigate = useNavigate();
   const setModal = useSetRecoilState(modalState);
   const modalOpen = () => {
@@ -148,7 +149,7 @@ export default function Header({
         <HeaderTitle className='a11y-hidden'>프로필</HeaderTitle>
         {own === 'my'
           ? renderHeaderText('나의 프로필')
-          : renderHeaderText(`${userName}`)}
+          : renderHeaderText(`@ ${userName}`)}
         {renderHeaderRightBtn()}
       </HeaderLayoutSection>
     ),
@@ -199,9 +200,11 @@ export default function Header({
     chat: (
       <HeaderLayoutSection>
         <HeaderTitle className='a11y-hidden'>채팅</HeaderTitle>
-        {name
+        {yourAccountname === undefined
           ? renderHeaderText('채팅')
-          : renderHeaderText(`@ ${yourAccountname}`)}
+          : yourAccountname
+          ? renderHeaderText(`@ ${yourAccountname}`)
+          : renderHeaderText(`@ ${accountname}`)}
         {renderHeaderRightBtn()}
       </HeaderLayoutSection>
     ),

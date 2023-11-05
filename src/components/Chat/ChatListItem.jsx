@@ -57,7 +57,7 @@ export default function ChatListItem() {
       dot: false,
     },
   ];
-  const [chat, setChat] = useRecoilState(chatState);
+  const [, setChat] = useRecoilState(chatState);
   const navigate = useNavigate();
 
   return (

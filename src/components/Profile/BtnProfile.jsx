@@ -10,8 +10,11 @@ import {
 } from './StyledBtnProfile';
 import sprite from '../../images/SpriteIcon.svg';
 import { followApi, unfollowApi } from '../../api/follow';
+import { useRecoilState } from 'recoil';
+import { chatState } from '../../recoil/chatAtom';
 
 export default function BtnProfile({ type, id, setFollow, follow }) {
+  const [, setChat] = useRecoilState(chatState);
   const SocialSVG = ({ id, color = 'white', size = 20 }) => (
     <svg fill={color} width={size} height={size}>
       <use href={`${sprite}#${id}`} />
@@ -32,8 +35,18 @@ export default function BtnProfile({ type, id, setFollow, follow }) {
   function moveChat(id) {
     navigate(`/chatroom/${id}`, {
       state: {
-        yourAccountname: id,
+        accountname: id,
       },
+    });
+    setChat({
+      type: 'new',
+      id: null,
+      name: '',
+      image: [],
+      text: [],
+      time: '',
+      date: [],
+      reply: false,
     });
   }
 
