@@ -33,7 +33,11 @@ export default function Search() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!sessionStorage.getItem('_id')) {
+    if (
+      !sessionStorage.getItem('_id') ||
+      !sessionStorage.getItem('accountname') ||
+      !sessionStorage.getItem('token')
+    ) {
       navigate('/');
     }
   }, [navigate]);
@@ -43,7 +47,11 @@ export default function Search() {
     setSearchKeyword(event.target.value);
   }
 
-  if (!sessionStorage.getItem('_id')) {
+  if (
+    !sessionStorage.getItem('_id') ||
+    !sessionStorage.getItem('accountname') ||
+    !sessionStorage.getItem('token')
+  ) {
     return null;
   }
   return (

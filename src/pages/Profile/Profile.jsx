@@ -17,7 +17,11 @@ export default function Profile({ type }) {
   const [cardShow, setCardShow] = useRecoilState(cardShowState);
 
   useEffect(() => {
-    if (!sessionStorage.getItem('_id')) {
+    if (
+      !sessionStorage.getItem('_id') ||
+      !sessionStorage.getItem('accountname') ||
+      !sessionStorage.getItem('token')
+    ) {
       navigate('/');
     }
   }, [navigate]);
@@ -39,7 +43,11 @@ export default function Profile({ type }) {
     }
   }, [cardClosed]);
 
-  if (!sessionStorage.getItem('_id')) {
+  if (
+    !sessionStorage.getItem('_id') ||
+    !sessionStorage.getItem('accountname') ||
+    !sessionStorage.getItem('token')
+  ) {
     return null;
   }
 
