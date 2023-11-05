@@ -144,6 +144,15 @@ export default function Header({
         />
       </HeaderLayoutSection>
     ),
+    feed: (
+      <HeaderLayoutSection>
+        <HeaderTitle className='a11y-hidden'>게시글</HeaderTitle>
+        {own === 'my'
+          ? renderHeaderText('나의 게시글')
+          : renderHeaderText(`@ ${userName}`)}
+        {renderHeaderRightBtn()}
+      </HeaderLayoutSection>
+    ),
     profile: (
       <HeaderLayoutSection>
         <HeaderTitle className='a11y-hidden'>프로필</HeaderTitle>
