@@ -59,7 +59,7 @@ export default function Header({
     location.state.infoToIterate.author.accountname
   ) {
     userName = location.state.infoToIterate.author.accountname;
-    if (userName === localStorage.accountname) {
+    if (userName === sessionStorage.accountname) {
       userName = '나의 게시글';
     }
   }

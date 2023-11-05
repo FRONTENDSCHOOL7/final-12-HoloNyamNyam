@@ -19,7 +19,7 @@ export default function MakePlace() {
   const [imgFile, setImgFile] = useState(null);
   const [imgUrl, setImgUrl] = useState('');
   const [restaurantname, setRestaurantname] = useState('');
-  const token = localStorage.getItem('token');
+  const token = sessionStorage.getItem('token');
   const [rating, setRating] = useState(0);
   const [isValid, setIsValid] = useState(false);
   const [addressList, setAddressList] = useState([]);
