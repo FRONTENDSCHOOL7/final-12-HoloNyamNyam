@@ -82,7 +82,6 @@ const ProfileSettingForm = () => {
   };
 
   const handleSubmitData = async (formData) => {
-    console.log(data, formData);
     try {
       const isValidUserId = await checkUserIdValid(formData.accountname);
       if (isValidUserId) {

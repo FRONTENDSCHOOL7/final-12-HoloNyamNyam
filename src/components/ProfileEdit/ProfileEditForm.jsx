@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { UserIdValid } from '../../api/signUp';
@@ -32,6 +33,7 @@ const ProfileEditForm = ({ userInfo, setUserInfo }) => {
   const [hasError, setHasError] = useState(false);
   const token = sessionStorage.getItem('token');
   const [profileImg, setProfileImg] = useState(null);
+
   const [abledBtn, setAbledBtn] = useState(true);
   const inputRef = useRef(null);
   const navigate = useNavigate();
