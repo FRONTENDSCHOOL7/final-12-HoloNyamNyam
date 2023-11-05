@@ -12,7 +12,7 @@ const List = styled.section`
 export default function ChatList() {
   return (
     <>
-      <Header type='default' />
+      <Header type='chat' name />
       <List>
         <ChatListItem />
       </List>

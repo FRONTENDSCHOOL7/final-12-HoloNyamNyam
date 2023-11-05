@@ -199,7 +199,9 @@ export default function Header({
     chat: (
       <HeaderLayoutSection>
         <HeaderTitle className='a11y-hidden'>채팅</HeaderTitle>
-        {renderHeaderText(`@ ${yourAccountname}`)}
+        {name
+          ? renderHeaderText('채팅')
+          : renderHeaderText(`@ ${yourAccountname}`)}
         {renderHeaderRightBtn()}
       </HeaderLayoutSection>
     ),

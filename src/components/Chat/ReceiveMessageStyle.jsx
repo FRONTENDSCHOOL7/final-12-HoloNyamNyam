@@ -17,7 +17,6 @@ const ProfileImg = styled.img`
 const MessageText = styled.article`
   max-width: 240px;
   padding: 12px;
-  border: 1px solid #c4c4c4;
   border-radius: 0 10px 10px 10px;
   font-size: 14px;
   line-height: 16px;

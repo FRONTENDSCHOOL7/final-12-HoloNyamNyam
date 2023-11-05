@@ -13,6 +13,7 @@ const ChatNavBar = styled.nav`
   padding: 13px 16px;
   background-color: white;
   box-sizing: border-box;
+  border-top: 1px solid #dbdbdb;
 `;
 
 const ImageIcon = styled.img`
@@ -26,6 +27,9 @@ const Input = styled.input`
   font-size: 14px;
   &::placeholder {
     color: #c4c4c4;
+  }
+  &:focus {
+    outline: none;
   }
 `;
 
