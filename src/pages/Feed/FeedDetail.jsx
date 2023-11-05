@@ -5,7 +5,6 @@ import FeedComment from '../../components/Feed/FeedComment/FeedComment';
 
 export default function FeedDetail() {
   const location = useLocation();
-  window.console.log(location.state.infoToIterate.author.accountname);
   const accountname = location.state.infoToIterate.author.accountname;
   const where = localStorage.getItem('accountname');
   let own = where === accountname ? 'my' : 'other';
