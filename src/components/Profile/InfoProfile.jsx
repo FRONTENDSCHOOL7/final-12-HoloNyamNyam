@@ -28,8 +28,8 @@ export default function InfoProfile({ type }) {
   const [followerInfo, setFollowerInfo] = useState([]);
   const [loading, setLoading] = useState(true);
   const location = useLocation();
-  const token = localStorage.getItem('token');
-  const myId = localStorage.getItem('_id');
+  const token = sessionStorage.getItem('token');
+  const myId = sessionStorage.getItem('_id');
 
   useEffect(() => {
     const getUserInfo = async () => {
@@ -99,11 +99,11 @@ export default function InfoProfile({ type }) {
   useEffect(() => {
     const following = followerInfo.some((x) => x === myId);
     setFollow(!following);
-    localStorage.setItem('follow', !following ? 'false' : 'true');
+    sessionStorage.setItem('follow', !following ? 'false' : 'true');
   }, [followerInfo, myId]);
 
   useEffect(() => {
-    const savedFollow = localStorage.getItem('follow');
+    const savedFollow = sessionStorage.getItem('follow');
     setFollow(savedFollow === 'false');
   }, []);
 

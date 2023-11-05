@@ -32,9 +32,9 @@ export default function PlaceList() {
   useEffect(() => {
     if (nickname) {
       setName(nickname);
-      localStorage.setItem('nickname', nickname.name);
+      sessionStorage.setItem('nickname', nickname.name);
     } else {
-      setName(localStorage.getItem('nickname'));
+      setName(sessionStorage.getItem('nickname'));
     }
   }, [nickname]);
 

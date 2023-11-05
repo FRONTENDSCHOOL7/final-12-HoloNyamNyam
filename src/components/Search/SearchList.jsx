@@ -15,7 +15,7 @@ export default function SearchList({ searchKeyword }) {
   const navigate = useNavigate();
 
   function handleClick(accountname) {
-    const where = localStorage.getItem('accountname');
+    const where = sessionStorage.getItem('accountname');
     if (accountname === where) {
       navigate('/myprofile', {
         state: {
@@ -54,7 +54,7 @@ export default function SearchList({ searchKeyword }) {
       return;
     } else {
       try {
-        const token = localStorage.getItem('token');
+        const token = sessionStorage.getItem('token');
         const res = await userSearch(keyword, token);
         const filteredData = res.data.filter(
           (item) =>

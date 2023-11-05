@@ -28,8 +28,8 @@ export default function FeedComment() {
   const location = useLocation();
   const [comment, setComment] = useState([]);
   const data = location.state;
-  const token = localStorage.getItem('token');
-  const where = localStorage.getItem('accountname');
+  const token = sessionStorage.getItem('token');
+  const where = sessionStorage.getItem('accountname');
   const { id, infoToIterate } = data;
   const [commentCnt, setCommentCnt] = useState(infoToIterate.commentCount);
   const [myFeedInfo, setMyFeedInfo] = useState(infoToIterate);

@@ -4,7 +4,7 @@ import { userInfoApi } from '../../api/user';
 import ProfileEditForm from '../../components/ProfileEdit/ProfileEditForm';
 
 export default function ProfileEdit() {
-  const token = localStorage.getItem('token');
+  const token = sessionStorage.getItem('token');
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({
     image: '',

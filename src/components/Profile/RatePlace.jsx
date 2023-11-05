@@ -32,10 +32,10 @@ export default function RatePlace({ cardOpen, cardClosed }) {
   useEffect(() => {
     setViewMode('별점순');
     const getUserInfo = async () => {
-      const token = localStorage.getItem('token');
+      const token = sessionStorage.getItem('token');
       try {
         const res = await placeListApi(
-          accountname || localStorage.getItem('accountname'),
+          accountname || sessionStorage.getItem('accountname'),
           token,
         );
         if (res.data.product.length > 0) {

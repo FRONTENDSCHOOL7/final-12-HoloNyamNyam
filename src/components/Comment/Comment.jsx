@@ -13,7 +13,7 @@ import {
 import { useRecoilState } from 'recoil';
 import { modalState } from '../../recoil/modalAtom';
 export default function Comment({ commentList, feedId }) {
-  const where = localStorage.getItem('accountname');
+  const where = sessionStorage.getItem('accountname');
   const navigate = useNavigate();
 
   const SocialSVG = ({

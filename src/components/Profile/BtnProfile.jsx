@@ -24,7 +24,7 @@ export default function BtnProfile({ type, id, setFollow, follow }) {
   );
 
   const navigate = useNavigate();
-  const token = localStorage.getItem('token');
+  const token = sessionStorage.getItem('token');
 
   function moveProfileEdit() {
     navigate('/myprofile/edit');
