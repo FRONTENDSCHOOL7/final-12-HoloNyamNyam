@@ -42,25 +42,7 @@ export default function FeedCreate() {
   const maxSize = 10 * 1024 * 1024;
   const navigate = useNavigate();
 
-  function moveProfile(accountname) {
-    setFeed({ type: 'new', id: null, images: [], text: '' });
-    const where = localStorage.getItem('accountname');
-    if (accountname === where) {
-      navigate('/myprofile', {
-        state: {
-          accountname: accountname,
-        },
-      });
-    } else {
-      navigate(`/profile/${accountname}`, {
-        state: {
-          accountname: accountname,
-        },
-      });
-    }
-  }
-
-  const uploadFeed = async (imgFile, content) => {
+  const uploadFeed = async (imgFile, content, accountname) => {
     try {
       const uploadedImageUrls = [];
       for (const image of imgFile) {
@@ -75,7 +57,11 @@ export default function FeedCreate() {
         uploadedImageUrls.push(imageUrl); // 결과를 배열에 추가
       }
       await feedUploadApi(content, uploadedImageUrls.join(', '), token);
-      navigate('/myprofile');
+      navigate('/myprofile', {
+        state: {
+          accountname: accountname,
+        },
+      });
     } catch (error) {
       console.error(error);
     }
@@ -83,7 +69,7 @@ export default function FeedCreate() {
 
   const handleUpload = () => {
     if (isValid) {
-      uploadFeed(imgFile, content);
+      uploadFeed(imgFile, content, username);
     } else {
       alert('게시글이 작성되지 않았습니다.');
     }
@@ -129,7 +115,8 @@ export default function FeedCreate() {
         image: newUploadPreview.join(', '),
       });
 
-      moveProfile(username);
+      setFeed({ type: 'new', id: null, images: [], text: '' });
+      navigate(-1);
     } catch (error) {
       console.error(error);
       navigate('/error');

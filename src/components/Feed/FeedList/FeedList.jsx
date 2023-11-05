@@ -65,9 +65,11 @@ export default function FeedList() {
         skip,
       );
       const posts = res.data.post;
+      // console.log(posts);
       if (posts.length > 0) {
         setHasFeeds(true);
         setFeedInfo((prev) => [...prev, ...posts]);
+        // console.log(feedInfo);
       }
       setSkip((prev) => prev + posts.length);
       setLoading(false);
@@ -101,7 +103,7 @@ export default function FeedList() {
     setFeed({
       type: 'edit',
       id: item.id,
-      images: item.image.split(','),
+      images: item.image === '' ? [] : item.image.split(','),
       text: item.content,
     });
   }
