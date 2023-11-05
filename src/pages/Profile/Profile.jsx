@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/common/Header/Header';
 import Nav from '../../components/common/Nav/Nav';
@@ -13,8 +13,8 @@ export default function Profile({ type }) {
   const navigate = useNavigate();
   const [selectedId, setSelectedId] = useState(null);
   const [cardClosed, setCardClosed] = useState(false);
-
   const [cardShow, setCardShow] = useRecoilState(cardShowState);
+  const feedRef = useRef();
 
   useEffect(() => {
     if (
@@ -51,12 +51,16 @@ export default function Profile({ type }) {
     return null;
   }
 
+  const scrollToFeeds = () => {
+    feedRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <>
       <Header type='profile' own={type} />
-      <InfoProfile type={type} />
+      <InfoProfile type={type} scrollToFeeds={scrollToFeeds} />
       <RatePlace cardOpen={cardOpen} cardClosed={cardClosed} />
-      <FeedList />
+      <FeedList feedRef={feedRef} />
       {cardShow && selectedId && (
         <PlaceCard cardClose={cardClose} id={selectedId} />
       )}

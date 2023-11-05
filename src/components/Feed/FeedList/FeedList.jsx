@@ -28,7 +28,7 @@ import { feedState } from '../../../recoil/feedEditAtom';
 import { useRef } from 'react';
 import Loading from '../../Loading/Loading';
 
-export default function FeedList() {
+export default function FeedList({ feedRef }) {
   const ViewSVG = ({ id, color = 'white', size = 26 }) => (
     <svg fill={color} width={size} height={size} stroke={color}>
       <use href={`${sprite}#${id}`} />
@@ -167,7 +167,7 @@ export default function FeedList() {
             </button>
           </FeedListBtnWrap>
           {viewMode === 'list' ? (
-            <FeedItemList>
+            <FeedItemList ref={feedRef}>
               {feedInfo.map((item) => (
                 <FeedListItem key={item.id}>
                   <FeedItem

@@ -21,7 +21,7 @@ import Loading from '../Loading/Loading';
 import { useRecoilState } from 'recoil';
 import { userInfoState } from '../../recoil/userInfoAtom';
 
-export default function InfoProfile({ type }) {
+export default function InfoProfile({ type, scrollToFeeds }) {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
   const [postCnt, setPostCnt] = useState(0);
   const [follow, setFollow] = useState(true);
@@ -107,14 +107,6 @@ export default function InfoProfile({ type }) {
     setFollow(savedFollow === 'false');
   }, []);
 
-  const scrollToBottom = () => {
-    const windowHeight = window.innerHeight;
-    window.scrollTo({
-      top: 0.7 * windowHeight,
-      behavior: 'smooth',
-    });
-  };
-
   return loading ? (
     <Loading />
   ) : (
@@ -123,7 +115,7 @@ export default function InfoProfile({ type }) {
       <InfoTopWrap>
         <ProfileImg src={userInfo.image} alt='프로필 이미지' />
         <CntWrap>
-          <CtnTap onClick={scrollToBottom}>
+          <CtnTap onClick={scrollToFeeds}>
             <CntSpan>{postCnt}</CntSpan>
             <CntP>posts</CntP>
           </CtnTap>
