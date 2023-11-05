@@ -31,7 +31,7 @@ export default function PlaceList() {
 
   useEffect(() => {
     if (nickname) {
-      setName(nickname.name);
+      setName(nickname);
       localStorage.setItem('nickname', nickname.name);
     } else {
       setName(localStorage.getItem('nickname'));

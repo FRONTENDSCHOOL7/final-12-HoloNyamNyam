@@ -56,7 +56,7 @@ export default function Alert({
       console.error('Delete request failed', error);
       navigate('/error');
     }
-    window.location.reload();
+    // window.location.reload();
   };
 
   const handleDeletePlace = async () => {

@@ -36,6 +36,7 @@ const MoreViewBtn = styled(ButtonStyle)`
 `;
 
 const PlaceList = styled.ul`
+  padding-bottom: 10px;
   margin: 0 20px 5px 16px;
   display: flex;
   gap: 8px;
