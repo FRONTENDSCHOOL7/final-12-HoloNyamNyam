@@ -24,7 +24,7 @@ export default function Login() {
         <LoginTitle>로그인을 도와드릴게요!</LoginTitle>
         <LoginForm />
         <SignUpLink to='/signup'>계정을 만들러 갈까요?</SignUpLink>
-        <SimpleLoginWrap>
+        <SimpleLoginWrap data-content='간편 로그인'>
           <h2 className='a11y-hidden'>소셜서비스로 로그인</h2>
           <SnsList>
             <li>

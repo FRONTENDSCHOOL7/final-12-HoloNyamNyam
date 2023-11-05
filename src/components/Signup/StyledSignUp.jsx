@@ -6,12 +6,13 @@ const StyledSignUpWrap = styled.div`
   margin: auto;
   text-align: center;
   background: #fff;
+  margin-bottom: calc(158px + 35px);
 `;
 
 const StyledTitle = styled.h1`
   font-size: 24px;
   color: black;
-  padding-bottom: 58px;
+  padding-bottom: 50px;
   font-weight: 500;
 `;
 
