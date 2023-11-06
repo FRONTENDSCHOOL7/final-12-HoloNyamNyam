@@ -1,13 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { userInfoApi } from '../../api/user';
-import Header from '../../components/common/Header/Header';
 import ProfileEditForm from '../../components/ProfileEdit/ProfileEditForm';
-import { StyledProfileEditWrap } from '../../components/ProfileEdit/ProfileEditFormStyle';
 
 export default function ProfileEdit() {
-  const token = localStorage.getItem('token');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (
+      !sessionStorage.getItem('_id') ||
+      !sessionStorage.getItem('accountname') ||
+      !sessionStorage.getItem('token')
+    ) {
+      navigate('/');
+    }
+  }, [navigate]);
+
+  const token = sessionStorage.getItem('token');
   const [userInfo, setUserInfo] = useState({
     image: '',
     username: '',
@@ -17,7 +26,16 @@ export default function ProfileEdit() {
 
   useEffect(() => {
     prevUserInfo();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (
+    !sessionStorage.getItem('_id') ||
+    !sessionStorage.getItem('accountname') ||
+    !sessionStorage.getItem('token')
+  ) {
+    return null;
+  }
 
   const prevUserInfo = async () => {
     try {
@@ -30,10 +48,5 @@ export default function ProfileEdit() {
     }
   };
 
-  return (
-    <>
-      <ProfileEditForm userInfo={userInfo} setUserInfo={setUserInfo} />
-      {/* <ProfileSettingForm /> */}
-    </>
-  );
+  return <ProfileEditForm userInfo={userInfo} setUserInfo={setUserInfo} />;
 }

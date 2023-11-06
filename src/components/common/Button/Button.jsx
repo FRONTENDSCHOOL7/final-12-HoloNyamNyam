@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import buttonLogo from '../../../images/button-logo.png';
+import buttonLogo from '../../../images/button-logo.svg';
 
 export const ButtonStyle = styled.button`
   display: block;

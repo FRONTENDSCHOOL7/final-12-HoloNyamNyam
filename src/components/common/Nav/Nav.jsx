@@ -8,14 +8,19 @@ import {
   ScrollButton,
   TopIcon,
   ButtonContainer,
+  SvgDiv,
 } from './StyledNav';
-import sprite from '../../../images/navigationIcon.svg';
+import sprite from '../../../images/sprite-nav.svg';
 import topIcon from '../../../images/arrow_top.svg';
+import { useSetRecoilState } from 'recoil';
+import { feedState } from '../../../recoil/feedEditAtom';
 
 export default function Nav() {
   const [showButton, setShowButton] = useState(false);
   const location = useLocation();
-  const NavSVG = ({ id, color = 'white', size = 24 }) => (
+  const setFeed = useSetRecoilState(feedState);
+
+  const NavSVG = ({ id, color, size = 24 }) => (
     <svg fill={color} width={size} height={size}>
       <use href={`${sprite}#${id}`} />
     </svg>
@@ -42,6 +47,11 @@ export default function Nav() {
     };
   }, []);
 
+  function newFeed() {
+    setFeed({ type: 'new', id: null, images: [], text: '' });
+    if (location.pathname === '/feedupload') window.location.reload();
+  }
+
   return (
     <NavWrapper>
       <ButtonContainer>
@@ -59,11 +69,13 @@ export default function Nav() {
               location.pathname === '/home' ? 'active' : ''
             }`}
           >
-            <NavSVG
-              id={
-                location.pathname === '/home' ? 'icon-home-fill' : 'icon-home'
-              }
-            />
+            <SvgDiv scale={location.pathname === '/home' ? 1.2 : 1}>
+              <NavSVG
+                id={
+                  location.pathname === '/home' ? 'icon-home-fill' : 'icon-home'
+                }
+              />
+            </SvgDiv>
             <StyledNavText>홈</StyledNavText>
           </NavLink>
         </li>
@@ -74,25 +86,34 @@ export default function Nav() {
               location.pathname === '/search' ? 'active' : ''
             }`}
           >
-            <NavSVG
-              id={
-                location.pathname === '/search'
-                  ? 'icon-search-fill'
-                  : 'icon-search'
-              }
-            />
+            <SvgDiv scale={location.pathname === '/search' ? 1.2 : 1}>
+              <NavSVG
+                id={
+                  location.pathname === '/search'
+                    ? 'icon-search-fill'
+                    : 'icon-search'
+                }
+              />
+            </SvgDiv>
             <StyledNavText>검색</StyledNavText>
           </NavLink>
         </li>
-        <li>
-          <NavLink to='/feedupload'>
-            <NavSVG
-              id={
-                location.pathname === '/feedupload'
-                  ? 'icon-edit-fill'
-                  : 'icon-edit'
-              }
-            />
+        <li onClick={() => newFeed()}>
+          <NavLink
+            to='/feedupload'
+            className={`nav-link ${
+              location.pathname === '/feedupload' ? 'active' : ''
+            }`}
+          >
+            <SvgDiv scale={location.pathname === '/feedupload' ? 1.2 : 1}>
+              <NavSVG
+                id={
+                  location.pathname === '/feedupload'
+                    ? 'icon-edit-fill'
+                    : 'icon-edit'
+                }
+              />
+            </SvgDiv>
             <StyledNavText>게시물 작성</StyledNavText>
           </NavLink>
         </li>
@@ -103,10 +124,15 @@ export default function Nav() {
               location.pathname === '/chat' ? 'active' : ''
             }`}
           >
-            <NavSVG
-              id='icon-message-circle'
-              color={location.pathname === '/chat' ? '#f26e22' : 'white'}
-            />
+            <SvgDiv scale={location.pathname === '/chat' ? 1.2 : 1}>
+              <NavSVG
+                id={
+                  location.pathname === '/chat'
+                    ? 'icon-message-fill'
+                    : 'icon-message'
+                }
+              />
+            </SvgDiv>
             <StyledNavText>채팅</StyledNavText>
           </NavLink>
         </li>
@@ -117,13 +143,15 @@ export default function Nav() {
               location.pathname === '/myprofile' ? 'active' : ''
             }`}
           >
-            <NavSVG
-              id={
-                location.pathname === '/myprofile'
-                  ? 'icon-user-fill'
-                  : 'icon-user'
-              }
-            />
+            <SvgDiv scale={location.pathname === '/myprofile' ? 1.2 : 1}>
+              <NavSVG
+                id={
+                  location.pathname === '/myprofile'
+                    ? 'icon-user-fill'
+                    : 'icon-user'
+                }
+              />
+            </SvgDiv>
             <StyledNavText>프로필</StyledNavText>
           </NavLink>
         </li>

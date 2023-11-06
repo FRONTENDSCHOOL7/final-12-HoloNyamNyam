@@ -6,13 +6,21 @@ const StyledSignUpWrap = styled.div`
   margin: auto;
   text-align: center;
   background: #fff;
+  margin-bottom: calc(158px + 35px);
 `;
 
 const StyledTitle = styled.h1`
   font-size: 24px;
   color: black;
-  padding-bottom: 58px;
+  padding-bottom: 50px;
   font-weight: 500;
+`;
+
+const StyledSubTitle = styled.div`
+  font-size: 14px;
+  color: black;
+  padding-bottom: 58px;
+  font-weight: 400;
 `;
 
 const StyledInputWrap = styled.div`
@@ -24,4 +32,10 @@ const StyledButton = styled(ButtonStyle)`
   font-weight: 500;
 `;
 
-export { StyledSignUpWrap, StyledInputWrap, StyledTitle, StyledButton };
+export {
+  StyledSignUpWrap,
+  StyledInputWrap,
+  StyledTitle,
+  StyledButton,
+  StyledSubTitle,
+};

@@ -11,7 +11,7 @@ import Modal from '../../Modal/Modal/Modal';
 
 const List = styled.ul`
   background-color: white;
-  padding: 57px 24px 69px 24px;
+  padding: 57px 20px 69px;
 `;
 
 export default function FeedHome() {
@@ -22,8 +22,8 @@ export default function FeedHome() {
   const [page, setPage] = useState(0);
   const observer = useRef();
   const navigate = useNavigate();
-  const token = localStorage.getItem('token');
-  const where = localStorage.getItem('accountname');
+  const token = sessionStorage.getItem('token');
+  const where = sessionStorage.getItem('accountname');
 
   const getFeed = async (options) => {
     const res = await feed(options);
@@ -72,7 +72,7 @@ export default function FeedHome() {
   };
 
   function moveProfile(accountname) {
-    const where = localStorage.getItem('accountname');
+    const where = sessionStorage.getItem('accountname');
     if (accountname === where) {
       navigate('/myprofile', {
         state: {

@@ -50,11 +50,30 @@ export default function Header({
 
   const location = useLocation();
   const { accountname } = location.state || {};
-  const userName = accountname || { name };
+  let userName = accountname || { name };
+  if (
+    !userName.name &&
+    location.state &&
+    location.state.infoToIterate &&
+    location.state.infoToIterate.author &&
+    location.state.infoToIterate.author.accountname
+  ) {
+    userName = location.state.infoToIterate.author.accountname;
+    if (userName === sessionStorage.accountname) {
+      userName = '나의 게시글';
+    }
+  }
+
   const navigate = useNavigate();
   const setModal = useSetRecoilState(modalState);
   const modalOpen = () => {
-    setModal({ show: true, type: 'myProfile' });
+    setModal({
+      show: true,
+      type:
+        own === 'my' || userName === '나의 게시글'
+          ? 'myProfile'
+          : 'yourProfile',
+    });
   };
   const [viewMode, setViewMode] = useRecoilState(viewBtnState);
   const setFeed = useSetRecoilState(feedState);
@@ -125,12 +144,21 @@ export default function Header({
         />
       </HeaderLayoutSection>
     ),
+    feed: (
+      <HeaderLayoutSection>
+        <HeaderTitle className='a11y-hidden'>게시글</HeaderTitle>
+        {own === 'my'
+          ? renderHeaderText('나의 게시글')
+          : renderHeaderText(`@ ${userName}`)}
+        {renderHeaderRightBtn()}
+      </HeaderLayoutSection>
+    ),
     profile: (
       <HeaderLayoutSection>
         <HeaderTitle className='a11y-hidden'>프로필</HeaderTitle>
         {own === 'my'
           ? renderHeaderText('나의 프로필')
-          : renderHeaderText(`${userName}`)}
+          : renderHeaderText(`@ ${userName}`)}
         {renderHeaderRightBtn()}
       </HeaderLayoutSection>
     ),
@@ -149,7 +177,6 @@ export default function Header({
     upload: (
       <HeaderLayoutSection>
         <HeaderTitle className='a11y-hidden'>게시물 작성</HeaderTitle>
-        {/* {renderHeaderLeftBtn()} */}
         {edit
           ? renderHeaderText('냠냠피드 수정')
           : renderHeaderText('냠냠피드 작성')}
@@ -169,7 +196,7 @@ export default function Header({
         <HeaderTitle className='a11y-hidden'>프로필 수정</HeaderTitle>
         {renderHeaderText('프로필 수정')}
         <Button
-          type='button'
+          type='submit'
           content='저장'
           size='ms'
           width='ms'
@@ -182,7 +209,11 @@ export default function Header({
     chat: (
       <HeaderLayoutSection>
         <HeaderTitle className='a11y-hidden'>채팅</HeaderTitle>
-        {renderHeaderText(`@ ${yourAccountname}`)}
+        {yourAccountname === undefined
+          ? renderHeaderText('채팅')
+          : yourAccountname
+          ? renderHeaderText(`@ ${yourAccountname}`)
+          : renderHeaderText(`@ ${accountname}`)}
         {renderHeaderRightBtn()}
       </HeaderLayoutSection>
     ),

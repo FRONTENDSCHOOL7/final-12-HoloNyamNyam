@@ -64,13 +64,13 @@ const UserText = styled.p`
 
 const GradientBg = styled.div`
   background: linear-gradient(-45deg, #ff3945 0%, #ff9052 100%);
-
   position: relative;
   width: 100%;
   height: 170px;
 `;
 
 const CtnTap = styled.div`
+  cursor: pointer;
   background-color: #fff;
   width: 60px;
   height: 40px;

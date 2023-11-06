@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Nav from '../../components/common/Nav/Nav';
 import SearchList from '../../components/Search/SearchList';
@@ -29,9 +30,29 @@ const SearchP = styled.p`
 `;
 
 export default function Search() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (
+      !sessionStorage.getItem('_id') ||
+      !sessionStorage.getItem('accountname') ||
+      !sessionStorage.getItem('token')
+    ) {
+      navigate('/');
+    }
+  }, [navigate]);
+
   const [searchKeyword, setSearchKeyword] = useState('');
   function handleSearchKeyword(event) {
     setSearchKeyword(event.target.value);
+  }
+
+  if (
+    !sessionStorage.getItem('_id') ||
+    !sessionStorage.getItem('accountname') ||
+    !sessionStorage.getItem('token')
+  ) {
+    return null;
   }
   return (
     <>
@@ -46,7 +67,7 @@ export default function Search() {
         ) : (
           <SearchWrap>
             <SearchImg src={searchLogo} />
-            <SearchP>또 누가 있을까?</SearchP>
+            <SearchP>또 누가 있을까요?</SearchP>
           </SearchWrap>
         )}
       </List>

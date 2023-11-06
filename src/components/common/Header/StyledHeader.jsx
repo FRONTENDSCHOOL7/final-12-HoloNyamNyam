@@ -73,6 +73,7 @@ const HeaderTextP = styled.p`
   white-space: nowrap;
   display: inline-block;
   font-size: 14px;
+  line-height: 160%;
   overflow: hidden;
   font-weight: 600;
 `;

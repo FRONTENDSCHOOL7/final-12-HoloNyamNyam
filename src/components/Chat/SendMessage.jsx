@@ -18,6 +18,8 @@ export const MessageText = styled.article`
   line-height: 16px;
   position: relative;
   margin: 0 0 0 auto;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
 `;
 
 export const TimeStamp = styled.span`
@@ -32,7 +34,7 @@ export default function SendMessage() {
   return (
     <MessageWrap>
       <MessageText>
-        저도 알려주세요!
+        돈까스 맛집 알려드릴게요
         <TimeStamp>13:58</TimeStamp>
       </MessageText>
     </MessageWrap>

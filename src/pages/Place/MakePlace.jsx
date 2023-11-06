@@ -16,15 +16,26 @@ import { placeUploadApi } from '../../api/place';
 
 const { kakao } = window;
 export default function MakePlace() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (
+      !sessionStorage.getItem('_id') ||
+      !sessionStorage.getItem('accountname') ||
+      !sessionStorage.getItem('token')
+    ) {
+      navigate('/');
+    }
+  }, [navigate]);
+
   const [imgFile, setImgFile] = useState(null);
   const [imgUrl, setImgUrl] = useState('');
   const [restaurantname, setRestaurantname] = useState('');
-  const token = localStorage.getItem('token');
+  const token = sessionStorage.getItem('token');
   const [rating, setRating] = useState(0);
   const [isValid, setIsValid] = useState(false);
   const [addressList, setAddressList] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState('');
-  const navigate = useNavigate();
 
   const handleRatingChange = (rate) => {
     setRating(rate);
@@ -112,9 +123,20 @@ export default function MakePlace() {
     setSelectedAddress(event.target.value);
   };
 
+
   const handleSubmit = (event) => {
     event.preventDefault();
   };
+
+  if (
+    !sessionStorage.getItem('_id') ||
+    !sessionStorage.getItem('accountname') ||
+    !sessionStorage.getItem('token')
+  ) {
+    return null;
+  }
+
+
   return (
     <>
       <h1 className='a11y-hidden'>냠냠평가 등록 페이지</h1>

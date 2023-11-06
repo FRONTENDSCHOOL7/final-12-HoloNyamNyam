@@ -16,6 +16,8 @@ import {
   Container,
   SocialSvg,
   MoreBtn,
+  LikeAnimaiton,
+  CommentAnimaiton,
 } from './StyledFeedItem';
 import { feedLikeApi, feedUnlikeApi } from '../../../api/feed';
 import sprite from '../../../images/SpriteIcon.svg';
@@ -49,16 +51,8 @@ export default function FeedItem({
   const [isHearted, setIsHearted] = useState(infoToIterate.hearted);
   const [heartCnt, setHeartCnt] = useState(infoToIterate.heartCount);
 
-  function moveDetail(id) {
-    navigate('/feeddetail', {
-      state: {
-        id: id,
-        infoToIterate: infoToIterate,
-      },
-    });
-  }
   const feedLike = async () => {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     try {
       if (isHearted) {
         await feedUnlikeApi(infoToIterate.id, token);
@@ -69,15 +63,25 @@ export default function FeedItem({
         setIsHearted(!isHearted);
         setHeartCnt(heartCnt + 1);
       }
-      if (getUserInfo) {
-        getUserInfo();
-      }
+      // if (getUserInfo) {
+      //   getUserInfo();
+      // }
     } catch (error) {
       return false;
     }
   };
+
+  function moveDetail(id) {
+    navigate('/feeddetail', {
+      state: {
+        id: id,
+        infoToIterate: infoToIterate,
+      },
+    });
+  }
+
   function moveProfile(accountname) {
-    const where = localStorage.getItem('accountname');
+    const where = sessionStorage.getItem('accountname');
     if (accountname === where) {
       navigate('/myprofile', {
         state: {
@@ -92,6 +96,7 @@ export default function FeedItem({
       });
     }
   }
+
   function formatDate(dateString) {
     const dateObj = new Date(dateString);
     const year = dateObj.getFullYear();
@@ -109,7 +114,7 @@ export default function FeedItem({
   }, [feedInfo]);
 
   return (
-    <Container>
+    <Container $dim={detail === true ? null : true}>
       {infoToIterate && infoToIterate.author && (
         <FeedUser>
           <FeedUserImg
@@ -153,11 +158,13 @@ export default function FeedItem({
         <FeedInfoBox>
           <FeedBtnBox>
             <BtnLike onClick={() => feedLike(infoToIterate.id)}>
-              {isHearted ? (
-                <SocialSVG id='icon-heart' color='red' strokeColor='red' />
-              ) : (
-                <SocialSVG id='icon-heart' />
-              )}
+              <LikeAnimaiton>
+                {isHearted ? (
+                  <SocialSVG id='icon-heart' color='red' strokeColor='red' />
+                ) : (
+                  <SocialSVG id='icon-heart' />
+                )}
+              </LikeAnimaiton>
               {heartCnt}
             </BtnLike>
 
@@ -166,7 +173,9 @@ export default function FeedItem({
                 moveDetail(infoToIterate.id);
               }}
             >
-              <SocialSVG id='icon-message-circle-2' />
+              <CommentAnimaiton>
+                <SocialSVG id='icon-message-circle-2' />
+              </CommentAnimaiton>
               {commentCnt}
             </BtnComment>
           </FeedBtnBox>

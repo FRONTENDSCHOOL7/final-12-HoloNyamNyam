@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Alert from '../Alert/Alert';
 import {
   ModalDim,
@@ -10,6 +10,7 @@ import {
 import { useRecoilState } from 'recoil';
 import { modalState } from '../../../recoil/modalAtom';
 import { cardShowState } from '../../../recoil/cardShowAtom';
+import { userInfoState } from '../../../recoil/userInfoAtom';
 
 export default function Modal({
   type,
@@ -18,21 +19,20 @@ export default function Modal({
   placeLink,
   handlerProfile,
   handlerFeedEdit,
-  handlerFeedEdit2,
   handlerCommentEdit,
   handlerPlaceEdit,
   handleCommentDelete,
   handlerFeedDetail,
-  recommendInfo,
+  placeInfo,
   detail,
 }) {
   const navigate = useNavigate();
   const [alertShow, setAlertShow] = useState(false);
   const [alertType, setAlertType] = useState('logout');
-  // eslint-disable-next-line no-unused-vars
-  const [modal, setModal] = useRecoilState(modalState);
-  // eslint-disable-next-line no-unused-vars
-  const [cardShow, setCardShow] = useRecoilState(cardShowState);
+  const [, setModal] = useRecoilState(modalState);
+  const [, setCardShow] = useRecoilState(cardShowState);
+  const [userInfo] = useRecoilState(userInfoState);
+  const location = useLocation();
 
   function modalClose(e) {
     if (e.target === e.currentTarget) {
@@ -59,60 +59,100 @@ export default function Modal({
     setModal((prevModal) => ({ ...prevModal, show: false }));
     setCardShow(false);
   }
-  const initializeKakao = () => {
-    if (window.Kakao && !window.Kakao.isInitialized()) {
-      window.Kakao.init('cac39e5e6556a7917d1c0c5b966012b7');
-    }
-  };
 
   function moveProfileEdit() {
     navigate('/myprofile/edit');
-  }
-
-  function kakaoButton(recommendInfo) {
-    initializeKakao();
-    if (!window.Kakao) {
-      return;
-    }
-    const kakao = window.Kakao;
-
-    kakao.Share.sendDefault({
-      objectType: 'location',
-      address: recommendInfo.link,
-      addressTitle: recommendInfo.itemName,
-      content: {
-        title: recommendInfo.itemName,
-        imageUrl: recommendInfo.itemImage,
-        description: recommendInfo.link,
-        link: {
-          mobileWebUrl: 'https://foodzip.netlify.app',
-          webUrl: 'https://foodzip.netlify.app',
-        },
-      },
-      social: {
-        likeCount: recommendInfo.price,
-      },
-      buttons: [
-        {
-          title: '웹으로 보기',
-          link: {
-            mobileWebUrl: 'https://foodzip.netlify.app',
-            webUrl: 'https://foodzip.netlify.app',
-          },
-        },
-      ],
-    });
     setModal((prevModal) => ({ ...prevModal, show: false }));
   }
+
+  function kakaoButton(placeInfo) {
+    if (window.Kakao) {
+      const kakao = window.Kakao;
+
+      if (!kakao.isInitialized()) {
+        kakao.init('2df8baf0a061ee9ba8cfeadb844cdfb4');
+      }
+
+      kakao.Share.sendDefault({
+        objectType: 'location',
+        address: placeInfo.link,
+        addressTitle: placeInfo.itemName,
+        content: {
+          title: placeInfo.itemName,
+          imageUrl: placeInfo.itemImage,
+          description: placeInfo.link,
+          link: {
+            mobileWebUrl: 'https://holonyam.netlify.app/',
+            webUrl: 'https://holonyam.netlify.app/',
+          },
+        },
+        social: {
+          likeCount: placeInfo.price,
+        },
+        buttons: [
+          {
+            title: '웹으로 보기',
+            link: {
+              mobileWebUrl: 'https://holonyam.netlify.app/',
+              webUrl: 'https://holonyam.netlify.app/',
+            },
+          },
+        ],
+      });
+    }
+    setModal((prevModal) => ({ ...prevModal, show: false }));
+  }
+
+  function kakaoProfileButton(userInfo) {
+    if (window.Kakao) {
+      const kakao = window.Kakao;
+
+      if (!kakao.isInitialized()) {
+        kakao.init('2df8baf0a061ee9ba8cfeadb844cdfb4');
+      }
+
+      kakao.Share.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: `@${userInfo.accountname}`,
+          description: userInfo.intro,
+          imageUrl: userInfo.image,
+          link: {
+            mobileWebUrl: 'https://holonyam.netlify.app/',
+            webUrl: 'https://holonyam.netlify.app/',
+          },
+        },
+        itemContent: {
+          profileText: userInfo.username,
+        },
+        buttons: [
+          {
+            title: '프로필 구경하기',
+            link: {
+              mobileWebUrl: 'https://holonyam.netlify.app/',
+              webUrl: 'https://holonyam.netlify.app/',
+            },
+          },
+        ],
+      });
+    }
+    setModal((prevModal) => ({ ...prevModal, show: false }));
+  }
+
   const UI = {
     yourProfile: (
       <ModalWrapArticle>
         <ModalLineSpan />
-        <ModalTextBtn>차단</ModalTextBtn>
-        <ModalTextBtn>이 계정 정보</ModalTextBtn>
-        <ModalTextBtn>이 프로필 공유하기</ModalTextBtn>
+        {location.pathname !== '/feeddetail' && (
+          <ModalTextBtn onClick={() => kakaoProfileButton(userInfo)}>
+            프로필 공유하기
+          </ModalTextBtn>
+        )}
         <ModalTextBtn onClick={() => alertOpen('reportUser')}>
           신고하기
+        </ModalTextBtn>
+        <ModalTextBtn onClick={() => alertOpen('logout')}>
+          로그아웃
         </ModalTextBtn>
       </ModalWrapArticle>
     ),
@@ -120,7 +160,11 @@ export default function Modal({
       <ModalWrapArticle>
         <ModalLineSpan />
         <ModalTextBtn onClick={moveProfileEdit}>프로필 수정</ModalTextBtn>
-        <ModalTextBtn>내 프로필 공유하기</ModalTextBtn>
+        {location.pathname !== '/feeddetail' && (
+          <ModalTextBtn onClick={() => kakaoProfileButton(userInfo)}>
+            프로필 공유하기
+          </ModalTextBtn>
+        )}
         <ModalTextBtn onClick={() => alertOpen('logout')}>
           로그아웃
         </ModalTextBtn>
@@ -143,8 +187,7 @@ export default function Modal({
         <ModalLineSpan />
         <ModalTextBtn onClick={handlerFeedDetail}>상세보기</ModalTextBtn>
         <ModalTextBtn onClick={() => alertOpen('feed')}>삭제</ModalTextBtn>
-        {/* <ModalTextBtn onClick={handlerFeedEdit}>수정</ModalTextBtn> */}
-        <ModalTextBtn onClick={handlerFeedEdit2}>수정</ModalTextBtn>
+        <ModalTextBtn onClick={handlerFeedEdit}>수정</ModalTextBtn>
       </ModalWrapArticle>
     ),
     yourComment: (
@@ -169,7 +212,7 @@ export default function Modal({
         <ModalTextBtn onClick={handlerOpenMap}>
           카카오맵으로 이동하기
         </ModalTextBtn>
-        <ModalTextBtn onClick={() => kakaoButton(recommendInfo)}>
+        <ModalTextBtn onClick={() => kakaoButton(placeInfo)}>
           SNS 공유하기
         </ModalTextBtn>
       </ModalWrapArticle>
@@ -182,7 +225,7 @@ export default function Modal({
         <ModalTextBtn onClick={handlerOpenMap}>
           카카오맵으로 이동하기
         </ModalTextBtn>
-        <ModalTextBtn onClick={() => kakaoButton(recommendInfo)}>
+        <ModalTextBtn onClick={() => kakaoButton(placeInfo)}>
           SNS 공유하기
         </ModalTextBtn>
       </ModalWrapArticle>

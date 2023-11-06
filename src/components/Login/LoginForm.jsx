@@ -25,9 +25,9 @@ export default function LoginForm() {
       const accountname = loginData.data.user.accountname;
       const _id = loginData.data.user._id;
 
-      localStorage.setItem('token', token);
-      localStorage.setItem('_id', _id);
-      localStorage.setItem('accountname', accountname);
+      sessionStorage.setItem('token', token);
+      sessionStorage.setItem('_id', _id);
+      sessionStorage.setItem('accountname', accountname);
 
       setLoginSuccess(true);
     } catch (err) {
@@ -63,7 +63,6 @@ export default function LoginForm() {
       <StyledInputWrap>
         <Input
           label='이메일'
-          padding='login'
           id='email'
           type='email'
           onChange={handleFieldChange}
@@ -86,7 +85,6 @@ export default function LoginForm() {
         <Input
           label='비밀번호'
           id='password'
-          padding='login'
           type='password'
           onChange={handleFieldChange}
           placeholder='비밀번호를 입력해 주세요.'

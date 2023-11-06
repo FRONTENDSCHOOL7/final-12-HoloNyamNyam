@@ -10,32 +10,32 @@ import {
 } from './StyledRatePlace';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { placeListApi } from '../../api/place';
-import { userSearch } from '../../api/search';
+import { useRecoilState } from 'recoil';
+import { viewBtnState } from '../../recoil/viewBtnAtom';
+import { userInfoState } from '../../recoil/userInfoAtom';
 
 export default function RatePlace({ cardOpen, cardClosed }) {
   const navigate = useNavigate();
+  const [, setViewMode] = useRecoilState(viewBtnState);
+  const [userInfo] = useRecoilState(userInfoState);
 
   function movePlaceList(id) {
     navigate('/placelist', {
-      state: { accountname: id, nickname: { name } },
+      state: { accountname: id.accountname, nickname: id.username },
     });
   }
 
-  const [name, setName] = useState([]);
   const location = useLocation();
   const [rateList, setRateList] = useState(false);
 
   const { accountname } = location.state || {};
   useEffect(() => {
+    setViewMode('별점순');
     const getUserInfo = async () => {
-      const token = localStorage.getItem('token');
+      const token = sessionStorage.getItem('token');
       try {
         const res = await placeListApi(
-          accountname || localStorage.getItem('accountname'),
-          token,
-        );
-        const resName = await userSearch(
-          accountname || localStorage.getItem('accountname'),
+          accountname || sessionStorage.getItem('accountname'),
           token,
         );
         if (res.data.product.length > 0) {
@@ -43,28 +43,25 @@ export default function RatePlace({ cardOpen, cardClosed }) {
         } else {
           setRateList(false);
         }
-        setName(resName.data[0].username);
       } catch (error) {
         console.error('error');
         navigate('/error');
       }
     };
     getUserInfo();
-  }, [location, navigate, accountname]);
+  }, [location, navigate, accountname, setViewMode]);
 
   return (
     <>
       <RateTitleWrap>
-        <RateTitle>{name}님의 냠냠평가</RateTitle>
+        <RateTitle>{userInfo.username}님의 냠냠평가</RateTitle>
         {rateList && (
           <MoreViewBtn
             type='button'
             size='ms'
             $border='active'
             color='active'
-            onClick={() =>
-              movePlaceList(accountname || localStorage.getItem('accountname'))
-            }
+            onClick={() => movePlaceList(userInfo)}
           >
             더보기
           </MoreViewBtn>

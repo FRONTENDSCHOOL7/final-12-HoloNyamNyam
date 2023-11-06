@@ -6,9 +6,10 @@ const HomeWrapper = styled.section`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
 `;
 const HomeImg = styled.img`
+  aspect-ratio: auto;
   margin: -70px 0 12px 0;
 `;
 const HomeText = styled.h2`

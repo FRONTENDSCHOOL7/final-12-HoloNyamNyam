@@ -5,7 +5,6 @@ import sprite from '../../../images/SpriteIcon.svg';
 import Stack from '../../../images/stack.svg';
 import feedListSvg from '../../../images/feedList-logo.svg';
 import Modal from '../../Modal/Modal/Modal';
-import FeedEdit from '../FeedEdit/FeedEdit';
 import {
   FeedListBtnWrap,
   ImgInfo,
@@ -23,13 +22,13 @@ import {
   NoFeedP,
 } from './StyledFeedList';
 import { userFeedListApi } from '../../../api/feed';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { modalState } from '../../../recoil/modalAtom';
 import { feedState } from '../../../recoil/feedEditAtom';
 import { useRef } from 'react';
 import Loading from '../../Loading/Loading';
 
-export default function FeedList() {
+export default function FeedList({ feedRef }) {
   const ViewSVG = ({ id, color = 'white', size = 26 }) => (
     <svg fill={color} width={size} height={size} stroke={color}>
       <use href={`${sprite}#${id}`} />
@@ -41,51 +40,52 @@ export default function FeedList() {
   const navigate = useNavigate();
   const [feedInfo, setFeedInfo] = useState([]);
   const [hasFeeds, setHasFeeds] = useState(false);
-  const [feedEditModalOpen, setFeedEditModalOpen] = useState(false);
   const [modal, setModal] = useRecoilState(modalState);
-  const [feed, setFeed] = useRecoilState(feedState);
+  const setFeed = useSetRecoilState(feedState);
   const observer = useRef();
   const [skip, setSkip] = useState(0);
   const [page, setPage] = useState(0);
   const limit = 10;
   const [loading, setLoading] = useState(true);
-  const where = localStorage.getItem('accountname');
+  const where = sessionStorage.getItem('accountname');
 
   const { accountname } = location.state || {};
   const handleViewModeChange = (mode) => {
     setViewMode(mode);
   };
 
+  const initialRender = useRef(true);
+
   const getUserInfo = useCallback(async () => {
-    const token = localStorage.getItem('token');
-    setLoading(true);
-    try {
-      const res = await userFeedListApi(
-        accountname || localStorage.getItem('accountname'),
-        token,
-        limit,
-        skip,
-      );
-      const posts = res.data.post;
-      if (posts.length > 0) {
-        setHasFeeds(true);
-        setFeedInfo((prev) => [...prev, ...posts]);
+    if (initialRender.current) {
+      initialRender.current = false;
+    } else {
+      const token = sessionStorage.getItem('token');
+      setLoading(true);
+      try {
+        const res = await userFeedListApi(
+          accountname || sessionStorage.getItem('accountname'),
+          token,
+          limit,
+          skip,
+        );
+        const posts = res.data.post;
+        if (posts.length > 0) {
+          setHasFeeds(true);
+          setFeedInfo((prev) => [...prev, ...posts]);
+        }
+        setSkip((prev) => prev + posts.length);
+        setLoading(false);
+      } catch (error) {
+        console.error('error');
+        navigate('/error');
       }
-      setSkip((prev) => prev + posts.length);
-      setLoading(false);
-    } catch (error) {
-      console.error('error');
-      navigate('/error');
     }
   }, [accountname, limit, skip, navigate]);
 
   useEffect(() => {
-    if (page === 1) getUserInfo();
+    if (page === 0) getUserInfo();
   }, [page, getUserInfo]);
-
-  useEffect(() => {
-    setPage(1);
-  }, []);
 
   function moveDetail(item) {
     navigate('/feeddetail', {
@@ -103,7 +103,7 @@ export default function FeedList() {
     setFeed({
       type: 'edit',
       id: item.id,
-      images: item.image.split(','),
+      images: item.image === '' ? [] : item.image.split(','),
       text: item.content,
     });
   }
@@ -116,16 +116,6 @@ export default function FeedList() {
       accountname: item.author.accountname,
       item: item,
     });
-  };
-
-  const openFeedEditModal = () => {
-    setFeedEditModalOpen(true);
-  };
-
-  const closeFeedEditModal = () => {
-    setFeedEditModalOpen(false);
-    setModal((prevModal) => ({ ...prevModal, show: false }));
-    window.location.reload();
   };
 
   useEffect(() => {
@@ -146,7 +136,7 @@ export default function FeedList() {
     setSkip(0);
     setPage(0);
     setFeedInfo([]);
-  }, [location]);
+  }, [location.state]);
 
   return (
     <>
@@ -177,7 +167,7 @@ export default function FeedList() {
             </button>
           </FeedListBtnWrap>
           {viewMode === 'list' ? (
-            <FeedItemList>
+            <FeedItemList ref={feedRef}>
               {feedInfo.map((item) => (
                 <FeedListItem key={item.id}>
                   <FeedItem
@@ -248,13 +238,9 @@ export default function FeedList() {
       {modal.show && (
         <Modal
           type={modal.type}
-          handlerFeedEdit={openFeedEditModal}
           handlerFeedDetail={() => moveDetail(modal.item)}
-          handlerFeedEdit2={() => moveUpload(modal.item)}
+          handlerFeedEdit={() => moveUpload(modal.item)}
         />
-      )}
-      {feedEditModalOpen && (
-        <FeedEdit closeModal={closeFeedEditModal} feedId={modal.feedId} />
       )}
     </>
   );
