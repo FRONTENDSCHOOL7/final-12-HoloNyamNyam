@@ -54,38 +54,38 @@ export default function FeedList({ feedRef }) {
     setViewMode(mode);
   };
 
+  const initialRender = useRef(true);
+
   const getUserInfo = useCallback(async () => {
-    const token = sessionStorage.getItem('token');
-    setLoading(true);
-    try {
-      const res = await userFeedListApi(
-        accountname || sessionStorage.getItem('accountname'),
-        token,
-        limit,
-        skip,
-      );
-      const posts = res.data.post;
-      // console.log(posts);
-      if (posts.length > 0) {
-        setHasFeeds(true);
-        setFeedInfo((prev) => [...prev, ...posts]);
-        // console.log(feedInfo);
+    if (initialRender.current) {
+      initialRender.current = false;
+    } else {
+      const token = sessionStorage.getItem('token');
+      setLoading(true);
+      try {
+        const res = await userFeedListApi(
+          accountname || sessionStorage.getItem('accountname'),
+          token,
+          limit,
+          skip,
+        );
+        const posts = res.data.post;
+        if (posts.length > 0) {
+          setHasFeeds(true);
+          setFeedInfo((prev) => [...prev, ...posts]);
+        }
+        setSkip((prev) => prev + posts.length);
+        setLoading(false);
+      } catch (error) {
+        console.error('error');
+        navigate('/error');
       }
-      setSkip((prev) => prev + posts.length);
-      setLoading(false);
-    } catch (error) {
-      console.error('error');
-      navigate('/error');
     }
   }, [accountname, limit, skip, navigate]);
 
   useEffect(() => {
-    if (page === 1) getUserInfo();
+    if (page === 0) getUserInfo();
   }, [page, getUserInfo]);
-
-  useEffect(() => {
-    setPage(1);
-  }, []);
 
   function moveDetail(item) {
     navigate('/feeddetail', {
