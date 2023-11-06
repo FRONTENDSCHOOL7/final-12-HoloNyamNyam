@@ -49,7 +49,7 @@ export default function Nav() {
 
   function newFeed() {
     setFeed({ type: 'new', id: null, images: [], text: '' });
-    window.location.reload();
+    if (location.pathname === '/feedupload') window.location.reload();
   }
 
   return (
