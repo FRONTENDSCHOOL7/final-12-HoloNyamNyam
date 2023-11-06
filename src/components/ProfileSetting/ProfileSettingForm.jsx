@@ -36,7 +36,6 @@ const ProfileSettingForm = () => {
     },
   });
 
-  const token = localStorage.getItem('token');
   const [error, setErrors] = useState({});
   const [hasError, setHasError] = useState(false);
   const [profileImg, setProfileImg] = useState(null);
