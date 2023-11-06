@@ -14,10 +14,21 @@ import { followerListApi, followingListApi } from '../../api/follow';
 import FeedlistImg from '../../images/feedList-logo.svg';
 
 export default function FollowerList({ type, followType }) {
-  const token = localStorage.getItem('token');
-  const location = useLocation();
   const navigate = useNavigate();
-  const accountname = location.state.accountname;
+
+  useEffect(() => {
+    if (
+      !sessionStorage.getItem('_id') ||
+      !sessionStorage.getItem('accountname') ||
+      !sessionStorage.getItem('token')
+    ) {
+      navigate('/');
+    }
+  }, [navigate]);
+
+  const token = sessionStorage.getItem('token');
+  const location = useLocation();
+  const accountname = location.state ? location.state.accountname : null;
   const [followerList, setFollowerList] = useState([]);
   const [followingList, setFollowingList] = useState([]);
   const [page, setPage] = useState(0);
@@ -68,6 +79,14 @@ export default function FollowerList({ type, followType }) {
       : getFollowingList(limit, skip);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
+
+  if (
+    !sessionStorage.getItem('_id') ||
+    !sessionStorage.getItem('accountname') ||
+    !sessionStorage.getItem('token')
+  ) {
+    return null;
+  }
 
   const followTypeUI = {
     followerList: (

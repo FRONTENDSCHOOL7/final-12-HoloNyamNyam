@@ -32,7 +32,7 @@ export default function PlaceCard({ cardClose, id }) {
   let { accountname } = location.state || {};
 
   if (location.pathname === '/placelist') {
-    if (accountname === localStorage.getItem('accountname')) {
+    if (accountname === sessionStorage.getItem('accountname')) {
       accountname = '';
     }
   }
@@ -53,7 +53,7 @@ export default function PlaceCard({ cardClose, id }) {
   };
 
   const getUserInfo = async () => {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     try {
       await getPlaceInfoApi(id, token).then((res) => {
         const { itemImage, itemName, link, price } = res.data.product;

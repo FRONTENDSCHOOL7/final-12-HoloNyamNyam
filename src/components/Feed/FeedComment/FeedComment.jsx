@@ -28,8 +28,8 @@ export default function FeedComment() {
   const location = useLocation();
   const [comment, setComment] = useState([]);
   const data = location.state;
-  const token = localStorage.getItem('token');
-  const where = localStorage.getItem('accountname');
+  const token = sessionStorage.getItem('token');
+  const where = sessionStorage.getItem('accountname');
   const { id, infoToIterate } = data;
   const [commentCnt, setCommentCnt] = useState(infoToIterate.commentCount);
   const [myFeedInfo, setMyFeedInfo] = useState(infoToIterate);
@@ -133,14 +133,6 @@ export default function FeedComment() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
-  // 댓글 삭제
-  const handleCommentDelete = (deletedCommentId) => {
-    const updatedCommentList = commentList.filter(
-      (comment) => comment.id !== deletedCommentId,
-    );
-    setCommentList(updatedCommentList);
-    setCommentCnt((prev) => prev - 1);
-  };
   const modalOpen = (type, id, name) => {
     setModal({
       show: true,
@@ -150,15 +142,43 @@ export default function FeedComment() {
     });
   };
 
-  function moveUpload(item) {
-    navigate('/feedUpload');
-    setModal({ show: false });
+  const moveUpload = async (item) => {
+    const res = await feedInfoApi(item.id, token);
     setFeed({
       type: 'edit',
-      id: item.id,
-      images: item.image === '' ? [] : item.image.split(','),
-      text: item.content,
+      id: res.data.post.id,
+      images: res.data.post.image === '' ? [] : res.data.post.image.split(','),
+      text: res.data.post.content,
     });
+    navigate('/feedupload');
+    setModal({ show: false });
+  };
+
+  // 댓글 삭제
+  const handleCommentDelete = (deletedCommentId) => {
+    const updatedCommentList = commentList.filter(
+      (comment) => comment.id !== deletedCommentId,
+    );
+    setCommentList(updatedCommentList);
+    setCommentCnt((prev) => prev - 1);
+  };
+
+  function moveProfile(accountname) {
+    const where = localStorage.getItem('accountname');
+    if (accountname === where) {
+      navigate('/myprofile', {
+        state: {
+          accountname: accountname,
+        },
+      });
+    } else {
+      navigate(`/profile/${accountname}`, {
+        state: {
+          accountname: accountname,
+        },
+      });
+    }
+    setModal((prevModal) => ({ ...prevModal, show: false }));
   }
 
   return (
@@ -188,6 +208,7 @@ export default function FeedComment() {
               commentList={commentList}
               feedId={id}
               loadCommentList={loadCommentList}
+              moveProfile={moveProfile}
             />
           </CommentWrapper>
           <div ref={observer} />
@@ -219,10 +240,9 @@ export default function FeedComment() {
         <Modal
           type={modal.type}
           handlerFeedEdit={() => moveUpload(infoToIterate)}
+          handlerProfile={() => moveProfile(modal.accountname)}
           handleCommentDelete={handleCommentDelete}
-          handlerMyProfile={() => navigate(`/myprofile`)}
           detail={true}
-          handlerYourProfile={() => navigate(`/profile/${modal.accountname}`)}
         />
       )}
     </>

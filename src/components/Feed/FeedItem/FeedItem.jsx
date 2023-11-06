@@ -52,7 +52,7 @@ export default function FeedItem({
   const [heartCnt, setHeartCnt] = useState(infoToIterate.heartCount);
 
   const feedLike = async () => {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     try {
       if (isHearted) {
         await feedUnlikeApi(infoToIterate.id, token);
@@ -81,7 +81,7 @@ export default function FeedItem({
   }
 
   function moveProfile(accountname) {
-    const where = localStorage.getItem('accountname');
+    const where = sessionStorage.getItem('accountname');
     if (accountname === where) {
       navigate('/myprofile', {
         state: {

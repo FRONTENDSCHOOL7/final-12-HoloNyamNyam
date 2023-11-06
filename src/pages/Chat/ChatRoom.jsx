@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Header from '../../components/common/Header/Header';
 import ChatNav from '../../components/common/Nav/ChatNav';
@@ -8,7 +8,7 @@ import ReceiveMessage from '../../components/Chat/ReceiveMessage';
 import { MessageWrap } from '../../components/Chat/SendMessage';
 import { MessageText } from '../../components/Chat/SendMessage';
 import { TimeStamp } from '../../components/Chat/SendMessage';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Modal from '../../components/Modal/Modal/Modal';
 import { useRecoilState } from 'recoil';
 import { modalState } from '../../recoil/modalAtom';
@@ -27,6 +27,18 @@ const List = styled.section`
 `;
 
 export default function ChatRoom() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (
+      !sessionStorage.getItem('_id') ||
+      !sessionStorage.getItem('accountname') ||
+      !sessionStorage.getItem('token')
+    ) {
+      navigate('/');
+    }
+  }, [navigate]);
+
   const [chat, setChat] = useRecoilState(chatState);
   const location = useLocation();
   const [modal, setModal] = useRecoilState(modalState);
@@ -51,6 +63,14 @@ export default function ChatRoom() {
     const hours = now.getHours().toString().padStart(2, '0'); // 0~23 시간을 2자리로 표시
     const minutes = now.getMinutes().toString().padStart(2, '0'); // 0~59 분을 2자리로 표시
     return `${hours}:${minutes}`;
+  }
+
+  if (
+    !sessionStorage.getItem('_id') ||
+    !sessionStorage.getItem('accountname') ||
+    !sessionStorage.getItem('token')
+  ) {
+    return null;
   }
 
   return (

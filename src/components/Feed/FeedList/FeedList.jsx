@@ -28,7 +28,7 @@ import { feedState } from '../../../recoil/feedEditAtom';
 import { useRef } from 'react';
 import Loading from '../../Loading/Loading';
 
-export default function FeedList() {
+export default function FeedList({ feedRef }) {
   const ViewSVG = ({ id, color = 'white', size = 26 }) => (
     <svg fill={color} width={size} height={size} stroke={color}>
       <use href={`${sprite}#${id}`} />
@@ -47,7 +47,7 @@ export default function FeedList() {
   const [page, setPage] = useState(0);
   const limit = 10;
   const [loading, setLoading] = useState(true);
-  const where = localStorage.getItem('accountname');
+  const where = sessionStorage.getItem('accountname');
 
   const { accountname } = location.state || {};
   const handleViewModeChange = (mode) => {
@@ -55,11 +55,11 @@ export default function FeedList() {
   };
 
   const getUserInfo = useCallback(async () => {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     setLoading(true);
     try {
       const res = await userFeedListApi(
-        accountname || localStorage.getItem('accountname'),
+        accountname || sessionStorage.getItem('accountname'),
         token,
         limit,
         skip,
@@ -136,7 +136,7 @@ export default function FeedList() {
     setSkip(0);
     setPage(0);
     setFeedInfo([]);
-  }, []);
+  }, [location.state]);
 
   return (
     <>
@@ -167,7 +167,7 @@ export default function FeedList() {
             </button>
           </FeedListBtnWrap>
           {viewMode === 'list' ? (
-            <FeedItemList>
+            <FeedItemList ref={feedRef}>
               {feedInfo.map((item) => (
                 <FeedListItem key={item.id}>
                   <FeedItem

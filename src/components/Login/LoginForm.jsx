@@ -25,9 +25,9 @@ export default function LoginForm() {
       const accountname = loginData.data.user.accountname;
       const _id = loginData.data.user._id;
 
-      localStorage.setItem('token', token);
-      localStorage.setItem('_id', _id);
-      localStorage.setItem('accountname', accountname);
+      sessionStorage.setItem('token', token);
+      sessionStorage.setItem('_id', _id);
+      sessionStorage.setItem('accountname', accountname);
 
       setLoginSuccess(true);
     } catch (err) {

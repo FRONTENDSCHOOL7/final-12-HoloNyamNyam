@@ -34,8 +34,8 @@ export default function FeedCreate() {
   const [content, setContent] = useState(feed.type === 'edit' ? feed.text : '');
   // const [imgUrl, setImgUrl] = useState(feed.type === 'edit' ? feed.images : []);
   const [imgFile, setImgFile] = useState([]);
-  const token = localStorage.getItem('token');
-  const username = localStorage.getItem('accountname');
+  const token = sessionStorage.getItem('token');
+  const username = sessionStorage.getItem('accountname');
   const dragItem = useRef(); // 드래그할 아이템의 인덱스
   const dragOverItem = useRef();
   const fileInputRef = useRef(null);
@@ -108,14 +108,19 @@ export default function FeedCreate() {
         // window.console.log(newUploadPreview);
       }
 
-      await feedEditApi({
+      const res = await feedEditApi({
         feedId: feed.id,
         token: token,
         content: content,
         image: newUploadPreview.join(', '),
       });
 
-      setFeed({ type: 'new', id: null, images: [], text: '' });
+      setFeed({
+        type: 'edit',
+        id: res.data.post.id,
+        images: res.data.post.image.split(','),
+        text: res.data.post.content,
+      });
       navigate(-1);
     } catch (error) {
       console.error(error);

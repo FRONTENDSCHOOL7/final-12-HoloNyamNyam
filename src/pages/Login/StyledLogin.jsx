@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const LoginWrap = styled.section`
-  padding-top: 177px;
+  padding-top: 170px;
   margin: auto;
   text-align: center;
   background: #fff;
@@ -19,13 +19,13 @@ const SignUpLink = styled(Link)`
   color: #767676;
   font-size: 12px;
   display: inline-block;
-  margin-bottom: 158px;
 `;
 
 const SimpleLoginWrap = styled.section`
+  margin-top: 158px;
   position: relative;
   &::before {
-    content: '간편로그인';
+    content: attr(data-content);
     width: 92px;
     position: absolute;
     left: 50%;
@@ -36,6 +36,7 @@ const SimpleLoginWrap = styled.section`
     color: #767676;
     font-size: 12px;
   }
+
   &::after {
     content: '';
     display: block;

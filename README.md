@@ -4,7 +4,19 @@
 
 ## 목차
 
-## 프로젝트 소개
+1.  [프로젝트 소개](#1-프로젝트-소개)
+2.  [팀 소개](#2-팀-소개)
+3.  [역할 분담](#3-역할-분담)
+4.  [개발 환경](#4-개발-환경)
+5.  [개발 스택](#5-개발-스택)
+6.  [구현 기능](#6-구현-기능)
+7.  [기능 UI](#7-기능-UI)
+8.  [폴더 구조](#8-폴더-구조)
+9.  [작업 문화](#9-작업-문화)
+10. [후기](#10후기)
+
+
+## 1. 프로젝트 소개
 
 홀로냠냠은 혼밥러들을 위한 커뮤니티 및 위치 공유 앱입니다.
 
@@ -12,7 +24,7 @@
 - 테스트 계정:  holo_nyam@gmail.com
 - 비밀번호:  holo_nyam
 
-## 팀 소개
+## 2. 팀 소개
 
 안녕하세요, 저희는 4명의 프론트엔드 엔지니어로 이루어진 개발자들입니다.
 
@@ -25,16 +37,28 @@
 
 </div>
 
-## 역할분담
+## 3. 역할 분담
 
-## 개발 기간
+## 4. 개발 환경
 
-## 개발 스택
+## 5. 개발 스택
 
 <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=white"> <img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white"> <img src="https://img.shields.io/badge/eslint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white"> <img src="https://img.shields.io/badge/prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=white"> <img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"> <img src="https://img.shields.io/badge/KakaoAPI-FFCD00?style=for-the-badge&logo=kakao&logoColor=white"> <img src="https://img.shields.io/badge/reacthookform-EC5990?style=for-the-badge&logo=reacthookform&logoColor=white"> <img src="https://img.shields.io/badge/recoil-3578E5?style=for-the-badge&logo=react&logoColor=white">
 
-## 폴더 구조
+## 6. 구현 기능
 
+## 7. 기능 UI
+
+## 8. 폴더 구조
+
+## 9. 작업 문화
+
+### 스크럼
+---
+### 라이브 쉐어
+---
+### Git & 브랜치 전략
+---
 ## 깃 커밋 컨벤션/Git Commit Convention
 
 본문이 있다면 제목과 빈줄을 두어 구분합니다.
@@ -62,3 +86,4 @@
 | ♻️`:recycle:`refactor: | 코드 리팩토링                                                                              |
 | 🌱`:seedling:`add:      | 파일 추가                                                                                  |
 
+## 10. 후기

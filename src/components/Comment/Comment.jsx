@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import sprite from '../../images/SpriteIcon.svg';
 import {
   StyledComment,
@@ -12,10 +11,9 @@ import {
 } from './StyledComment';
 import { useRecoilState } from 'recoil';
 import { modalState } from '../../recoil/modalAtom';
-export default function Comment({ commentList, feedId }) {
-  const where = localStorage.getItem('accountname');
-  const navigate = useNavigate();
 
+export default function Comment({ commentList, feedId, moveProfile }) {
+  const where = localStorage.getItem('accountname');
   const SocialSVG = ({
     id,
     color = 'white',
@@ -53,30 +51,15 @@ export default function Comment({ commentList, feedId }) {
     return '방금 전';
   };
 
-  function moveProfile(accountname) {
-    if (accountname === where) {
-      navigate('/myprofile', {
-        state: {
-          accountname: accountname,
-        },
-      });
-    } else {
-      navigate(`/profile/${accountname}`, {
-        state: {
-          accountname: accountname,
-        },
-      });
-    }
-  }
-
   // eslint-disable-next-line no-unused-vars
   const [modal, setModal] = useRecoilState(modalState);
-  const modalOpen = (type, id) => {
+  const modalOpen = (type, id, feedId, accountname) => {
     setModal({
       show: true,
       type,
       commentId: id,
       feedId: feedId,
+      accountname: accountname,
     });
   };
 
@@ -109,6 +92,8 @@ export default function Comment({ commentList, feedId }) {
                       ? 'myComment'
                       : 'yourComment',
                     comment.id,
+                    feedId,
+                    comment.author.accountname,
                   )
                 }
               />

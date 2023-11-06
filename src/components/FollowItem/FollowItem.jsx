@@ -18,8 +18,8 @@ export default function FollowItem({
   isfollow,
 }) {
   const [follow, setFollow] = useState(isfollow);
-  const myaccountname = localStorage.getItem('accountname');
-  const token = localStorage.getItem('token');
+  const myaccountname = sessionStorage.getItem('accountname');
+  const token = sessionStorage.getItem('token');
   const navigate = useNavigate();
 
   function moveProfile(accountname) {

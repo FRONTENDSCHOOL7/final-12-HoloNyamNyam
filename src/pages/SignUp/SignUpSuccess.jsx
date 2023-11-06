@@ -9,7 +9,7 @@ export default function SignUpSuccess() {
         <br />
         혼바비언이 되신 것을 환영합니다 :&#41;
       </Greeting>
-      <GoFeed to='/home'>홀로냠냠 시작하러 가요!</GoFeed>
+      <GoFeed to='/welcome'>홀로냠냠 시작하러 가요!</GoFeed>
     </Container>
   );
 }

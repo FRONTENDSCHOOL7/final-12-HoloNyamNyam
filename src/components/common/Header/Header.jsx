@@ -59,10 +59,11 @@ export default function Header({
     location.state.infoToIterate.author.accountname
   ) {
     userName = location.state.infoToIterate.author.accountname;
-    if (userName === localStorage.accountname) {
+    if (userName === sessionStorage.accountname) {
       userName = '나의 게시글';
     }
   }
+
   const navigate = useNavigate();
   const setModal = useSetRecoilState(modalState);
   const modalOpen = () => {
@@ -143,12 +144,21 @@ export default function Header({
         />
       </HeaderLayoutSection>
     ),
+    feed: (
+      <HeaderLayoutSection>
+        <HeaderTitle className='a11y-hidden'>게시글</HeaderTitle>
+        {own === 'my'
+          ? renderHeaderText('나의 게시글')
+          : renderHeaderText(`@ ${userName}`)}
+        {renderHeaderRightBtn()}
+      </HeaderLayoutSection>
+    ),
     profile: (
       <HeaderLayoutSection>
         <HeaderTitle className='a11y-hidden'>프로필</HeaderTitle>
         {own === 'my'
           ? renderHeaderText('나의 프로필')
-          : renderHeaderText(`${userName}`)}
+          : renderHeaderText(`@ ${userName}`)}
         {renderHeaderRightBtn()}
       </HeaderLayoutSection>
     ),
@@ -199,9 +209,11 @@ export default function Header({
     chat: (
       <HeaderLayoutSection>
         <HeaderTitle className='a11y-hidden'>채팅</HeaderTitle>
-        {name
+        {yourAccountname === undefined
           ? renderHeaderText('채팅')
-          : renderHeaderText(`@ ${yourAccountname}`)}
+          : yourAccountname
+          ? renderHeaderText(`@ ${yourAccountname}`)
+          : renderHeaderText(`@ ${accountname}`)}
         {renderHeaderRightBtn()}
       </HeaderLayoutSection>
     ),
