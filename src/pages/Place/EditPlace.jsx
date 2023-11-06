@@ -126,6 +126,11 @@ export default function EditPlace() {
     placeEditUpload();
   }
 
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
+
   if (
     !sessionStorage.getItem('_id') ||
     !sessionStorage.getItem('accountname') ||
@@ -133,6 +138,7 @@ export default function EditPlace() {
   ) {
     return null;
   }
+
 
   return (
     <>
@@ -144,7 +150,7 @@ export default function EditPlace() {
         uploadHandler={handleUpload}
       />
       <PlaceWrapper>
-        <form>
+        <form onSubmit={handleSubmit}>
           <PlaceImgPrev
             initialImage={place.itemImage || []}
             onPlaceImageUrlChange={(file, url) => {
@@ -160,6 +166,7 @@ export default function EditPlace() {
               type='text'
               defaultValue={itemName || ''}
               onChange={(e) => setItemName(e.target.value)}
+              onSubmit={handleSubmit}
             />
             <SearchAddressButton onClick={onButtonClick} type='button'>
               검색

@@ -123,6 +123,11 @@ export default function MakePlace() {
     setSelectedAddress(event.target.value);
   };
 
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
+
   if (
     !sessionStorage.getItem('_id') ||
     !sessionStorage.getItem('accountname') ||
@@ -130,6 +135,7 @@ export default function MakePlace() {
   ) {
     return null;
   }
+
 
   return (
     <>
@@ -140,7 +146,7 @@ export default function MakePlace() {
         uploadHandler={handleUpload}
       />
       <PlaceWrapper>
-        <form>
+        <form onSubmit={handleSubmit}>
           <PlaceImgPrev onPlaceImageUrlChange={handleImageUrlChange} />
           <Restaurant>
             <PlaceLabel htmlFor='restaurantName'>음식점</PlaceLabel>
@@ -149,6 +155,7 @@ export default function MakePlace() {
               type='text'
               value={restaurantname}
               onChange={onChangeName}
+              onSubmit={handleSubmit}
             />
             <SearchAddressButton onClick={onButtonClick} type='button'>
               검색
