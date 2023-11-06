@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 import React, { useRef, useState, useEffect } from 'react';
 import FollowItem from '../../components/FollowItem/FollowItem';
 import Header from '../../components/common/Header/Header';
