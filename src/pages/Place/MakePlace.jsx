@@ -111,6 +111,10 @@ export default function MakePlace() {
   const onAddressChange = (event) => {
     setSelectedAddress(event.target.value);
   };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
   return (
     <>
       <h1 className='a11y-hidden'>냠냠평가 등록 페이지</h1>
@@ -120,7 +124,7 @@ export default function MakePlace() {
         uploadHandler={handleUpload}
       />
       <PlaceWrapper>
-        <form>
+        <form onSubmit={handleSubmit}>
           <PlaceImgPrev onPlaceImageUrlChange={handleImageUrlChange} />
           <Restaurant>
             <PlaceLabel htmlFor='restaurantName'>음식점</PlaceLabel>
@@ -129,6 +133,7 @@ export default function MakePlace() {
               type='text'
               value={restaurantname}
               onChange={onChangeName}
+              onSubmit={handleSubmit}
             />
             <SearchAddressButton onClick={onButtonClick} type='button'>
               검색
