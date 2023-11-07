@@ -8,6 +8,7 @@ import Loading from '../../Loading/Loading';
 import NoFeedHome from './NoFeedHome';
 import { modalState } from '../../../recoil/modalAtom';
 import { Suspense } from 'react';
+import { imgState } from '../../../recoil/skeletonAtom';
 
 const Modal = lazy(() => import('../../Modal/Modal/Modal'));
 
@@ -22,6 +23,7 @@ export default function FeedHome() {
   const [skip, setSkip] = useState(0);
   const [myFeed, setMyFeed] = useState([]);
   const [page, setPage] = useState(0);
+  const [imgLoading, setImgLoading] = useRecoilState(imgState);
   const observer = useRef();
   const navigate = useNavigate();
   const token = sessionStorage.getItem('token');
@@ -29,11 +31,13 @@ export default function FeedHome() {
 
   const getFeed = async (options) => {
     const res = await feed(options);
+    setTimeout(() => setImgLoading(false), 1500);
     if (options.test === 1) setMyFeed(res.data.posts);
     return res.data.posts;
   };
 
   const loadFeed = async (options) => {
+    setImgLoading(true);
     let Feeds = await getFeed(options);
     setMyFeed((prev) => {
       const prevId = prev.map((v) => v.id);
@@ -120,8 +124,7 @@ export default function FeedHome() {
                   }
                   feedInfo={item}
                   commentCnt={item.commentCount}
-                  // getFeed={getFeed}
-                  // skip={skip}
+                  imgLoading={imgLoading}
                 />
               </li>
             ))}
