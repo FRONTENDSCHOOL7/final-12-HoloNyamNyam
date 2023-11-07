@@ -48,40 +48,48 @@ export default function FeedList({ feedRef }) {
   const limit = 10;
   const [loading, setLoading] = useState(true);
   const where = sessionStorage.getItem('accountname');
+  const [fetchedIds, setFetchedIds] = useState([]);
 
   const { accountname } = location.state || {};
   const handleViewModeChange = (mode) => {
     setViewMode(mode);
   };
 
-  const initialRender = useRef(true);
-
   const getUserInfo = useCallback(async () => {
-    if (initialRender.current) {
-      initialRender.current = false;
-    } else {
-      const token = sessionStorage.getItem('token');
-      setLoading(true);
-      try {
-        const res = await userFeedListApi(
-          accountname || sessionStorage.getItem('accountname'),
-          token,
-          limit,
-          skip,
-        );
-        const posts = res.data.post;
-        if (posts.length > 0) {
-          setHasFeeds(true);
-          setFeedInfo((prev) => [...prev, ...posts]);
-        }
-        setSkip((prev) => prev + posts.length);
-        setLoading(false);
-      } catch (error) {
-        console.error('error');
-        navigate('/error');
+    const token = sessionStorage.getItem('token');
+    setLoading(true);
+    try {
+      let res = await userFeedListApi(
+        accountname || sessionStorage.getItem('accountname'),
+        token,
+        limit,
+        skip,
+      );
+
+      const posts = res.data.post;
+
+      if (posts.length > 0) {
+        const newPosts = posts.filter((post) => !fetchedIds.includes(post.id));
+        setFeedInfo((prev) => {
+          const filteredPosts = newPosts.filter(
+            (post) => !prev.some((prevPost) => prevPost.id === post.id),
+          );
+          return [...prev, ...filteredPosts];
+        });
+        setFetchedIds((prevIds) => [
+          ...prevIds,
+          ...newPosts.map((post) => post.id),
+        ]);
+        setHasFeeds(true);
       }
+
+      setSkip((prev) => prev + posts.length);
+      setLoading(false);
+    } catch (error) {
+      console.error('error');
+      navigate('/error');
     }
-  }, [accountname, limit, skip, navigate]);
+  }, [accountname, limit, skip, navigate, fetchedIds]);
 
   useEffect(() => {
     if (page === 0) getUserInfo();
