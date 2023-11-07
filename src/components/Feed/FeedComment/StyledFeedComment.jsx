@@ -29,12 +29,19 @@ const WriteCommentSection = styled.section`
 `;
 
 const WriteComment = styled.input`
+  padding: 0 7px 0 7px;
   border: none;
   flex-grow: 1;
 `;
 
 const BtnDisplay = styled.button`
   color: ${({ $hastext }) => ($hastext ? '#F26E22' : '#C4C4C4')};
+  transition: transform 0.2s ease 0s;
+  transform: scale(1);
+  &:hover {
+    transform: ${({ $hastext }) =>
+      $hastext ? 'scale(1.2) translateX(0)' : ''};
+  }
 `;
 
 const FeedUserImg = styled.img`
