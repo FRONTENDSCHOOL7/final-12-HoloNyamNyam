@@ -75,7 +75,10 @@ const ProfileSettingForm = () => {
     const file = event.target.files[0];
     formData.append('image', file);
     await imgUpload(formData).then((res) => {
-      const imgUrl = `${BASE_URL}/` + res.data.filename;
+      let imgUrl = `${BASE_URL}/` + res.data.filename;
+      if (imgUrl === `${BASE_URL}/` + undefined) {
+        imgUrl = DefaultProfileInput;
+      }
       setProfileImg(imgUrl);
     });
   };
@@ -83,8 +86,12 @@ const ProfileSettingForm = () => {
   const handleSubmitData = async (formData) => {
     try {
       const isValidUserId = await checkUserIdValid(formData.accountname);
+      let defaultImg = profileImg;
+      if (defaultImg === null) {
+        defaultImg = DefaultProfileInput;
+      }
       if (isValidUserId) {
-        await signup(formData, data, profileImg).then(
+        await signup(formData, data, defaultImg).then(
           navigate('/signup/signupsuccess'),
         );
       }
