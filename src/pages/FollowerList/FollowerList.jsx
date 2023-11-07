@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/jsx-no-useless-fragment */
 import React, { useRef, useState, useEffect } from 'react';
 import FollowItem from '../../components/FollowItem/FollowItem';
@@ -13,9 +14,11 @@ import {
 } from './FollowerListStyle';
 import { followerListApi, followingListApi } from '../../api/follow';
 import FeedlistImg from '../../images/feedList-logo.svg';
+import Loading from '../../components/Loading/Loading';
 
 export default function FollowerList({ type, followType }) {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (
@@ -26,6 +29,13 @@ export default function FollowerList({ type, followType }) {
       navigate('/');
     }
   }, [navigate]);
+
+  useEffect(() => {
+    setLoading(true);
+    type === 'followers'
+      ? getFollowerList(limit, skip).then(() => setLoading(false))
+      : getFollowingList(limit, skip).then(() => setLoading(false));
+  }, []);
 
   const token = sessionStorage.getItem('token');
   const location = useLocation();
@@ -150,5 +160,5 @@ export default function FollowerList({ type, followType }) {
       </>
     ),
   };
-  return <>{followTypeUI[followType]}</>;
+  return loading ? <Loading /> : followTypeUI[followType];
 }
