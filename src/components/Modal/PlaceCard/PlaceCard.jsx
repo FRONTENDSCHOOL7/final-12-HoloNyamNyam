@@ -26,7 +26,6 @@ import {
   SkeletonRateModalAddress,
   SkeletonRateModalName,
 } from '../../common/Skeleton/Skeleton';
-import { imgState } from '../../../recoil/skeletonAtom';
 
 const Modal = lazy(() => import('../Modal/Modal'));
 
@@ -56,15 +55,16 @@ export default function PlaceCard({ cardClose, id }) {
   const [shouldFetchProductInfo, setShouldFetchProductInfo] = useState(false);
   const [modal, setModal] = useRecoilState(modalState);
   const setPlace = useSetRecoilState(placeState);
-  const [imgLoading, setImgLoading] = useRecoilState(imgState);
   const modalOpen = () => {
     setModal({ show: true, type: !accountname ? 'product' : 'yourproduct' });
   };
 
+  const [placeCardLoading, setPlaceCardLoading] = useState(false);
+
   const getUserInfo = async () => {
     const token = sessionStorage.getItem('token');
     try {
-      setImgLoading(true);
+      setPlaceCardLoading(true);
       await getPlaceInfoApi(id, token).then((res) => {
         const { itemImage, itemName, link, price } = res.data.product;
         setPlaceInfo({
@@ -74,7 +74,7 @@ export default function PlaceCard({ cardClose, id }) {
           price,
         });
         setShouldFetchProductInfo(false);
-        setTimeout(() => setImgLoading(false), 500);
+        setTimeout(() => setPlaceCardLoading(false), 500);
       });
     } catch (err) {
       console.error('error');
@@ -122,13 +122,13 @@ export default function PlaceCard({ cardClose, id }) {
     <PlaceDim onClick={cardClose}>
       <PlaceCardArticle>
         <h3 className='a11y-hidden'>냠냠 평가 카드</h3>
-        {imgLoading ? (
+        {placeCardLoading ? (
           <SkeletonRateModal />
         ) : (
           <PlaceListImg src={placeInfo.itemImage} alt='' />
         )}
         <PlaceTextSection>
-          {imgLoading ? (
+          {placeCardLoading ? (
             <SkeletonRateModalName />
           ) : (
             <TitleWrapper>
@@ -137,7 +137,7 @@ export default function PlaceCard({ cardClose, id }) {
               <PlaceScoreSpan>{placeInfo.price}.0</PlaceScoreSpan>
             </TitleWrapper>
           )}
-          {imgLoading ? (
+          {placeCardLoading ? (
             <SkeletonRateModalAddress />
           ) : (
             <PlaceLocationP>{placeInfo.link}</PlaceLocationP>
