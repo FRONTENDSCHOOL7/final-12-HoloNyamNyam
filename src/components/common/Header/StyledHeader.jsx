@@ -29,11 +29,9 @@ const HeaderLeftBtn = styled.button`
   border: 0;
   background-color: transparent;
   padding: 10px 10px 10px 0;
-  &:hover {
-    transform: scale(1.2) translateX(-10%);
-  }
   transition: transform 0.2s ease;
   transform: scale(1);
+  cursor: default;
 `;
 
 const HeaderRightBtn = styled.button`
@@ -80,6 +78,11 @@ const HeaderTextP = styled.p`
 
 const SocialSvg = styled.div`
   height: 24px;
+  box-sizing: border-box;
+  &:hover {
+    transform: scale(1.2) translateX(-10%);
+    cursor: pointer;
+  }
 `;
 
 const ButtonWrap = styled.div`
