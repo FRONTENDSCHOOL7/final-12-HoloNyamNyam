@@ -30,7 +30,7 @@
     <symbol id="icon-search" viewBox="0 0 24 24">
         <path stroke="#767676" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm10 2l-4.35-4.35" />
     </symbol>
-    <symbol id="icon-arrow-left" viewBox="0 0 22 22">
+    <symbol id="icon-arrow-left" viewBox="0 0 24 24">
         <path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.417 11H4.583M11 17.417L4.583 11 11 4.583" />
     </symbol>
     <symbol id="icon-more-vertical" viewBox="0 0 24 24">
