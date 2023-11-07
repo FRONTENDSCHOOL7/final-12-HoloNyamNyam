@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, lazy } from 'react';
 import styled from 'styled-components';
 import Header from '../../components/common/Header/Header';
 import ChatNav from '../../components/common/Nav/ChatNav';
@@ -9,10 +9,12 @@ import { MessageWrap } from '../../components/Chat/SendMessage';
 import { MessageText } from '../../components/Chat/SendMessage';
 import { TimeStamp } from '../../components/Chat/SendMessage';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Modal from '../../components/Modal/Modal/Modal';
 import { useRecoilState } from 'recoil';
 import { modalState } from '../../recoil/modalAtom';
 import { chatState } from '../../recoil/chatAtom';
+import { Suspense } from 'react';
+
+const Modal = lazy(() => import('../../components/Modal/Modal/Modal'));
 
 const List = styled.section`
   background: rgb(255, 255, 255);
@@ -90,7 +92,11 @@ export default function ChatRoom() {
           </MessageWrap>
         ))}
       </List>
-      {modal.show && <Modal type='chat' />}
+      {modal.show && (
+        <Suspense>
+          <Modal type='chat' />
+        </Suspense>
+      )}
       <ChatNav
         inputValue={inputValue}
         handleInputChange={handleInputChange}

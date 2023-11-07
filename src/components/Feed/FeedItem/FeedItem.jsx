@@ -63,9 +63,6 @@ export default function FeedItem({
         setIsHearted(!isHearted);
         setHeartCnt(heartCnt + 1);
       }
-      // if (getUserInfo) {
-      //   getUserInfo();
-      // }
     } catch (error) {
       return false;
     }
