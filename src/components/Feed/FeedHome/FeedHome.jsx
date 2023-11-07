@@ -31,7 +31,7 @@ export default function FeedHome() {
 
   const getFeed = async (options) => {
     const res = await feed(options);
-    setTimeout(() => setImgLoading(false), 1500);
+    setTimeout(() => setImgLoading(false), 500);
     if (options.test === 1) setMyFeed(res.data.posts);
     return res.data.posts;
   };

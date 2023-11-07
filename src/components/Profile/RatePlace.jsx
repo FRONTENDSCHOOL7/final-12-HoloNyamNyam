@@ -41,7 +41,7 @@ export default function RatePlace({ cardOpen, cardClosed }) {
           accountname || sessionStorage.getItem('accountname'),
           token,
         );
-        setTimeout(() => setImgLoading(false), 1000);
+        setTimeout(() => setImgLoading(false), 500);
         if (res.data.product.length > 0) {
           setRateList(true);
         } else {

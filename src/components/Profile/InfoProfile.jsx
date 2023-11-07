@@ -41,7 +41,7 @@ export default function InfoProfile({ type, scrollToFeeds }) {
 
       if (type === 'my') {
         const res = await userInfoApi(token);
-        setTimeout(() => setImgLoading(false), 1500);
+        setTimeout(() => setImgLoading(false), 500);
         setFollowerInfo(res.data.user.follower);
         const {
           accountname,
