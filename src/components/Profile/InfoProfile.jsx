@@ -18,8 +18,9 @@ import { userInfoApi } from '../../api/user';
 import { ProfileApi } from '../../api/profile';
 import { userFeedCntApi } from '../../api/feed';
 import Loading from '../Loading/Loading';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { userInfoState } from '../../recoil/userInfoAtom';
+import { imgState } from '../../recoil/skeletonAtom';
 
 export default function InfoProfile({ type, scrollToFeeds }) {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
@@ -30,14 +31,17 @@ export default function InfoProfile({ type, scrollToFeeds }) {
   const location = useLocation();
   const token = sessionStorage.getItem('token');
   const myId = sessionStorage.getItem('_id');
+  const setImgLoading = useSetRecoilState(imgState);
 
   useEffect(() => {
+    setImgLoading(true);
     const getUserInfo = async () => {
       const yourAccountname = location.state;
       setLoading(true);
 
       if (type === 'my') {
         const res = await userInfoApi(token);
+        setTimeout(() => setImgLoading(false), 1500);
         setFollowerInfo(res.data.user.follower);
         const {
           accountname,
@@ -94,7 +98,7 @@ export default function InfoProfile({ type, scrollToFeeds }) {
       setLoading(false);
     };
     getUserInfo();
-  }, [type, token, location.state, setUserInfo]);
+  }, [type, token, location.state, setUserInfo, setImgLoading]);
 
   useEffect(() => {
     const following = followerInfo.some((x) => x === myId);

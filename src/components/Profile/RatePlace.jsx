@@ -10,14 +10,16 @@ import {
 } from './StyledRatePlace';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { placeListApi } from '../../api/place';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { viewBtnState } from '../../recoil/viewBtnAtom';
 import { userInfoState } from '../../recoil/userInfoAtom';
+import { imgState } from '../../recoil/skeletonAtom';
 
 export default function RatePlace({ cardOpen, cardClosed }) {
   const navigate = useNavigate();
   const [, setViewMode] = useRecoilState(viewBtnState);
   const [userInfo] = useRecoilState(userInfoState);
+  const setImgLoading = useSetRecoilState(imgState);
 
   function movePlaceList(id) {
     navigate('/placelist', {
@@ -27,17 +29,19 @@ export default function RatePlace({ cardOpen, cardClosed }) {
 
   const location = useLocation();
   const [rateList, setRateList] = useState(false);
-
   const { accountname } = location.state || {};
+
   useEffect(() => {
     setViewMode('별점순');
     const getUserInfo = async () => {
       const token = sessionStorage.getItem('token');
       try {
+        setImgLoading(true);
         const res = await placeListApi(
           accountname || sessionStorage.getItem('accountname'),
           token,
         );
+        setTimeout(() => setImgLoading(false), 1000);
         if (res.data.product.length > 0) {
           setRateList(true);
         } else {
@@ -49,7 +53,7 @@ export default function RatePlace({ cardOpen, cardClosed }) {
       }
     };
     getUserInfo();
-  }, [location, navigate, accountname, setViewMode]);
+  }, [location, navigate, accountname, setViewMode, setImgLoading]);
 
   return (
     <>
