@@ -28,13 +28,13 @@ export default function Alert({
   const location = useLocation();
   const [modal, setModal] = useRecoilState(modalState);
   const setCardShow = useSetRecoilState(cardShowState);
+
   const onClickLogout = () => {
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('accountname');
-    sessionStorage.removeItem('_id');
-    sessionStorage.removeItem('follow');
-    navigate('/welcome');
-    setModal((prevModal) => ({ ...prevModal, show: false }));
+    setModal({ show: false, type: 'myProfile', commentId: null, feedId: null });
+    setTimeout(() => {
+      sessionStorage.clear();
+      navigate('/');
+    }, 0);
   };
   const handleDeleteFeed = async () => {
     const token = sessionStorage.getItem('token');
