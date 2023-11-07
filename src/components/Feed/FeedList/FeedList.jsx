@@ -48,7 +48,6 @@ export default function FeedList({ feedRef }) {
   const limit = 10;
   const [loading, setLoading] = useState(true);
   const where = sessionStorage.getItem('accountname');
-  const [fetchedIds, setFetchedIds] = useState([]);
 
   const { accountname } = location.state || {};
   const handleViewModeChange = (mode) => {
@@ -69,17 +68,13 @@ export default function FeedList({ feedRef }) {
       const posts = res.data.post;
 
       if (posts.length > 0) {
-        const newPosts = posts.filter((post) => !fetchedIds.includes(post.id));
         setFeedInfo((prev) => {
-          const filteredPosts = newPosts.filter(
+          const filteredPosts = posts.filter(
             (post) => !prev.some((prevPost) => prevPost.id === post.id),
           );
           return [...prev, ...filteredPosts];
         });
-        setFetchedIds((prevIds) => [
-          ...prevIds,
-          ...newPosts.map((post) => post.id),
-        ]);
+
         setHasFeeds(true);
       }
 
@@ -89,7 +84,7 @@ export default function FeedList({ feedRef }) {
       console.error('error');
       navigate('/error');
     }
-  }, [accountname, limit, skip, navigate, fetchedIds]);
+  }, [accountname, limit, skip, navigate]);
 
   useEffect(() => {
     if (page === 0) getUserInfo();
