@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, lazy } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import FeedItem from '../FeedItem/FeedItem';
 import Comment from '../../Comment/Comment';
-import Modal from '../../Modal/Modal/Modal';
 import BasicProfile from '../../../images/logo_bowl_gray.svg';
 import { feedInfoApi } from '../../../api/feed';
 import { commentListApi, commentUploadApi } from '../../../api/comments';
@@ -20,6 +19,9 @@ import {
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { feedState } from '../../../recoil/feedEditAtom';
 import { modalState } from '../../../recoil/modalAtom';
+import { Suspense } from 'react';
+
+const Modal = lazy(() => import('../../Modal/Modal/Modal'));
 
 export default function FeedComment() {
   const [inputValue, setInputValue] = useState('');
@@ -237,13 +239,15 @@ export default function FeedComment() {
         </WriteCommentSection>
       </DetailFeedWrapper>
       {modal.show && (
-        <Modal
-          type={modal.type}
-          handlerFeedEdit={() => moveUpload(infoToIterate)}
-          handlerProfile={() => moveProfile(modal.accountname)}
-          handleCommentDelete={handleCommentDelete}
-          detail={true}
-        />
+        <Suspense>
+          <Modal
+            type={modal.type}
+            handlerFeedEdit={() => moveUpload(infoToIterate)}
+            handlerProfile={() => moveProfile(modal.accountname)}
+            handleCommentDelete={handleCommentDelete}
+            detail={true}
+          />
+        </Suspense>
       )}
     </>
   );

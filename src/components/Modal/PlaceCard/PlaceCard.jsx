@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, lazy } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   PlaceDim,
@@ -16,11 +16,13 @@ import {
 import { getPlaceInfoApi } from '../../../api/place';
 import sprite from '../../../images/SpriteIcon.svg';
 import { useRecoilState } from 'recoil';
-import Modal from '../Modal/Modal';
 import { modalState } from '../../../recoil/modalAtom';
 import close from '../../../images/close-btn.svg';
 import StarImg from '../../../images/Star.svg';
 import { placeState } from '../../../recoil/placeEditAtom';
+import { Suspense } from 'react';
+
+const Modal = lazy(() => import('../Modal/Modal'));
 
 export default function PlaceCard({ cardClose, id }) {
   const SocialSVG = ({ id, color = 'white', size = 22 }) => (
@@ -128,15 +130,17 @@ export default function PlaceCard({ cardClose, id }) {
         </PlaceTextSection>
       </PlaceCardArticle>
       {modal.show && (
-        <Modal
-          type={accountname ? 'yourPlace' : 'myPlace'}
-          productId={id}
-          placeName={placeInfo.itemName}
-          placeLink={placeInfo.link}
-          placeInfo={placeInfo}
-          // handlerPlaceEdit={openPlaceEditModal}
-          handlerPlaceEdit={() => moveUpload(placeInfo, id)}
-        />
+        <Suspense>
+          <Modal
+            type={accountname ? 'yourPlace' : 'myPlace'}
+            productId={id}
+            placeName={placeInfo.itemName}
+            placeLink={placeInfo.link}
+            placeInfo={placeInfo}
+            // handlerPlaceEdit={openPlaceEditModal}
+            handlerPlaceEdit={() => moveUpload(placeInfo, id)}
+          />
+        </Suspense>
       )}
     </PlaceDim>
   );

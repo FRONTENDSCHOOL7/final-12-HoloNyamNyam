@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, lazy } from 'react';
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
@@ -7,7 +7,9 @@ import { feed } from '../../../api/feed';
 import Loading from '../../Loading/Loading';
 import NoFeedHome from './NoFeedHome';
 import { modalState } from '../../../recoil/modalAtom';
-import Modal from '../../Modal/Modal/Modal';
+import { Suspense } from 'react';
+
+const Modal = lazy(() => import('../../Modal/Modal/Modal'));
 
 const List = styled.ul`
   background-color: white;
@@ -126,11 +128,13 @@ export default function FeedHome() {
           </List>
           <div ref={observer} />
           {modal.show && (
-            <Modal
-              type={modal.type}
-              handlerProfile={() => moveProfile(modal.accountname)}
-              handlerFeedDetail={() => moveDetail(modal.item)}
-            />
+            <Suspense>
+              <Modal
+                type={modal.type}
+                handlerProfile={() => moveProfile(modal.accountname)}
+                handlerFeedDetail={() => moveDetail(modal.item)}
+              />
+            </Suspense>
           )}
         </main>
       ) : (

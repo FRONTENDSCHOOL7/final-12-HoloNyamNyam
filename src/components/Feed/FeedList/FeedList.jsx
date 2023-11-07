@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, lazy, Suspense } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import FeedItem from '../FeedItem/FeedItem';
 import sprite from '../../../images/SpriteIcon.svg';
 import Stack from '../../../images/stack.svg';
 import feedListSvg from '../../../images/feedList-logo.svg';
-import Modal from '../../Modal/Modal/Modal';
 import {
   FeedListBtnWrap,
   ImgInfo,
@@ -27,6 +26,8 @@ import { modalState } from '../../../recoil/modalAtom';
 import { feedState } from '../../../recoil/feedEditAtom';
 import { useRef } from 'react';
 import Loading from '../../Loading/Loading';
+
+const Modal = lazy(() => import('../../Modal/Modal/Modal'));
 
 export default function FeedList({ feedRef }) {
   const ViewSVG = ({ id, color = 'white', size = 26 }) => (
@@ -239,11 +240,13 @@ export default function FeedList({ feedRef }) {
       )}
       <div ref={observer} />
       {modal.show && (
-        <Modal
-          type={modal.type}
-          handlerFeedDetail={() => moveDetail(modal.item)}
-          handlerFeedEdit={() => moveUpload(modal.item)}
-        />
+        <Suspense>
+          <Modal
+            type={modal.type}
+            handlerFeedDetail={() => moveDetail(modal.item)}
+            handlerFeedEdit={() => moveUpload(modal.item)}
+          />
+        </Suspense>
       )}
     </>
   );
