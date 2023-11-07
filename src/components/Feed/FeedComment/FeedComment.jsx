@@ -164,7 +164,7 @@ export default function FeedComment() {
   };
 
   function moveProfile(accountname) {
-    const where = localStorage.getItem('accountname');
+    const where = sessionStorage.getItem('accountname');
     if (accountname === where) {
       navigate('/myprofile', {
         state: {
