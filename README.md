@@ -597,7 +597,7 @@ main : 배포가 될 브랜치입니다.
 develop : 디폴트 브랜치입니다. 각자 브랜치 분기후 작업하여 충돌을 줄이고 안전하게 머지합니다.
 
 
-**팀 컨벤션/Git Commit Convention**
+**팀 컨벤션/Convention**
 
 1.commit
 
