@@ -120,7 +120,7 @@ const SignUpForm = () => {
           $bgcolor={isValid ? 'active' : 'inactive'}
           disabled={!isValid}
         >
-          다음
+          계속하기
         </StyledButton>
       </form>
     </StyledSignUpWrap>

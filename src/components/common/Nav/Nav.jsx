@@ -56,7 +56,11 @@ export default function Nav() {
     <NavWrapper>
       <ButtonContainer>
         {showButton && (
-          <ScrollButton onClick={scrollToTop}>
+          <ScrollButton
+            onClick={scrollToTop}
+            type='button'
+            title='상단으로 이동해요.'
+          >
             <TopIcon src={topIcon} alt='Top' />
           </ScrollButton>
         )}

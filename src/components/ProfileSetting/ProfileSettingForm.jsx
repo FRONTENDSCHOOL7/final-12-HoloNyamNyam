@@ -133,6 +133,7 @@ const ProfileSettingForm = () => {
             />
           </label>
           <ProfileInputImgButton
+            title='클릭하면 이미지를 불러올 수 있어요.'
             type='button'
             onClick={() => inputRef.current.click()}
           >
@@ -185,9 +186,7 @@ const ProfileSettingForm = () => {
                 },
                 validate: {
                   uniqueAccount: async (value) => {
-                    const result = await checkUserIdValid(
-                      value,
-                    );
+                    const result = await checkUserIdValid(value);
                     return result === true || result;
                   },
                 },

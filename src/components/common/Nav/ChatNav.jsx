@@ -14,7 +14,11 @@ export default function ChatNav({
   };
   return (
     <ChatNavBar>
-      <ImageIcon src={imageIcon} alt='사진 선택하기' />
+      <ImageIcon
+        src={imageIcon}
+        alt='사진 선택하기'
+        title='이미지 파일 불러오기'
+      />
       <Input
         type='text'
         placeholder='메시지 입력하기..'

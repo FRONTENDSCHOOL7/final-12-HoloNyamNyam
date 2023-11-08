@@ -123,7 +123,6 @@ export default function MakePlace() {
     setSelectedAddress(event.target.value);
   };
 
-
   const handleSubmit = (event) => {
     event.preventDefault();
   };
@@ -135,7 +134,6 @@ export default function MakePlace() {
   ) {
     return null;
   }
-
 
   return (
     <>
