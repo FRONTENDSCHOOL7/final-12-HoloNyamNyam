@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Greeting, GoFeed } from './SignUpSuccessStyle';
+import { useNavigate } from 'react-router-dom';
 
 export default function SignUpSuccess() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (
+      sessionStorage.getItem('_id') ||
+      sessionStorage.getItem('accountname') ||
+      sessionStorage.getItem('token')
+    ) {
+      navigate('/home');
+    }
+  }, [navigate]);
   return (
     <Container>
       <Greeting>

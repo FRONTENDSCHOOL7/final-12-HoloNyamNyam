@@ -72,7 +72,7 @@ const SnsButton = styled.button`
 
 const SnsList = styled.ul`
   display: flex;
-  padding-top: 32px;
+  padding: 32px 0 50px 0;
   justify-content: center;
   gap: 8px;
 `;
