@@ -139,7 +139,7 @@
 
 ## 7. 구현 기능
 ```
- 🍕 Account
+ 🍕 계정
 
 - splash 페이지
 - 로그인,로그아웃 페이지/유효성 검사
@@ -147,7 +147,7 @@
 - 프로필 페이지/유효성 검사(+이미지)
 - welcome 페이지
 
- 🍔 Post (냠냠피드)
+ 🍔 피드
 
 - 게시글 등록 /수정/삭제
 - 모달창
@@ -157,24 +157,24 @@
 - 게시글 신고
 - 게시물 좋아요 및 취소
 
- 🥨 Comment
+ 🥨 댓글
 
 - 댓글 등록/수정/삭제/날짜표시
 - 신고하기 UI 구현
 
- 🍤 Profile
+ 🍤 프로필
 
 - 개인 / 타인 프로필 페이지
 - 프로필 수정
 - 팔로우/언팔로우 UI 버튼 기능
 - 팔로우/팔로잉 리스트
 
- 🌮 Chat
+ 🌮 채팅
 
 - 채팅 목록 (UI)
 - 채팅 페이지/이미지 업로드 (UI)
 
- 🥤 Collection (맛집평가)
+ 🥤 맛집평가
 
 - 맛집 등록/별점
 - 맛집 수정/삭제
@@ -182,7 +182,279 @@
 - 맛집 상세
 - 지도 API (홀로냠냠의 특수기능)
 ```
+<details>
+<summary>Kakao API</summary>
+<div markdown="1">
 
+- Kakao API
+
+    1. 카카오 지도 API
+        - `geocoder.addressSearch`를 이용하여 주소를 좌표로 변환하고, 그 좌표를 이용하여 마커와 정보창을 생성합니다.
+        - 마커의 이미지는 `MarkerImgSvg`에서 가져오며, 크기는 `kakao.maps.Size`를 이용하여 설정합니다.
+            
+            ```jsx
+            geocoder.addressSearch(placeLink, function (result, status) {
+                  if (status === kakao.maps.services.Status.OK) {
+                    let coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+            
+                    let imageSrc = MarkerImgSvg,
+                      imageSize = new kakao.maps.Size(64, 69);
+            
+                    let basicMarkerImage = new kakao.maps.MarkerImage(imageSrc, imageSize),
+                      markerPosition = new kakao.maps.LatLng(result[0].y, result[0].x); //
+            
+                    let basicMarker = new kakao.maps.Marker({
+                      map: map,
+                      position: markerPosition,
+                      image: basicMarkerImage,
+                    });
+            
+                    let content = `<div class="customoverlay"><a href="https://map.kakao.com/link/to/${placeName},${coords.Ma},${coords.La}" title="길찾기 버튼"><span class="name">${placeName}</span></a></div>`;
+            
+                    customOverlay = new kakao.maps.CustomOverlay({
+                      position: markerPosition,
+                      content: content,
+                      yAnchor: 1,
+                    });
+            
+                    map.setCenter(coords);
+                    customOverlay.setMap(map);
+                    basicMarker.setMap(map);
+                  }
+                });
+            ```
+            
+        - `kakao.maps.event.addListener`를 통해 지도(`map`)에 클릭 이벤트를 연결합니다. 사용자가 지도를 클릭하면 실행되는 함수에는 클릭 이벤트에 대한 정보가 `mouseEvent`로 전달됩니다
+        - `mouseEvent.latLng`를 통해 클릭한 위치의 좌표를 얻고, `marker.setPosition(position)`을 통해 마커의 위치를 클릭한 위치로 이동시킵니다.
+        - `toggleRoadview(position)`을 호출하여 해당 좌표의 로드뷰를 활성화합니다. 이때 `toggleRoadview` 함수 내부에서는 `rvClient.getNearestPanoId`를 이용하여 가장 가까운 파노라마 ID를 가져와 로드뷰를 설정합니다.
+            
+            ```jsx
+            kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
+              if (!overlayOn) {
+                return;
+              }
+            
+              let position = mouseEvent.latLng;
+              marker.setPosition(position);
+              toggleRoadview(position);
+            });
+            ```
+            
+    2. 카카오 공유 API
+        - `kakao.Share.sendDefault` 메소드를 이용하여 공유할 정보를 설정하고 공유합니다.
+        - 공유할 정보는 `objectType`, `content`, `buttons` 등 다양한 속성을 가질 수 있습니다.
+        - 각각의 정보를 설정하고 공유 버튼을 클릭하면 해당 정보가 카카오 공유를 통해 전송됩니다.
+            
+            ```jsx
+            kakao.Share.sendDefault({
+                    objectType: 'location',
+                    address: placeInfo.link,
+                    addressTitle: placeInfo.itemName,
+                    content: {
+                      title: placeInfo.itemName,
+                      imageUrl: placeInfo.itemImage,
+                      description: placeInfo.link,
+                      link: {
+                        mobileWebUrl: 'https://holonyam.netlify.app/',
+                        webUrl: 'https://holonyam.netlify.app/',
+                      },
+                    },
+                    social: {
+                      likeCount: placeInfo.price,
+                    },
+                    buttons: [
+                      {
+                        title: '웹으로 보기',
+                        link: {
+                          mobileWebUrl: 'https://holonyam.netlify.app/',
+                          webUrl: 'https://holonyam.netlify.app/',
+                        },
+                      },
+                    ],
+                  });
+            ```
+            
+ 
+</div>
+</details>
+
+<details>
+<summary>최신순/별점순 조회 기능</summary>
+<div markdown="1">
+
+- 최신순/별점순 조회 기능
+    - 이 기능은 Recoil 라이브러리의 atom을 사용하여 구현되었으며, `viewBtnState`라는 atom을 생성하여 초기 정렬 상태를 '별점순'으로 설정하였습니다.
+        
+        ```jsx
+        export const viewBtnState = atom({
+          key: 'viewBtnState',
+          default: '별점순',
+          effects_UNSTABLE: [persistAtom],
+        });
+        ```
+        
+    - 사용자의 버튼 클릭에 따라 `viewMode`라는 상태 값을 변경하여 게시글의 정렬 순서를 변경하게 됩니다. 이 `viewMode`는 `viewBtnState` atom과 연결되어 있어, 해당 상태를 관리하게 됩니다.
+        
+        ```jsx
+        const [viewMode, setViewMode] = useRecoilState(viewBtnState);
+        
+        const handleViewModeChange = (mode) => {
+          if (viewMode === '최신순') {
+            mode = '별점순';
+          }
+          setViewMode(mode);
+        };
+        
+        <ButtonWrap>
+          <SortButton onClick={() => handleViewModeChange('최신순')}>
+            <Star src={StarImg} />
+            &nbsp;{viewMode}으로 보기&nbsp;
+          </SortButton>
+        </ButtonWrap>
+        ```
+        
+    - `sort()` ****메서드를 이용하여 만약 `viewMode`가 '별점순'이라면 `b.updatedAt - a.updatedAt`을 반환하고, '최신순'이라면 `b.price - a.price`를 반환하도록 하였습니다.
+        
+        ```jsx
+        placeInfo
+          .sort((a, b) => {
+            if (viewMode === '별점순') {
+              return b.updatedAt - a.updatedAt;
+            } else if (viewMode === '최신순') {
+              return b.price - a.price;
+            }
+          })
+        ```
+        
+ 
+</div>
+</details>
+
+<details>
+<summary>Carousel 기능</summary>
+<div markdown="1">
+
+![Untitled](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/ad305bb9-6519-4953-9bce-b6ff2bf731d0)
+
+
+**Carousel**의 핵심은 **Left/RightButton**와 **CarouselImages** 컴포넌트로 구성됩니다. 
+
+**CarouselImages** 컴포넌트는 **carouselImages** 배열의 각 요소를 매핑하여 이미지를 렌더링하고 currentIndex 상태값에 따라 활성화 또는 비활성화 됩니다. 
+
+**Left/RightButton** 컴포넌트는 각각 이전과 다음 이미지를 볼 수 있도록 **handlePrevious** 또는 **handleNext** 함수를 호출하여  currentIndex 상태값을 변경하는 역할을 합니다.
+추가적으로 각 img 태그에는 렌더링 성능을 고려하여 loading=’lazy’를 추가하여, 뷰포트 내에 위치하게 되었을 때 load를 하도록 했습니다. (lazy Loading 기능)
+
+```jsx
+...
+const [currentIndex, setCurrentIndex] = useState(0);
+  const handlePrevious = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex - 1 < 0 ? carouselImages.length - 1 : prevIndex - 1,
+    );
+  };
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex + 1 === carouselImages.length ? 0 : prevIndex + 1,
+    );
+  };
+  return (
+    <CarouselWrapper>
+      <CarouselImages>
+        {carouselImages?.map((imgItem, index) => (
+          <img
+            key={index}
+            src={
+              previews
+                ? imgItem
+                : imgItem.trim().startsWith('https://')
+                ? imgItem
+                : `https://api.mandarin.weniv.co.kr/${imgItem.trim()}`
+            }
+            className={currentIndex === index ? 'active' : 'inactive'}
+            alt={previews ? userInfo : `포스트이미지 by @${images.userInfo}.`}
+            crossOrigin='anonymous'
+            loading='lazy'
+            onClick={onImageClick}
+            style={{ cursor: detail === true ? 'default' : 'pointer' }}
+          />
+        ))}
+      </CarouselImages>
+      {carouselImages.length > 1 && (
+        <div>
+          <LeftButton onClick={handlePrevious}>
+            <img src={Left} alt='이전 사진 보기 화살표 버튼' />
+          </LeftButton>
+          <RightButton onClick={handleNext}>
+            <img src={Right} alt='다음 사진 보기 화살표 버튼' />
+          </RightButton>
+        </div>
+      )}
+...
+```
+
+ 
+</div>
+</details>
+
+<details>
+<summary>Drag&Drop 기능</summary>
+<div markdown="1">
+
+![드래그앤드랍](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/5289196e-7ab5-43e0-8960-8d8c5ac873f2)
+
+
+드래그가 시작되면 **dragStart()** 함수를 호출되어 사용자가 선택한 미리보기 이미지의 DOM 요소 인덱스를 **useRef()**를 사용해 **dragItem.current**에 저장합니다.
+
+ 
+
+드래그 중인 대상이 위로 포개졌을 때는 **dragEnter()** 함수가 호출되어 **dragOverItem.current**에 해당 인덱스를 저장합니다.
+
+사용자가 커서를 뗐을 때, **drop()** 함수가 호출되어 드래그 전 uploadPreview ****배열을 복사한 후, **dragItem.current**와 **dragOverItem.current**를 이용하여 순서를 변경하고 **newPreviewList** 에 저장하고 **setUploadPreview()**을 통해 새로운 이미지 순서로 반영합니다.
+
+```jsx
+const dragItem = useRef(); // 드래그할 아이템의 인덱스
+const dragOverItem = useRef(); // 포개진 아이템의 인덱스
+...
+const dragStart = (e, position) => { dragItem.current = position; };
+// 드래그중인 대상이 위로 포개졌을 때
+const dragEnter = (e, position) => { dragOverItem.current = position; };
+// 커서 뗐을 때
+const drop = () => {
+    const newPreviewList = [...uploadPreview];
+    const dragItemValue = newPreviewList[dragItem.current];
+    newPreviewList.splice(dragItem.current, 1); // delete
+    newPreviewList.splice(dragOverItem.current, 0, dragItemValue); // insert
+		setUploadPreview(newPreviewList);
+    dragItem.current = null;
+    dragOverItem.current = null;
+}
+...
+{uploadPreview?.map((preview, index) => (
+    <UploadImgDiv key={index}>
+    <CloseImgBtn
+        onClick={(event) => {
+        event.preventDefault(); // 기본 동작 취소
+        removeImg(index);
+        }}
+    />
+    <UploadImg
+       draggable
+       onDragStart={(e) => dragStart(e, index)}
+       onDragEnter={(e) => dragEnter(e, index)}
+       onDragEnd={drop}
+       onDragOver={(e) => e.preventDefault()}
+       key={index}
+       src={preview}
+       alt='업로드된 이미지'
+    >
+    </UploadImgDiv>
+))}
+...
+```
+
+ 
+</div>
+</details>
 
 
 
@@ -289,7 +561,8 @@
 ```
 
 ## 10. 작업 문화
-### 스크럼
+
+**스크럼**
 ☀️ Daily - 평일 오전 9시(약 15분 내외)
 
 - 어제의 활동 내용 요약
@@ -306,10 +579,11 @@
 
 - 코드 공유 후 서로 피드백
 - 수정이 필요한 부분 도출 및 개선 계획 협의
-### 라이브 쉐어
+
+**라이브 쉐어**
 🧑‍💻 Microsoft Visual Studio Code의 Live Share 기능을 활용하여 오류 수정 시에도 페어 프로그래밍을 통해 팀원들 간의 효율적이고 원활한 의사소통을 유지합니다.
 
-### Git & 브랜치 전략
+**Git & 브랜치 전략**
 
 👉 Git Issue 작성 후 pr시 관련 Issue를 태그하여 커밋을 관리합니다.
 
@@ -320,7 +594,7 @@ main : 배포가 될 브랜치입니다.
 develop : 디폴트 브랜치입니다. 각자 브랜치 분기후 작업하여 충돌을 줄이고 안전하게 머지합니다.
 
 
-### 깃 커밋 컨벤션/Git Commit Convention
+**깃 커밋 컨벤션/Git Commit Convention**
 
 본문이 있다면 제목과 빈줄을 두어 구분합니다.
 
