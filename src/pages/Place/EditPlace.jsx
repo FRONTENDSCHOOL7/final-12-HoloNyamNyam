@@ -33,7 +33,7 @@ export default function EditPlace() {
   }, [navigate]);
 
   const [place, setPlace] = useRecoilState(placeState);
-  const [imgFile, setImgFile] = useState(null);
+  // const [imgFile, setImgFile] = useState(null);
   const [imgUrl, setImgUrl] = useState(place ? place.itemImage || '' : '');
   const token = sessionStorage.getItem('token');
   const [isValid, setIsValid] = useState(false);
@@ -127,7 +127,6 @@ export default function EditPlace() {
     placeEditUpload();
   }
 
-
   const handleSubmit = (event) => {
     event.preventDefault();
   };
@@ -139,7 +138,6 @@ export default function EditPlace() {
   ) {
     return null;
   }
-
 
   return (
     <>
@@ -155,7 +153,7 @@ export default function EditPlace() {
           <PlaceImgPrev
             initialImage={place.itemImage || []}
             onPlaceImageUrlChange={(file, url) => {
-              setImgFile(file);
+              // setImgFile(file);
               setImgUrl(url);
             }}
             alt='게시물 사진'

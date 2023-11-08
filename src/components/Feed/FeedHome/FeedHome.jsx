@@ -14,7 +14,7 @@ const Modal = lazy(() => import('../../Modal/Modal/Modal'));
 
 const List = styled.ul`
   background-color: white;
-  padding: 57px 20px 69px;
+  padding: 57px 20px 70px;
 `;
 
 export default function FeedHome() {
@@ -48,12 +48,13 @@ export default function FeedHome() {
     setSkip((prev) => prev + Feeds.length);
     setLoading(false);
   };
+
   useEffect(() => {
     const onIntersect = (entries) => {
       const target = entries[0];
       if (target.isIntersecting) setPage((p) => p + 1);
     };
-    const io = new IntersectionObserver(onIntersect, { threshold: 0.5 });
+    const io = new IntersectionObserver(onIntersect, { threshold: 1 });
 
     if (observer?.current) {
       io.observe(observer.current);
@@ -62,7 +63,7 @@ export default function FeedHome() {
   }, [observer, loading]);
 
   useEffect(() => {
-    loadFeed({ token, limit: 10, skip });
+    loadFeed({ token, limit: 7, skip });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 

@@ -23,7 +23,7 @@ import { feedLikeApi, feedUnlikeApi } from '../../../api/feed';
 import sprite from '../../../images/SpriteIcon.svg';
 import Carousel from '../../Carousels/Carousel';
 import { SkeletonImg, SkeletonProfImg } from '../../common/Skeleton/Skeleton';
-import { SetRecoilState, useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { imgState } from '../../../recoil/skeletonAtom';
 
 export default function FeedItem({
