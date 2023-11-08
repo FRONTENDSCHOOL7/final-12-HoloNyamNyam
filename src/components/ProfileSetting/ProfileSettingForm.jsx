@@ -6,6 +6,8 @@ import { imgUpload } from '../../api/imgUpload';
 import { BASE_URL } from '../../api/baseUrl';
 import DefaultProfileInput from '../../images/basic-profile-img.svg';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { signUpState } from '../../recoil/signUpAtom';
 
 import {
   StyledSignUpWrap,
@@ -43,6 +45,7 @@ const ProfileSettingForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const data = location.state;
+  const [, setSignUp] = useRecoilState(signUpState);
 
   useEffect(() => {
     setValue('image', DefaultProfileInput);
@@ -90,6 +93,10 @@ const ProfileSettingForm = () => {
       if (defaultImg === null) {
         defaultImg = DefaultProfileInput;
       }
+      setSignUp({
+        oneCheck: true,
+        twoCheck: true,
+      });
       if (isValidUserId) {
         await signup(formData, data, defaultImg).then(
           navigate('/signup/signupsuccess'),
