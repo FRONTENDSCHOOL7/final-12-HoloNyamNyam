@@ -187,7 +187,9 @@ export default function Modal({
     myFeed: (
       <ModalWrapArticle>
         <ModalLineSpan />
-        <ModalTextBtn onClick={handlerFeedDetail}>상세보기</ModalTextBtn>
+        {detail || (
+          <ModalTextBtn onClick={handlerFeedDetail}>상세보기</ModalTextBtn>
+        )}
         <ModalTextBtn onClick={() => alertOpen('feed')}>삭제</ModalTextBtn>
         <ModalTextBtn onClick={handlerFeedEdit}>수정</ModalTextBtn>
       </ModalWrapArticle>
