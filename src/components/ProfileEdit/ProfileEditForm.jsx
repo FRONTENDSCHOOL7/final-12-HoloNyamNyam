@@ -75,7 +75,10 @@ const ProfileEditForm = ({ userInfo, setUserInfo }) => {
     const file = event.target.files[0];
     formData.append('image', file);
     await imgUpload(formData).then((res) => {
-      const imgUrl = `${BASE_URL}/` + res.data.filename;
+      let imgUrl = `${BASE_URL}/` + res.data.filename;
+      if (imgUrl === `${BASE_URL}/` + undefined) {
+        imgUrl = DefaultProfileInput;
+      }
       setProfileImg(imgUrl);
       setImageChanged(true);
     });

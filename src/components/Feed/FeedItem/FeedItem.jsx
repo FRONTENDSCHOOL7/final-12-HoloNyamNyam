@@ -22,6 +22,9 @@ import {
 import { feedLikeApi, feedUnlikeApi } from '../../../api/feed';
 import sprite from '../../../images/SpriteIcon.svg';
 import Carousel from '../../Carousels/Carousel';
+import { SkeletonImg, SkeletonProfImg } from '../../common/Skeleton/Skeleton';
+import { useRecoilValue } from 'recoil';
+import { imgState } from '../../../recoil/skeletonAtom';
 
 export default function FeedItem({
   modalOpen,
@@ -50,6 +53,7 @@ export default function FeedItem({
   const navigate = useNavigate();
   const [isHearted, setIsHearted] = useState(infoToIterate.hearted);
   const [heartCnt, setHeartCnt] = useState(infoToIterate.heartCount);
+  const imgLoading = useRecoilValue(imgState);
 
   const feedLike = async () => {
     const token = sessionStorage.getItem('token');
@@ -63,9 +67,6 @@ export default function FeedItem({
         setIsHearted(!isHearted);
         setHeartCnt(heartCnt + 1);
       }
-      // if (getUserInfo) {
-      //   getUserInfo();
-      // }
     } catch (error) {
       return false;
     }
@@ -117,11 +118,17 @@ export default function FeedItem({
     <Container $dim={detail === true ? null : true}>
       {infoToIterate && infoToIterate.author && (
         <FeedUser>
-          <FeedUserImg
-            src={infoToIterate.author.image}
-            alt='사용자 이미지'
-            onClick={() => moveProfile(infoToIterate.author.accountname)}
-          />
+          {imgLoading ? (
+            <div>
+              <SkeletonProfImg />
+            </div>
+          ) : (
+            <FeedUserImg
+              src={infoToIterate.author.image}
+              alt='사용자 이미지'
+              onClick={() => moveProfile(infoToIterate.author.accountname)}
+            />
+          )}
           <FeedUserBox
             onClick={() => moveProfile(infoToIterate.author.accountname)}
           >
@@ -145,16 +152,20 @@ export default function FeedItem({
         >
           {infoToIterate.content}
         </FeedText>
-        {infoToIterate.image && infoToIterate.author && (
-          <Carousel
-            images={infoToIterate.image}
-            userInfo={infoToIterate.author.username}
-            onImageClick={
-              detail === true ? null : () => moveDetail(infoToIterate.id)
-            }
-            detail={detail}
-          />
-        )}
+        {infoToIterate.image &&
+          infoToIterate.author &&
+          (imgLoading ? (
+            <SkeletonImg key={infoToIterate.id} />
+          ) : (
+            <Carousel
+              images={infoToIterate.image}
+              userInfo={infoToIterate.author.username}
+              onImageClick={
+                detail === true ? null : () => moveDetail(infoToIterate.id)
+              }
+              detail={detail}
+            />
+          ))}
         <FeedInfoBox>
           <FeedBtnBox>
             <BtnLike onClick={() => feedLike(infoToIterate.id)}>

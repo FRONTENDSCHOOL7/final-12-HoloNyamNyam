@@ -11,8 +11,10 @@ import {
 } from './PlaceListItemStyle';
 import StarImg from '../../images/Star.svg';
 import { placeListApi } from '../../api/place';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { viewBtnState } from '../../recoil/viewBtnAtom';
+import { imgState } from '../../recoil/skeletonAtom';
+import { SkeletonRateImg } from '../common/Skeleton/Skeleton';
 
 export default function PlaceListItem({ cardOpen, cardClose, cardClosed }) {
   const [placeInfo, setPlaceInfo] = useState([]);
@@ -20,6 +22,7 @@ export default function PlaceListItem({ cardOpen, cardClose, cardClosed }) {
   const navigate = useNavigate();
   const [, setUploadList] = useState(cardClosed);
   const [viewMode] = useRecoilState(viewBtnState);
+  const imgLoading = useRecoilValue(imgState);
 
   useEffect(() => {
     const getUserInfo = async () => {
@@ -62,7 +65,11 @@ export default function PlaceListItem({ cardOpen, cardClose, cardClosed }) {
         })
         .map((place) => (
           <PlaceItem key={place.id} onClick={() => cardOpen(place.id)}>
-            <PlaceImg src={place.itemImage} alt='냠냠평가 사진' />
+            {imgLoading ? (
+              <SkeletonRateImg />
+            ) : (
+              <PlaceImg src={place.itemImage} alt='냠냠평가 사진' />
+            )}
             <PlaceInfo>
               <PlaceName title={place.itemName}>{place.itemName}</PlaceName>
               <StarWrap>

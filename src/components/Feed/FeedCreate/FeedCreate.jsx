@@ -336,8 +336,9 @@ export default function FeedCreate() {
         </UploadContainer>
         <TextContainer>
           <StyledFeed
-            rows='10'
-            placeholder='사진과 함께 게시글 입력을 해볼까요?'
+            rows='12'
+            maxLength={500}
+            placeholder='사진과 함께 게시글 입력을 해볼까요?&#13;&#10;(최대 500자)'
             value={content}
             onChange={onChangeInput}
           />

@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, lazy } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import Alert from '../Alert/Alert';
 import {
   ModalDim,
   ModalWrapArticle,
@@ -11,6 +10,9 @@ import { useRecoilState } from 'recoil';
 import { modalState } from '../../../recoil/modalAtom';
 import { cardShowState } from '../../../recoil/cardShowAtom';
 import { userInfoState } from '../../../recoil/userInfoAtom';
+import { Suspense } from 'react';
+
+const Alert = lazy(() => import('../Alert/Alert'));
 
 export default function Modal({
   type,
@@ -245,13 +247,15 @@ export default function Modal({
     <>
       <ModalDim onClick={modalClose}>{UI[type]}</ModalDim>
       {alertShow && (
-        <Alert
-          type={alertType}
-          modalClose={modalClose}
-          alertClose={alertClose}
-          productId={productId}
-          handleCommentDelete={handleCommentDelete}
-        />
+        <Suspense>
+          <Alert
+            type={alertType}
+            modalClose={modalClose}
+            alertClose={alertClose}
+            productId={productId}
+            handleCommentDelete={handleCommentDelete}
+          />
+        </Suspense>
       )}
     </>
   );

@@ -76,7 +76,10 @@ const ProfileSettingForm = () => {
     const file = event.target.files[0];
     formData.append('image', file);
     await imgUpload(formData).then((res) => {
-      const imgUrl = `${BASE_URL}/` + res.data.filename;
+      let imgUrl = `${BASE_URL}/` + res.data.filename;
+      if (imgUrl === `${BASE_URL}/` + undefined) {
+        imgUrl = DefaultProfileInput;
+      }
       setProfileImg(imgUrl);
     });
   };
@@ -84,8 +87,12 @@ const ProfileSettingForm = () => {
   const handleSubmitData = async (formData) => {
     try {
       const isValidUserId = await checkUserIdValid(formData.accountname);
+      let defaultImg = profileImg;
+      if (defaultImg === null) {
+        defaultImg = DefaultProfileInput;
+      }
       if (isValidUserId) {
-        await signup(formData, data, profileImg).then(
+        await signup(formData, data, defaultImg).then(
           navigate('/signup/signupsuccess'),
         );
       }
@@ -176,6 +183,14 @@ const ProfileSettingForm = () => {
                 pattern: {
                   value: /^[0-9a-zA-Z._]+$/,
                   message: '*영문, 숫자, 밑줄 및 마침표만 사용할 수 있습니다.',
+                },
+                validate: {
+                  uniqueAccount: async (value) => {
+                    const result = await checkUserIdValid(
+                      value,
+                    );
+                    return result === true || result;
+                  },
                 },
               }),
               errors: errors.accountname

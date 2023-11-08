@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, lazy } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   PlaceDim,
@@ -15,12 +15,19 @@ import {
 } from './PlaceCardStyle';
 import { getPlaceInfoApi } from '../../../api/place';
 import sprite from '../../../images/SpriteIcon.svg';
-import { useRecoilState } from 'recoil';
-import Modal from '../Modal/Modal';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { modalState } from '../../../recoil/modalAtom';
 import close from '../../../images/close-btn.svg';
 import StarImg from '../../../images/Star.svg';
 import { placeState } from '../../../recoil/placeEditAtom';
+import { Suspense } from 'react';
+import {
+  SkeletonRateModal,
+  SkeletonRateModalAddress,
+  SkeletonRateModalName,
+} from '../../common/Skeleton/Skeleton';
+
+const Modal = lazy(() => import('../Modal/Modal'));
 
 export default function PlaceCard({ cardClose, id }) {
   const SocialSVG = ({ id, color = 'white', size = 22 }) => (
@@ -47,14 +54,17 @@ export default function PlaceCard({ cardClose, id }) {
   const [placeEditModalOpen, setPlaceEditModalOpen] = useState(false);
   const [shouldFetchProductInfo, setShouldFetchProductInfo] = useState(false);
   const [modal, setModal] = useRecoilState(modalState);
-  const [place, setPlace] = useRecoilState(placeState);
+  const setPlace = useSetRecoilState(placeState);
   const modalOpen = () => {
     setModal({ show: true, type: !accountname ? 'product' : 'yourproduct' });
   };
 
+  const [placeCardLoading, setPlaceCardLoading] = useState(false);
+
   const getUserInfo = async () => {
     const token = sessionStorage.getItem('token');
     try {
+      setPlaceCardLoading(true);
       await getPlaceInfoApi(id, token).then((res) => {
         const { itemImage, itemName, link, price } = res.data.product;
         setPlaceInfo({
@@ -64,6 +74,7 @@ export default function PlaceCard({ cardClose, id }) {
           price,
         });
         setShouldFetchProductInfo(false);
+        setTimeout(() => setPlaceCardLoading(false), 500);
       });
     } catch (err) {
       console.error('error');
@@ -111,14 +122,26 @@ export default function PlaceCard({ cardClose, id }) {
     <PlaceDim onClick={cardClose}>
       <PlaceCardArticle>
         <h3 className='a11y-hidden'>냠냠 평가 카드</h3>
-        <PlaceListImg src={placeInfo.itemImage} alt='' />
+        {placeCardLoading ? (
+          <SkeletonRateModal />
+        ) : (
+          <PlaceListImg src={placeInfo.itemImage} alt='' />
+        )}
         <PlaceTextSection>
-          <TitleWrapper>
-            <PlaceName>{placeInfo.itemName}</PlaceName>
-            <img src={StarImg} alt='평점 아이콘' />
-            <PlaceScoreSpan>{placeInfo.price}.0</PlaceScoreSpan>
-          </TitleWrapper>
-          <PlaceLocationP>{placeInfo.link}</PlaceLocationP>
+          {placeCardLoading ? (
+            <SkeletonRateModalName />
+          ) : (
+            <TitleWrapper>
+              <PlaceName>{placeInfo.itemName}</PlaceName>
+              <img src={StarImg} alt='평점 아이콘' />
+              <PlaceScoreSpan>{placeInfo.price}.0</PlaceScoreSpan>
+            </TitleWrapper>
+          )}
+          {placeCardLoading ? (
+            <SkeletonRateModalAddress />
+          ) : (
+            <PlaceLocationP>{placeInfo.link}</PlaceLocationP>
+          )}
           <PlaceMoreBtn type='button' onClick={modalOpen} title='더보기 버튼'>
             <SocialSVG id='icon-more-vertical' />
           </PlaceMoreBtn>
@@ -128,15 +151,17 @@ export default function PlaceCard({ cardClose, id }) {
         </PlaceTextSection>
       </PlaceCardArticle>
       {modal.show && (
-        <Modal
-          type={accountname ? 'yourPlace' : 'myPlace'}
-          productId={id}
-          placeName={placeInfo.itemName}
-          placeLink={placeInfo.link}
-          placeInfo={placeInfo}
-          // handlerPlaceEdit={openPlaceEditModal}
-          handlerPlaceEdit={() => moveUpload(placeInfo, id)}
-        />
+        <Suspense>
+          <Modal
+            type={accountname ? 'yourPlace' : 'myPlace'}
+            productId={id}
+            placeName={placeInfo.itemName}
+            placeLink={placeInfo.link}
+            placeInfo={placeInfo}
+            // handlerPlaceEdit={openPlaceEditModal}
+            handlerPlaceEdit={() => moveUpload(placeInfo, id)}
+          />
+        </Suspense>
       )}
     </PlaceDim>
   );

@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import FeedItem from '../FeedItem/FeedItem';
 import sprite from '../../../images/SpriteIcon.svg';
 import Stack from '../../../images/stack.svg';
 import feedListSvg from '../../../images/feedList-logo.svg';
-import Modal from '../../Modal/Modal/Modal';
 import {
   FeedListBtnWrap,
   ImgInfo,
@@ -12,6 +11,7 @@ import {
   FeedItemList,
   FeedListItem,
   GridItemWrap,
+  GridItemContainer,
   GridItemList,
   IconContainer,
   Icon,
@@ -27,6 +27,8 @@ import { modalState } from '../../../recoil/modalAtom';
 import { feedState } from '../../../recoil/feedEditAtom';
 import { useRef } from 'react';
 import Loading from '../../Loading/Loading';
+
+const Modal = lazy(() => import('../../Modal/Modal/Modal'));
 
 export default function FeedList({ feedRef }) {
   const ViewSVG = ({ id, color = 'white', size = 26 }) => (
@@ -45,18 +47,19 @@ export default function FeedList({ feedRef }) {
   const observer = useRef();
   const [skip, setSkip] = useState(0);
   const [page, setPage] = useState(0);
-  const limit = 10;
+  const [prevInfo, setPrevInfo] = useState([]);
   const [loading, setLoading] = useState(true);
   const where = sessionStorage.getItem('accountname');
-
   const { accountname } = location.state || {};
   const handleViewModeChange = (mode) => {
     setViewMode(mode);
   };
+  let limit = viewMode === 'album' ? '*' : 2;
 
-  const getUserInfo = useCallback(async () => {
+  const getUserInfo = async ({ limit, skip }) => {
+    setPrevInfo(prevInfo);
     const token = sessionStorage.getItem('token');
-    setLoading(true);
+    // setLoading(true);
     try {
       let res = await userFeedListApi(
         accountname || sessionStorage.getItem('accountname'),
@@ -72,23 +75,37 @@ export default function FeedList({ feedRef }) {
           const filteredPosts = posts.filter(
             (post) => !prev.some((prevPost) => prevPost.id === post.id),
           );
+          if (prevInfo.length === 0 || prevInfo[0].id !== feedInfo[0].id) {
+            setSkip((prevSkip) => prevSkip + filteredPosts.length);
+          }
           return [...prev, ...filteredPosts];
         });
-
         setHasFeeds(true);
       }
-
-      setSkip((prev) => prev + posts.length);
       setLoading(false);
     } catch (error) {
       console.error('error');
       navigate('/error');
     }
-  }, [accountname, limit, skip, navigate]);
+  };
 
   useEffect(() => {
-    if (page === 0) getUserInfo();
-  }, [page, getUserInfo]);
+    const onIntersect = (entries) => {
+      const target = entries[0];
+      if (target.isIntersecting) setPage((p) => p + 1);
+    };
+    const io = new IntersectionObserver(onIntersect, { threshold: 1 });
+
+    if (observer?.current) {
+      io.observe(observer.current);
+    }
+    return () => io && io.disconnect();
+  }, [observer, loading, viewMode]);
+
+  useEffect(() => {
+    getUserInfo({ limit, skip });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page]);
 
   function moveDetail(item) {
     navigate('/feeddetail', {
@@ -120,19 +137,6 @@ export default function FeedList({ feedRef }) {
       item: item,
     });
   };
-
-  useEffect(() => {
-    const onIntersect = (entries) => {
-      const target = entries[0];
-      if (target.isIntersecting) setPage((p) => p + 1);
-    };
-    const io = new IntersectionObserver(onIntersect, { threshold: 1 });
-
-    if (observer?.current) {
-      io.observe(observer.current);
-    }
-    return () => io && io.disconnect();
-  }, []);
 
   useEffect(() => {
     setHasFeeds(false);
@@ -188,47 +192,51 @@ export default function FeedList({ feedRef }) {
                   />
                 </FeedListItem>
               ))}
+              <div ref={observer} />
             </FeedItemList>
           ) : (
-            <GridItemWrap>
-              {feedInfo.map((item) => (
-                <GridItemList $hasimage={item.image === ''} key={item.id}>
-                  <ImgBtn
-                    onClick={() => {
-                      moveDetail(item);
-                    }}
-                  >
-                    {item.image !== '' && (
-                      <img
-                        src={
-                          item.image.startsWith('https://')
-                            ? item.image.split(',')[0].trim()
-                            : `https://api.mandarin.weniv.co.kr/${item.image
-                                .split(',')[0]
-                                .trim()}`
-                        }
-                        alt='grid 이미지'
-                      />
-                    )}
-                    {item.image.includes(',') && (
-                      <IconContainer>
-                        <Icon src={Stack} />
-                      </IconContainer>
-                    )}
-                    <ImgInfo>
-                      <Likes>
-                        <ViewSVG id='icon-heart' size={19} />
-                        {item.heartCount}
-                      </Likes>
-                      <Comments>
-                        <ViewSVG id='icon-message-circle' size={19} />
-                        {item.commentCount}
-                      </Comments>
-                    </ImgInfo>
-                  </ImgBtn>
-                </GridItemList>
-              ))}
-            </GridItemWrap>
+            <GridItemContainer>
+              <GridItemWrap>
+                {feedInfo.map((item) => (
+                  <GridItemList $hasimage={item.image === ''} key={item.id}>
+                    <ImgBtn
+                      onClick={() => {
+                        moveDetail(item);
+                      }}
+                    >
+                      {item.image !== '' && (
+                        <img
+                          src={
+                            item.image.startsWith('https://')
+                              ? item.image.split(',')[0].trim()
+                              : `https://api.mandarin.weniv.co.kr/${item.image
+                                  .split(',')[0]
+                                  .trim()}`
+                          }
+                          alt='grid 이미지'
+                        />
+                      )}
+                      {item.image.includes(',') && (
+                        <IconContainer>
+                          <Icon src={Stack} />
+                        </IconContainer>
+                      )}
+                      <ImgInfo>
+                        <Likes>
+                          <ViewSVG id='icon-heart' size={19} />
+                          {item.heartCount}
+                        </Likes>
+                        <Comments>
+                          <ViewSVG id='icon-message-circle' size={19} />
+                          {item.commentCount}
+                        </Comments>
+                      </ImgInfo>
+                    </ImgBtn>
+                  </GridItemList>
+                ))}
+              </GridItemWrap>
+              <div ref={observer} />
+            </GridItemContainer>
           )}
         </>
       ) : (
@@ -237,13 +245,14 @@ export default function FeedList({ feedRef }) {
           <NoFeedP>등록된 게시글이 없어요</NoFeedP>
         </NoFeedWrap>
       )}
-      <div ref={observer} />
       {modal.show && (
-        <Modal
-          type={modal.type}
-          handlerFeedDetail={() => moveDetail(modal.item)}
-          handlerFeedEdit={() => moveUpload(modal.item)}
-        />
+        <Suspense>
+          <Modal
+            type={modal.type}
+            handlerFeedDetail={() => moveDetail(modal.item)}
+            handlerFeedEdit={() => moveUpload(modal.item)}
+          />
+        </Suspense>
       )}
     </>
   );

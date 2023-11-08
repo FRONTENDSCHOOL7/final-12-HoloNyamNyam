@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, lazy } from 'react';
 import {
   ContainerWrap,
   Container,
@@ -10,11 +10,13 @@ import {
   Close,
 } from './StyledPlaceMap';
 import { useLocation } from 'react-router-dom';
-import Modal from '../Modal/Modal/Modal';
 import { useRecoilState } from 'recoil';
 import { modalState } from '../../recoil/modalAtom';
 import './CssPlaceMap.css';
 import MarkerImgSvg from '../../images/MarkerImageSrc.svg';
+import { Suspense } from 'react';
+
+const Modal = lazy(() => import('../Modal/Modal/Modal'));
 
 const { kakao } = window;
 export default function PlaceMap() {
@@ -225,7 +227,11 @@ export default function PlaceMap() {
           </MapWrapper>
         </Container>
       </ContainerWrap>
-      {modal.show && <Modal type={modal.type} />}
+      {modal.show && (
+        <Suspense>
+          <Modal type={modal.type} />
+        </Suspense>
+      )}
     </>
   );
 }
