@@ -88,7 +88,11 @@ export default function Header({
   function renderHeaderText(text) {
     return (
       <HeaderSpan>
-        <HeaderLeftBtn type='button' aria-label='뒤로가기 버튼'>
+        <HeaderLeftBtn
+          type='button'
+          aria-label='뒤로가기 버튼'
+          title='이전 페이지로 이동해요.'
+        >
           <SocialSVG
             id='icon-arrow-left'
             onClick={() => {
@@ -105,6 +109,7 @@ export default function Header({
   function renderHeaderRightBtn() {
     return (
       <HeaderRightBtn
+        title='옵션 및 설정 더보기'
         type='button'
         onClick={modalOpen}
         aria-label='더보기 버튼'

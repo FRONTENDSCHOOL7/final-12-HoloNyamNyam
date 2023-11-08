@@ -142,10 +142,14 @@ export default function PlaceCard({ cardClose, id }) {
           ) : (
             <PlaceLocationP>{placeInfo.link}</PlaceLocationP>
           )}
-          <PlaceMoreBtn type='button' onClick={modalOpen} title='더보기 버튼'>
+          <PlaceMoreBtn
+            type='button'
+            onClick={modalOpen}
+            title='옵션 및 설정 더보기'
+          >
             <SocialSVG id='icon-more-vertical' />
           </PlaceMoreBtn>
-          <PlaceCloseBtn type='button'>
+          <PlaceCloseBtn type='button' title='냠냠평가 카드 닫기'>
             <img src={close} alt='닫기 버튼' onClick={cardClose} />
           </PlaceCloseBtn>
         </PlaceTextSection>
