@@ -11,6 +11,7 @@ const Input = ({
   onSubmit,
   onChange,
   registerOptions,
+  value,
 }) => {
   const {
     onChange: registerOnChange,
@@ -36,6 +37,7 @@ const Input = ({
         onSubmit={onSubmit}
         $hasError={hasError}
         {...restRegisterOptions}
+        value={value}
       />
       {errors[id] && <StyledError>{errors[id].message}</StyledError>}
     </>
