@@ -54,7 +54,7 @@ export default function FeedList({ feedRef }) {
   const handleViewModeChange = (mode) => {
     setViewMode(mode);
   };
-  let limit = viewMode === 'album' ? '*' : 2;
+  let limit = viewMode === 'album' ? '*' : 4;
 
   const getUserInfo = async ({ limit, skip }) => {
     setPrevInfo(prevInfo);
@@ -139,7 +139,7 @@ export default function FeedList({ feedRef }) {
   };
 
   useEffect(() => {
-    setHasFeeds(false);
+    // setHasFeeds(false);
     setSkip(0);
     setPage(0);
     setFeedInfo([]);
