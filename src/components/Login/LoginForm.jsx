@@ -12,17 +12,18 @@ import { login } from '../../api/login';
 
 export default function LoginForm() {
   const {
+    setValue,
     register,
     handleSubmit,
     setError,
+    trigger,
     formState: { errors, isValid },
   } = useForm({ mode: 'onChange' });
 
   const [hasError, setHasError] = useState(false);
   const [error, setErrors] = useState({});
   const [loginSuccess, setLoginSuccess] = useState(false);
-  const [testId, setTestId] = useState('');
-  const [password, setPassword] = useState('');
+  const [testLogin, setTestLogin] = useState(false);
 
   const LoginFormSubmit = async (formData) => {
     const loginData = await login(formData);
@@ -53,8 +54,16 @@ export default function LoginForm() {
 
   const handleCheck = () => {
     handleFieldChange();
-    setTestId((prev) => (prev === '' ? 'holo_nyam@gmail.com' : ''));
-    setPassword((prev) => (prev === '' ? 'holo_nyam' : ''));
+    if (!testLogin) {
+      setTestLogin(true);
+      setValue('email', 'holo_nyam@gmail.com');
+      setValue('password', 'holo_nyam');
+    } else {
+      setTestLogin(false);
+      setValue('email', '');
+      setValue('password', '');
+    }
+    trigger();
   };
 
   const navigate = useNavigate();
@@ -91,7 +100,6 @@ export default function LoginForm() {
             }),
             errors,
           }}
-          value={testId ? testId : ''}
         />
       </StyledInputWrap>
       <StyledInputWrap>
@@ -112,7 +120,6 @@ export default function LoginForm() {
             }),
             errors: errors.password ? { password: errors.password } : error,
           }}
-          value={password ? password : ''}
         />
       </StyledInputWrap>
       <StyledCheckbox
