@@ -27,8 +27,8 @@
 2.  [목차](#2-목차)
 3.  [팀 소개](#3-팀-소개)
 4.  [역할 분담](#4-역할-분담)
-5.  [개발 환경](#5-개발-환경)
-6.  [개발 스택](#6-개발-스택)
+5.  [개발 스택](#5-개발-스택)
+6.  [개발 환경](#6-개발-환경)
 7.  [구현 기능](#7-구현-기능)
 8.  [기능 UI](#8-기능-UI)
 9.  [폴더 구조](#9-폴더-구조)
@@ -42,20 +42,33 @@
 |정승규 |오수민|김모건|정현지
 | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------: |
 | <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/6904e1a1-52f7-45dc-8b99-f31446f92e63" width="150" height="150"/> | <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/02ab20ed-ea95-4c51-9a56-7fafcd1f738b" width="150" height="150"/> | <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/839c52db-0bb1-409b-99bc-319eb47d6624" width="150" height="150"/> | <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/bf371e49-32db-4af4-9053-d4e2c0614882" width="150" height="150"/> |
-|                          [정승규](https://github.com/Seunggyu008)                         |                          [오수민](https://github.com/suminara)                           |                           [김모건](https://github.com/redcontroller)                      |              [정현지](https://github.com/gee0916)                                      |
+|                          [<img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/8294521e-329a-45eb-a093-3836733640c4" width="30" height="30"/>](https://github.com/Seunggyu008)                         |                          [<img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/8294521e-329a-45eb-a093-3836733640c4" width="30" height="30"/>](https://github.com/suminara)                           |                           [<img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/8294521e-329a-45eb-a093-3836733640c4" width="30" height="30"/>](https://github.com/redcontroller)                      |              [<img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/8294521e-329a-45eb-a093-3836733640c4" width="30" height="30"/>](https://github.com/gee0916)                                      |
 |                                               팀장                                       |                                               팀원                                       |                                               팀원                                         |                                               팀원                                     |
 
 
-<img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/7503747c-3ed9-4628-8e75-ce609181e654" width="50" height="50"/><br>
+[<img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/7503747c-3ed9-4628-8e75-ce609181e654" width="50" height="50"/>](https://www.figma.com/file/UBB5bMLYpjC4ibADx7TxvM/%EC%82%B0%EC%A0%84%EC%88%98%EC%A0%84%EA%B3%B5%EC%A4%91%EC%A0%84?type=design&node-id=156-3036&mode=design&t=VTqyFHBTQjknvsUn-0)<br>
 [**팀 Figma**](https://www.figma.com/file/UBB5bMLYpjC4ibADx7TxvM/%EC%82%B0%EC%A0%84%EC%88%98%EC%A0%84%EA%B3%B5%EC%A4%91%EC%A0%84?type=design&node-id=156-3036&mode=design&t=VTqyFHBTQjknvsUn-0)<br>
-<img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/8b1cf92f-5886-4b48-be51-963b0aea583a" width="50" height="50"/><br>
+[<img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/8b1cf92f-5886-4b48-be51-963b0aea583a" width="50" height="50"/>](https://www.figma.com/file/UBB5bMLYpjC4ibADx7TxvM/%EC%82%B0%EC%A0%84%EC%88%98%EC%A0%84%EA%B3%B5%EC%A4%91%EC%A0%84?type=design&node-id=156-3036&mode=design&t=VTqyFHBTQjknvsUn-0)<br>
 [**팀 Notion**](https://mammoth-sassafras-ff5.notion.site/12-c85ac2d8dfd740338d30cb6414050af8)
 </div>
 
 ## 4. 역할 분담
 ![Frame 8](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/43740de8-2bf3-4014-83cb-8812c168a02a)
 
-## 5. 개발 환경
+## 5. 개발 스택
+
+|            사용기술 |             <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=white"> <img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white"> <img src="https://img.shields.io/badge/KakaoAPI-FFCD00?style=for-the-badge&logo=kakao&logoColor=white"> <img src="https://img.shields.io/badge/reacthookform-EC5990?style=for-the-badge&logo=reacthookform&logoColor=white"> <img src="https://img.shields.io/badge/recoil-3578E5?style=for-the-badge&logo=react&logoColor=white">                   |
+| :------------------------------------------------------------------------------------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------- | 
+|  패키지  |  <img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white">   |
+|  포멧터  | <img src="https://img.shields.io/badge/prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=white">   <img src="https://img.shields.io/badge/eslint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white"> |
+|  협업  | <img src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=github&logoColor=white"> <img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white"> <img src="https://img.shields.io/badge/discord-5865F2?style=for-the-badge&logo=discord&logoColor=white"> |
+|  디자인  |  <img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">   |
+|  IDE  |  <img src="https://img.shields.io/badge/vscode-007ACC?style=for-the-badge&logo=vscode&logoColor=white">   |
+|  배포  |  <img src="https://img.shields.io/badge/netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white">   |
+
+
+
+## 6. 개발 환경
 ### 채택한 기술
 
 **Node.js**
@@ -114,17 +127,6 @@
 - 확장 프로그램인 Live Share를 통해 Pair programing를 수행했습니다.
 - Git과 연동하여 소스 코드 버전 관리에 Git graph 활용했습니다.
 
-
-## 6. 개발 스택
-
-|            사용기술 |             <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=white"> <img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white"> <img src="https://img.shields.io/badge/KakaoAPI-FFCD00?style=for-the-badge&logo=kakao&logoColor=white"> <img src="https://img.shields.io/badge/reacthookform-EC5990?style=for-the-badge&logo=reacthookform&logoColor=white"> <img src="https://img.shields.io/badge/recoil-3578E5?style=for-the-badge&logo=react&logoColor=white">                   |
-| :------------------------------------------------------------------------------------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------- | 
-|  패키지  |  <img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white">   |
-|  포멧터  | <img src="https://img.shields.io/badge/prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=white">   <img src="https://img.shields.io/badge/eslint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white"> |
-|  협업  | <img src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=github&logoColor=white"> <img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white"> <img src="https://img.shields.io/badge/discord-5865F2?style=for-the-badge&logo=discord&logoColor=white"> |
-|  디자인  |  <img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">   |
-|  IDE  |  <img src="https://img.shields.io/badge/vscode-007ACC?style=for-the-badge&logo=vscode&logoColor=white">   |
-|  배포  |  <img src="https://img.shields.io/badge/netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white">   |
 
 
 
