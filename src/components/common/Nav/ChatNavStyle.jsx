@@ -19,6 +19,7 @@ const ChatNavBar = styled.nav`
 const ImageIcon = styled.img`
   width: 36px;
   height: 36px;
+  cursor: pointer;
 `;
 
 const Input = styled.input`
@@ -38,6 +39,12 @@ const SendBtn = styled.button`
   color: ${({ $hastext }) => ($hastext ? '#FF644B' : '#C4C4C4')};
   font-size: 14px;
   cursor: pointer;
+  transition: transform 0.2s ease 0s;
+  transform: scale(1);
+  &:hover {
+    transform: ${({ $hastext }) =>
+      $hastext ? 'scale(1.2) translateX(0)' : ''};
+  }
 `;
 
 export { ChatNavBar, Input, ImageIcon, SendBtn };

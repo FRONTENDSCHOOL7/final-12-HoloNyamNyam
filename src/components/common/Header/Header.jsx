@@ -80,7 +80,11 @@ export default function Header({
 
   function renderHeaderLeftBtn() {
     return (
-      <HeaderLeftBtn type='button' aria-label='뒤로가기 버튼'>
+      <HeaderLeftBtn
+        type='button'
+        aria-label='뒤로가기 버튼'
+        title='이전 페이지로 이동해요.'
+      >
         <SocialSVG id='icon-arrow-left' onClick={() => navigate(-1)} />
       </HeaderLeftBtn>
     );

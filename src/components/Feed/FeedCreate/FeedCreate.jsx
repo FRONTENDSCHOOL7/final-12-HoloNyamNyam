@@ -302,7 +302,10 @@ export default function FeedCreate() {
       />
       <StyledContainer>
         <UploadContainer>
-          <UploadImgWrapper htmlFor='file-input'>
+          <UploadImgWrapper
+            htmlFor='file-input'
+            title='클릭하면 선택한 이미지를 3장까지 업로드할 수 있어요.'
+          >
             <UploadImgInput
               type='file'
               id='file-input'
@@ -320,6 +323,8 @@ export default function FeedCreate() {
                   event.preventDefault(); // 기본 동작 취소
                   removeImg(index);
                 }}
+                type='button'
+                title='불러온 이미지 취소하기'
               />
               <UploadImg
                 draggable

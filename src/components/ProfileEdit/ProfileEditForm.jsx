@@ -129,6 +129,7 @@ const ProfileEditForm = ({ userInfo, setUserInfo }) => {
             />
           </label>
           <ProfileInputImgButton
+            title='클릭하면 이미지를 불러올 수 있어요.'
             type='button'
             onClick={() => inputRef.current.click()}
           >
