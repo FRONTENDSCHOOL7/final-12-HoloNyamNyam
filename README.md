@@ -186,10 +186,9 @@
 
 
 
-|                                                 메인                                                 |                                                               좋아요                                                               |                                                             댓글등록                                                              |
+|                                                 메인                                                 |                                                               좋아요                                                               |                                                             댓글 등록&수정                                                              |
 | :--------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: |
-| ![main](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/56462409/77795068-a8a8-4598-aa3e-a15ded3965dc)| ![like](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/56462409/e8f9f79a-9374-49be-a665-3dd7872039b4) | ![comment](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/56462409/8c87ede5-f34d-4bd7-a076-615cb7ca3617) |
-
+| ![main](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/56462409/77795068-a8a8-4598-aa3e-a15ded3965dc)| ![like](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/56462409/e8f9f79a-9374-49be-a665-3dd7872039b4) | ![comment_create_delete](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/56462409/aad2959d-0278-4aab-850d-d27d05a15266)|
 
 
 
@@ -213,6 +212,10 @@
 |                                        맛집 지도에서 보기                                                          |                          프로필 & 맛집 공유                                                    |               드래그&드롭                                    |
 | :------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: |
 | ![place_kakaomap](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/56462409/82174a23-477a-4e7b-8ddf-87d1dabbe3a7)|    ![place_share_kakao](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/56462409/cf2df615-ab65-4668-bf6e-0c2601ba9862) |  ![드래그앤드랍](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/effd4cc5-0c44-4d9f-9648-36453fece67a) |
+
+|                                        맛집 길찾기                                                          |    
+| :------------------------------------------------------------------------------------------------------------------------------: 
+| ![kakaomap_findroute3](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/56462409/4c550924-6c6f-4bf7-9d9a-ad9956eff96d)|    
 
 
 
@@ -336,7 +339,7 @@ develop : 디폴트 브랜치입니다. 각자 브랜치 분기후 작업하여 
 ## 11. 후기
 
 
-<img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/7b59306c-132e-4a2c-ba85-a9fa659af8bf" width="30" height="30"/>승규 : 처음 맡게 된 프로젝트 팀장 이였고 부족한 점이 많았지만 능숙한 팀원분들 덕분에 무사히 프로젝트를 끝마칠수있었습니다. 같이 하나의 서비스를 구현하는 과정에서 많은 어려움이 있었지만 해결하는 과정에서 팀으로도, 개인적으로도 성장할 수 있었던 좋은 기회였습니다!<br>
+<img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/7b59306c-132e-4a2c-ba85-a9fa659af8bf" width="30" height="30"/>승규 : 처음 맡게 된 프로젝트팀장이였고 부족한 점이 많았지만 능숙한 팀원분들 덕분에 무사히 프로젝트를 끝마칠 수 있었습니다. 같이 하나의 서비스를 구현하는 과정에서 많은 어려움이 있었지만 해결하는 과정에서 팀으로도, 개인적으로도 성장할 수 있었던 좋은 기회였습니다!<br>
 <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/cb5de83e-ed1f-4526-be37-1c6ce6a59a4b" width="30" height="30"/>수민 : 리액트 스킬, 팀 협업 경험, 문제 해결 능력, 그리고 사용자 피드백을 통한 성취감을 얻을 수 있는 좋은 경험이었습니다!<br>
 <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/41f94079-9dfb-4794-9a7e-91fa198bd989" width="30" height="30"/>모건 : 이번 팀 프로젝트를 통해서 현재 내 위치를 가늠할 수 있었고, 함수형 컴포넌트 개발에 친숙해질 수 있는 좋은 기회였습니다. 팀 분위기가 좋아서 또 다른 팀 프로젝트도 해보고 싶어요. 팀원 여러분 감사합니다.<br>
 <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/f331e5a2-ea16-4963-aef5-2d5c61b715f1" width="30" height="30"/>현지 : 여러 난관에 부딪혀 고민하고 해결하면서 스스로 많이 성장한 게 느껴지는 값진 시간이었습니다.<br>
