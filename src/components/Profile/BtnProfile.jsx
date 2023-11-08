@@ -133,11 +133,19 @@ export default function BtnProfile({ type, id, setFollow, follow }) {
           </FollowBtn>
         )}
         <CircleBtnWrap>
-          <CircleBtn type='button' onClick={() => kakaoProfileButton(userInfo)}>
+          <CircleBtn
+            type='button'
+            onClick={() => kakaoProfileButton(userInfo)}
+            title='프로필 카카오톡으로 공유하기'
+          >
             <SocialSVG id='icon-share' />
             <p className='a11y-hidden'>공유 버튼</p>
           </CircleBtn>
-          <CircleBtn type='button' onClick={() => moveChat(id)}>
+          <CircleBtn
+            type='button'
+            onClick={() => moveChat(id)}
+            title='채팅하기'
+          >
             <SocialSVG id='icon-message-circle-1' />
             <p className='a11y-hidden'>채팅 버튼</p>
           </CircleBtn>

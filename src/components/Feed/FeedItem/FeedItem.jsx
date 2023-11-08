@@ -135,7 +135,11 @@ export default function FeedItem({
             <FeedUserName>{infoToIterate.author.username}</FeedUserName>
             <FeedUserId>@ {infoToIterate.author.accountname}</FeedUserId>
           </FeedUserBox>
-          <MoreBtn aria-label='더보기 버튼'>
+          <MoreBtn
+            aria-label='더보기 버튼'
+            type='button'
+            title='옵션 및 설정 더보기'
+          >
             <SocialSVG
               id='icon-more-vertical'
               strokeColor='#c4c4c4'
@@ -168,7 +172,11 @@ export default function FeedItem({
           ))}
         <FeedInfoBox>
           <FeedBtnBox>
-            <BtnLike onClick={() => feedLike(infoToIterate.id)}>
+            <BtnLike
+              onClick={() => feedLike(infoToIterate.id)}
+              type='button'
+              title='클릭하면 좋아요를 남길 수 있어요.'
+            >
               <LikeAnimaiton>
                 {isHearted ? (
                   <SocialSVG id='icon-heart' color='red' strokeColor='red' />
@@ -183,6 +191,8 @@ export default function FeedItem({
               onClick={() => {
                 moveDetail(infoToIterate.id);
               }}
+              type='button'
+              title='클릭하면 상세보기로 이동해서 댓글을 남길 수 있어요.'
             >
               <CommentAnimaiton>
                 <SocialSVG id='icon-message-circle-2' />

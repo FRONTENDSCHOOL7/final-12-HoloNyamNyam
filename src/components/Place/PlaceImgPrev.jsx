@@ -66,7 +66,10 @@ export default function PlaceImgPrev({
 
   return (
     <PlaceImgWrapper>
-      <PlaceIconWrapper wrapperStyle={wrapperStyle}>
+      <PlaceIconWrapper
+        wrapperStyle={wrapperStyle}
+        title='클릭하면 이미지를 불러올 수 있어요.'
+      >
         <PlaceImgInput
           type='file'
           accept='image/jpeg,image/jpg,image/png'

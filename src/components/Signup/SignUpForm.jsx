@@ -3,6 +3,8 @@ import Input from '../../components/common/Input/Input';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { EmailValid } from '../../api/signUp';
+import { useRecoilState } from 'recoil';
+import { signUpState } from '../../recoil/signUpAtom';
 import {
   StyledSignUpWrap,
   StyledInputWrap,
@@ -24,6 +26,7 @@ const SignUpForm = () => {
   const navigate = useNavigate();
   const [hasError, setHasError] = useState(false);
   const [error, setErrors] = useState({});
+  const [signUp, setSignUp] = useRecoilState(signUpState);
 
   const checkEmailValid = async (email) => {
     try {
@@ -57,6 +60,10 @@ const SignUpForm = () => {
           },
         });
       }
+      setSignUp({
+        oneCheck: true,
+        twoCheck: false,
+      });
     } catch (error) {
       console.error(error);
     }
@@ -120,7 +127,7 @@ const SignUpForm = () => {
           $bgcolor={isValid ? 'active' : 'inactive'}
           disabled={!isValid}
         >
-          다음
+          계속하기
         </StyledButton>
       </form>
     </StyledSignUpWrap>

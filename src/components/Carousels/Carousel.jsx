@@ -56,10 +56,10 @@ export default function Carousel({
       </CarouselImages>
       {carouselImages.length > 1 && (
         <div>
-          <LeftButton onClick={handlePrevious}>
+          <LeftButton onClick={handlePrevious} title='이전 이미지 보기'>
             <img src={Left} alt='이전 사진 보기 화살표 버튼' />
           </LeftButton>
-          <RightButton onClick={handleNext}>
+          <RightButton onClick={handleNext} title='다음 이미지 보기'>
             <img src={Right} alt='다음 사진 보기 화살표 버튼' />
           </RightButton>
         </div>
