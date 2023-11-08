@@ -46,9 +46,9 @@
 |                                               팀장                                       |                                               팀원                                       |                                               팀원                                         |                                               팀원                                     |
 
 
-[<img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/7503747c-3ed9-4628-8e75-ce609181e654" width="50" height="50"/>](https://www.figma.com/file/UBB5bMLYpjC4ibADx7TxvM/%EC%82%B0%EC%A0%84%EC%88%98%EC%A0%84%EA%B3%B5%EC%A4%91%EC%A0%84?type=design&node-id=156-3036&mode=design&t=VTqyFHBTQjknvsUn-0)<br>
-[**팀 Figma**](https://www.figma.com/file/UBB5bMLYpjC4ibADx7TxvM/%EC%82%B0%EC%A0%84%EC%88%98%EC%A0%84%EA%B3%B5%EC%A4%91%EC%A0%84?type=design&node-id=156-3036&mode=design&t=VTqyFHBTQjknvsUn-0)<br>
+[<img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/7503747c-3ed9-4628-8e75-ce609181e654" width="50" height="50"/>](https://www.figma.com/file/UBB5bMLYpjC4ibADx7TxvM/%EC%82%B0%EC%A0%84%EC%88%98%EC%A0%84%EA%B3%B5%EC%A4%91%EC%A0%84?type=design&node-id=156-3036&mode=design&t=VTqyFHBTQjknvsUn-0)
 [<img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/8b1cf92f-5886-4b48-be51-963b0aea583a" width="50" height="50"/>](https://www.figma.com/file/UBB5bMLYpjC4ibADx7TxvM/%EC%82%B0%EC%A0%84%EC%88%98%EC%A0%84%EA%B3%B5%EC%A4%91%EC%A0%84?type=design&node-id=156-3036&mode=design&t=VTqyFHBTQjknvsUn-0)<br>
+[**팀 Figma**](https://www.figma.com/file/UBB5bMLYpjC4ibADx7TxvM/%EC%82%B0%EC%A0%84%EC%88%98%EC%A0%84%EA%B3%B5%EC%A4%91%EC%A0%84?type=design&node-id=156-3036&mode=design&t=VTqyFHBTQjknvsUn-0)
 [**팀 Notion**](https://mammoth-sassafras-ff5.notion.site/12-c85ac2d8dfd740338d30cb6414050af8)
 </div>
 
