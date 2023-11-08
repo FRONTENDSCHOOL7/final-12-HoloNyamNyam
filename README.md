@@ -42,7 +42,7 @@
 |정승규 |오수민|김모건|정현지
 | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------: |
 | <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/6904e1a1-52f7-45dc-8b99-f31446f92e63" width="150" height="150"/> | <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/02ab20ed-ea95-4c51-9a56-7fafcd1f738b" width="150" height="150"/> | <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/839c52db-0bb1-409b-99bc-319eb47d6624" width="150" height="150"/> | <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/bf371e49-32db-4af4-9053-d4e2c0614882" width="150" height="150"/> |
-|                          [<img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/8294521e-329a-45eb-a093-3836733640c4" width="30" height="30"/>](https://github.com/Seunggyu008)                         |                          [<img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/8294521e-329a-45eb-a093-3836733640c4" width="30" height="30"/>](https://github.com/suminara)                           |                           [<img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/8294521e-329a-45eb-a093-3836733640c4" width="30" height="30"/>](https://github.com/redcontroller)                      |              [<img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/8294521e-329a-45eb-a093-3836733640c4" width="30" height="30"/>](https://github.com/gee0916)                                      |
+|                          <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/8294521e-329a-45eb-a093-3836733640c4" width="30" height="30"/><br>[GitHub](https://github.com/Seunggyu008)                         |                          <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/8294521e-329a-45eb-a093-3836733640c4" width="30" height="30"/><br>[GitHub](https://github.com/suminara)                           |                           <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/8294521e-329a-45eb-a093-3836733640c4" width="30" height="30"/><br>[GitHub](https://github.com/redcontroller)                      |              <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/8294521e-329a-45eb-a093-3836733640c4" width="30" height="30"/><br>[GitHub](https://github.com/gee0916)                                      |
 |                                               팀장                                       |                                               팀원                                       |                                               팀원                                         |                                               팀원                                     |
 
 
@@ -69,7 +69,10 @@
 
 
 ## 6. 개발 환경
-### 채택한 기술
+
+<details>
+<summary><strong>채택한 기술</strong></summary>
+<div markdown="1">
 
 **Node.js**
 
@@ -112,8 +115,11 @@
 **Netlify** 
 
 - 웹 호스팅 서비스를 제공하는 플랫폼은 많지만, Netlify는 GitHub 연동, 간단한 사용법, 500개의 사이트를 일정 성능까지 무료 사용이 가능하여 채택했습니다.
-
-### 협업
+</div>
+</details>
+<details>
+<summary><strong>협업</strong></summary>
+<div markdown="1">
 
 **Notion** - 회의록, 동시 문서 작업 및 문서 관리에 활용했습니다.<br>
 **Discord** - 음성 채팅방을 활용해 스크럼, 정기 회의 등의 의사소통 도구로 사용했습니다.<br>
@@ -126,13 +132,14 @@
 
 - 확장 프로그램인 Live Share를 통해 Pair programing를 수행했습니다.
 - Git과 연동하여 소스 코드 버전 관리에 Git graph 활용했습니다.
-
+</div>
+</details>
 
 
 
 ## 7. 구현 기능
 ```
- 🙂 Account
+ 🍕 Account
 
 - splash 페이지
 - 로그인,로그아웃 페이지/유효성 검사
@@ -140,7 +147,7 @@
 - 프로필 페이지/유효성 검사(+이미지)
 - welcome 페이지
 
- ✍️ Post (냠냠피드)
+ 🍔 Post (냠냠피드)
 
 - 게시글 등록 /수정/삭제
 - 모달창
@@ -150,24 +157,24 @@
 - 게시글 신고
 - 게시물 좋아요 및 취소
 
- 📢 Comment
+ 🥨 Comment
 
 - 댓글 등록/수정/삭제/날짜표시
 - 신고하기 UI 구현
 
- 🌹 Profile
+ 🍤 Profile
 
 - 개인 / 타인 프로필 페이지
 - 프로필 수정
 - 팔로우/언팔로우 UI 버튼 기능
 - 팔로우/팔로잉 리스트
 
- 💬 Chat
+ 🌮 Chat
 
 - 채팅 목록 (UI)
 - 채팅 페이지/이미지 업로드 (UI)
 
- 🙌 Collection (맛집평가)
+ 🥤 Collection (맛집평가)
 
 - 맛집 등록/별점
 - 맛집 수정/삭제
@@ -175,6 +182,10 @@
 - 맛집 상세
 - 지도 API (홀로냠냠의 특수기능)
 ```
+
+
+
+
 ## 8. 기능 UI
 |                                                스플래쉬                                                 |                                                로그인                                                 |                                                회원가입                                                |
 | :-----------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------: |
@@ -300,9 +311,9 @@
 
 ### Git & 브랜치 전략
 
-🐈‍⬛ Git Issue 작성 후 pr시 관련 Issue를 태그하여 커밋을 관리합니다.
+👉 Git Issue 작성 후 pr시 관련 Issue를 태그하여 커밋을 관리합니다.
 
-🐈‍⬛ GitHub Flow
+👉 GitHub Flow
 
 main : 배포가 될 브랜치입니다.
 
