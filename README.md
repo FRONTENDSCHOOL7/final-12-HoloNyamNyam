@@ -15,11 +15,11 @@
 
 그럼, '홀로냠냠'과 함께 즐거운 혼밥하세요!
 
-```
-배포 사이트:
-- 테스트 계정:  holo_nyam@gmail.com
-- 비밀번호:  holo_nyam
-```
+
+🍰 **배포 사이트** : [https://holonyam.netlify.app](https://holonyam.netlify.app/)<br>
+🍔 **테스트 계정**: holo_nyam@gmail.com<br>
+🍟 **비밀번호**: holo_nyam<br>
+
 
 ## 2. 목차
 
@@ -41,7 +41,7 @@
 
 |정승규 |오수민|김모건|정현지
 | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------: |
-| <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/6904e1a1-52f7-45dc-8b99-f31446f92e63" width="200" height="200"/> | <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/02ab20ed-ea95-4c51-9a56-7fafcd1f738b" width="200" height="200"/> | <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/839c52db-0bb1-409b-99bc-319eb47d6624" width="200" height="200"/> | <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/bf371e49-32db-4af4-9053-d4e2c0614882" width="200" height="200"/> |
+| <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/6904e1a1-52f7-45dc-8b99-f31446f92e63" width="150" height="150"/> | <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/02ab20ed-ea95-4c51-9a56-7fafcd1f738b" width="150" height="150"/> | <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/839c52db-0bb1-409b-99bc-319eb47d6624" width="150" height="150"/> | <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/bf371e49-32db-4af4-9053-d4e2c0614882" width="150" height="150"/> |
 |                          [정승규](https://github.com/Seunggyu008)                         |                          [오수민](https://github.com/suminara)                           |                           [김모건](https://github.com/redcontroller)                      |              [정현지](https://github.com/gee0916)                                      |
 |                                               팀장                                       |                                               팀원                                       |                                               팀원                                         |                                               팀원                                     |
 
@@ -49,6 +49,7 @@
 </div>
 
 ## 4. 역할 분담
+![Frame 8](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/43740de8-2bf3-4014-83cb-8812c168a02a)
 
 ## 5. 개발 환경
 ### 채택한 기술
@@ -97,9 +98,9 @@
 
 ### 협업
 
-**Notion** - 회의록, 동시 문서 작업 및 문서 관리에 활용했습니다.
-**Discord** - 음성 채팅방을 활용해 스크럼, 정기 회의 등의 의사소통 도구로 사용했습니다.
-**Figma** - 프로젝트 기획과 UI 디자인, 와이어프레임 개발을 수행했습니다.
+**Notion** - 회의록, 동시 문서 작업 및 문서 관리에 활용했습니다.<br>
+**Discord** - 음성 채팅방을 활용해 스크럼, 정기 회의 등의 의사소통 도구로 사용했습니다.<br>
+**Figma** - 프로젝트 기획과 UI 디자인, 와이어프레임 개발을 수행했습니다.<br>
 **Git, GitHub**
 
 - 소스 코드 버전 관리에 Git을 활용 했고, Git 호스팅 사이트로는 GitHub를 사용하여 프로젝트 저장, 내장된 칸반 보드 및  간트 차트를 이용해 프로젝트 이슈 및 일정 관리를 하였습니다.
@@ -160,9 +161,9 @@
 | :------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: |
 | ![editplacepost](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/56462409/2f8ed233-a9ce-4ada-bd04-00907174d3cd) | ![placelist filter](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/56462409/86d95b2a-0520-4db9-8669-17ef42e2c982)|  ![placedetail](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/56462409/53f450d2-2e7e-4055-84d4-848b682daf3d)|
 
-|                                        맛집 지도에서 보기                                                          |                          프로필 & 맛집 공유                                                    |               드래그&드                                    |
+|                                        맛집 지도에서 보기                                                          |                          프로필 & 맛집 공유                                                    |               드래그&드롭                                    |
 | :------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: |
-| ![place_kakaomap](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/56462409/82174a23-477a-4e7b-8ddf-87d1dabbe3a7)|    ![place_share_kakao](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/56462409/cf2df615-ab65-4668-bf6e-0c2601ba9862) |  |
+| ![place_kakaomap](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/56462409/82174a23-477a-4e7b-8ddf-87d1dabbe3a7)|    ![place_share_kakao](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/56462409/cf2df615-ab65-4668-bf6e-0c2601ba9862) |  ![드래그앤드랍](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/effd4cc5-0c44-4d9f-9648-36453fece67a) |
 
 
 
@@ -232,3 +233,10 @@ develop : 디폴트 브랜치입니다. 각자 브랜치 분기후 작업하여 
 | 🌱`:seedling:`add:      | 파일 추가                                                                                  |
 
 ## 11. 후기
+승규 - 처음 맡게 된 프로젝트 팀장 이였고 부족한 점이 많았지만 능숙한 팀원분들 덕분에 무사히 프로젝트를 끝마칠수있었습니다. 같이 하나의 서비스를 구현하는 과정에서 많은 어려움이 있었지만 해결하는 과정에서 팀으로도, 개인적으로도 성장할 수 있었던 좋은 기회였습니다!
+
+수민 - 리액트 스킬, 팀 협업 경험, 문제 해결 능력, 그리고 사용자 피드백을 통한 성취감을 얻을 수 있는 좋은 경험이었습니다!
+
+모건 - 이번 팀 프로젝트를 통해서 현재 내 위치를 가늠할 수 있었고, 함수형 컴포넌트 개발에 친숙해질 수 있는 좋은 기회였습니다. 팀 분위기가 좋아서 또 다른 팀 프로젝트도 해보고 싶어요. 팀원 여러분 감사합니다.
+
+현지 - 여러 난관에 부딪혀 고민하고 해결하면서 스스로 많이 성장한 게 느껴지는 값진 시간이었습니다.
