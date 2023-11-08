@@ -183,6 +183,14 @@ const ProfileSettingForm = () => {
                   value: /^[0-9a-zA-Z._]+$/,
                   message: '*영문, 숫자, 밑줄 및 마침표만 사용할 수 있습니다.',
                 },
+                validate: {
+                  uniqueAccount: async (value) => {
+                    const result = await checkUserIdValid(
+                      value,
+                    );
+                    return result === true || result;
+                  },
+                },
               }),
               errors: errors.accountname
                 ? { accountname: errors.accountname }
