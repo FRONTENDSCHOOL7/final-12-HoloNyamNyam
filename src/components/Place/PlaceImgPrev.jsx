@@ -33,7 +33,9 @@ export default function PlaceImgPrev({
 
   const handleUploadImg = async (e) => {
     let file = e.target?.files[0];
-    if (file.size > maxSize) {
+    if (file === undefined) {
+      return;
+    } else if (file.size > maxSize) {
       alert('파일 사이즈는 10MB 이하만 가능합니다');
       return;
     } else if (
