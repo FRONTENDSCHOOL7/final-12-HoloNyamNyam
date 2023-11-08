@@ -16,7 +16,7 @@ import {
 } from './StyledInfoProfile';
 import { userInfoApi } from '../../api/user';
 import { ProfileApi } from '../../api/profile';
-import { userFeedCntApi } from '../../api/feed';
+import { userFeedListApi } from '../../api/feed';
 import Loading from '../Loading/Loading';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { userInfoState } from '../../recoil/userInfoAtom';
@@ -63,7 +63,7 @@ export default function InfoProfile({ type, scrollToFeeds }) {
           intro,
         });
         if (accountname) {
-          const res = await userFeedCntApi(accountname, token);
+          const res = await userFeedListApi(accountname, token, 9999, 0);
           const cnt = res.data.post.length;
           setPostCnt(cnt);
         }
@@ -90,7 +90,7 @@ export default function InfoProfile({ type, scrollToFeeds }) {
           intro,
         });
         if (accountname) {
-          const res = await userFeedCntApi(accountname, token);
+          const res = await userFeedListApi(accountname, token, 999, 0);
           const cnt = res.data.post.length;
           setPostCnt(cnt);
         }
