@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import Input from '../../components/common/Input/Input';
 import { useForm } from 'react-hook-form';
