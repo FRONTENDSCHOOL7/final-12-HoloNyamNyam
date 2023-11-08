@@ -46,9 +46,9 @@
 |                                               팀장                                       |                                               팀원                                       |                                               팀원                                         |                                               팀원                                     |
 
 
-[<img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/7503747c-3ed9-4628-8e75-ce609181e654" width="50" height="50"/>](https://www.figma.com/file/UBB5bMLYpjC4ibADx7TxvM/%EC%82%B0%EC%A0%84%EC%88%98%EC%A0%84%EA%B3%B5%EC%A4%91%EC%A0%84?type=design&node-id=156-3036&mode=design&t=VTqyFHBTQjknvsUn-0)<br>
-[**팀 Figma**](https://www.figma.com/file/UBB5bMLYpjC4ibADx7TxvM/%EC%82%B0%EC%A0%84%EC%88%98%EC%A0%84%EA%B3%B5%EC%A4%91%EC%A0%84?type=design&node-id=156-3036&mode=design&t=VTqyFHBTQjknvsUn-0)<br>
+[<img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/7503747c-3ed9-4628-8e75-ce609181e654" width="50" height="50"/>](https://www.figma.com/file/UBB5bMLYpjC4ibADx7TxvM/%EC%82%B0%EC%A0%84%EC%88%98%EC%A0%84%EA%B3%B5%EC%A4%91%EC%A0%84?type=design&node-id=156-3036&mode=design&t=VTqyFHBTQjknvsUn-0)
 [<img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/8b1cf92f-5886-4b48-be51-963b0aea583a" width="50" height="50"/>](https://www.figma.com/file/UBB5bMLYpjC4ibADx7TxvM/%EC%82%B0%EC%A0%84%EC%88%98%EC%A0%84%EA%B3%B5%EC%A4%91%EC%A0%84?type=design&node-id=156-3036&mode=design&t=VTqyFHBTQjknvsUn-0)<br>
+[**팀 Figma**](https://www.figma.com/file/UBB5bMLYpjC4ibADx7TxvM/%EC%82%B0%EC%A0%84%EC%88%98%EC%A0%84%EA%B3%B5%EC%A4%91%EC%A0%84?type=design&node-id=156-3036&mode=design&t=VTqyFHBTQjknvsUn-0)
 [**팀 Notion**](https://mammoth-sassafras-ff5.notion.site/12-c85ac2d8dfd740338d30cb6414050af8)
 </div>
 
@@ -597,13 +597,12 @@ main : 배포가 될 브랜치입니다.
 develop : 디폴트 브랜치입니다. 각자 브랜치 분기후 작업하여 충돌을 줄이고 안전하게 머지합니다.
 
 
-**깃 커밋 컨벤션/Git Commit Convention**
+**팀 컨벤션/Convention**
 
-본문이 있다면 제목과 빈줄을 두어 구분합니다.
-
-예시)
+1.commit
 
 ```
+예시)
 (이모지)tag: subject
 예시) git commit -m '✨feat: 새로운 기능 추가 #'
 ```
@@ -623,6 +622,37 @@ develop : 디폴트 브랜치입니다. 각자 브랜치 분기후 작업하여 
 | 🚑`:ambulance:`hotfix:   | 급하게 치명적인 버그를 고쳐야 하는 경우                                                    |
 | ♻️`:recycle:`refactor: | 코드 리팩토링                                                                              |
 | 🌱`:seedling:`add:      | 파일 추가                                                                                  |
+
+2. Pull Request
+
+```
+### 💡 관련 이슈
+<!-- - #이슈번호 -->
+
+### ✍️ PR 한 줄 요약
+
+### ✏ 상세 작업 내용
+
+### ⭐ 참고 사항
+
+### ✅ PR 양식 체크리스트
+-[ ] 🔀 PR 제목의 형식을 잘 작성했나요? e.g. ✨feat: PR 등록
+-[ ] 🧹 불필요한 코드는 제거했나요?
+-[ ] 💭 이슈는 등록했나요?
+-[ ] 🏷️ 라벨은 등록했나요?
+```
+
+3. Branch
+
+```
+dev > feat/button/KM
+```
+
+**도구**
+
+**eslint** - Linter. 소스 코드에 문제가 있는지 검사하여 문제가 있는 부분에 Flag를 달아주는 소프트웨어 도구<br>
+**prettier** - formatter. 소스 코드를 일관된 스타일로 작성할 수 있게 코드를 변환해주는 소프트웨어 도구
+
 
 ## 11. 후기
 
