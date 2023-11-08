@@ -7,6 +7,7 @@ import {
   StyledInputWrap,
   StyledCheckbox,
   StyledCheckboxLable,
+  CheckboxDiv,
 } from './StyledLoginForm';
 import { login } from '../../api/login';
 
@@ -122,12 +123,15 @@ export default function LoginForm() {
           }}
         />
       </StyledInputWrap>
-      <StyledCheckbox
-        onClick={handleCheck}
-        type='checkbox'
-        id='testAccount'
-        title='체크하시면 테스트 계정을 자동으로 입력해 드려요!'
-      />
+      <CheckboxDiv>
+        <StyledCheckbox
+          onClick={handleCheck}
+          type='checkbox'
+          id='testAccount'
+          title='체크하시면 테스트 계정을 자동으로 입력해 드려요!'
+          className='taste'
+        />
+      </CheckboxDiv>
       <StyledCheckboxLable htmlFor='testAccount'>
         테스트 계정으로 맛보기
       </StyledCheckboxLable>
