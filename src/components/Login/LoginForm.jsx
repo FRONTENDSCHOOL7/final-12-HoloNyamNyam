@@ -2,21 +2,29 @@ import React, { useState, useEffect } from 'react';
 import Input from '../common/Input/Input';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { StyledButton, StyledInputWrap } from './StyledLoginForm';
+import {
+  StyledButton,
+  StyledInputWrap,
+  StyledCheckbox,
+  StyledCheckboxLable,
+  CheckboxDiv,
+} from './StyledLoginForm';
 import { login } from '../../api/login';
 
 export default function LoginForm() {
   const {
+    setValue,
     register,
     handleSubmit,
     setError,
+    trigger,
     formState: { errors, isValid },
   } = useForm({ mode: 'onChange' });
 
   const [hasError, setHasError] = useState(false);
   const [error, setErrors] = useState({});
-
   const [loginSuccess, setLoginSuccess] = useState(false);
+  const [testLogin, setTestLogin] = useState(false);
 
   const LoginFormSubmit = async (formData) => {
     const loginData = await login(formData);
@@ -43,6 +51,20 @@ export default function LoginForm() {
 
   const handleFieldChange = () => {
     setErrors({});
+  };
+
+  const handleCheck = () => {
+    handleFieldChange();
+    if (!testLogin) {
+      setTestLogin(true);
+      setValue('email', 'holo_nyam@gmail.com');
+      setValue('password', 'holo_nyam');
+    } else {
+      setTestLogin(false);
+      setValue('email', '');
+      setValue('password', '');
+    }
+    trigger();
   };
 
   const navigate = useNavigate();
@@ -101,6 +123,18 @@ export default function LoginForm() {
           }}
         />
       </StyledInputWrap>
+      <CheckboxDiv>
+        <StyledCheckbox
+          onClick={handleCheck}
+          type='checkbox'
+          id='testAccount'
+          title='체크하시면 테스트 계정을 자동으로 입력해 드려요!'
+          className='taste'
+        />
+      </CheckboxDiv>
+      <StyledCheckboxLable htmlFor='testAccount'>
+        테스트 계정으로 맛보기
+      </StyledCheckboxLable>
 
       <StyledButton type='submit' $bgcolor={isValid ? 'active' : 'inactive'}>
         로그인을 위해 눌러주세요

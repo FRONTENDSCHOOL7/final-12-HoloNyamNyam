@@ -54,7 +54,7 @@ export default function FeedList({ feedRef }) {
   const handleViewModeChange = (mode) => {
     setViewMode(mode);
   };
-  let limit = viewMode === 'album' ? '*' : 2;
+  let limit = viewMode === 'album' ? '*' : 4;
 
   const getUserInfo = async ({ limit, skip }) => {
     setPrevInfo(prevInfo);
@@ -139,7 +139,7 @@ export default function FeedList({ feedRef }) {
   };
 
   useEffect(() => {
-    setHasFeeds(false);
+    // setHasFeeds(false);
     setSkip(0);
     setPage(0);
     setFeedInfo([]);
@@ -152,7 +152,11 @@ export default function FeedList({ feedRef }) {
       ) : hasFeeds ? (
         <>
           <FeedListBtnWrap>
-            <button type='button' onClick={() => handleViewModeChange('list')}>
+            <button
+              type='button'
+              onClick={() => handleViewModeChange('list')}
+              title='게시물을 자세히 볼 수 있어요.'
+            >
               <ViewSVG
                 id={
                   viewMode === 'list'
@@ -162,7 +166,11 @@ export default function FeedList({ feedRef }) {
               />
               <h2 className='a11y-hidden'>게시물 리스트 타입으로 보기 버튼</h2>
             </button>
-            <button type='button' onClick={() => handleViewModeChange('album')}>
+            <button
+              type='button'
+              onClick={() => handleViewModeChange('album')}
+              title='게시물을 앨범 형식으로 볼 수 있어요.'
+            >
               <ViewSVG
                 id={
                   viewMode === 'album'

@@ -9,6 +9,16 @@ export default function Splash() {
   const token = sessionStorage.getItem('token');
 
   useEffect(() => {
+    if (
+      sessionStorage.getItem('_id') ||
+      sessionStorage.getItem('accountname') ||
+      sessionStorage.getItem('token')
+    ) {
+      navigate('/home');
+    }
+  }, [navigate]);
+
+  useEffect(() => {
     if (token) {
       setTimeout(() => {
         setTimeout(() => {

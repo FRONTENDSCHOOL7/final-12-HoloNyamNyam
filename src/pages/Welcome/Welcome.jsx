@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import LogoWhiteImg from '../../images/Logo_white.svg';
 import { Container, Logo, Login, Join } from './WelcomeStyle';
+import { useNavigate } from 'react-router-dom';
 
 export default function Welcome() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (
+      sessionStorage.getItem('_id') ||
+      sessionStorage.getItem('accountname') ||
+      sessionStorage.getItem('token')
+    ) {
+      navigate('/home');
+    }
+  }, [navigate]);
   return (
     <Container>
       <Logo src={LogoWhiteImg} alt='로고' />

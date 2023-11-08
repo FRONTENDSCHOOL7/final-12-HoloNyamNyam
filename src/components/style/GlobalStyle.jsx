@@ -72,7 +72,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   #root{
-    width: 390px;
+    max-width: 390px;
     min-height: 100vh;
     margin: 0 auto;
     background-color: #fff;

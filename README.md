@@ -15,11 +15,11 @@
 
 그럼, '홀로냠냠'과 함께 즐거운 혼밥하세요!
 
-```
-배포 사이트:
-- 테스트 계정:  holo_nyam@gmail.com
-- 비밀번호:  holo_nyam
-```
+
+🍰 **배포 사이트** : [https://holonyam.netlify.app](https://holonyam.netlify.app/)<br>
+🍔 **테스트 계정**: holo_nyam@gmail.com<br>
+🍟 **비밀번호**: holo_nyam<br>
+
 
 ## 2. 목차
 
@@ -27,8 +27,8 @@
 2.  [목차](#2-목차)
 3.  [팀 소개](#3-팀-소개)
 4.  [역할 분담](#4-역할-분담)
-5.  [개발 환경](#5-개발-환경)
-6.  [개발 스택](#6-개발-스택)
+5.  [개발 스택](#5-개발-스택)
+6.  [개발 환경](#6-개발-환경)
 7.  [구현 기능](#7-구현-기능)
 8.  [기능 UI](#8-기능-UI)
 9.  [폴더 구조](#9-폴더-구조)
@@ -41,17 +41,38 @@
 
 |정승규 |오수민|김모건|정현지
 | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------: |
-| <img src="https://avatars.githubusercontent.com/u/127311862?v=4" width="120px;" alt=""/> | <img src="https://avatars.githubusercontent.com/u/127311862?v=4" width="120px;" alt=""/> | <img src="https://avatars.githubusercontent.com/u/127311862?v=4" width="120px;" alt=""/> | <img src="https://avatars.githubusercontent.com/u/127311862?v=4" width="120" alt="" /> |
-|                          [정승규](https://github.com/Seunggyu008)                         |                          [오수민](https://github.com/suminara)                           |                           [김모건](https://github.com/redcontroller)                      |              [정현지](https://github.com/gee0916)                                      |
+| <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/6904e1a1-52f7-45dc-8b99-f31446f92e63" width="150" height="150"/> | <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/02ab20ed-ea95-4c51-9a56-7fafcd1f738b" width="150" height="150"/> | <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/839c52db-0bb1-409b-99bc-319eb47d6624" width="150" height="150"/> | <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/bf371e49-32db-4af4-9053-d4e2c0614882" width="150" height="150"/> |
+|                          <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/8294521e-329a-45eb-a093-3836733640c4" width="30" height="30"/><br>[GitHub](https://github.com/Seunggyu008)                         |                          <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/8294521e-329a-45eb-a093-3836733640c4" width="30" height="30"/><br>[GitHub](https://github.com/suminara)                           |                           <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/8294521e-329a-45eb-a093-3836733640c4" width="30" height="30"/><br>[GitHub](https://github.com/redcontroller)                      |              <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/8294521e-329a-45eb-a093-3836733640c4" width="30" height="30"/><br>[GitHub](https://github.com/gee0916)                                      |
 |                                               팀장                                       |                                               팀원                                       |                                               팀원                                         |                                               팀원                                     |
 
 
+[<img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/7503747c-3ed9-4628-8e75-ce609181e654" width="50" height="50"/>](https://www.figma.com/file/UBB5bMLYpjC4ibADx7TxvM/%EC%82%B0%EC%A0%84%EC%88%98%EC%A0%84%EA%B3%B5%EC%A4%91%EC%A0%84?type=design&node-id=156-3036&mode=design&t=VTqyFHBTQjknvsUn-0)<br>
+[**팀 Figma**](https://www.figma.com/file/UBB5bMLYpjC4ibADx7TxvM/%EC%82%B0%EC%A0%84%EC%88%98%EC%A0%84%EA%B3%B5%EC%A4%91%EC%A0%84?type=design&node-id=156-3036&mode=design&t=VTqyFHBTQjknvsUn-0)<br>
+[<img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/8b1cf92f-5886-4b48-be51-963b0aea583a" width="50" height="50"/>](https://www.figma.com/file/UBB5bMLYpjC4ibADx7TxvM/%EC%82%B0%EC%A0%84%EC%88%98%EC%A0%84%EA%B3%B5%EC%A4%91%EC%A0%84?type=design&node-id=156-3036&mode=design&t=VTqyFHBTQjknvsUn-0)<br>
+[**팀 Notion**](https://mammoth-sassafras-ff5.notion.site/12-c85ac2d8dfd740338d30cb6414050af8)
 </div>
 
 ## 4. 역할 분담
+![Frame 8](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/43740de8-2bf3-4014-83cb-8812c168a02a)
 
-## 5. 개발 환경
-### 채택한 기술
+## 5. 개발 스택
+
+|            사용기술 |             <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=white"> <img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white"> <img src="https://img.shields.io/badge/KakaoAPI-FFCD00?style=for-the-badge&logo=kakao&logoColor=white"> <img src="https://img.shields.io/badge/reacthookform-EC5990?style=for-the-badge&logo=reacthookform&logoColor=white"> <img src="https://img.shields.io/badge/recoil-3578E5?style=for-the-badge&logo=react&logoColor=white">                   |
+| :------------------------------------------------------------------------------------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------- | 
+|  패키지  |  <img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white">   |
+|  포멧터  | <img src="https://img.shields.io/badge/prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=white">   <img src="https://img.shields.io/badge/eslint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white"> |
+|  협업  | <img src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=github&logoColor=white"> <img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white"> <img src="https://img.shields.io/badge/discord-5865F2?style=for-the-badge&logo=discord&logoColor=white"> |
+|  디자인  |  <img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">   |
+|  IDE  |  <img src="https://img.shields.io/badge/vscode-007ACC?style=for-the-badge&logo=vscode&logoColor=white">   |
+|  배포  |  <img src="https://img.shields.io/badge/netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white">   |
+
+
+
+## 6. 개발 환경
+
+<details>
+<summary><strong>채택한 기술</strong></summary>
+<div markdown="1">
 
 **Node.js**
 
@@ -94,12 +115,15 @@
 **Netlify** 
 
 - 웹 호스팅 서비스를 제공하는 플랫폼은 많지만, Netlify는 GitHub 연동, 간단한 사용법, 500개의 사이트를 일정 성능까지 무료 사용이 가능하여 채택했습니다.
+</div>
+</details>
+<details>
+<summary><strong>협업</strong></summary>
+<div markdown="1">
 
-### 협업
-
-**Notion** - 회의록, 동시 문서 작업 및 문서 관리에 활용했습니다.
-**Discord** - 음성 채팅방을 활용해 스크럼, 정기 회의 등의 의사소통 도구로 사용했습니다.
-**Figma** - 프로젝트 기획과 UI 디자인, 와이어프레임 개발을 수행했습니다.
+**Notion** - 회의록, 동시 문서 작업 및 문서 관리에 활용했습니다.<br>
+**Discord** - 음성 채팅방을 활용해 스크럼, 정기 회의 등의 의사소통 도구로 사용했습니다.<br>
+**Figma** - 프로젝트 기획과 UI 디자인, 와이어프레임 개발을 수행했습니다.<br>
 **Git, GitHub**
 
 - 소스 코드 버전 관리에 Git을 활용 했고, Git 호스팅 사이트로는 GitHub를 사용하여 프로젝트 저장, 내장된 칸반 보드 및  간트 차트를 이용해 프로젝트 이슈 및 일정 관리를 하였습니다.
@@ -108,22 +132,331 @@
 
 - 확장 프로그램인 Live Share를 통해 Pair programing를 수행했습니다.
 - Git과 연동하여 소스 코드 버전 관리에 Git graph 활용했습니다.
-
-
-## 6. 개발 스택
-
-|            사용기술 |             <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=white"> <img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white"> <img src="https://img.shields.io/badge/KakaoAPI-FFCD00?style=for-the-badge&logo=kakao&logoColor=white"> <img src="https://img.shields.io/badge/reacthookform-EC5990?style=for-the-badge&logo=reacthookform&logoColor=white"> <img src="https://img.shields.io/badge/recoil-3578E5?style=for-the-badge&logo=react&logoColor=white">                   |
-| :------------------------------------------------------------------------------------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------- | 
-|  패키지  |  <img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white">   |
-|  포멧터  | <img src="https://img.shields.io/badge/prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=white">   <img src="https://img.shields.io/badge/eslint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white"> |
-|  협업  | <img src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=github&logoColor=white"> <img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white"> <img src="https://img.shields.io/badge/discord-5865F2?style=for-the-badge&logo=discord&logoColor=white"> |
-|  디자인  |  <img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">   |
-|  IDE  |  <img src="https://img.shields.io/badge/vscode-007ACC?style=for-the-badge&logo=vscode&logoColor=white">   |
-|  배포  |  <img src="https://img.shields.io/badge/netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white">   |
+</div>
+</details>
 
 
 
 ## 7. 구현 기능
+```
+ 🍕 계정
+
+- splash 페이지
+- 로그인,로그아웃 페이지/유효성 검사
+- 회원가입
+- 프로필 페이지/유효성 검사(+이미지)
+- welcome 페이지
+
+ 🍔 피드
+
+- 게시글 등록 /수정/삭제
+- 모달창
+- 이미지 최대 3장 업로드
+- 유저 게시글 목록
+- 팔로잉 게시글 목록
+- 게시글 신고
+- 게시물 좋아요 및 취소
+
+ 🥨 댓글
+
+- 댓글 등록/수정/삭제/날짜표시
+- 신고하기 UI 구현
+
+ 🍤 프로필
+
+- 개인 / 타인 프로필 페이지
+- 프로필 수정
+- 팔로우/언팔로우 UI 버튼 기능
+- 팔로우/팔로잉 리스트
+
+ 🌮 채팅
+
+- 채팅 목록 (UI)
+- 채팅 페이지/이미지 업로드 (UI)
+
+ 🥤 맛집평가
+
+- 맛집 등록/별점
+- 맛집 수정/삭제
+- 맛집 모달창
+- 맛집 상세
+- 지도 API (홀로냠냠의 특수기능)
+```
+<details>
+<summary>Kakao API</summary>
+<div markdown="1">
+
+- Kakao API
+
+    1. 카카오 지도 API
+        - `geocoder.addressSearch`를 이용하여 주소를 좌표로 변환하고, 그 좌표를 이용하여 마커와 정보창을 생성합니다.
+        - 마커의 이미지는 `MarkerImgSvg`에서 가져오며, 크기는 `kakao.maps.Size`를 이용하여 설정합니다.
+            
+            ```jsx
+            geocoder.addressSearch(placeLink, function (result, status) {
+                  if (status === kakao.maps.services.Status.OK) {
+                    let coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+            
+                    let imageSrc = MarkerImgSvg,
+                      imageSize = new kakao.maps.Size(64, 69);
+            
+                    let basicMarkerImage = new kakao.maps.MarkerImage(imageSrc, imageSize),
+                      markerPosition = new kakao.maps.LatLng(result[0].y, result[0].x); //
+            
+                    let basicMarker = new kakao.maps.Marker({
+                      map: map,
+                      position: markerPosition,
+                      image: basicMarkerImage,
+                    });
+            
+                    let content = `<div class="customoverlay"><a href="https://map.kakao.com/link/to/${placeName},${coords.Ma},${coords.La}" title="길찾기 버튼"><span class="name">${placeName}</span></a></div>`;
+            
+                    customOverlay = new kakao.maps.CustomOverlay({
+                      position: markerPosition,
+                      content: content,
+                      yAnchor: 1,
+                    });
+            
+                    map.setCenter(coords);
+                    customOverlay.setMap(map);
+                    basicMarker.setMap(map);
+                  }
+                });
+            ```
+            
+        - `kakao.maps.event.addListener`를 통해 지도(`map`)에 클릭 이벤트를 연결합니다. 사용자가 지도를 클릭하면 실행되는 함수에는 클릭 이벤트에 대한 정보가 `mouseEvent`로 전달됩니다
+        - `mouseEvent.latLng`를 통해 클릭한 위치의 좌표를 얻고, `marker.setPosition(position)`을 통해 마커의 위치를 클릭한 위치로 이동시킵니다.
+        - `toggleRoadview(position)`을 호출하여 해당 좌표의 로드뷰를 활성화합니다. 이때 `toggleRoadview` 함수 내부에서는 `rvClient.getNearestPanoId`를 이용하여 가장 가까운 파노라마 ID를 가져와 로드뷰를 설정합니다.
+            
+            ```jsx
+            kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
+              if (!overlayOn) {
+                return;
+              }
+            
+              let position = mouseEvent.latLng;
+              marker.setPosition(position);
+              toggleRoadview(position);
+            });
+            ```
+            
+    2. 카카오 공유 API
+        - `kakao.Share.sendDefault` 메소드를 이용하여 공유할 정보를 설정하고 공유합니다.
+        - 공유할 정보는 `objectType`, `content`, `buttons` 등 다양한 속성을 가질 수 있습니다.
+        - 각각의 정보를 설정하고 공유 버튼을 클릭하면 해당 정보가 카카오 공유를 통해 전송됩니다.
+            
+            ```jsx
+            kakao.Share.sendDefault({
+                    objectType: 'location',
+                    address: placeInfo.link,
+                    addressTitle: placeInfo.itemName,
+                    content: {
+                      title: placeInfo.itemName,
+                      imageUrl: placeInfo.itemImage,
+                      description: placeInfo.link,
+                      link: {
+                        mobileWebUrl: 'https://holonyam.netlify.app/',
+                        webUrl: 'https://holonyam.netlify.app/',
+                      },
+                    },
+                    social: {
+                      likeCount: placeInfo.price,
+                    },
+                    buttons: [
+                      {
+                        title: '웹으로 보기',
+                        link: {
+                          mobileWebUrl: 'https://holonyam.netlify.app/',
+                          webUrl: 'https://holonyam.netlify.app/',
+                        },
+                      },
+                    ],
+                  });
+            ```
+            
+ 
+</div>
+</details>
+
+<details>
+<summary>최신순/별점순 조회 기능</summary>
+<div markdown="1">
+
+- 최신순/별점순 조회 기능
+    - 이 기능은 Recoil 라이브러리의 atom을 사용하여 구현되었으며, `viewBtnState`라는 atom을 생성하여 초기 정렬 상태를 '별점순'으로 설정하였습니다.
+        
+        ```jsx
+        export const viewBtnState = atom({
+          key: 'viewBtnState',
+          default: '별점순',
+          effects_UNSTABLE: [persistAtom],
+        });
+        ```
+        
+    - 사용자의 버튼 클릭에 따라 `viewMode`라는 상태 값을 변경하여 게시글의 정렬 순서를 변경하게 됩니다. 이 `viewMode`는 `viewBtnState` atom과 연결되어 있어, 해당 상태를 관리하게 됩니다.
+        
+        ```jsx
+        const [viewMode, setViewMode] = useRecoilState(viewBtnState);
+        
+        const handleViewModeChange = (mode) => {
+          if (viewMode === '최신순') {
+            mode = '별점순';
+          }
+          setViewMode(mode);
+        };
+        
+        <ButtonWrap>
+          <SortButton onClick={() => handleViewModeChange('최신순')}>
+            <Star src={StarImg} />
+            &nbsp;{viewMode}으로 보기&nbsp;
+          </SortButton>
+        </ButtonWrap>
+        ```
+        
+    - `sort()` ****메서드를 이용하여 만약 `viewMode`가 '별점순'이라면 `b.updatedAt - a.updatedAt`을 반환하고, '최신순'이라면 `b.price - a.price`를 반환하도록 하였습니다.
+        
+        ```jsx
+        placeInfo
+          .sort((a, b) => {
+            if (viewMode === '별점순') {
+              return b.updatedAt - a.updatedAt;
+            } else if (viewMode === '최신순') {
+              return b.price - a.price;
+            }
+          })
+        ```
+        
+ 
+</div>
+</details>
+
+<details>
+<summary>Carousel 기능</summary>
+<div markdown="1">
+
+![Untitled](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/ad305bb9-6519-4953-9bce-b6ff2bf731d0)
+
+
+**Carousel**의 핵심은 **Left/RightButton**와 **CarouselImages** 컴포넌트로 구성됩니다. 
+
+**CarouselImages** 컴포넌트는 **carouselImages** 배열의 각 요소를 매핑하여 이미지를 렌더링하고 currentIndex 상태값에 따라 활성화 또는 비활성화 됩니다. 
+
+**Left/RightButton** 컴포넌트는 각각 이전과 다음 이미지를 볼 수 있도록 **handlePrevious** 또는 **handleNext** 함수를 호출하여  currentIndex 상태값을 변경하는 역할을 합니다.
+추가적으로 각 img 태그에는 렌더링 성능을 고려하여 loading=’lazy’를 추가하여, 뷰포트 내에 위치하게 되었을 때 load를 하도록 했습니다. (lazy Loading 기능)
+
+```jsx
+...
+const [currentIndex, setCurrentIndex] = useState(0);
+  const handlePrevious = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex - 1 < 0 ? carouselImages.length - 1 : prevIndex - 1,
+    );
+  };
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex + 1 === carouselImages.length ? 0 : prevIndex + 1,
+    );
+  };
+  return (
+    <CarouselWrapper>
+      <CarouselImages>
+        {carouselImages?.map((imgItem, index) => (
+          <img
+            key={index}
+            src={
+              previews
+                ? imgItem
+                : imgItem.trim().startsWith('https://')
+                ? imgItem
+                : `https://api.mandarin.weniv.co.kr/${imgItem.trim()}`
+            }
+            className={currentIndex === index ? 'active' : 'inactive'}
+            alt={previews ? userInfo : `포스트이미지 by @${images.userInfo}.`}
+            crossOrigin='anonymous'
+            loading='lazy'
+            onClick={onImageClick}
+            style={{ cursor: detail === true ? 'default' : 'pointer' }}
+          />
+        ))}
+      </CarouselImages>
+      {carouselImages.length > 1 && (
+        <div>
+          <LeftButton onClick={handlePrevious}>
+            <img src={Left} alt='이전 사진 보기 화살표 버튼' />
+          </LeftButton>
+          <RightButton onClick={handleNext}>
+            <img src={Right} alt='다음 사진 보기 화살표 버튼' />
+          </RightButton>
+        </div>
+      )}
+...
+```
+
+ 
+</div>
+</details>
+
+<details>
+<summary>Drag&Drop 기능</summary>
+<div markdown="1">
+
+![드래그앤드랍](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/5289196e-7ab5-43e0-8960-8d8c5ac873f2)
+
+
+드래그가 시작되면 **dragStart()** 함수를 호출되어 사용자가 선택한 미리보기 이미지의 DOM 요소 인덱스를 **useRef()**를 사용해 **dragItem.current**에 저장합니다.
+
+ 
+
+드래그 중인 대상이 위로 포개졌을 때는 **dragEnter()** 함수가 호출되어 **dragOverItem.current**에 해당 인덱스를 저장합니다.
+
+사용자가 커서를 뗐을 때, **drop()** 함수가 호출되어 드래그 전 uploadPreview ****배열을 복사한 후, **dragItem.current**와 **dragOverItem.current**를 이용하여 순서를 변경하고 **newPreviewList** 에 저장하고 **setUploadPreview()**을 통해 새로운 이미지 순서로 반영합니다.
+
+```jsx
+const dragItem = useRef(); // 드래그할 아이템의 인덱스
+const dragOverItem = useRef(); // 포개진 아이템의 인덱스
+...
+const dragStart = (e, position) => { dragItem.current = position; };
+// 드래그중인 대상이 위로 포개졌을 때
+const dragEnter = (e, position) => { dragOverItem.current = position; };
+// 커서 뗐을 때
+const drop = () => {
+    const newPreviewList = [...uploadPreview];
+    const dragItemValue = newPreviewList[dragItem.current];
+    newPreviewList.splice(dragItem.current, 1); // delete
+    newPreviewList.splice(dragOverItem.current, 0, dragItemValue); // insert
+		setUploadPreview(newPreviewList);
+    dragItem.current = null;
+    dragOverItem.current = null;
+}
+...
+{uploadPreview?.map((preview, index) => (
+    <UploadImgDiv key={index}>
+    <CloseImgBtn
+        onClick={(event) => {
+        event.preventDefault(); // 기본 동작 취소
+        removeImg(index);
+        }}
+    />
+    <UploadImg
+       draggable
+       onDragStart={(e) => dragStart(e, index)}
+       onDragEnter={(e) => dragEnter(e, index)}
+       onDragEnd={drop}
+       onDragOver={(e) => e.preventDefault()}
+       key={index}
+       src={preview}
+       alt='업로드된 이미지'
+    >
+    </UploadImgDiv>
+))}
+...
+```
+
+ 
+</div>
+</details>
+
+
 
 ## 8. 기능 UI
 |                                                스플래쉬                                                 |                                                로그인                                                 |                                                회원가입                                                |
@@ -136,10 +469,9 @@
 
 
 
-|                                                 메인                                                 |                                                               좋아요                                                               |                                                             댓글등록                                                              |
+|                                                 메인                                                 |                                                               좋아요                                                               |                                                             댓글 등록&수정                                                              |
 | :--------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: |
-| ![main](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/56462409/77795068-a8a8-4598-aa3e-a15ded3965dc)| ![like](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/56462409/e8f9f79a-9374-49be-a665-3dd7872039b4) | ![comment](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/56462409/8c87ede5-f34d-4bd7-a076-615cb7ca3617) |
-
+| ![main](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/56462409/77795068-a8a8-4598-aa3e-a15ded3965dc)| ![like](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/56462409/e8f9f79a-9374-49be-a665-3dd7872039b4) | ![comment_create_delete](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/56462409/aad2959d-0278-4aab-850d-d27d05a15266)|
 
 
 
@@ -160,19 +492,77 @@
 | :------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: |
 | ![editplacepost](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/56462409/2f8ed233-a9ce-4ada-bd04-00907174d3cd) | ![placelist filter](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/56462409/86d95b2a-0520-4db9-8669-17ef42e2c982)|  ![placedetail](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/56462409/53f450d2-2e7e-4055-84d4-848b682daf3d)|
 
-|                                        맛집 지도에서 보기                                                          |                          프로필 & 맛집 공유                                                    |               드래그&드                                    |
+|                                        맛집 지도에서 보기                                                          |                          프로필 & 맛집 공유                                                    |               드래그&드롭                                    |
 | :------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: |
-| ![place_kakaomap](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/56462409/82174a23-477a-4e7b-8ddf-87d1dabbe3a7)|    ![place_share_kakao](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/56462409/cf2df615-ab65-4668-bf6e-0c2601ba9862) |  |
+| ![place_kakaomap](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/56462409/82174a23-477a-4e7b-8ddf-87d1dabbe3a7)|    ![place_share_kakao](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/56462409/cf2df615-ab65-4668-bf6e-0c2601ba9862) |  ![드래그앤드랍](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/effd4cc5-0c44-4d9f-9648-36453fece67a) |
+
+|                                        맛집 길찾기                                                          |     맛집 길찾기 로드뷰  |
+| :------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------: |
+|  ![kakaomap_findroute_2](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/56462409/343bfdc8-8af6-4083-97f7-adf50c3ed1c6) |        ![kakaomap_roadview](https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/56462409/46fe8605-9954-44f7-a008-5a7f59b2030c) |
 
 
 
 
 ## 9. 폴더 구조
-
+```
+📦src
+├─📂api
+├─📂components
+│  ├─📂Carousels
+│  ├─📂Chat
+│  ├─📂Comment
+│  ├─📂common
+│  │  ├─📂Button
+│  │  ├─📂Header
+│  │  ├─📂Input
+│  │  ├─📂Nav
+│  │  └─📂Skeleton
+│  ├─📂Error
+│  ├─📂Feed
+│  │  ├─📂FeedComment
+│  │  ├─📂FeedCreate
+│  │  ├─📂FeedHome
+│  │  ├─📂FeedItem
+│  │  ├─📂FeedList
+│  │  └─📂ImgPrev
+│  ├─📂FollowItem
+│  ├─📂Loading
+│  ├─📂Login
+│  ├─📂Map
+│  ├─📂Modal
+│  │  ├─📂Alert
+│  │  ├─📂Modal
+│  │  └─📂PlaceCard
+│  ├─📂Place
+│  ├─📂Profile
+│  ├─📂ProfileEdit
+│  ├─📂ProfileSetting
+│  ├─📂Search
+│  ├─📂Signup
+│  └─📂style
+├─📂images
+│  └─📂chatMembers
+├─📂pages
+│  ├─📂Chat
+│  ├─📂Error
+│  ├─📂Feed
+│  ├─📂FollowerList
+│  ├─📂Home
+│  ├─📂Login
+│  ├─📂Place
+│  ├─📂Profile
+│  ├─📂ProfileSetting
+│  ├─📂Search
+│  ├─📂SignUp
+│  ├─📂Splash
+│  └─📂Welcome
+├─📂recoil
+└─📂routers
+```
 
 ## 10. 작업 문화
-### 스크럼
----
+
+**스크럼**
 ☀️ Daily - 평일 오전 9시(약 15분 내외)
 
 - 어제의 활동 내용 요약
@@ -189,22 +579,22 @@
 
 - 코드 공유 후 서로 피드백
 - 수정이 필요한 부분 도출 및 개선 계획 협의
-### 라이브 쉐어
----
+
+**라이브 쉐어**
 🧑‍💻 Microsoft Visual Studio Code의 Live Share 기능을 활용하여 오류 수정 시에도 페어 프로그래밍을 통해 팀원들 간의 효율적이고 원활한 의사소통을 유지합니다.
 
-### Git & 브랜치 전략
----
-🐈‍⬛ Git Issue 작성 후 pr시 관련 Issue를 태그하여 커밋을 관리합니다.
+**Git & 브랜치 전략**
 
-🐈‍⬛ GitHub Flow
+👉 Git Issue 작성 후 pr시 관련 Issue를 태그하여 커밋을 관리합니다.
+
+👉 GitHub Flow
 
 main : 배포가 될 브랜치입니다.
 
 develop : 디폴트 브랜치입니다. 각자 브랜치 분기후 작업하여 충돌을 줄이고 안전하게 머지합니다.
 
----
-### 깃 커밋 컨벤션/Git Commit Convention
+
+**깃 커밋 컨벤션/Git Commit Convention**
 
 본문이 있다면 제목과 빈줄을 두어 구분합니다.
 
@@ -232,3 +622,9 @@ develop : 디폴트 브랜치입니다. 각자 브랜치 분기후 작업하여 
 | 🌱`:seedling:`add:      | 파일 추가                                                                                  |
 
 ## 11. 후기
+
+
+<img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/7b59306c-132e-4a2c-ba85-a9fa659af8bf" width="30" height="30"/>승규 : 처음 맡게 된 프로젝트팀장이였고 부족한 점이 많았지만 능숙한 팀원분들 덕분에 무사히 프로젝트를 끝마칠 수 있었습니다. 같이 하나의 서비스를 구현하는 과정에서 많은 어려움이 있었지만 해결하는 과정에서 팀으로도, 개인적으로도 성장할 수 있었던 좋은 기회였습니다!<br>
+<img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/cb5de83e-ed1f-4526-be37-1c6ce6a59a4b" width="30" height="30"/>수민 : 리액트 스킬, 팀 협업 경험, 문제 해결 능력, 그리고 사용자 피드백을 통한 성취감을 얻을 수 있는 좋은 경험이었습니다!<br>
+<img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/41f94079-9dfb-4794-9a7e-91fa198bd989" width="30" height="30"/>모건 : 이번 팀 프로젝트를 통해서 현재 내 위치를 가늠할 수 있었고, 함수형 컴포넌트 개발에 친숙해질 수 있는 좋은 기회였습니다. 팀 분위기가 좋아서 또 다른 팀 프로젝트도 해보고 싶어요. 팀원 여러분 감사합니다.<br>
+<img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/f331e5a2-ea16-4963-aef5-2d5c61b715f1" width="30" height="30"/>현지 : 여러 난관에 부딪혀 고민하고 해결하면서 스스로 많이 성장한 게 느껴지는 값진 시간이었습니다.<br>
