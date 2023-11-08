@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Input from '../common/Input/Input';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { StyledButton, StyledInputWrap } from './StyledLoginForm';
+import {
+  StyledButton,
+  StyledInputWrap,
+  StyledCheckbox,
+  StyledCheckboxLable,
+} from './StyledLoginForm';
 import { login } from '../../api/login';
 
 export default function LoginForm() {
@@ -15,8 +20,9 @@ export default function LoginForm() {
 
   const [hasError, setHasError] = useState(false);
   const [error, setErrors] = useState({});
-
   const [loginSuccess, setLoginSuccess] = useState(false);
+  const [testId, setTestId] = useState('');
+  const [password, setPassword] = useState('');
 
   const LoginFormSubmit = async (formData) => {
     const loginData = await login(formData);
@@ -43,6 +49,12 @@ export default function LoginForm() {
 
   const handleFieldChange = () => {
     setErrors({});
+  };
+
+  const handleCheck = () => {
+    handleFieldChange();
+    setTestId((prev) => (prev === '' ? 'holo_nyam@gmail.com' : ''));
+    setPassword((prev) => (prev === '' ? 'holo_nyam' : ''));
   };
 
   const navigate = useNavigate();
@@ -79,6 +91,7 @@ export default function LoginForm() {
             }),
             errors,
           }}
+          value={testId ? testId : ''}
         />
       </StyledInputWrap>
       <StyledInputWrap>
@@ -99,8 +112,18 @@ export default function LoginForm() {
             }),
             errors: errors.password ? { password: errors.password } : error,
           }}
+          value={password ? password : ''}
         />
       </StyledInputWrap>
+      <StyledCheckbox
+        onClick={handleCheck}
+        type='checkbox'
+        id='testAccount'
+        title='체크하시면 테스트 계정을 자동으로 입력해 드려요!'
+      />
+      <StyledCheckboxLable htmlFor='testAccount'>
+        테스트 계정으로 맛보기
+      </StyledCheckboxLable>
 
       <StyledButton type='submit' $bgcolor={isValid ? 'active' : 'inactive'}>
         로그인을 위해 눌러주세요
