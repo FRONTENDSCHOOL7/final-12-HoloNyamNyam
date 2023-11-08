@@ -45,6 +45,7 @@ export default function Alert({
       navigate('/myprofile', {
         state: {
           accountname: sessionStorage.getItem('accountname'),
+          feedId: modal.feedId,
         },
       });
       try {
