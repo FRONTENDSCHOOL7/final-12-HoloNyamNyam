@@ -41,7 +41,7 @@
 
 |정승규 |오수민|김모건|정현지
 | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------: |
-| <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/6904e1a1-52f7-45dc-8b99-f31446f92e63" width="150" height="150"/> | <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/02ab20ed-ea95-4c51-9a56-7fafcd1f738b" width="150" height="150"/> | <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/839c52db-0bb1-409b-99bc-319eb47d6624" width="150" height="150"/> | <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/bf371e49-32db-4af4-9053-d4e2c0614882" width="150" height="150"/> |
+| <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/6904e1a1-52f7-45dc-8b99-f31446f92e63" width="150" /> | <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/02ab20ed-ea95-4c51-9a56-7fafcd1f738b" width="150" /> | <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/839c52db-0bb1-409b-99bc-319eb47d6624" width="150" /> | <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/bf371e49-32db-4af4-9053-d4e2c0614882" width="150" /> |
 |                          <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/8294521e-329a-45eb-a093-3836733640c4" width="30" height="30"/><br>[GitHub](https://github.com/Seunggyu008)                         |                          <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/8294521e-329a-45eb-a093-3836733640c4" width="30" height="30"/><br>[GitHub](https://github.com/suminara)                           |                           <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/8294521e-329a-45eb-a093-3836733640c4" width="30" height="30"/><br>[GitHub](https://github.com/redcontroller)                      |              <img src="https://github.com/FRONTENDSCHOOL7/final-12-HoloNyamNyam/assets/138554423/8294521e-329a-45eb-a093-3836733640c4" width="30" height="30"/><br>[GitHub](https://github.com/gee0916)                                      |
 |                                               팀장                                       |                                               팀원                                       |                                               팀원                                         |                                               팀원                                     |
 
@@ -564,6 +564,7 @@ const drop = () => {
 ## 10. 작업 문화
 
 **스크럼**
+
 ☀️ Daily - 평일 오전 9시(약 15분 내외)
 
 - 어제의 활동 내용 요약
@@ -582,6 +583,7 @@ const drop = () => {
 - 수정이 필요한 부분 도출 및 개선 계획 협의
 
 **라이브 쉐어**
+
 🧑‍💻 Microsoft Visual Studio Code의 Live Share 기능을 활용하여 오류 수정 시에도 페어 프로그래밍을 통해 팀원들 간의 효율적이고 원활한 의사소통을 유지합니다.
 
 **Git & 브랜치 전략**
